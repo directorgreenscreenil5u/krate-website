@@ -686,6 +686,67 @@ footer nav a{font-size:20px!important}
  .sp-main{border-radius:24px}
  .sp-grid{gap:8vw}
 }
+/* ================= SHOP v4: giant headline + order slip ================= */
+.sx{padding:7vw 4vw 11vw}
+.sx-wrap{position:relative;max-width:1320px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);grid-template-areas:"tag tag" "h2 slip";column-gap:4vw;row-gap:1.6vw;align-items:center}
+.sx-tag{grid-area:tag;justify-self:start}
+.sx-h2{grid-area:h2;margin:0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(76px,10.4vw,170px);line-height:.84;text-transform:uppercase;color:#014621;display:flex;flex-direction:column}
+.sx-line{display:flex;align-items:center;gap:.08em;white-space:nowrap}
+.sx-l3{font-size:.78em}
+.sx-card{position:relative;flex:none;width:1.25em;aspect-ratio:1;margin-left:.06em;border-radius:.16em;background:radial-gradient(circle at 50% 45%,#f9a07a,#ef7a4c 62%,#e0643a);border:.035em solid #f6eceb;box-shadow:0 .06em .14em rgba(1,70,33,.3);rotate:-6deg;display:grid;place-items:center;transition:rotate .5s cubic-bezier(.2,.9,.25,1.4)}
+.sx-card:hover{rotate:0deg}
+.sx-card img{width:82%;height:auto;rotate:4deg;filter:drop-shadow(0 .04em .05em rgba(0,0,0,.3))}
+.sx-tape{position:absolute;top:-.08em;left:50%;width:.6em;height:.15em;translate:-50% 0;rotate:-4deg;z-index:2}
+.t-shop .sx-seal{position:absolute;width:48%;right:-16%;top:-14%;z-index:3;font-size:16px}
+.sx-slip{grid-area:slip;position:relative;background:#fffaf6;padding:34px 30px 30px;rotate:1.5deg;box-shadow:0 30px 60px rgba(1,70,33,.18);border-radius:4px;--z:10px;-webkit-mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/calc(2*var(--z)) 100%;mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/calc(2*var(--z)) 100%;padding-bottom:40px}
+.sx-slip-tape{position:absolute;top:-12px;left:50%;width:120px;height:32px;translate:-50% 0;rotate:3deg}
+.sx-slip-head{display:flex;justify-content:space-between;gap:12px;padding-bottom:14px;border-bottom:2px dashed rgba(1,70,33,.25);font:700 13px 'Inter Tight',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#014621}
+.sx-slip-head span:last-child{color:#1e9207}
+.sx-choose{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.sx-opt{position:relative;display:grid;gap:4px;padding:16px;border:2px solid #014621;border-radius:16px;cursor:pointer;color:#014621;transition:background .2s,color .2s,transform .3s cubic-bezier(.2,.9,.25,1.5)}
+.sx-opt input{position:absolute;opacity:0;pointer-events:none}
+.sx-opt b{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:24px;line-height:1;text-transform:uppercase}
+.sx-opt small{font:600 14px 'Inter Tight',sans-serif;color:#4a4446}
+.sx-opt.on{background:#014621;color:#5bc20f;transform:rotate(-1.5deg)}
+.sx-opt.on small{color:#f6eceb}
+.sx-opt[data-mode="sub"] small{color:#1e9207;font-weight:700}
+.sx-opt.on[data-mode="sub"] small{color:#5bc20f}
+.sx-opt:has(input:focus-visible){outline:3px solid #f53509;outline-offset:2px}
+.sx-freq{margin-top:12px}
+.sx-lines{margin-top:20px;display:grid;gap:12px;font:500 15px 'Inter Tight',sans-serif;color:#191718}
+.sx-item{display:flex;align-items:center;gap:10px}
+.sx-item[hidden]{display:none}
+.sx-dots{flex:1;min-width:12px;border-bottom:2px dotted rgba(1,70,33,.35);translate:0 4px}
+.sx-q{display:flex;align-items:center;gap:10px}
+.sx-q .hs-qty button{width:38px;height:38px;font-size:18px}
+.sx-q .hs-qty output{min-width:22px;font-size:16px}
+.sx-disc{color:#1e9207;font-weight:700}
+.sx-muted{color:#6b6466}
+.sx-total{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:6px;padding-top:14px;border-top:2px dashed rgba(1,70,33,.25)}
+.sx-total span{font:700 13px 'Inter Tight',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#014621}
+.sx-total strong{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(40px,3.8vw,56px);line-height:1;color:#014621}
+.sx-go{width:100%;margin-top:20px;min-height:60px;border:0;border-radius:999px;background:#f53509;color:#191718;font:700 16px 'Inter Tight',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:transform .25s cubic-bezier(.2,.9,.25,1.5)}
+.sx-go:hover{transform:translateY(-2px) rotate(-.5deg)}
+.sx-go:focus-visible{outline:3px solid #014621;outline-offset:3px}
+.sx-biz{display:block;margin-top:14px;text-align:center;font:700 14px 'Inter Tight',sans-serif;color:#014621;text-underline-offset:4px}
+@media (max-width:900px){
+ .sx-wrap{grid-template-columns:1fr;grid-template-areas:"tag" "h2" "slip";row-gap:7vw}
+ .sx-h2{font-size:19vw}
+ .t-shop .sx-seal{font-size:11px}
+ .sx-slip{rotate:0deg;padding:28px 18px 38px}
+ .sx-opt b{font-size:20px}
+ .sx-opt{padding:14px 12px}
+ .sx-item{font-size:14px}
+}
+@media (prefers-reduced-motion:reduce){.sx-card,.sx-opt{transition:none}}
+/* account = a hanging paper tag next to Pull me (same shape, lime) */
+.a-fab{position:fixed;top:0!important;right:148px!important;left:auto!important;bottom:auto!important;width:96px!important;height:76px!important;margin:0;padding:16px 0 0;border:0!important;border-top:3px dotted #014621!important;border-radius:0!important;background:#5bc20f!important;color:#014621!important;font:700 13px 'Inter Tight',sans-serif;letter-spacing:.06em;text-transform:uppercase;display:block;text-align:center;clip-path:polygon(0 0,100% 0,100% 100%,83% 88%,66% 100%,50% 88%,33% 100%,17% 88%,0 100%);box-shadow:none!important;filter:drop-shadow(0 6px 8px rgba(0,0,0,.2));transition:transform .35s cubic-bezier(.2,.9,.25,1.5);transform-origin:top center}
+.a-fab:hover{transform:translateY(4px) rotate(-2deg)}
+.a-fab.is-in::after{display:none}
+.a-fab:focus-visible{outline:3px solid #f53509;outline-offset:-3px}
+@media (max-width:743px){.a-fab{right:120px!important;width:72px!important;height:60px!important;padding-top:12px;font-size:11px;top:0!important}}
+.a-fab{background:#f6eceb!important;color:#014621!important}
+.a-fab.on-light{background:#014621!important;color:#5bc20f!important;border-top-color:#5bc20f!important}
 </style></head>
 <body>
 
@@ -993,35 +1054,36 @@ a{color:#014621}a:hover{color:#191718}
 </div>
 </div>
 </section>
-<!-- ================= SHOP (product page built into the homepage) ================= -->
-<section id="shop" class="t-shop" aria-labelledby="shopTitle">
+<!-- ================= SHOP: giant headline with the crate taped in + an order slip ================= -->
+<section id="shop" class="t-shop sx" aria-labelledby="shopTitle">
 <div aria-hidden="true" class="k-paper"></div>
-<div class="sp-wrap">
-<div class="sp-grid">
-<div class="sp-gallery">
-<div class="sp-main">
-<img loading="lazy" decoding="async" id="spMain" src="img/egg-tray.webp" alt="A crate of 30 Krate jumbo eggs">
-<span class="hs-jumbo sp-seal" aria-label="Jumbo eggs"><svg class="hs-burst" viewBox="0 0 100 100" aria-hidden="true"><polygon points="100.0,50.0 93.6,55.7 98.3,62.9 90.7,66.8 93.3,75.0 84.9,76.8 85.4,85.4 76.8,84.9 75.0,93.3 66.8,90.7 62.9,98.3 55.7,93.6 50.0,100.0 44.3,93.6 37.1,98.3 33.2,90.7 25.0,93.3 23.2,84.9 14.6,85.4 15.1,76.8 6.7,75.0 9.3,66.8 1.7,62.9 6.4,55.7 0.0,50.0 6.4,44.3 1.7,37.1 9.3,33.2 6.7,25.0 15.1,23.2 14.6,14.6 23.2,15.1 25.0,6.7 33.2,9.3 37.1,1.7 44.3,6.4 50.0,0.0 55.7,6.4 62.9,1.7 66.8,9.3 75.0,6.7 76.8,15.1 85.4,14.6 84.9,23.2 93.3,25.0 90.7,33.2 98.3,37.1 93.6,44.3"></polygon><circle cx="50" cy="50" r="38"></circle></svg><small>Extra large</small><b>Jumbo</b><small>30 per crate</small></span>
+<div class="sx-wrap">
+<p class="g-tag t-tag sx-tag"><span aria-hidden="true"></span>Shop</p>
+<h2 id="shopTitle" class="sx-h2" aria-label="Get a Krate delivered">
+<span class="sx-line" aria-hidden="true"><span>Get a</span><span class="sx-card"><span aria-hidden="true" class="g-tape sx-tape"></span><img loading="lazy" decoding="async" id="spMain" src="img/egg-tray.webp" alt=""><span class="hs-jumbo sx-seal"><svg class="hs-burst" viewBox="0 0 100 100" aria-hidden="true"><polygon points="100.0,50.0 93.6,55.7 98.3,62.9 90.7,66.8 93.3,75.0 84.9,76.8 85.4,85.4 76.8,84.9 75.0,93.3 66.8,90.7 62.9,98.3 55.7,93.6 50.0,100.0 44.3,93.6 37.1,98.3 33.2,90.7 25.0,93.3 23.2,84.9 14.6,85.4 15.1,76.8 6.7,75.0 9.3,66.8 1.7,62.9 6.4,55.7 0.0,50.0 6.4,44.3 1.7,37.1 9.3,33.2 6.7,25.0 15.1,23.2 14.6,14.6 23.2,15.1 25.0,6.7 33.2,9.3 37.1,1.7 44.3,6.4 50.0,0.0 55.7,6.4 62.9,1.7 66.8,9.3 75.0,6.7 76.8,15.1 85.4,14.6 84.9,23.2 93.3,25.0 90.7,33.2 98.3,37.1 93.6,44.3"></polygon><circle cx="50" cy="50" r="38"></circle></svg><small>Extra large</small><b>Jumbo</b><small>30 per crate</small></span></span></span>
+<span class="sx-line" aria-hidden="true"><span>Krate</span></span>
+<span class="sx-line sx-l3" aria-hidden="true"><span>delivered.</span></span>
+</h2>
+
+<div class="sx-slip">
+<span aria-hidden="true" class="g-tape sx-slip-tape"></span>
+<div class="sx-slip-head"><span>Order slip</span><span>Pay on delivery</span></div>
+
+<div class="sx-choose" role="radiogroup" aria-label="How do you want to buy?">
+<label class="sx-opt" data-mode="once"><input type="radio" name="spMode" value="once" checked><b>One-time</b><small id="spOncePrice">₦7,500 a crate</small></label>
+<label class="sx-opt" data-mode="sub"><input type="radio" name="spMode" value="sub"><b>Subscribe</b><small>Save up to 5%</small></label>
 </div>
+<div class="sp-freq sx-freq" id="hsFreq"><span class="sp-freq-l">Deliver every</span><span class="hs-chips" role="radiogroup" aria-label="Delivery frequency"><button type="button" role="radio" aria-checked="false" data-f="week">Week <small>−5%</small></button><button type="button" role="radio" aria-checked="true" data-f="2 weeks">2 weeks <small>−4%</small></button><button type="button" role="radio" aria-checked="false" data-f="month">Month <small>−3%</small></button></span></div>
+
+<div class="sx-lines" aria-live="polite">
+<div class="sx-item"><span class="sx-q"><span class="hs-qty" role="group" aria-label="Crates"><button type="button" id="hsMinus" aria-label="One fewer crate">−</button><output id="hsQty">1</output><button type="button" id="hsPlus" aria-label="One more crate">+</button></span><span>× Krate · 30 jumbo eggs</span></span><span class="sx-dots" aria-hidden="true"></span><span id="sxSub">₦7,500</span></div>
+<div class="sx-item sx-disc" id="sxDiscRow" hidden><span id="sxDiscLabel">Subscription saving</span><span class="sx-dots" aria-hidden="true"></span><span id="hsSave">−₦0</span></div>
+<div class="sx-item sx-muted"><span>Delivery</span><span class="sx-dots" aria-hidden="true"></span><span>confirmed on WhatsApp</span></div>
+<div class="sx-total"><span id="hsPer">Total</span><strong id="hsPrice">₦7,500</strong></div>
+<s id="hsWas" hidden></s>
 </div>
-<div class="sp-buy">
-<p class="g-tag t-tag sp-tag"><span aria-hidden="true"></span>Shop</p>
-<h2 id="shopTitle" class="sp-name">The Krate</h2>
-<p class="sp-desc">30 fresh jumbo eggs per crate, straight from our farm.</p>
-<p class="sp-price" aria-live="polite"><strong id="hsPrice">₦7,500</strong><s id="hsWas" hidden></s><span id="hsPer">per crate</span></p>
-<div class="sp-opts" role="radiogroup" aria-label="How do you want to buy?">
-<label class="sp-opt" data-mode="once"><input type="radio" name="spMode" value="once" checked><span class="sp-dot" aria-hidden="true"></span><span class="sp-opt-t"><strong>One-time</strong><small id="spOncePrice">₦7,500 per crate</small></span></label>
-<label class="sp-opt" data-mode="sub"><input type="radio" name="spMode" value="sub"><span class="sp-dot" aria-hidden="true"></span><span class="sp-opt-t"><strong>Subscribe <em id="spSave">Save up to 5%</em></strong><small id="spSubPrice">Pause or cancel anytime</small></span></label>
-<div class="sp-freq" id="hsFreq"><span class="sp-freq-l">Deliver every</span><span class="hs-chips" role="radiogroup" aria-label="Delivery frequency"><button type="button" role="radio" aria-checked="false" data-f="week">Week <small>−5%</small></button><button type="button" role="radio" aria-checked="true" data-f="2 weeks">2 weeks <small>−4%</small></button><button type="button" role="radio" aria-checked="false" data-f="month">Month <small>−3%</small></button></span></div>
-</div>
-<div class="sp-row">
-<div class="hs-qty" role="group" aria-label="Crates"><button type="button" id="hsMinus" aria-label="One fewer crate">−</button><output id="hsQty" aria-live="polite">1</output><button type="button" id="hsPlus" aria-label="One more crate">+</button></div>
-<button type="button" class="sp-go" id="hsGo">Order now</button>
-</div>
-<p class="hs-save" id="hsSave"></p>
-<ul class="sp-trust"><li>Packed to reduce breakage</li><li>Pay on delivery</li><li>Direct from our farm</li></ul>
-<a class="t-link sp-biz" href="#partners">Buying for a business? Chat with us →</a>
-</div>
+<button type="button" class="sx-go" id="hsGo">Order now</button>
+<a class="sx-biz" href="#partners">Buying for a business? Chat with us →</a>
 </div>
 </div>
 </section>
@@ -1081,7 +1143,7 @@ a{color:#014621}a:hover{color:#191718}
 </div>
 </footer>
 <!-- ================= ACCOUNT drawer ================= -->
-<button type="button" class="a-fab" id="aOpen" aria-label="My account"><svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+<button type="button" class="a-fab" id="aOpen"><span id="aTag">Sign in</span></button>
 <div class="c-scrim" id="aScrim" hidden></div>
 <aside class="a-drawer" id="aDrawer" aria-label="My account" aria-hidden="true" role="dialog" aria-modal="true">
 <button type="button" class="a-x" id="aClose" aria-label="Close">×</button>
@@ -1211,6 +1273,7 @@ a{color:#014621}a:hover{color:#191718}
       el = el.parentElement;
     }
     pull.classList.toggle('on-light', light);
+    var at = document.getElementById('aOpen'); if (at) at.classList.toggle('on-light', light);
   }
   var toneTick = false;
   window.addEventListener('scroll', function () { if (!toneTick) { toneTick = true; requestAnimationFrame(function () { toneTick = false; tagTone(); }); } }, { passive: true });
@@ -1658,29 +1721,20 @@ var KRATE = {
   function what() { var c = qty + (qty > 1 ? ' crates' : ' crate'); return mode === 'sub' ? c + ' every ' + freq : c; }
   function bump(el) { el.classList.remove('hs-tick'); void el.offsetWidth; el.classList.add('hs-tick'); }
 
-  // gallery
-  var main = $('spMain');
-  document.querySelectorAll('.sp-thumb').forEach(function (t) {
-    t.addEventListener('click', function () {
-      document.querySelectorAll('.sp-thumb').forEach(function (o) { o.setAttribute('aria-pressed', o === t ? 'true' : 'false'); });
-      main.classList.add('sp-out');
-      setTimeout(function () { main.src = t.dataset.src; main.alt = t.dataset.alt; main.classList.toggle('sp-cover', !!t.dataset.cover); main.classList.remove('sp-out'); }, 160);
-    });
-  });
-
   var last = '';
   function update() {
     var sub = mode === 'sub', now = each();
     $('hsQty').textContent = qty;
     var txt = money(now); if (txt !== last) { $('hsPrice').textContent = txt; bump($('hsPrice')); last = txt; }
-    $('hsWas').hidden = !sub; $('hsWas').textContent = money(full());
-    $('hsPer').textContent = sub ? 'per delivery' : (qty > 1 ? 'for ' + qty + ' crates' : 'per crate');
-    $('spOncePrice').textContent = money(full()) + (qty > 1 ? ' for ' + qty + ' crates' : ' per crate');
-    $('spSubPrice').textContent = money(round50(full() * (1 - OFF[freq]))) + ' per delivery · pause or cancel anytime';
-    document.querySelectorAll('.sp-opt').forEach(function (o) { o.classList.toggle('on', o.dataset.mode === mode); });
+    $('sxSub').textContent = money(full());
+    $('spOncePrice').textContent = '₦' + PRICE.toLocaleString('en-NG') + ' a crate';
+    $('sxDiscRow').hidden = !sub;
+    $('sxDiscLabel').textContent = 'Subscription saving (' + Math.round(OFF[freq] * 100) + '%)';
+    $('hsSave').textContent = '−' + money(full() - now);
+    $('hsPer').textContent = sub ? 'Total, every ' + freq : 'Total';
+    document.querySelectorAll('.sx-opt').forEach(function (o) { o.classList.toggle('on', o.dataset.mode === mode); });
     var fr = $('hsFreq'); fr.classList.toggle('open', sub);
     fr.querySelectorAll('button').forEach(function (b) { b.tabIndex = sub ? 0 : -1; });
-    $('hsSave').textContent = sub ? 'You save ' + money(full() - now) + ' on every delivery.' : '';
     $('hsGo').textContent = sub ? 'Start subscription' : 'Order now';
     $('cWhat').textContent = what();
     $('cSubtotal').textContent = money(now) + (sub ? ' / delivery' : '');
@@ -1756,6 +1810,7 @@ var KRATE_SUPABASE = {
     $('aBig').innerHTML = user ? 'Hey<br>' + (($('aName').textContent || 'there').replace(/[<>&]/g, '')) + '!' : (mode === 'up' ? 'Join the<br>Krate.' : 'Welcome<br>back.');
     $('aDrawer').classList.toggle('is-in', !!user);
     $('aOpen').classList.toggle('is-in', !!user);
+    $('aTag').textContent = user ? 'My Krate' : 'Sign in';
   }
 
 
