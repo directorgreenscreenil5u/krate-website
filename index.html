@@ -1337,6 +1337,39 @@ footer nav a{font-size:20px!important}
 .o-ok{display:grid;justify-items:center;gap:10px}
 .o-okmsg{margin:0 0 6px;max-width:440px;font:600 16px/1.5 'Inter Tight',sans-serif;color:#fff;text-shadow:0 1px 2px rgba(1,70,33,.35)}
 .o-title[hidden],.o-back[hidden]{display:none!important}
+/* ---- dashboard sections (tabs) + location chip ---- */
+.d-loc{display:none}
+.acc.is-in .d-loc{display:flex;align-items:center;gap:10px;margin:0 auto;max-width:min(46vw,420px);padding:8px 16px 8px 12px;border:0;border-radius:999px;background:rgba(1,70,33,.9);color:#fff;cursor:pointer;text-align:left}
+.d-loc svg{flex:none;width:22px;height:22px;color:#5bc20f}
+.d-loc span{display:grid;min-width:0}
+.d-loc small{font:700 10px 'Inter Tight',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#5bc20f}
+.d-loc b{font:700 14px 'Inter Tight',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.d-loc em{font-style:normal;color:#5bc20f}
+.acc-more summary{display:none!important}
+.d-tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.d-tabs button{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 18px;border:2px solid rgba(255,255,255,.7);border-radius:999px;background:rgba(255,255,255,.14);color:#fff;font:700 14px 'Inter Tight',sans-serif;cursor:pointer;transition:background .2s,transform .25s cubic-bezier(.2,.9,.25,1.5)}
+.d-tabs button:hover{transform:translateY(-2px);background:rgba(255,255,255,.25)}
+.d-tabs i{font-style:normal;font-size:15px}
+.d-tabs [aria-pressed="true"]{background:#014621;border-color:#014621;color:#5bc20f}
+.acc-more{margin-top:16px!important}
+.acc-sheet{display:none!important}
+.acc-sheet.show{display:grid!important}
+.acc-sheet [data-sec]:not(.on){display:none!important}
+#aDetails.on[hidden]{display:none!important}
+@media (max-width:743px){
+ .acc.is-in .d-loc{max-width:56vw;padding:6px 12px 6px 10px}
+ .d-loc b{font-size:13px}
+ .d-tabs{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;margin:22px -18px 0;padding:2px 18px 6px;scrollbar-width:none}
+ .d-tabs::-webkit-scrollbar{display:none}
+ .d-tabs button{flex:none;min-height:42px;padding:0 14px;font-size:13px}
+}
+@media (max-width:743px){
+ .acc.is-in .acc-top{flex-wrap:wrap;row-gap:10px}
+ .acc.is-in .d-loc{order:3;flex-basis:100%;max-width:none;margin:0}
+ .acc-col,.acc-wide{min-width:0;max-width:100%}
+ .d-tabs{max-width:100vw;box-sizing:border-box}
+}
+.d-tabs [aria-pressed="true"]{color:#fff!important}
 </style></head>
 <body>
 
@@ -1750,7 +1783,7 @@ a{color:#014621}a:hover{color:#191718}
 <div aria-hidden="true" class="k-paper"></div>
 <img loading="lazy" decoding="async" class="acc-egg acc-egg1" src="img/egg-brown.webp" alt="" aria-hidden="true">
 <img loading="lazy" decoding="async" class="acc-egg acc-egg2" src="img/egg-white.webp" alt="" aria-hidden="true">
-<header class="acc-top"><div class="acc-logo" id="aBrand" aria-hidden="true"></div><span class="acc-hide" id="aTitle"></span><button type="button" class="acc-x" id="aClose" aria-label="Close">×</button></header>
+<header class="acc-top"><div class="acc-logo" id="aBrand" aria-hidden="true"></div><span class="acc-hide" id="aTitle"></span><button type="button" class="d-loc" id="dLoc" data-page="addrs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><small>Deliver to</small><b id="dLocT">Add your address</b></span><em aria-hidden="true">▾</em></button><button type="button" class="acc-x" id="aClose" aria-label="Close">×</button></header>
 <main class="acc-main">
 
 <div class="acc-col" id="aOut" hidden>
@@ -1810,7 +1843,15 @@ a{color:#014621}a:hover{color:#191718}
 <button type="button" class="acc-go" id="oDone"><b>Back to my Krate</b></button>
 </div>
 </div>
-<details class="acc-more">
+<nav class="d-tabs" aria-label="Your account">
+<button type="button" data-tab="addrs"><i aria-hidden="true">📍</i>Location</button>
+<button type="button" data-tab="orders"><i aria-hidden="true">🧾</i>Orders</button>
+<button type="button" data-tab="subs"><i aria-hidden="true">🔁</i>Subscription</button>
+<button type="button" data-tab="cash"><i aria-hidden="true">₦</i>Cashback</button>
+<button type="button" data-tab="details"><i aria-hidden="true">👤</i>Profile</button>
+<button type="button" data-tab="help"><i aria-hidden="true">💬</i>Help</button>
+</nav>
+<details class="acc-more" open>
 <summary>More <span aria-hidden="true">▾</span></summary>
 <div class="acc-sheet">
 <section class="n-row" id="aSubs" data-sec="subs" aria-label="Your subscription"></section>
@@ -1828,16 +1869,16 @@ a{color:#014621}a:hover{color:#191718}
 </form>
 </section></div>
 <section class="n-row" data-sec="details"><div class="n-row-t"><small>Your details</small><b id="dWho">Add your name and phone</b></div><button type="button" class="n-link" id="dDetBtn" aria-expanded="false">Edit</button></section>
-<form class="c-form n-form" id="aDetails" novalidate hidden>
+<form class="c-form n-form" id="aDetails" data-sec="details" novalidate hidden>
 <label>Full name<input name="name" autocomplete="name"></label>
 <label>Phone / WhatsApp<input name="phone" type="tel" autocomplete="tel"></label>
 <button type="submit" class="c-checkout">Save</button>
 <p class="p-done" id="aSaved" hidden>Saved.</p>
 </form>
-<section class="n-row"><div class="n-row-t"><small>Invite a friend</small><b>Share Krate on WhatsApp</b></div><button type="button" class="n-link" id="dInvite">Share</button></section>
-<section class="n-row"><div class="n-row-t"><small>Help &amp; support</small><b>Chat with us on WhatsApp</b></div><a class="n-link" id="dHelp" href="#" target="_blank" rel="noopener">Chat</a></section>
+<section class="n-row" data-sec="help"><div class="n-row-t"><small>Invite a friend</small><b>Share Krate on WhatsApp</b></div><button type="button" class="n-link" id="dInvite">Share</button></section>
+<section class="n-row" data-sec="help"><div class="n-row-t"><small>Help &amp; support</small><b>Chat with us on WhatsApp</b></div><a class="n-link" id="dHelp" href="#" target="_blank" rel="noopener">Chat</a></section>
 <section class="n-orders" data-sec="orders" aria-labelledby="aOrdT"><h4 id="aOrdT">Past orders</h4><div id="aOrders"></div></section>
-<button type="button" class="a-link" id="aLogout">Log out</button>
+<button type="button" class="a-link" id="aLogout" data-sec="details">Log out</button>
 </div>
 </details>
 </div>
@@ -2633,7 +2674,7 @@ var KRATE_SUPABASE = {
       acts.appendChild(rm); row.append(t, acts); box.appendChild(row);
     });
     var da = list.find(function (x) { return x.def; }) || list[0];
-    $('tAddr').textContent = da ? da.label : 'Add address'; $('tAddrSub').textContent = da ? da.text : 'Tap to add';
+    $('tAddr').textContent = da ? da.label : 'Add address'; $('dLocT').textContent = da ? da.label + ' · ' + da.text : 'Add your address'; $('tAddrSub').textContent = da ? da.text : 'Tap to add';
     var who = [profile.name, profile.phone].filter(Boolean).join(' · '); $('dWho').textContent = who || 'Add your name and phone';
   }
   $('dAddAddr').onclick = function () { var f = $('dAddrForm'), o = f.hidden; f.hidden = !o; this.textContent = o ? 'Close' : '+ Add'; this.setAttribute('aria-expanded', o); if (o) f.elements.text.focus(); };
@@ -2669,7 +2710,7 @@ var KRATE_SUPABASE = {
     var paused = rows.find(function (o) { return o.kind === 'sub' && o.status === 'paused'; });
     var open = rows.find(function (o) { return o.kind !== 'sub' && o.status === 'placed'; });
     if (open) {
-      box.append(el('small', 'n-k', 'Latest order'), el('p', 'n-big', open.summary), el('p', 'n-sub', money(open.total) + ' · placed ' + fmt(new Date(open.created_at), { day: 'numeric', month: 'short' }) + ' · we’ll confirm the time on WhatsApp'), tracker(0));
+      box.append(el('small', 'n-k', 'Latest order'), el('p', 'n-big', open.summary), el('p', 'n-sub', money(open.total) + ' · placed ' + fmt(new Date(open.created_at), { day: 'numeric', month: 'short' }) + ' · we’ll text you to confirm the time'), tracker(0));
     } else if (sub) {
       var d = nextDate(sub), days = Math.max(0, Math.round((d - Date.now()) / DAY));
       box.append(el('small', 'n-k', 'Next delivery'), el('p', 'n-big', days === 0 ? 'Today' : days === 1 ? 'Tomorrow' : 'In ' + days + ' days'), el('p', 'n-sub', fmt(d) + ' · ' + sub.summary.replace(/ every.*/, '') + ' · ' + money(sub.total)), tracker(days <= 1 ? 2 : 1));
@@ -2753,13 +2794,20 @@ var KRATE_SUPABASE = {
   };
   // app-style sub pages
   $('dDetBtn').onclick = function () { var f = $('aDetails'), o = f.hidden; f.hidden = !o; this.textContent = o ? 'Close' : 'Edit'; this.setAttribute('aria-expanded', o); };
+  function tab(name, scroll) {
+    var sheet = drawer.querySelector('.acc-sheet'); if (!sheet) return;
+    drawer.querySelectorAll('.d-tabs [data-tab]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.tab === name); });
+    sheet.classList.toggle('show', !!name);
+    sheet.querySelectorAll('[data-sec]').forEach(function (x) { x.classList.toggle('on', x.dataset.sec === name); });
+    if (name) { sheet.classList.remove('ap-in'); void sheet.offsetWidth; sheet.classList.add('ap-in'); if (scroll) setTimeout(function () { sheet.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 40); }
+  }
+  drawer.querySelectorAll('.d-tabs [data-tab]').forEach(function (b) { b.addEventListener('click', function () { tab(b.getAttribute('aria-pressed') === 'true' ? null : b.dataset.tab, true); }); });
+  new MutationObserver(function () { if (!drawer.classList.contains('open')) tab(null); }).observe(drawer, { attributes: true, attributeFilter: ['class'] });
   window.__kGo = function (v) { go(v); };
   function go(view) {
     if (!drawer.querySelector('[data-view]')) {
-      var m = drawer.querySelector('.acc-more'); if (!m || view === 'home') return;
-      m.open = true;
-      setTimeout(function () { var x = drawer.querySelector('[data-sec="' + view + '"]'); if (x) { x.scrollIntoView({ behavior: 'smooth', block: 'center' }); x.classList.remove('ix-pop'); void x.offsetWidth; x.classList.add('ix-pop'); } }, 60);
-      return;
+      if (view === 'home') { tab(null); return; }
+      tab(view, true); return;
     }
     $$a('[data-view]').forEach(function (v) { v.hidden = v.dataset.view !== view; });
     var pg = document.querySelector('[data-view="' + view + '"]'); if (pg && view !== 'home') { pg.classList.remove('ap-in'); void pg.offsetWidth; pg.classList.add('ap-in'); }
