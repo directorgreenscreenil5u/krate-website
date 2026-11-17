@@ -38,6 +38,18 @@
 .g-canvas{position:relative;display:flex;flex-direction:column;gap:6vw;transform:none!important}
 .g-title,.g-row{position:relative;left:auto!important;top:auto!important}.g-pin{--G:16vw}.g-arrow{display:none}
 }
+
+/* letter-by-letter reveal (like the reference) */
+.gl{display:inline-block;overflow:hidden;vertical-align:bottom;margin:-.2em -.02em 0;padding:.2em .02em 0}
+.gc{display:inline-block;transform:translateY(115%) rotate(6deg);transition:transform .9s cubic-bezier(.2,.9,.25,1.08);transition-delay:calc(var(--i) * 45ms)}
+.live .gc{transform:none}
+.g-row .g-slot{scale:.4;opacity:0;transition:scale .8s cubic-bezier(.2,.9,.25,1.4) .25s,opacity .4s .25s,rotate .5s}
+.g-row.live .g-slot{scale:1;opacity:1}
+.g-row .g-note{opacity:0;translate:0 1vw;transition:opacity .6s .7s,translate .6s .7s}
+.g-row.live .g-note{opacity:1;translate:0 0}
+.g-title .g-tag{opacity:0;transition:opacity .5s}
+.g-title.live .g-tag{opacity:1}
+@media (prefers-reduced-motion: reduce){.gc{transform:none;transition:none}.g-row .g-slot,.g-row .g-note,.g-title .g-tag{scale:1;opacity:1;translate:none}}
 /* ---- Shop ---- */
 .s-shop{position:relative;background:#f6eceb;color:#014621;padding:9vw 4vw 10vw;overflow:hidden}
 .s-shop .k-paper{opacity:.5}
@@ -265,7 +277,7 @@ a{color:#014621}a:hover{color:#191718}
 <a class="k-row" href="#about" data-close="1"><img class="k-row-thumb" src="img/photo-hands.webp" alt=""><span class="k-row-label">About</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
 <a class="k-row" href="#eggs" data-close="1"><img class="k-row-thumb" src="img/egg-tray.webp" alt="" style="background: #f53509"><span class="k-row-label">Our Eggs</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
 <a class="k-row" href="#shop" data-close="1"><img class="k-row-thumb" src="img/photo-fryup.webp" alt=""><span class="k-row-label">Shop</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
-<a class="k-row" href="#partners" data-close="1"><img class="k-row-thumb" src="img/people-market.webp" alt=""><span class="k-row-label">Partners</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
+<a class="k-row" href="#partners" data-close="1"><img class="k-row-thumb" src="img/card-partner.webp" alt=""><span class="k-row-label">Partners</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
 <a class="k-row" href="#contact" data-close="1" style="border-bottom: 0"><img class="k-row-thumb" src="img/photo-market.webp" alt=""><span class="k-row-label">Contact</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
 </nav>
 <div style="display: flex; justify-content: flex-end; padding-right: 0">
@@ -440,7 +452,7 @@ a{color:#014621}a:hover{color:#191718}
 
 <!-- row 1: TO [photo] NOURISH -->
 <div class="g-row" data-row="0">
-<p class="g-giant" aria-label="To nourish"><span aria-hidden="true">To</span><span class="g-slot" style="--tilt: -6deg"><img class="g-card" src="img/people-breakfast.webp" alt="A mother and daughter sharing a breakfast of fried eggs"><span aria-hidden="true" class="g-tape"></span></span><span aria-hidden="true">Nourish</span></p>
+<p class="g-giant" aria-label="To nourish"><span aria-hidden="true">To</span><span class="g-slot" style="--tilt: -6deg"><img class="g-card" src="img/card-nourish.webp" alt="A Krate jumbo egg cracked open, with a bright orange yolk"><span aria-hidden="true" class="g-tape"></span></span><span aria-hidden="true">Nourish</span></p>
 <img aria-hidden="true" class="g-prop" data-depth="1.6" src="img/egg-brown.webp" alt="" style="left: 58%; top: 62%; width: 13vw; rotate: 14deg">
 <img aria-hidden="true" class="g-prop" data-depth="2.2" src="img/egg-cracked.webp" alt="" style="left: 82%; top: -14%; width: 15vw; rotate: -10deg">
 <p class="g-note" style="left: 22%; top: 104%">big yolks for big mornings<br>&amp; growing kids ↗</p>
@@ -449,7 +461,7 @@ a{color:#014621}a:hover{color:#191718}
 
 <!-- row 2: TO [photo] PROTECT -->
 <div class="g-row" data-row="1">
-<p class="g-giant" aria-label="To protect"><span aria-hidden="true">To</span><span class="g-slot" style="--tilt: 7deg"><img class="g-card" src="img/people-market.webp" alt="A market trader stacking trays of Krate eggs"><span aria-hidden="true" class="g-tape"></span></span><span aria-hidden="true">Protect</span></p>
+<p class="g-giant" aria-label="To protect"><span aria-hidden="true">To</span><span class="g-slot" style="--tilt: 7deg"><img class="g-card" src="img/card-protect.webp" alt="A full tray of 30 Krate jumbo eggs"><span aria-hidden="true" class="g-tape"></span></span><span aria-hidden="true">Protect</span></p>
 <img aria-hidden="true" class="g-prop" data-depth="1.8" src="img/egg-tray.webp" alt="" style="left: 66%; top: 70%; width: 20vw; rotate: -8deg">
 <img aria-hidden="true" class="g-prop" data-depth="1.3" src="img/egg-white.webp" alt="" style="left: 40%; top: -18%; width: 10vw; rotate: 18deg">
 <p class="g-note" style="left: 30%; top: 104%">packed snug, so what leaves<br>our farm whole arrives whole</p>
@@ -458,9 +470,9 @@ a{color:#014621}a:hover{color:#191718}
 
 <!-- row 3: TO [photo] DELIVER -->
 <div class="g-row" data-row="2">
-<p class="g-giant" aria-label="To deliver"><span aria-hidden="true">To</span><span class="g-slot" style="--tilt: -5deg"><img class="g-card" src="img/people-rider.webp" alt="A delivery rider with crates of Krate eggs on his motorbike"><span aria-hidden="true" class="g-tape"></span></span><span aria-hidden="true">Deliver</span></p>
+<p class="g-giant" aria-label="To deliver"><span aria-hidden="true">To</span><span class="g-slot" style="--tilt: -5deg"><img class="g-card" src="img/card-deliver.webp" alt="A white and a brown Krate jumbo egg"><span aria-hidden="true" class="g-tape"></span></span><span aria-hidden="true">Deliver</span></p>
 <img aria-hidden="true" class="g-prop" data-depth="1.7" src="img/egg-brown.webp" alt="" style="left: 50%; top: 66%; width: 12vw; rotate: -16deg">
-<div aria-hidden="true" class="g-prop g-shot" data-depth="2.1" style="left: 80%; top: -16%; width: 17vw; rotate: 8deg"><img src="img/people-baker.webp" alt=""><span class="g-tape"></span></div>
+<div aria-hidden="true" class="g-prop g-shot" data-depth="2.1" style="left: 80%; top: -16%; width: 17vw; rotate: 8deg"><img src="img/card-bake.webp" alt=""><span class="g-tape"></span></div>
 <p class="g-note" style="left: 18%; top: 104%">from our farm to your market,<br>shop &amp; front door →</p>
 </div>
 
@@ -528,7 +540,7 @@ a{color:#014621}a:hover{color:#191718}
 <li><strong>Branded Krate crates</strong> that stack, travel well and look good on shelf.</li>
 <li><strong>Farm-direct pricing</strong> for regular orders.</li>
 </ul>
-<div class="p-photo"><img src="img/people-market.webp" alt="A trader stacking trays of Krate eggs at a market stall"><span aria-hidden="true" class="g-tape"></span></div>
+<div class="p-photo"><img src="img/card-partner.webp" alt="Trays of Krate jumbo eggs ready for stores"><span aria-hidden="true" class="g-tape"></span></div>
 </div>
 
 <form class="p-form" id="pForm" novalidate>
@@ -900,6 +912,27 @@ a{color:#014621}a:hover{color:#191718}
   var arrows = [].slice.call(pin.querySelectorAll('.g-arrow'));
   var props = [].slice.call(pin.querySelectorAll('.g-prop'));
   var pts = [], segs = [], total = 0, vw = 1, vh = 1;
+  var title = pin.querySelector('.g-title');
+
+  // split words into letters that slide up out of a clip, one after another
+  function split(el, start) {
+    var i = start || 0;
+    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+    var nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      if (!n.nodeValue.trim()) return;
+      var frag = document.createDocumentFragment();
+      n.nodeValue.split('').forEach(function (ch) {
+        if (ch === ' ') { frag.appendChild(document.createTextNode(' ')); return; }
+        var o = document.createElement('span'); o.className = 'gl';
+        var c = document.createElement('span'); c.className = 'gc'; c.style.setProperty('--i', i++); c.textContent = ch;
+        o.appendChild(c); frag.appendChild(o);
+      });
+      n.parentNode.replaceChild(frag, n);
+    });
+  }
+  split(title.querySelector('h2'));
+  rows.forEach(function (r) { split(r.querySelector('.g-giant'), 0); });
 
   function layout() {
     vw = window.innerWidth / 100; vh = window.innerHeight;
@@ -952,6 +985,14 @@ a{color:#014621}a:hover{color:#191718}
       }
     }
     canvas.style.transform = 'translate3d(' + (-cam.x).toFixed(1) + 'px,' + (-cam.y).toFixed(1) + 'px,0)';
+    // reveal the heading and each row's letters as the view reaches them
+    if (top < vh * 0.6) title.classList.add('live');
+    rows.forEach(function (r) {
+      var rx = parseFloat(r.style.left) || 0, ry = parseFloat(r.style.top) || 0;
+      var inX = rx < cam.x + window.innerWidth * 0.85 && rx + r.offsetWidth > cam.x;
+      var inY = ry < cam.y + vh * 0.85 && ry + r.offsetHeight > cam.y + vh * 0.1;
+      if (inX && inY && top < vh * 0.4) r.classList.add('live');
+    });
     // floating props drift at their own speed (parallax)
     props.forEach(function (p) {
       var k = (parseFloat(p.dataset.depth) || 1) - 1;
