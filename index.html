@@ -1270,11 +1270,12 @@ footer nav a{font-size:20px!important}
 /* hand-written reveal for the notes */
 .g-note.hw-ready{opacity:1!important;translate:none!important}
 .hw-w{display:inline-block;white-space:nowrap}
-.hw{display:inline-block;opacity:0;transform:translate(-.08em,.06em) rotate(-6deg) scale(.7);filter:blur(1.5px)}
-.live .g-note .hw,.g-row.live .hw{animation:hwIn .22s cubic-bezier(.3,1.4,.5,1) forwards;animation-delay:calc(.75s + var(--i) * 42ms)}
+.hw{display:inline-block;opacity:0;clip-path:inset(-30% 100% -30% -10%)}
+.g-note.write .hw{animation:hwInk .16s linear forwards;animation-delay:calc(.25s + var(--i) * 55ms)}
+@keyframes hwInk{0%{opacity:1;clip-path:inset(-30% 100% -30% -10%)}100%{opacity:1;clip-path:inset(-30% -15% -30% -10%)}}
 @keyframes hwIn{to{opacity:1;transform:none;filter:none}}
 .g-note.hw-ready::after{content:"";display:block;height:.09em;margin-top:.12em;width:0;border-radius:1em;background:currentColor;opacity:.55;rotate:-1.5deg}
-.g-row.live .g-note.hw-ready::after{animation:hwLine .5s ease-out forwards;animation-delay:calc(.85s + var(--n) * 42ms)}
+.g-note.write.hw-ready::after{animation:hwLine .5s ease-out forwards;animation-delay:calc(.35s + var(--n) * 55ms)}
 @keyframes hwLine{to{width:62%}}
 @media (prefers-reduced-motion:reduce){.hw{opacity:1;transform:none;filter:none}}
 /* back to the lime one-big-focus dashboard */
@@ -3277,6 +3278,12 @@ var KRATE_SUPABASE = {
     n.style.setProperty('--n', i);
     n.classList.add('hw-ready');
   });
+  /* start writing only when the note itself is on screen */
+  var notes = document.querySelectorAll('.g-note.hw-ready');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('write'); io.unobserve(e.target); } }); }, { threshold: 0.9 });
+    notes.forEach(function (n) { io.observe(n); });
+  } else notes.forEach(function (n) { n.classList.add('write'); });
 })();
 </script>
 </body>
