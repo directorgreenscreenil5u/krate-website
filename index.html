@@ -1167,6 +1167,69 @@ footer nav a{font-size:20px!important}
 .acc-tile span{font:500 12px 'Inter Tight',sans-serif;color:#4a4446;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 @media (max-width:743px){.acc-tiles{grid-template-columns:1fr 1fr}.acc-tile:first-child{grid-column:1 / -1;grid-template-columns:auto 1fr;align-items:center;column-gap:12px}.acc-tile:first-child small{grid-column:1 / -1}.acc-tile b{font-size:19px}}
 .acc .n-track{width:100%!important;max-width:440px!important;box-sizing:border-box;justify-self:center}.acc .n-next{justify-items:stretch;text-align:center}
+/* ================= ACCOUNT v5: delivery-app style (signed in) ================= */
+.acc.is-in{background:#f3ece8}
+.acc.is-in>.k-paper,.acc.is-in .acc-egg{display:none}
+.acc.is-in .acc-main{place-items:start center;padding:0 16px 40px}
+.acc.is-in .acc-top{padding:14px 18px}
+.acc.is-in .acc-logo svg{width:84px}
+.acc.is-in .acc-x{width:42px;height:42px;font-size:20px}
+.ap{width:min(520px,100%)!important;text-align:left;display:block}
+.ap [hidden]{display:none!important}
+.ap-prof{display:flex;align-items:center;gap:14px;padding:6px 2px 18px}
+.ap-av{flex:none;width:56px;height:56px;border-radius:50%;background:#5bc20f;color:#014621;display:grid;place-items:center;font-family:'Bagel Fat One',sans-serif;font-size:26px}
+.ap-who{flex:1;min-width:0}
+.ap-name{margin:0;font:600 20px 'Inter Tight',sans-serif;color:#191718}
+.ap-name b{font-weight:800}
+.ap-who small{font:500 14px 'Inter Tight',sans-serif;color:#6b6466}
+.ap-edit{border:0;background:#fff;border-radius:999px;padding:8px 14px;font:700 13px 'Inter Tight',sans-serif;color:#014621;cursor:pointer;box-shadow:0 1px 0 rgba(0,0,0,.06)}
+/* status card */
+.acc .ap .n-next{display:grid!important;justify-items:start!important;text-align:left!important;gap:4px;margin:0!important;padding:18px!important;border-radius:20px!important;background:#014621!important;color:#f6eceb!important;border:0!important;min-height:0!important}
+.acc .ap .n-next.n-quiet{background:#fff!important;color:#191718!important}
+.acc .ap .n-k{color:#5bc20f!important;font-size:11px;letter-spacing:.12em}
+.acc .ap .n-quiet .n-k{color:#1e9207!important}
+.acc .ap .n-big{font-family:'Inter Tight',sans-serif!important;font-weight:800;font-size:26px!important;line-height:1.15;text-transform:none;margin:2px 0!important}
+.acc .ap .n-sub{font:500 14px/1.4 'Inter Tight',sans-serif;opacity:.85}
+.acc .ap .n-track{width:100%!important;max-width:none!important;margin:14px 0 0!important}
+.acc .ap .n-track li{border-top-color:rgba(246,236,235,.25);color:rgba(246,236,235,.6);font-size:11px}
+.acc .ap .n-track li.on{border-top-color:#5bc20f;color:#f6eceb}
+.acc .ap .n-cta{justify-self:start!important;min-height:44px!important;margin-top:12px!important;padding:0 18px;font-size:14px!important;letter-spacing:.02em!important;text-transform:none!important;background:#014621!important;color:#5bc20f!important}
+.ap-again{width:100%;margin-top:10px;display:flex;justify-content:space-between;align-items:center;min-height:52px;padding:0 18px;border:0;border-radius:16px;background:#5bc20f;color:#014621;font:800 15px 'Inter Tight',sans-serif;cursor:pointer}
+.ap-again small{font:600 13px 'Inter Tight',sans-serif}
+.ap-again:disabled{display:none}
+.ap-wallet{width:100%;margin-top:12px;display:flex;align-items:center;gap:12px;padding:14px 16px;border:0;border-radius:18px;background:#fff;cursor:pointer;text-align:left;box-shadow:0 1px 0 rgba(0,0,0,.05)}
+.ap-coin{flex:none;width:40px;height:40px;border-radius:50%;background:#ffd84d;color:#5a3d00;display:grid;place-items:center;font:800 18px 'Inter Tight',sans-serif}
+.ap-wtxt{flex:1;display:grid}
+.ap-wtxt small{font:600 12px 'Inter Tight',sans-serif;color:#6b6466}
+.ap-wtxt b{font:800 20px 'Inter Tight',sans-serif;color:#191718}
+.ap-wcta{font:700 13px 'Inter Tight',sans-serif;color:#1e9207}
+.ap-list{margin-top:14px;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 1px 0 rgba(0,0,0,.05)}
+.ap-row{width:100%;display:flex;align-items:center;gap:14px;padding:14px 16px;border:0;border-bottom:1px solid #f0e8e4;background:#fff;color:#191718;text-align:left;text-decoration:none;cursor:pointer;font:inherit}
+.ap-row:last-child{border-bottom:0}
+.ap-row:hover{background:#faf6f4}
+.ap-ico{flex:none;width:38px;height:38px;border-radius:12px;background:#eef8e6;color:#014621;display:grid;place-items:center}
+.ap-ico svg{width:20px;height:20px}
+.ap-txt{flex:1;display:grid;min-width:0}
+.ap-txt b{font:700 15px 'Inter Tight',sans-serif}
+.ap-txt small{font:500 13px 'Inter Tight',sans-serif;color:#6b6466;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ap-txt small:empty{display:none}
+.ap-val{font:600 13px 'Inter Tight',sans-serif;color:#6b6466;max-width:40%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ap-chev{flex:none;width:18px;height:18px;color:#b9b0ad}
+.ap-out .ap-ico{background:#fdecea;color:#b02208}
+.ap-out b{color:#b02208}
+.ap-row:focus-visible,.ap-wallet:focus-visible,.ap-again:focus-visible{outline:3px solid #f53509;outline-offset:-3px}
+/* sub pages */
+.ap-page{display:grid;gap:12px}
+.ap-in{animation:apIn .32s cubic-bezier(.2,.9,.25,1.1)}
+@keyframes apIn{from{opacity:0;transform:translateX(24px)}}
+.ap-ph{display:flex;align-items:center;gap:12px;padding:4px 0 6px}
+.ap-ph h3{margin:0;font:800 22px 'Inter Tight',sans-serif;color:#191718}
+.ap-back{width:40px;height:40px;border-radius:50%;border:0;background:#fff;color:#191718;font-size:18px;cursor:pointer}
+.ap-page .n-row,.ap-page .n-addrs,.ap-page .n-form,.ap-page #aOrders{background:#fff;border-radius:18px;border:0!important;padding:14px 16px}
+.ap-page #aOrders .n-order{font-size:15px;padding:12px 2px}
+.ap-note{margin:0;font:500 13px 'Inter Tight',sans-serif;color:#6b6466}
+.ap-page .n-cash b{font-family:'Inter Tight',sans-serif;font-weight:800}
+@media (min-width:744px){.acc.is-in .acc-main{padding-top:10px}}
 </style></head>
 <body>
 
@@ -1594,25 +1657,27 @@ a{color:#014621}a:hover{color:#191718}
 <p class="a-note" id="aLocal" hidden>Your account is saved on this phone or computer.</p>
 </div>
 
-<div class="acc-col acc-wide" id="aIn" hidden>
-<p class="acc-kicker">Hi <b id="aName">there</b></p>
-<button type="button" class="acc-cb" id="dCbChip" hidden></button>
-<section class="n-next" id="dNext" aria-live="polite"></section>
-<button type="button" class="acc-go" id="dAgain"><b>Reorder in one tap</b><small id="dAgainSub">Same as last time</small></button>
-<div class="acc-tiles">
-<button type="button" class="acc-tile" data-go=".n-cash"><small>Cashback</small><b id="tCb">₦0</b><span>2% back on every order</span></button>
-<button type="button" class="acc-tile" data-go=".n-addrs"><small>Deliver to</small><b id="tAddr">Add address</b><span id="tAddrSub">Tap to add</span></button>
-<button type="button" class="acc-tile" data-go="#aSubs"><small>Subscription</small><b id="tSub">Not set up</b><span id="tSubSub">Save up to 5%</span></button>
+<div class="acc-col ap" id="aIn" hidden>
+<div class="ap-home" data-view="home">
+<div class="ap-prof">
+<span class="ap-av" id="dAv" aria-hidden="true">K</span>
+<div class="ap-who"><p class="ap-name">Hi, <b id="aName">there</b></p><small id="dWho">Add your name and phone</small></div>
+<button type="button" class="ap-edit" data-page="details">Edit</button>
 </div>
-<details class="acc-more">
-<summary>Manage account <span aria-hidden="true">▾</span></summary>
-<div class="acc-sheet">
-<section class="n-row" id="aSubs" aria-label="Your subscription"></section>
-<section class="n-cash" aria-label="Cashback">
-<div><small>Krate cashback</small><b id="dCb">₦0</b><span>You get <strong id="dCbRate">2%</strong> back on every order. Use it at checkout.</span></div>
-<span class="n-cash-coin" aria-hidden="true">₦</span>
-</section>
-<section class="n-addrs" aria-labelledby="dAddrT">
+<section class="ap-status" id="dNext" aria-live="polite"></section>
+<button type="button" class="ap-again" id="dAgain"><span>Reorder</span><small id="dAgainSub">Same as last time</small></button>
+<button type="button" class="ap-wallet" id="dCbChip" data-page="cash"><span class="ap-coin" aria-hidden="true">₦</span><span class="ap-wtxt"><small>Krate cashback</small><b id="tCb">₦0</b></span><span class="ap-wcta">View</span></button>
+<nav class="ap-list" aria-label="Account">
+<button type="button" class="ap-row" data-page="orders"><span class="ap-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16l-1.5 11a2 2 0 0 1-2 1.7H7.5a2 2 0 0 1-2-1.7L4 7zM9 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ap-txt"><b>My orders</b></span><span class="ap-val" id="tOrd"></span><svg class="ap-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="ap-row" data-page="subs"><span class="ap-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 13.7-5.7L20 9M20 4v5h-5M20 12a8 8 0 0 1-13.7 5.7L4 15M4 20v-5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ap-txt"><b>Subscription</b><small id="tSubSub"></small></span><span class="ap-val" id="tSub"></span><svg class="ap-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="ap-row" data-page="addrs"><span class="ap-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ap-txt"><b>Delivery addresses</b><small id="tAddrSub"></small></span><span class="ap-val" id="tAddr"></span><svg class="ap-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="ap-row" data-page="details"><span class="ap-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ap-txt"><b>Personal details</b></span><svg class="ap-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></nav>
+<nav class="ap-list" aria-label="More">
+<button type="button" class="ap-row" id="dInvite"><span class="ap-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 11h16v10H4zM2 7h20v4H2zM12 7v14M12 7S10 3 7.5 3 5 6 7.5 7M12 7s2-4 4.5-4S19 6 16.5 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ap-txt"><b>Invite a friend</b><small>Share Krate on WhatsApp</small></span><svg class="ap-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<a class="ap-row" id="dHelp" href="#" target="_blank" rel="noopener"><span class="ap-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-4-7.5L21 3l-1 4.5A9 9 0 0 1 21 12zM8 11h8M8 15h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ap-txt"><b>Help &amp; support</b><small>Chat with us on WhatsApp</small></span><svg class="ap-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+<button type="button" class="ap-row ap-out" id="aLogout"><span class="ap-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ap-txt"><b>Log out</b></span></button>
+</nav>
+</div>
+<section class="ap-page" data-view="orders" hidden><header class="ap-ph"><button type="button" class="ap-back" aria-label="Back">←</button><h3>My orders</h3></header><div id="aOrders"></div></section>
+<section class="ap-page" data-view="subs" hidden><header class="ap-ph"><button type="button" class="ap-back" aria-label="Back">←</button><h3>Subscription</h3></header><section class="n-row" id="aSubs" aria-label="Your subscription"></section></section>
+<section class="ap-page" data-view="addrs" hidden><header class="ap-ph"><button type="button" class="ap-back" aria-label="Back">←</button><h3>Addresses</h3></header><section class="n-addrs" aria-labelledby="dAddrT">
 <div class="n-head"><h4 id="dAddrT">Delivery addresses</h4><button type="button" class="n-link" id="dAddAddr" aria-expanded="false">+ Add</button></div>
 <div id="dAddrList" class="n-addr-list"></div>
 <form class="c-form n-form" id="dAddrForm" novalidate hidden>
@@ -1620,21 +1685,18 @@ a{color:#014621}a:hover{color:#191718}
 <label>Address<textarea name="text" rows="2" required autocomplete="street-address" placeholder="House number, street, area, city"></textarea></label>
 <button type="submit" class="c-checkout">Save address</button>
 </form>
-</section>
-<section class="n-row"><div class="n-row-t"><small>Your details</small><b id="dWho">Add your name and phone</b></div><button type="button" class="n-link" id="dDetBtn" aria-expanded="false">Edit</button></section>
-<form class="c-form n-form" id="aDetails" novalidate hidden>
+</section></section>
+<section class="ap-page" data-view="cash" hidden><header class="ap-ph"><button type="button" class="ap-back" aria-label="Back">←</button><h3>Cashback</h3></header><section class="n-cash" aria-label="Cashback">
+<div><small>Krate cashback</small><b id="dCb">₦0</b><span>You get <strong id="dCbRate">2%</strong> back on every order. Use it at checkout.</span></div>
+<span class="n-cash-coin" aria-hidden="true">₦</span>
+</section><p class="ap-note">Cashback is added after each order and can be used at checkout. It has no cash value outside Krate.</p></section>
+<section class="ap-page" data-view="details" hidden><header class="ap-ph"><button type="button" class="ap-back" aria-label="Back">←</button><h3>Personal details</h3></header><form class="c-form n-form" id="aDetails" novalidate>
 <label>Full name<input name="name" autocomplete="name"></label>
 <label>Phone / WhatsApp<input name="phone" type="tel" autocomplete="tel"></label>
 <button type="submit" class="c-checkout">Save</button>
 <p class="p-done" id="aSaved" hidden>Saved.</p>
-</form>
-<section class="n-row"><div class="n-row-t"><small>Invite a friend</small><b>Share Krate on WhatsApp</b></div><button type="button" class="n-link" id="dInvite">Share</button></section>
-<section class="n-orders" aria-labelledby="aOrdT"><h4 id="aOrdT">Past orders</h4><div id="aOrders"></div></section>
-<button type="button" class="a-link" id="aLogout">Log out</button>
+</form></section>
 </div>
-</details>
-</div>
-
 </main>
 </aside>
 
@@ -2383,7 +2445,7 @@ var KRATE_SUPABASE = {
     sb.from('profiles').select('*').eq('id', user.id).maybeSingle().then(function (r) {
       profile = r.data || { name: (user.user_metadata || {}).name || '', phone: (user.user_metadata || {}).phone || '', address: '' };
       window.KRATE_PROFILE = profile;
-      $('aName').textContent = (profile.name || user.email).split(' ')[0]; view();
+      $('aName').textContent = (profile.name || user.email).split(' ')[0]; $('dAv').textContent = ((profile.name || user.email || 'K').trim()[0] || 'K').toUpperCase(); view();
       if (!Array.isArray(profile.addresses)) profile.addresses = profile.address ? [{ id: 'a' + Date.now(), label: 'Home', text: profile.address, def: true }] : [];
       var d = $('aDetails').elements; d.name.value = profile.name || ''; d.phone.value = profile.phone || '';
       renderAddrs(); prefill();
@@ -2419,7 +2481,6 @@ var KRATE_SUPABASE = {
     saveProfile(); renderAddrs(); prefill(true);
     this.reset(); this.hidden = true; $('dAddAddr').textContent = '+ Add';
   });
-  $('dDetBtn').onclick = function () { var f = $('aDetails'), o = f.hidden; f.hidden = !o; this.textContent = o ? 'Close' : 'Edit'; this.setAttribute('aria-expanded', o); };
   function prefill(force) {
     var c = $('cForm'); if (!c) return;
     var vals = { name: profile.name, phone: profile.phone, address: defAddr() };
@@ -2496,7 +2557,7 @@ var KRATE_SUPABASE = {
     var sb2 = rows.find(function (x) { return x.kind === 'sub' && x.status !== 'cancelled'; });
     $('tSub').textContent = sb2 ? (sb2.status === 'paused' ? 'Paused' : 'Active') : 'Not set up';
     $('tSubSub').textContent = sb2 ? sb2.summary.replace(/^\d+ crates? /, '').replace('every', 'Every') : 'Save up to 5%';
-    $('dCbChip').hidden = !bal; $('dCbChip').textContent = money(bal) + ' cashback ready';
+    $('tOrd').textContent = rows.length ? rows.length + (rows.length > 1 ? ' orders' : ' order') : '';
   }
   // one-tap reorder: same crates, straight to checkout with details filled in
   $('dAgain').onclick = function () {
@@ -2515,8 +2576,6 @@ var KRATE_SUPABASE = {
     if (navigator.share) navigator.share({ title: 'Krate', text: text }).catch(function () {});
     else { var a = document.createElement('a'); a.href = 'https://wa.me/?text=' + encodeURIComponent(text); a.target = '_blank'; a.rel = 'noopener'; document.body.appendChild(a); a.click(); a.remove(); }
   };
-  document.querySelectorAll('.acc-tile').forEach(function (t) { t.onclick = function () { var m = document.querySelector('.acc-more'); m.open = true; setTimeout(function () { var x = document.querySelector(t.dataset.go); if (x) { x.scrollIntoView({ behavior: 'smooth', block: 'center' }); x.classList.remove('ix-pop'); void x.offsetWidth; x.classList.add('ix-pop'); } if (t.dataset.go === '.n-addrs' && !(profile.addresses || []).length) $('dAddAddr').click(); }, 60); }; });
-  $('dCbChip').onclick = function () { var m = document.querySelector('.acc-more'); m.open = true; setTimeout(function () { document.querySelector('.n-cash').scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 50); };
   $('aDetails').addEventListener('submit', function (e) {
     e.preventDefault(); var d = this.elements;
     profile.name = d.name.value.trim(); profile.phone = d.phone.value.trim();
@@ -2533,6 +2592,17 @@ var KRATE_SUPABASE = {
     if (addr && !profile.addresses.some(function (x) { return x.text.toLowerCase() === addr.toLowerCase(); })) profile.addresses.push({ id: 'a' + Date.now(), label: profile.addresses.length ? 'Other' : 'Home', text: addr, def: !profile.addresses.length });
     saveProfile(function () { renderAddrs(); });
   };
+  // app-style sub pages
+  function go(view) {
+    $$a('[data-view]').forEach(function (v) { v.hidden = v.dataset.view !== view; });
+    var pg = document.querySelector('[data-view="' + view + '"]'); if (pg && view !== 'home') { pg.classList.remove('ap-in'); void pg.offsetWidth; pg.classList.add('ap-in'); }
+    drawer.scrollTop = 0;
+  }
+  function $$a(q) { return [].slice.call(drawer.querySelectorAll(q)); }
+  $$a('[data-page]').forEach(function (b) { b.addEventListener('click', function () { go(b.dataset.page); }); });
+  $$a('.ap-back').forEach(function (b) { b.addEventListener('click', function () { go('home'); }); });
+  $('dHelp').href = 'https://wa.me/' + (window.KRATE ? KRATE.whatsapp : '') + '?text=' + encodeURIComponent('Hello Krate! I need help with my account.');
+  new MutationObserver(function () { if (!drawer.classList.contains('open')) go('home'); }).observe(drawer, { attributes: true, attributeFilter: ['class'] });
   window.KRATE_OPEN_ACCOUNT = open;
   var fl = document.querySelector('.f-logo svg'); if (fl) $('aBrand').appendChild(fl.cloneNode(true));
   view();
