@@ -1454,7 +1454,7 @@ footer nav a{font-size:20px!important}
 .pay .c-checkout{min-height:56px}
 .o-fee{display:flex;justify-content:space-between;font:600 14px 'Inter Tight',sans-serif;color:#014621}
 @media (max-width:743px){.pay{top:auto;bottom:0;left:0;width:100vw;transform:translateY(100%);border-radius:26px 26px 0 0}.pay.open{transform:none}}
-</style><script>try{if(sessionStorage.getItem('krSeen'))document.documentElement.classList.add('k-seen');sessionStorage.setItem('krSeen','1')}catch(e){}</script><style>.k-seen .k-pre,.k-seen .k-loader{display:none!important}.k-seen #top *{animation-delay:0s!important}</style></head>
+</style><script>try{if(sessionStorage.getItem('krSeen'))document.documentElement.classList.add('k-seen');sessionStorage.setItem('krSeen','1')}catch(e){}</script><style>.k-seen .k-pre,.k-seen .k-loader{display:none!important}.k-seen #top *{animation-delay:0s!important}</style><style>.k-pre,.k-loader{display:none!important}#top .k-char{animation-duration:.55s!important}</style></head>
 <body>
 
 
@@ -1474,9 +1474,9 @@ a{color:#014621}a:hover{color:#191718}
 @keyframes kBob{0%,100%{translate:0 0}50%{translate:0 -16px}}
 .k-bob{animation:kBob 5s ease-in-out infinite}
 @keyframes kRise{from{translate:0 220px;opacity:0}to{translate:0 0;opacity:1}}
-.k-rise{animation:kRise 1.3s cubic-bezier(.2,.9,.25,1.15) both 0.63s}
+.k-rise{animation:kRise 1.3s cubic-bezier(.2,.9,.25,1.15) both .1s}
 @keyframes kPop{from{scale:.5;opacity:0}to{scale:1;opacity:1}}
-.k-pop{animation:kPop .8s cubic-bezier(.2,.9,.25,1.4) both 0.49s}
+.k-pop{animation:kPop .8s cubic-bezier(.2,.9,.25,1.4) both .05s}
 @keyframes kUp{from{translate:0 80px;opacity:0}to{translate:0 0;opacity:1}}
 .k-up1{animation:kUp .9s cubic-bezier(.2,.9,.25,1.1) both 0.56s}
 .k-up2{animation:kUp .9s cubic-bezier(.2,.9,.25,1.1) both 0.66s}
@@ -1506,17 +1506,17 @@ a{color:#014621}a:hover{color:#191718}
 .k-clip{--u:calc(2 * var(--i) / (var(--n) - 1) - 1);display:block;overflow:hidden;margin:-.2em -.02em 0;padding:.2em .02em 0;transform-origin:50% 100%;transform:translateY(calc(var(--drop) * (1 - var(--u) * var(--u)))) rotate(calc(var(--tilt) * var(--u) * -1))}
 .k-char{display:block;animation:kChar .9s cubic-bezier(.2,.9,.25,1.05) both}
 @keyframes kChar{from{transform:translateY(130%)}to{transform:none}}
-.k-kick-l{animation:kKickL .8s cubic-bezier(.2,.9,.25,1.1) both 1.02s}
-.k-kick-r{animation:kKickR .8s cubic-bezier(.2,.9,.25,1.1) both 1.02s}
+.k-kick-l{animation:kKickL .6s cubic-bezier(.2,.9,.25,1.1) both .3s}
+.k-kick-r{animation:kKickR .6s cubic-bezier(.2,.9,.25,1.1) both .3s}
 @keyframes kKickL{from{transform:translateX(-60%);opacity:0}to{transform:none;opacity:1}}
 @keyframes kKickR{from{transform:translateX(60%);opacity:0}to{transform:none;opacity:1}}
-.k-mark{animation:kMark .9s cubic-bezier(.2,.9,.25,1.5) both 0.94s}
+.k-mark{animation:kMark .7s cubic-bezier(.2,.9,.25,1.5) both .25s}
 @keyframes kMark{from{scale:0;rotate:-60deg}to{scale:1;rotate:-7deg}}
-.k-perf{position:absolute;left:0;top:2px;bottom:2px;width:3px;background-image:radial-gradient(circle,#014621 42%,transparent 45%);background-size:100% 5px;background-repeat:repeat-y;animation:kPerf .9s ease both 1.12s}
+.k-perf{position:absolute;left:0;top:2px;bottom:2px;width:3px;background-image:radial-gradient(circle,#014621 42%,transparent 45%);background-size:100% 5px;background-repeat:repeat-y;animation:kPerf .7s ease both .4s}
 @keyframes kPerf{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
-.k-egg-in{animation:kEggIn 1.3s cubic-bezier(.2,.9,.25,1.15) both 1.19s}
+.k-egg-in{animation:kEggIn .9s cubic-bezier(.2,.9,.25,1.15) both .35s}
 @keyframes kEggIn{from{transform:translateY(60vh) rotate(40deg)}to{transform:none}}
-.k-hint{animation:kUp .8s ease both 1.82s}
+.k-hint{animation:kUp .6s ease both 1s}
 @keyframes kEggScroll{0%{transform:none}55%{transform:translateY(34vw) rotate(90deg) scale(.82)}100%{transform:translateY(64vw) rotate(200deg) scale(.7)}}
 @supports (animation-timeline: scroll()){
 .k-egg-scroll{animation:kEggScroll linear both;animation-timeline:scroll(root);animation-range:0 95vw}
@@ -1620,8 +1620,8 @@ a{color:#014621}a:hover{color:#191718}
 <span class="k-kick-r">Here to</span>
 </div>
 <h1 aria-label="Handle with care" style="margin: 0; font-family: 'Bagel Fat One', sans-serif; font-weight: 400; font-size: 16.8vw; line-height: 0.8; text-transform: uppercase; color: #014621; --drop: 1.1vw; --tilt: 6deg">
-<span aria-hidden="true" class="k-line"><span class="k-clip" style="--i: 0; --n: 6"><span class="k-char" style="animation-delay: 1.08s">H</span></span><span class="k-clip" style="--i: 1; --n: 6"><span class="k-char" style="animation-delay: 1.12s">A</span></span><span class="k-clip" style="--i: 2; --n: 6"><span class="k-char" style="animation-delay: 1.15s">N</span></span><span class="k-clip" style="--i: 3; --n: 6"><span class="k-char" style="animation-delay: 1.19s">D</span></span><span class="k-clip" style="--i: 4; --n: 6"><span class="k-char" style="animation-delay: 1.22s">L</span></span><span class="k-clip" style="--i: 5; --n: 6"><span class="k-char" style="animation-delay: 1.26s">E</span></span></span>
-<span aria-hidden="true" class="k-line"><span class="k-clip" style="--i: 0; --n: 8"><span class="k-char" style="animation-delay: 1.29s">W</span></span><span class="k-clip" style="--i: 1; --n: 8"><span class="k-char" style="animation-delay: 1.33s">I</span></span><span class="k-clip" style="--i: 2; --n: 8"><span class="k-char" style="animation-delay: 1.36s">T</span></span><span class="k-clip" style="--i: 3; --n: 8"><span class="k-char" style="animation-delay: 1.40s">H</span></span><span aria-hidden="true" style="display: block; width: 0.28em"></span><span class="k-clip" style="--i: 4; --n: 8"><span class="k-char" style="animation-delay: 1.43s">C</span></span><span class="k-clip" style="--i: 5; --n: 8"><span class="k-char" style="animation-delay: 1.47s">A</span></span><span class="k-clip" style="--i: 6; --n: 8"><span class="k-char" style="animation-delay: 1.50s">R</span></span><span class="k-clip" style="--i: 7; --n: 8"><span class="k-char" style="animation-delay: 1.54s">E</span></span></span>
+<span aria-hidden="true" class="k-line"><span class="k-clip" style="--i: 0; --n: 6"><span class="k-char" style="animation-delay: 0.20s">H</span></span><span class="k-clip" style="--i: 1; --n: 6"><span class="k-char" style="animation-delay: 0.22s">A</span></span><span class="k-clip" style="--i: 2; --n: 6"><span class="k-char" style="animation-delay: 0.23s">N</span></span><span class="k-clip" style="--i: 3; --n: 6"><span class="k-char" style="animation-delay: 0.24s">D</span></span><span class="k-clip" style="--i: 4; --n: 6"><span class="k-char" style="animation-delay: 0.25s">L</span></span><span class="k-clip" style="--i: 5; --n: 6"><span class="k-char" style="animation-delay: 0.27s">E</span></span></span>
+<span aria-hidden="true" class="k-line"><span class="k-clip" style="--i: 0; --n: 8"><span class="k-char" style="animation-delay: 0.28s">W</span></span><span class="k-clip" style="--i: 1; --n: 8"><span class="k-char" style="animation-delay: 0.29s">I</span></span><span class="k-clip" style="--i: 2; --n: 8"><span class="k-char" style="animation-delay: 0.30s">T</span></span><span class="k-clip" style="--i: 3; --n: 8"><span class="k-char" style="animation-delay: 0.31s">H</span></span><span aria-hidden="true" style="display: block; width: 0.28em"></span><span class="k-clip" style="--i: 4; --n: 8"><span class="k-char" style="animation-delay: 0.33s">C</span></span><span class="k-clip" style="--i: 5; --n: 8"><span class="k-char" style="animation-delay: 0.34s">A</span></span><span class="k-clip" style="--i: 6; --n: 8"><span class="k-char" style="animation-delay: 0.35s">R</span></span><span class="k-clip" style="--i: 7; --n: 8"><span class="k-char" style="animation-delay: 0.36s">E</span></span></span>
 </h1>
 </div>
 
@@ -1629,7 +1629,7 @@ a{color:#014621}a:hover{color:#191718}
 <div class="k-egg-in" style="position: absolute; left: 50%; top: 37vw; width: 22vw; margin-left: -11vw; z-index: 12">
 <div class="k-egg-scroll">
 <div class="k-par" style="transform: translate(calc(var(--mx, 0) * 26px), calc(var(--my, 0) * 16px)) rotate(calc(var(--mx, 0) * 8deg))">
-<button type="button" class="k-egg-btn" data-egg="h1" aria-label="Crack the big egg" style="width: 100%; rotate: -6deg"><img class="k-cut" src="img/egg-brown.webp" data-egg-img="h1" data-base="img/egg-brown.webp" alt="A Krate jumbo egg" style="width: 100%"></button>
+<button type="button" class="k-egg-btn" data-egg="h1" aria-label="Crack the big egg" style="width: 100%; rotate: -6deg"><img class="k-cut" src="img/egg-brown.webp" fetchpriority="high" data-egg-img="h1" data-base="img/egg-brown.webp" alt="A Krate jumbo egg" style="width: 100%"></button>
 </div>
 </div>
 </div>
