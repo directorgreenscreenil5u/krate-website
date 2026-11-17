@@ -1474,6 +1474,33 @@ footer nav a{font-size:20px!important}
 .pay .c-checkout{min-height:56px}
 .o-fee{display:flex;justify-content:space-between;font:600 14px 'Inter Tight',sans-serif;color:#014621}
 @media (max-width:743px){.pay{top:auto;bottom:0;left:0;width:100vw;transform:translateY(100%);border-radius:26px 26px 0 0}.pay.open{transform:none}}
+/* ---- dashboard v2: one dark focus card, status headline ---- */
+.acc #aIn .acc-hi{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.acc #aIn .acc-hi .acc-cb{margin:0}
+.acc #aIn .acc-kicker{color:#014621!important;text-shadow:none!important}
+.acc #aIn .n-card{width:min(720px,100%);box-sizing:border-box;margin:18px auto 0;padding:clamp(26px,3.4vw,44px) clamp(20px,3.4vw,48px) clamp(20px,2.6vw,30px);border-radius:32px;background:#014621;box-shadow:0 30px 60px -30px rgba(1,40,18,.65);display:grid;gap:22px;justify-items:center;animation:ixPop .55s cubic-bezier(.2,.9,.25,1.2)}
+.acc #aIn .n-card .n-next{margin:0!important;padding:0!important;background:none!important;width:100%}
+.acc #aIn .n-card .n-k{color:#5bc20f!important;text-shadow:none!important;font:700 12px 'Inter Tight',sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.acc #aIn .n-card .n-big{color:#fff!important;text-shadow:none!important;font-size:clamp(40px,5.2vw,78px)!important;line-height:.95;margin:10px 0 8px!important}
+.acc #aIn .n-card .n-sub{color:#f6eceb!important;opacity:.85;text-shadow:none!important;font-size:15px}
+.acc #aIn .n-card .n-track li{color:rgba(246,236,235,.6)}
+.acc #aIn .n-card .n-track li.on{color:#fff}
+.acc #aIn .n-card .n-next.n-wait .n-big{color:#ffd23f!important}
+.acc #aIn .n-card .acc-go{width:100%;max-width:none;margin:0;background:#5bc20f!important;color:#014621!important;box-shadow:none}
+.acc #aIn .n-card .acc-go b{color:#014621!important}
+.acc #aIn .n-card .acc-go small{color:#014621!important;opacity:.75}
+.acc #aIn .n-card .acc-go.is-pay{background:#ffd23f!important}
+.acc #aIn .n-card .n-next.n-empty{max-width:none}
+.acc #aIn .n-card .n-empty .n-big{font-size:clamp(34px,4.4vw,64px)!important}
+.acc #aIn .n-card .n-cta{background:#5bc20f!important;color:#014621!important}
+.acc #aIn .n-card:has(.n-empty) .acc-go{display:none}
+.acc #aIn .d-tabs{margin-top:16px}
+.d-loc b,.n-addr b,#dAddrList b,#dAddrList span{text-transform:capitalize}
+@media (max-width:743px){.acc #aIn .n-card{border-radius:24px;margin-top:14px;gap:18px}.acc #aIn .n-card .n-big{font-size:11vw!important}}
+.acc #aIn .n-card .n-track li{border-top-color:rgba(246,236,235,.22)!important;color:rgba(246,236,235,.6)!important}
+.acc #aIn .n-card .n-track li.on{border-top-color:#5bc20f!important;color:#fff!important}
+.acc #aIn .n-card .n-next{overflow:visible!important}
+.acc #aIn .n-card .n-track{width:100%!important;max-width:460px!important;margin:18px auto 0!important;box-sizing:border-box}
 </style><script>try{if(sessionStorage.getItem('krSeen'))document.documentElement.classList.add('k-seen');sessionStorage.setItem('krSeen','1')}catch(e){}</script><style>.k-seen .k-pre,.k-seen .k-loader{display:none!important}.k-seen #top *{animation-delay:0s!important}</style><style>.k-pre,.k-loader{display:none!important}#top .k-char{animation-duration:.55s!important}</style></head>
 <body>
 
@@ -1901,10 +1928,9 @@ a{color:#014621}a:hover{color:#191718}
 
 <div class="acc-col acc-wide" id="aIn" hidden>
 <span hidden><span id="dAv"></span><span id="tOrd"></span><span id="tCb"></span><span id="tSub"></span><span id="tSubSub"></span><span id="tAddr"></span><span id="tAddrSub"></span></span>
-<p class="acc-kicker">Hi <b id="aName">there</b></p>
-<button type="button" class="acc-cb" id="dCbChip" data-page="cash">Cashback</button>
-<section class="n-next" id="dNext" aria-live="polite"></section>
-<button type="button" class="acc-go" id="dAgain"><b>Reorder in one tap</b><small id="dAgainSub">Same as last time</small></button>
+<div class="acc-hi"><p class="acc-kicker">Hi <b id="aName">there</b></p><button type="button" class="acc-cb" id="dCbChip" data-page="cash">Cashback</button></div>
+<div class="n-card" id="dCard"><section class="n-next" id="dNext" aria-live="polite"></section>
+<button type="button" class="acc-go" id="dAgain"><b id="dAgainT">Reorder in one tap</b><small id="dAgainSub">Same as last time</small></button></div>
 <div class="o-view" id="dOrderV" hidden>
 <button type="button" class="o-back" id="oBack">← Back</button>
 <h2 class="acc-big o-title" id="oTitle">New order</h2>
@@ -1937,12 +1963,10 @@ a{color:#014621}a:hover{color:#191718}
 </div>
 </div>
 <nav class="d-tabs" aria-label="Your account">
-<button type="button" data-tab="addrs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Location</button>
 <button type="button" data-tab="orders"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6M9 16h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Orders</button>
 <button type="button" data-tab="subs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.7L20 9M20 4v5h-5M20 12a8 8 0 0 1-13.7 5.7L4 15M4 20v-5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Subscription</button>
 <button type="button" data-tab="cash"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18v10H3zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Cashback</button>
-<button type="button" data-tab="details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Profile</button>
-<button type="button" data-tab="help"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-4-7.5L21 3l-1 4.5A9 9 0 0 1 21 12zM8 11h8M8 15h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Help</button>
+<button type="button" data-tab="details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Account</button>
 </nav>
 <details class="acc-more" open>
 <summary>More <span aria-hidden="true">▾</span></summary>
@@ -1968,8 +1992,8 @@ a{color:#014621}a:hover{color:#191718}
 <button type="submit" class="c-checkout">Save</button>
 <p class="p-done" id="aSaved" hidden>Saved.</p>
 </form>
-<section class="n-row" data-sec="help"><div class="n-row-t"><small>Invite a friend</small><b>Share Krate on WhatsApp</b></div><button type="button" class="n-link" id="dInvite">Share</button></section>
-<section class="n-row" data-sec="help"><div class="n-row-t"><small>Help &amp; support</small><b>Chat with us on WhatsApp</b></div><a class="n-link" id="dHelp" href="#" target="_blank" rel="noopener">Chat</a></section>
+<section class="n-row" data-sec="details"><div class="n-row-t"><small>Invite a friend</small><b>Share Krate on WhatsApp</b></div><button type="button" class="n-link" id="dInvite">Share</button></section>
+<section class="n-row" data-sec="details"><div class="n-row-t"><small>Help &amp; support</small><b>Chat with us on WhatsApp</b></div><a class="n-link" id="dHelp" href="#" target="_blank" rel="noopener">Chat</a></section>
 <section class="n-orders" data-sec="orders" aria-labelledby="aOrdT"><h4 id="aOrdT">Past orders</h4><div id="aOrders"></div></section>
 <button type="button" class="a-link" id="aLogout" data-sec="details">Log out</button>
 </div>
@@ -2542,9 +2566,20 @@ var KRATE_PAY = {
     $('payTotal').textContent = money(total);
     $('paySubNote').hidden = order.kind !== 'sub';
     $('payCard').hidden = !KRATE_PAY.paystackKey;
-    $('payBankBox').hidden = true; $('payChoose').hidden = false; $('payErr').hidden = true;
+    $('payBankBox').hidden = true; $('payChoose').hidden = false; $('payErr').hidden = true; $('payBankBack').hidden = false;
     $('payBankName').textContent = KRATE_PAY.bank.name; $('payAcct').textContent = KRATE_PAY.bank.account; $('payHolder').textContent = KRATE_PAY.bank.holder;
     $('payAmt').textContent = money(total); $('payRef').textContent = order.ref;
+    show(true);
+  };
+  // show bank details again for an order that is still awaiting transfer
+  window.KRATE_SHOW_TRANSFER = function (amount, ref) {
+    cur = null; cb = null;
+    $('payItemsL').textContent = 'Order ' + ref; $('payItems').textContent = money(amount - KRATE_PAY.deliveryFee);
+    $('payFee').textContent = money(KRATE_PAY.deliveryFee); $('payCrRow').hidden = true; $('payTotal').textContent = money(amount);
+    $('paySubNote').hidden = true; $('payErr').hidden = true;
+    $('payBankName').textContent = KRATE_PAY.bank.name; $('payAcct').textContent = KRATE_PAY.bank.account; $('payHolder').textContent = KRATE_PAY.bank.holder;
+    $('payAmt').textContent = money(amount); $('payRef').textContent = ref;
+    $('payChoose').hidden = true; $('payBankBox').hidden = false; $('payBankBack').hidden = true;
     show(true);
   };
   function finish(method, status) {
@@ -2578,7 +2613,7 @@ var KRATE_PAY = {
     var t = KRATE_PAY.bank.account, b = this;
     (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1500); }, function () {});
   };
-  $('paySent').onclick = function () { finish('transfer', 'awaiting payment'); };
+  $('paySent').onclick = function () { if (!cur) return close(); finish('transfer', 'awaiting payment'); };
 })();
 
 /* Homepage shop: one-time or subscription, checkout on WhatsApp. */
@@ -2905,11 +2940,15 @@ var KRATE_SUPABASE = {
     var sub = rows.find(function (o) { return o.kind === 'sub' && o.status === 'active'; });
     var paused = rows.find(function (o) { return o.kind === 'sub' && o.status === 'paused'; });
     var open = rows.find(function (o) { return o.kind !== 'sub' && o.status === 'placed'; });
-    if (open) {
-      box.append(el('small', 'n-k', 'Latest order'), el('p', 'n-big', open.summary), el('p', 'n-sub', money(open.total) + ' · placed ' + fmt(new Date(open.created_at), { day: 'numeric', month: 'short' }) + ' · we’ll text you to confirm the time'), tracker(0));
+    var code = function (o) { return 'Order ' + (o.payment_ref || 'KR' + String(o.id).slice(-5)); };
+    if (open && open.payment_status === 'awaiting payment') {
+      box.classList.add('n-wait');
+      box.append(el('small', 'n-k', code(open) + ' · ' + open.summary), el('p', 'n-big', 'Awaiting your transfer'), el('p', 'n-sub', 'Send ' + money(open.total) + ' and we’ll start packing as soon as it lands.'), tracker(0));
+    } else if (open) {
+      box.append(el('small', 'n-k', code(open) + ' · ' + open.summary + ' · ' + money(open.total)), el('p', 'n-big', 'Being prepared'), el('p', 'n-sub', 'Paid, thank you. We’ll text you to confirm the delivery time.'), tracker(1));
     } else if (sub) {
       var d = nextDate(sub), days = Math.max(0, Math.round((d - Date.now()) / DAY));
-      box.append(el('small', 'n-k', 'Next delivery'), el('p', 'n-big', days === 0 ? 'Today' : days === 1 ? 'Tomorrow' : 'In ' + days + ' days'), el('p', 'n-sub', fmt(d) + ' · ' + sub.summary.replace(/ every.*/, '') + ' · ' + money(sub.total)), tracker(days <= 1 ? 2 : 1));
+      box.append(el('small', 'n-k', 'Next delivery · ' + sub.summary.replace(/ every.*/, '') + ' · ' + money(sub.total)), el('p', 'n-big', days === 0 ? 'Arriving today' : days === 1 ? 'Arriving tomorrow' : 'Arriving ' + fmt(d, { weekday: 'long' })), el('p', 'n-sub', fmt(d) + (sub.skip_next ? ' · skipped, next one after this' : ' · on its way to your door')), tracker(days <= 1 ? 2 : 1));
     } else if (paused) {
       box.append(el('small', 'n-k', 'Subscription paused'), el('p', 'n-big', 'Deliveries are on hold'), el('p', 'n-sub', 'Resume your subscription any time from the Subscription page.'));
     } else {
@@ -2939,7 +2978,7 @@ var KRATE_SUPABASE = {
     if (!rows.length) { b.appendChild(el('p', 'n-none', 'Your orders will show up here.')); return; }
     rows.slice(0, 5).forEach(function (o) {
       var r = el('div', 'n-order');
-      var w = el('span', 'n-w'); w.append(el('b', '', o.summary), el('small', '', 'KR' + String(o.id).slice(-5) + ' · ' + (o.kind === 'sub' ? (o.status === 'active' ? 'Subscription active' : 'Subscription ' + o.status) : (o.payment_status === 'awaiting payment' ? 'Awaiting payment' : o.status === 'placed' ? 'Paid · being prepared' : o.status))));
+      var w = el('span', 'n-w'); w.append(el('b', '', o.summary), el('small', '', (o.payment_ref || 'KR' + String(o.id).slice(-5)) + ' · ' + (o.kind === 'sub' ? (o.status === 'active' ? 'Subscription active' : 'Subscription ' + o.status) : (o.payment_status === 'awaiting payment' ? 'Awaiting payment' : o.status === 'placed' ? 'Paid · being prepared' : o.status))));
       r.append(el('span', 'n-d', fmt(new Date(o.created_at), { day: 'numeric', month: 'short' })), w, el('span', 'n-p', money(o.total)));
       b.appendChild(r);
     });
@@ -2950,7 +2989,11 @@ var KRATE_SUPABASE = {
     renderNext(rows); renderSub(rows); renderOrders(rows);
     lastOrder = rows[0] || null;
     $('dAgain').disabled = !lastOrder;
-    $('dAgainSub').textContent = lastOrder ? lastOrder.summary.replace(/ every.*/, '') + ' · ' + money(lastOrder.kind === 'sub' ? lastOrder.crates * 7500 : lastOrder.total) : 'No orders yet';
+    var waiting = rows.find(function (o) { return o.kind !== 'sub' && o.status === 'placed' && o.payment_status === 'awaiting payment'; });
+    payFor = waiting || null;
+    $('dAgainT').textContent = waiting ? 'Pay now' : 'Reorder in one tap';
+    $('dAgain').classList.toggle('is-pay', !!waiting);
+    if (waiting) $('dAgainSub').textContent = money(waiting.total) + ' by bank transfer'; else $('dAgainSub').textContent = lastOrder ? lastOrder.summary.replace(/ every.*/, '') + ' · ' + money(lastOrder.kind === 'sub' ? lastOrder.crates * 7500 : lastOrder.total) : 'No orders yet';
     var earned = 0, used = 0;
     rows.forEach(function (o) { if (o.status !== 'cancelled') earned += Math.round((+o.total || 0) * KRATE_CASHBACK_RATE); used += +o.credit_used || 0; });
     var bal = Math.max(0, earned - used); window.KRATE_CASHBACK = bal;
@@ -2963,7 +3006,8 @@ var KRATE_SUPABASE = {
     $('dCbChip').hidden = !bal; $('dCbChip').textContent = money(bal) + ' cashback ready';
   }
   // one-tap reorder: same crates, straight to checkout with details filled in
-  $('dAgain').onclick = function () { if (lastOrder) openOrder({ mode: 'once', crates: lastOrder.crates || 1 }); };
+  var payFor = null;
+  $('dAgain').onclick = function () { if (payFor && window.KRATE_SHOW_TRANSFER) return KRATE_SHOW_TRANSFER(payFor.total, payFor.payment_ref || ('KR' + String(payFor.id).slice(-5))); if (lastOrder) openOrder({ mode: 'once', crates: lastOrder.crates || 1 }); };
   $('dInvite').onclick = function () {
     var text = 'I get my eggs from Krate: 30 fresh jumbo eggs, delivered. ' + location.origin + location.pathname;
     if (navigator.share) navigator.share({ title: 'Krate', text: text }).catch(function () {});
