@@ -1370,6 +1370,35 @@ footer nav a{font-size:20px!important}
  .d-tabs{max-width:100vw;box-sizing:border-box}
 }
 .d-tabs [aria-pressed="true"]{color:#fff!important}
+/* ================= SHOP v6: minimal centred ================= */
+.sm{padding:8vw 5vw 10vw}
+.sm-wrap{position:relative;max-width:560px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px}
+.sm-h2{margin:0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(60px,8vw,120px);line-height:.9;text-transform:uppercase;color:#014621}
+.sm-img{position:relative;width:min(440px,84vw);margin:10px 0 4px;display:grid;place-items:center;background:none!important;border:0!important;box-shadow:none!important;aspect-ratio:auto!important;rotate:0deg!important}
+.sm-img img{width:100%;height:auto;rotate:-6deg;filter:drop-shadow(0 30px 30px rgba(1,70,33,.28));transition:rotate .6s cubic-bezier(.2,.9,.25,1.4)}
+.sm-img:hover img{rotate:-1deg}
+.t-shop .sm-seal{position:absolute;width:30%;top:-6%;right:-6%;font-size:14px}
+.sm-line{margin:0;font:600 18px 'Inter Tight',sans-serif;color:#191718;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;justify-content:center}
+.sm-line strong{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:34px;color:#014621}
+.sm-line s{color:#8a8183;font-weight:700}
+.sm-line s[hidden]{display:none}
+.sm-per{font-size:15px;color:#4a4446}
+.sm-modes{display:inline-flex;padding:5px;border-radius:999px;background:#fff;border:2px solid #014621;gap:4px}
+.sm-modes .sx-opt{display:inline-flex;align-items:baseline;gap:6px;padding:10px 22px;border:0!important;border-radius:999px;transform:none!important;grid-template:none}
+.sm-modes .sx-opt b{font:700 15px 'Inter Tight',sans-serif;text-transform:none}
+.sm-modes .sx-opt small{font:700 12px 'Inter Tight',sans-serif;color:#1e9207}
+.sm-modes .sx-opt.on{background:#014621;color:#5bc20f}
+.sm-modes .sx-opt.on small{color:#5bc20f}
+.sm-freq{margin:0!important;justify-content:center}
+.sm-freq.open{justify-content:center}
+.sm-qty{border:2px solid #014621;border-radius:999px;background:#fff}
+.sm-qty button{width:52px;height:50px}
+.sm-go{width:100%;max-width:420px;min-height:64px;border:0;border-radius:999px;background:#f53509;color:#191718;font:700 17px 'Inter Tight',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:transform .25s cubic-bezier(.2,.9,.25,1.5)}
+.sm-go:hover{transform:translateY(-2px)}
+.sm-go:focus-visible{outline:3px solid #014621;outline-offset:3px}
+.sm-note{margin:0;font:500 14px 'Inter Tight',sans-serif;color:#4a4446}
+.sm-note a{color:#014621;font-weight:700}
+@media (max-width:743px){.sm{padding:16vw 6vw 20vw}.sm-h2{font-size:16vw}.sm-modes .sx-opt{padding:10px 16px}}
 </style></head>
 <body>
 
@@ -1677,39 +1706,25 @@ a{color:#014621}a:hover{color:#191718}
 </div>
 </div>
 </section>
-<!-- ================= SHOP: giant headline with the crate taped in + an order slip ================= -->
-<section id="shop" class="t-shop sx" aria-labelledby="shopTitle">
+<!-- ================= SHOP: minimal centred ================= -->
+<section id="shop" class="t-shop sm" aria-labelledby="shopTitle">
 <div aria-hidden="true" class="k-paper"></div>
-<div class="sx-wrap">
-<p class="g-tag t-tag sx-tag"><span aria-hidden="true"></span>Shop</p>
-<h2 id="shopTitle" class="sx-h2">Get a Krate delivered.</h2>
-
-<div class="sx-product">
-<span aria-hidden="true" class="g-tape sx-ptape"></span>
+<div class="sm-wrap">
+<h2 id="shopTitle" class="sm-h2">Get a Krate</h2>
+<div class="sm-img sx-card">
 <img loading="lazy" decoding="async" id="spMain" src="img/egg-tray.webp" alt="A crate of 30 Krate jumbo eggs">
-<span class="hs-jumbo sx-seal"><svg class="hs-burst" viewBox="0 0 100 100" aria-hidden="true"><polygon points="100.0,50.0 93.6,55.7 98.3,62.9 90.7,66.8 93.3,75.0 84.9,76.8 85.4,85.4 76.8,84.9 75.0,93.3 66.8,90.7 62.9,98.3 55.7,93.6 50.0,100.0 44.3,93.6 37.1,98.3 33.2,90.7 25.0,93.3 23.2,84.9 14.6,85.4 15.1,76.8 6.7,75.0 9.3,66.8 1.7,62.9 6.4,55.7 0.0,50.0 6.4,44.3 1.7,37.1 9.3,33.2 6.7,25.0 15.1,23.2 14.6,14.6 23.2,15.1 25.0,6.7 33.2,9.3 37.1,1.7 44.3,6.4 50.0,0.0 55.7,6.4 62.9,1.7 66.8,9.3 75.0,6.7 76.8,15.1 85.4,14.6 84.9,23.2 93.3,25.0 90.7,33.2 98.3,37.1 93.6,44.3"></polygon><circle cx="50" cy="50" r="38"></circle></svg><small>Extra large</small><b>Jumbo</b><small>30 per crate</small></span>
-<p class="sx-pcap"><b>The Krate</b><span>30 fresh jumbo eggs · straight from our farm</span></p>
+<span class="hs-jumbo sm-seal" aria-label="Jumbo eggs"><svg class="hs-burst" viewBox="0 0 100 100" aria-hidden="true"><polygon points="100.0,50.0 93.6,55.7 98.3,62.9 90.7,66.8 93.3,75.0 84.9,76.8 85.4,85.4 76.8,84.9 75.0,93.3 66.8,90.7 62.9,98.3 55.7,93.6 50.0,100.0 44.3,93.6 37.1,98.3 33.2,90.7 25.0,93.3 23.2,84.9 14.6,85.4 15.1,76.8 6.7,75.0 9.3,66.8 1.7,62.9 6.4,55.7 0.0,50.0 6.4,44.3 1.7,37.1 9.3,33.2 6.7,25.0 15.1,23.2 14.6,14.6 23.2,15.1 25.0,6.7 33.2,9.3 37.1,1.7 44.3,6.4 50.0,0.0 55.7,6.4 62.9,1.7 66.8,9.3 75.0,6.7 76.8,15.1 85.4,14.6 84.9,23.2 93.3,25.0 90.7,33.2 98.3,37.1 93.6,44.3"></polygon><circle cx="50" cy="50" r="38"></circle></svg><small>Extra large</small><b>Jumbo</b><small>30 per crate</small></span>
 </div>
-<div class="sx-slip">
-<span aria-hidden="true" class="g-tape sx-slip-tape"></span>
-<div class="sx-slip-head"><span>Order slip</span><span>Pay on delivery</span></div>
-
-<div class="sx-choose" role="radiogroup" aria-label="How do you want to buy?">
-<label class="sx-opt" data-mode="once"><input type="radio" name="spMode" value="once" checked><b>One-time</b><small id="spOncePrice">₦7,500 a crate</small></label>
-<label class="sx-opt" data-mode="sub"><input type="radio" name="spMode" value="sub"><b>Subscribe</b><small>Save up to 5%</small></label>
+<p class="sm-line">30 jumbo eggs · <strong id="hsPrice">₦7,500</strong> <s id="hsWas" hidden></s><span id="hsPer" class="sm-per"></span></p>
+<div class="sm-modes" role="radiogroup" aria-label="How do you want to buy?">
+<label class="sx-opt" data-mode="once"><input type="radio" name="spMode" value="once" checked><b>One-time</b></label>
+<label class="sx-opt" data-mode="sub"><input type="radio" name="spMode" value="sub"><b>Subscribe</b><small>save up to 5%</small></label>
 </div>
-<div class="sp-freq sx-freq" id="hsFreq"><span class="sp-freq-l">Deliver every</span><span class="hs-chips" role="radiogroup" aria-label="Delivery frequency"><button type="button" role="radio" aria-checked="false" data-f="week">Week <small>−5%</small></button><button type="button" role="radio" aria-checked="true" data-f="2 weeks">2 weeks <small>−4%</small></button><button type="button" role="radio" aria-checked="false" data-f="month">Month <small>−3%</small></button></span></div>
-
-<div class="sx-lines" aria-live="polite">
-<div class="sx-item"><span class="sx-q"><span class="hs-qty" role="group" aria-label="Crates"><button type="button" id="hsMinus" aria-label="One fewer crate">−</button><output id="hsQty">1</output><button type="button" id="hsPlus" aria-label="One more crate">+</button></span><span>× Krate<span class="sx-hide-m"> · 30 jumbo eggs</span></span></span><span class="sx-dots" aria-hidden="true"></span><span id="sxSub">₦7,500</span></div>
-<div class="sx-item sx-disc" id="sxDiscRow" hidden><span id="sxDiscLabel">Subscription saving</span><span class="sx-dots" aria-hidden="true"></span><span id="hsSave">−₦0</span></div>
-<div class="sx-item sx-muted"><span>Delivery</span><span class="sx-dots" aria-hidden="true"></span><span>we’ll confirm the time</span></div>
-<div class="sx-total"><span id="hsPer">Total</span><strong id="hsPrice">₦7,500</strong></div>
-<s id="hsWas" hidden></s>
-</div>
-<button type="button" class="sx-go" id="hsGo">Order now</button>
-<a class="sx-biz" href="#partners">Buying for a business? Chat with us →</a>
-</div>
+<div class="sp-freq sm-freq" id="hsFreq"><span class="hs-chips" role="radiogroup" aria-label="Delivery frequency"><button type="button" role="radio" aria-checked="false" data-f="week">Weekly <small>−5%</small></button><button type="button" role="radio" aria-checked="true" data-f="2 weeks">Every 2 weeks <small>−4%</small></button><button type="button" role="radio" aria-checked="false" data-f="month">Monthly <small>−3%</small></button></span></div>
+<div class="hs-qty sm-qty" role="group" aria-label="Crates"><button type="button" id="hsMinus" aria-label="One fewer crate">−</button><output id="hsQty">1</output><button type="button" id="hsPlus" aria-label="One more crate">+</button></div>
+<button type="button" class="sm-go" id="hsGo">Order now</button>
+<p class="sm-note">Pay on delivery · <a href="#partners">Buying for a business?</a></p>
+<span hidden><span id="sxSub"></span><span id="sxDiscRow"><span id="sxDiscLabel"></span><span id="hsSave"></span></span><span id="spOncePrice"></span></span>
 </div>
 </section>
 
@@ -2411,7 +2426,8 @@ var KRATE = {
     $('sxDiscRow').hidden = !sub;
     $('sxDiscLabel').textContent = 'Subscription saving (' + Math.round(OFF[freq] * 100) + '%)';
     $('hsSave').textContent = '−' + money(full() - now);
-    $('hsPer').textContent = sub ? 'Total, every ' + freq : 'Total';
+    $('hsPer').textContent = sub ? 'every ' + freq : (qty > 1 ? 'for ' + qty + ' crates' : '');
+    $('hsWas').hidden = !sub; $('hsWas').textContent = money(full());
     document.querySelectorAll('.sx-opt').forEach(function (o) { o.classList.toggle('on', o.dataset.mode === mode); });
     var fr = $('hsFreq'); fr.classList.toggle('open', sub);
     fr.querySelectorAll('button').forEach(function (b) { b.tabIndex = sub ? 0 : -1; });
@@ -2892,19 +2908,20 @@ var KRATE_SUPABASE = {
   /* ---------- count numbers up/down (₦ totals) ---------- */
   function tween(el) {
     if (!el || RM) return;
-    var last = null;
+    var last = null, mine = null, target = null, raf = 0;
+    function set(t) { mine = t; el.textContent = t; }
     new MutationObserver(function () {
-      if (el.dataset.tw) return;
-      var txt = el.textContent, m = txt.match(/^(−?)₦([\d,]+)(.*)$/);
+      var txt = el.textContent; if (txt === mine) return;
+      var m = txt.match(/^(−?)₦([\d,]+)(.*)$/);
       if (!m) { last = null; return; }
-      var to = +m[2].replace(/,/g, '');
+      var to = +m[2].replace(/,/g, ''); target = txt;
       if (last === null || last === to) { last = to; return; }
       var from = last, t0 = performance.now(); last = to;
-      el.dataset.tw = 1;
+      cancelAnimationFrame(raf);
       (function step(t) {
         var k = Math.min(1, (t - t0) / 420), v = Math.round(from + (to - from) * (1 - Math.pow(1 - k, 3)));
-        el.textContent = m[1] + '₦' + v.toLocaleString('en-NG') + m[3];
-        if (k < 1) requestAnimationFrame(step); else { el.textContent = txt; delete el.dataset.tw; }
+        set(m[1] + '₦' + v.toLocaleString('en-NG') + m[3]);
+        if (k < 1) raf = requestAnimationFrame(step); else set(target);
       })(t0);
     }).observe(el, { childList: true, characterData: true, subtree: true });
     var m0 = el.textContent.match(/₦([\d,]+)/); if (m0) last = +m0[1].replace(/,/g, '');
