@@ -461,6 +461,35 @@ footer nav a{font-size:20px!important}
 @keyframes hsWob{0%,100%{rotate:-10deg;scale:1}50%{rotate:-4deg;scale:1.04}}
 @media (max-width:743px){.t-shop .hs-jumbo b{font-size:7vw}.t-shop .hs-jumbo small{font-size:2.1vw}}
 .t-shop .hs-jumbo b{font-size:clamp(22px,2.6vw,40px)}@media (max-width:743px){.t-shop .hs-jumbo b{font-size:5.4vw}}
+/* account */
+.a-fab{position:fixed;left:20px;bottom:20px;z-index:70;width:54px;height:54px;border-radius:50%;border:2px solid #f6eceb;background:#014621;color:#5bc20f;display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 22px rgba(0,0,0,.28);transition:transform .25s cubic-bezier(.2,.9,.25,1.5)}
+.a-fab:hover{transform:scale(1.08)}
+.a-fab.is-in::after{content:"";position:absolute;top:2px;right:2px;width:12px;height:12px;border-radius:50%;background:#5bc20f;border:2px solid #014621}
+.a-fab:focus-visible{outline:3px solid #f53509;outline-offset:3px}
+.a-drawer{z-index:76}
+#aScrim{z-index:75}
+.a-off{margin:0;padding:16px;border-radius:16px;background:#fff;color:#4a4446;line-height:1.5}
+.a-switch{display:flex;padding:5px;border-radius:999px;background:#fff;border:2px solid #014621;margin-bottom:14px}
+.a-switch button{flex:1;min-height:44px;border:0;border-radius:999px;background:transparent;color:#014621;font:700 14px 'Inter Tight',sans-serif;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}
+.a-switch [aria-selected="true"]{background:#014621;color:#5bc20f}
+.a-link{justify-self:center;padding:6px;border:0;background:none;color:#014621;font:700 14px 'Inter Tight',sans-serif;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+#aIn{display:grid;gap:18px}
+#aIn[hidden],#aOut[hidden]{display:none}
+.a-hi{margin:0;font-size:18px}
+.a-block h4{margin:0 0 8px;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:20px;text-transform:uppercase;color:#014621}
+.a-list{display:grid;gap:8px}
+.a-item{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;background:#fff;border-radius:16px;padding:12px 14px}
+.a-item .c-info{flex:1;display:grid;gap:2px;min-width:0}
+.a-item strong{font-size:15px;color:#014621}
+.a-item span{font-size:13px;color:#4a4446}
+.a-status{padding:4px 10px;border-radius:999px;font-size:12px!important;font-weight:700;text-transform:capitalize;background:#f6eceb}
+.a-active,.a-placed{background:#dcf8c6!important;color:#014621!important}
+.a-paused{background:#ffe6b3!important;color:#6b4a00!important}
+.a-cancelled{background:#eee!important;color:#777!important}
+.a-acts{flex-basis:100%;display:flex;gap:8px}
+.a-acts button{min-height:38px;padding:0 14px;border-radius:999px;border:2px solid #014621;background:transparent;color:#014621;font:700 13px 'Inter Tight',sans-serif;cursor:pointer}
+#cAcct a{color:#014621;font-weight:700}
+@media (max-width:743px){.a-fab{left:14px;bottom:14px;width:50px;height:50px}}
 </style></head>
 <body>
 
@@ -597,6 +626,7 @@ a{color:#014621}a:hover{color:#191718}
 <a class="k-row" href="#eggs" data-close="1"><img class="k-row-thumb" src="img/egg-tray.webp" alt="" style="background: #f53509"><span class="k-row-label">Our Eggs</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
 <a class="k-row" href="#shop" data-close="1"><img class="k-row-thumb" src="img/photo-fryup.webp" alt=""><span class="k-row-label">Shop</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
 <a class="k-row" href="#partners" data-close="1"><img class="k-row-thumb" src="img/card-partner.webp" alt=""><span class="k-row-label">Partners</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
+<a class="k-row" href="#account" data-account data-close="1"><img class="k-row-thumb" src="img/egg-brown.webp" alt=""><span class="k-row-label">My account</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
 <a class="k-row" href="#contact" data-close="1" style="border-bottom: 0"><img class="k-row-thumb" src="img/card-deliver.webp" alt=""><span class="k-row-label">Contact</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
 </nav>
 <div style="display: flex; justify-content: flex-end; padding-right: 0">
@@ -818,6 +848,7 @@ a{color:#014621}a:hover{color:#191718}
 <div class="c-head"><h3>Checkout</h3><button type="button" class="c-close" id="cClose" aria-label="Close">×</button></div>
 <div class="c-total"><span id="cWhat"></span><strong id="cSubtotal">₦0</strong></div>
 <p class="c-note">Delivery fee confirmed on WhatsApp. Pay on delivery.</p>
+<p class="c-note" id="cAcct"><a href="#account" data-account>Log in or create an account</a> to save your details and track orders.</p>
 <form class="c-form" id="cForm" novalidate>
 <label>Full name<input name="name" required autocomplete="name"></label>
 <label>Phone / WhatsApp<input name="phone" type="tel" required autocomplete="tel"></label>
@@ -865,6 +896,57 @@ a{color:#014621}a:hover{color:#191718}
 <p class="f-meta f-small">Store in a cool, dry place · © 2026 Krate Farms</p>
 </div>
 </footer>
+<!-- ================= ACCOUNT drawer ================= -->
+<button type="button" class="a-fab" id="aOpen" aria-label="My account"><svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+<div class="c-scrim" id="aScrim" hidden></div>
+<aside class="c-drawer a-drawer" id="aDrawer" aria-label="My account" aria-hidden="true">
+<div class="c-head"><h3 id="aTitle">My Krate</h3><button type="button" class="c-close" id="aClose" aria-label="Close">×</button></div>
+
+<p class="a-off" id="aOff" hidden>Accounts are almost ready. For now, order on WhatsApp and we’ll keep track for you.</p>
+
+<!-- signed out -->
+<div id="aOut" hidden>
+<div class="a-switch" role="tablist" aria-label="Sign in or create account">
+<button type="button" role="tab" aria-selected="true" data-a="in">Log in</button>
+<button type="button" role="tab" aria-selected="false" data-a="up">Create account</button>
+</div>
+<form class="c-form" id="aForm" novalidate>
+<label class="a-up" hidden>Full name<input name="name" autocomplete="name"></label>
+<label class="a-up" hidden>Phone / WhatsApp<input name="phone" type="tel" autocomplete="tel"></label>
+<label>Email<input name="email" type="email" required autocomplete="email"></label>
+<label>Password<input name="password" type="password" required minlength="6" autocomplete="current-password"></label>
+<p class="p-error" id="aError" role="alert" hidden></p>
+<button type="submit" class="c-checkout" id="aSubmit">Log in</button>
+<button type="button" class="a-link" id="aForgot">Forgot password?</button>
+<p class="p-done" id="aMsg" hidden></p>
+</form>
+</div>
+
+<!-- signed in -->
+<div id="aIn" hidden>
+<p class="a-hi">Hi <strong id="aName">there</strong> 👋</p>
+<section class="a-block" aria-labelledby="aSubsT">
+<h4 id="aSubsT">Subscriptions</h4>
+<div id="aSubs" class="a-list"></div>
+</section>
+<section class="a-block" aria-labelledby="aOrdT">
+<h4 id="aOrdT">Order history</h4>
+<div id="aOrders" class="a-list"></div>
+</section>
+<section class="a-block" aria-labelledby="aDetT">
+<h4 id="aDetT">My details</h4>
+<form class="c-form" id="aDetails" novalidate>
+<label>Full name<input name="name" autocomplete="name"></label>
+<label>Phone / WhatsApp<input name="phone" type="tel" autocomplete="tel"></label>
+<label>Delivery address<textarea name="address" rows="2" autocomplete="street-address"></textarea></label>
+<button type="submit" class="c-checkout">Save details</button>
+<p class="p-done" id="aSaved" hidden>Saved. We’ll fill these in at checkout.</p>
+</form>
+</section>
+<button type="button" class="a-link" id="aLogout">Log out</button>
+</div>
+</aside>
+
 
 
 </div>
@@ -1410,7 +1492,11 @@ var KRATE = {
   $('hsPlus').onclick = function () { qty = Math.min(50, qty + 1); update(); };
 
   var drawer = $('cDrawer'), scrim = $('cScrim');
-  function open() { drawer.classList.add('open'); drawer.setAttribute('aria-hidden', 'false'); scrim.hidden = false; $('cClose').focus(); }
+  function open() {
+    var P0 = window.KRATE_PROFILE, cf = document.getElementById('cForm');
+    if (P0 && cf) ['name', 'phone', 'address'].forEach(function (k) { if (!cf.elements[k].value && P0[k]) cf.elements[k].value = P0[k]; });
+    var nudge = document.getElementById('cAcct'); if (nudge) nudge.hidden = !!window.KRATE_USER;
+    drawer.classList.add('open'); drawer.setAttribute('aria-hidden', 'false'); scrim.hidden = false; $('cClose').focus(); }
   function close() { drawer.classList.remove('open'); drawer.setAttribute('aria-hidden', 'true'); scrim.hidden = true; $('hsGo').focus(); }
   $('hsGo').onclick = open; $('cClose').onclick = close; scrim.onclick = close;
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && drawer.classList.contains('open')) close(); });
@@ -1430,9 +1516,149 @@ var KRATE = {
     if (f.when.value) msg.push((mode === 'sub' ? 'Delivery day: ' : 'Delivery: ') + f.when.value);
     var a = document.createElement('a'); a.href = 'https://wa.me/' + KRATE.whatsapp + '?text=' + encodeURIComponent(msg.join('\n')); a.target = '_blank'; a.rel = 'noopener';
     document.body.appendChild(a); a.click(); a.remove();
+    if (window.KRATE_SAVE_ORDER) window.KRATE_SAVE_ORDER({ kind: mode, summary: what(), crates: qty, frequency: mode === 'sub' ? freq : null, total: each(), name: f.name.value, phone: f.phone.value, address: f.address.value });
     $('cDone').hidden = false;
   });
   update();
+})();
+
+/* Krate customer accounts (Supabase). Paste your project's URL and anon key to switch accounts on. */
+var KRATE_SUPABASE = {
+  url: '',      // e.g. https://abcdefgh.supabase.co
+  anonKey: ''   // the "anon public" key from Project Settings → API
+};
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var drawer = $('aDrawer'), scrim = $('aScrim');
+  if (!drawer) return;
+  var sb = null, user = null, profile = {}, mode = 'in';
+  function money(n) { return '₦' + Math.round(n).toLocaleString('en-NG'); }
+  function show(v) { drawer.classList.toggle('open', v); drawer.setAttribute('aria-hidden', v ? 'false' : 'true'); scrim.hidden = !v; if (v) $('aClose').focus(); }
+  function open() { show(true); if (!sb) start(); }
+  $('aOpen').onclick = open; $('aClose').onclick = function () { show(false); }; scrim.onclick = function () { show(false); };
+  document.addEventListener('click', function (e) { var a = e.target.closest('[data-account]'); if (a) { e.preventDefault(); setTimeout(open, 250); } });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && drawer.classList.contains('open')) show(false); });
+
+  function view() {
+    var on = !!sb;
+    $('aOff').hidden = on;
+    $('aOut').hidden = !on || !!user;
+    $('aIn').hidden = !on || !user;
+    $('aTitle').textContent = (user || !on) ? 'My Krate' : (mode === 'up' ? 'Join Krate' : 'Welcome back');
+    $('aOpen').classList.toggle('is-in', !!user);
+  }
+
+  function start() {
+    if (!KRATE_SUPABASE.url || !KRATE_SUPABASE.anonKey) { view(); return; }
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+    s.onload = function () {
+      sb = window.supabase.createClient(KRATE_SUPABASE.url, KRATE_SUPABASE.anonKey);
+      window.KRATE_DB = sb;
+      sb.auth.onAuthStateChange(function (_e, session) { user = session ? session.user : null; window.KRATE_USER = user; view(); if (user) load(); });
+      sb.auth.getSession().then(function (r) { user = r.data.session ? r.data.session.user : null; window.KRATE_USER = user; view(); if (user) load(); });
+    };
+    s.onerror = function () { view(); };
+    document.head.appendChild(s);
+  }
+  // load in the background too, so a returning customer is recognised and checkout is prefilled
+  if (KRATE_SUPABASE.url && KRATE_SUPABASE.anonKey) window.addEventListener('load', function () { if (!sb) start(); });
+
+  // log in / create account
+  document.querySelectorAll('.a-switch [data-a]').forEach(function (b) {
+    b.onclick = function () {
+      mode = b.dataset.a;
+      document.querySelectorAll('.a-switch [data-a]').forEach(function (o) { o.setAttribute('aria-selected', o === b ? 'true' : 'false'); });
+      document.querySelectorAll('.a-up').forEach(function (l) { l.hidden = mode !== 'up'; });
+      $('aSubmit').textContent = mode === 'up' ? 'Create account' : 'Log in';
+      $('aForm').elements.password.autocomplete = mode === 'up' ? 'new-password' : 'current-password';
+      $('aError').hidden = true; $('aMsg').hidden = true; view();
+    };
+  });
+  function err(m) { $('aError').textContent = m; $('aError').hidden = false; }
+  $('aForm').addEventListener('submit', function (e) {
+    e.preventDefault(); if (!sb) return;
+    var f = this.elements; $('aError').hidden = true; $('aMsg').hidden = true;
+    if (!/^\S+@\S+\.\S+$/.test(f.email.value)) return err('Enter a valid email.');
+    if (f.password.value.length < 6) return err('Password needs at least 6 characters.');
+    var btn = $('aSubmit'); btn.disabled = true;
+    var p = mode === 'up'
+      ? sb.auth.signUp({ email: f.email.value.trim(), password: f.password.value, options: { data: { name: f.name.value.trim(), phone: f.phone.value.trim() } } })
+      : sb.auth.signInWithPassword({ email: f.email.value.trim(), password: f.password.value });
+    p.then(function (r) {
+      btn.disabled = false;
+      if (r.error) return err(r.error.message);
+      if (mode === 'up' && !r.data.session) { $('aMsg').textContent = 'Check your email to confirm your account, then log in.'; $('aMsg').hidden = false; }
+    });
+  });
+  $('aForgot').onclick = function () {
+    var em = $('aForm').elements.email.value.trim();
+    if (!sb) return; if (!em) return err('Type your email first, then tap “Forgot password?”.');
+    sb.auth.resetPasswordForEmail(em, { redirectTo: location.origin + location.pathname }).then(function (r) {
+      if (r.error) return err(r.error.message);
+      $('aMsg').textContent = 'We’ve emailed you a link to reset your password.'; $('aMsg').hidden = false;
+    });
+  };
+  $('aLogout').onclick = function () { sb.auth.signOut(); };
+
+  // signed-in data
+  function load() {
+    sb.from('profiles').select('*').eq('id', user.id).maybeSingle().then(function (r) {
+      profile = r.data || { name: (user.user_metadata || {}).name || '', phone: (user.user_metadata || {}).phone || '', address: '' };
+      window.KRATE_PROFILE = profile;
+      $('aName').textContent = (profile.name || user.email).split(' ')[0];
+      var d = $('aDetails').elements; d.name.value = profile.name || ''; d.phone.value = profile.phone || ''; d.address.value = profile.address || '';
+      prefill();
+    });
+    sb.from('orders').select('*').eq('user_id', user.id).order('created_at', { ascending: false }).then(function (r) { list(r.data || []); });
+  }
+  function prefill() {
+    var c = $('cForm'); if (!c) return;
+    ['name', 'phone', 'address'].forEach(function (k) { if (c.elements[k] && !c.elements[k].value && profile[k]) c.elements[k].value = profile[k]; });
+  }
+  function row(o, sub) {
+    var el = document.createElement('div'); el.className = 'a-item';
+    var t = document.createElement('div'); t.className = 'c-info';
+    var s1 = document.createElement('strong'); s1.textContent = o.summary;
+    var s2 = document.createElement('span');
+    s2.textContent = money(o.total) + (sub ? ' per delivery' : '') + ' · ' + new Date(o.created_at).toLocaleDateString('en-NG', { day: 'numeric', month: 'short', year: 'numeric' });
+    t.append(s1, s2);
+    var st = document.createElement('span'); st.className = 'a-status a-' + o.status; st.textContent = o.status;
+    el.append(t, st);
+    if (sub && o.status !== 'cancelled') {
+      var acts = document.createElement('div'); acts.className = 'a-acts';
+      var pz = document.createElement('button'); pz.type = 'button'; pz.textContent = o.status === 'paused' ? 'Resume' : 'Pause';
+      pz.onclick = function () { setStatus(o, o.status === 'paused' ? 'active' : 'paused'); };
+      var cx = document.createElement('button'); cx.type = 'button'; cx.textContent = 'Cancel';
+      cx.onclick = function () { if (confirmCancel(cx)) setStatus(o, 'cancelled'); };
+      acts.append(pz, cx); el.appendChild(acts);
+    }
+    return el;
+  }
+  function confirmCancel(b) { if (b.dataset.sure) return true; b.dataset.sure = '1'; b.textContent = 'Tap again to cancel'; setTimeout(function () { delete b.dataset.sure; b.textContent = 'Cancel'; }, 3000); return false; }
+  function setStatus(o, s) { sb.from('orders').update({ status: s }).eq('id', o.id).then(load); }
+  function list(rows) {
+    var subs = rows.filter(function (o) { return o.kind === 'sub'; }), once = rows.filter(function (o) { return o.kind !== 'sub'; });
+    var a = $('aSubs'), b = $('aOrders'); a.innerHTML = ''; b.innerHTML = '';
+    subs.forEach(function (o) { a.appendChild(row(o, true)); });
+    once.forEach(function (o) { b.appendChild(row(o, false)); });
+    if (!subs.length) a.innerHTML = '<p class="c-empty">No subscription yet. Subscribe in the shop and save up to 10%.</p>';
+    if (!once.length) b.innerHTML = '<p class="c-empty">No orders yet.</p>';
+  }
+  $('aDetails').addEventListener('submit', function (e) {
+    e.preventDefault(); var d = this.elements;
+    var rec = { id: user.id, name: d.name.value.trim(), phone: d.phone.value.trim(), address: d.address.value.trim() };
+    sb.from('profiles').upsert(rec).then(function (r) { if (!r.error) { profile = rec; window.KRATE_PROFILE = rec; $('aSaved').hidden = false; $('aName').textContent = (rec.name || user.email).split(' ')[0]; } });
+  });
+
+  // called by the shop when someone sends an order to WhatsApp
+  window.KRATE_SAVE_ORDER = function (o) {
+    if (!sb || !user) return;
+    sb.from('orders').insert({ user_id: user.id, kind: o.kind, summary: o.summary, crates: o.crates, frequency: o.frequency || null, total: o.total, status: o.kind === 'sub' ? 'active' : 'placed' }).then(function () { load(); });
+    if (o.name || o.phone || o.address) sb.from('profiles').upsert({ id: user.id, name: o.name || profile.name, phone: o.phone || profile.phone, address: o.address || profile.address });
+  };
+  window.KRATE_OPEN_ACCOUNT = open;
+  view();
 })();
 </script>
 </body>
