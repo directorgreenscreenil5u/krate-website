@@ -1046,6 +1046,81 @@ footer nav a{font-size:20px!important}
  .n-act b{font-size:18px}
  .n-row{padding:20px 22px}
 }
+/* ================= ACCOUNT v4: one big focus, full screen ================= */
+.acc{position:fixed;inset:0;z-index:76;background:#5bc20f;color:#014621;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;opacity:0;visibility:hidden;transform:translateY(30px);transition:opacity .3s,transform .5s cubic-bezier(.2,.9,.25,1.2),visibility 0s .5s}
+.acc.open{opacity:1;visibility:visible;transform:none;transition:opacity .3s,transform .5s cubic-bezier(.2,.9,.25,1.2)}
+.acc>.k-paper{position:fixed;opacity:.35!important}
+.acc-hide{display:none}
+.acc-egg{position:fixed;height:auto;pointer-events:auto;filter:drop-shadow(0 30px 30px rgba(1,70,33,.35));transition:transform .35s ease-out,translate .6s cubic-bezier(.2,.9,.25,1.3);z-index:0}
+.acc-egg1{width:min(26vw,320px);right:-3vw;bottom:-5vh;rotate:-16deg}
+.acc-egg2{width:min(14vw,170px);left:-2vw;top:26vh;rotate:20deg}
+.acc.ix-shy .acc-egg{translate:0 60vh}
+.acc-top{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:22px 28px}
+.acc-logo svg{display:block;width:110px;height:auto;color:#014621}
+.acc-x{width:52px;height:52px;border-radius:50%;border:0;background:#014621;color:#f6eceb;font-size:26px;line-height:1;cursor:pointer;transition:rotate .3s}
+.acc-x:hover{rotate:90deg}
+.acc-main{position:relative;z-index:1;flex:1;display:grid;place-items:center;padding:2vh 20px 10vh}
+.acc-col{width:min(480px,100%);text-align:center}
+.acc-col[hidden]{display:none!important}
+.acc-wide{width:min(620px,100%)}
+.acc-kicker{margin:0;font:700 13px 'Inter Tight',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#014621}
+.acc-kicker b{font-weight:700}
+.acc-big{margin:10px 0 26px;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(64px,9vw,140px);line-height:.86;text-transform:uppercase;color:#014621}
+.acc-card{background:#f6eceb;border-radius:28px;padding:26px;text-align:left;box-shadow:0 30px 60px rgba(1,70,33,.25);display:grid;gap:14px}
+.acc-card label{display:grid;gap:6px;font:700 12px 'Inter Tight',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#014621}
+.acc-card input{min-height:54px;padding:0 16px;border:2px solid rgba(1,70,33,.15);border-radius:16px;background:#fff;font:400 16px 'Inter Tight',sans-serif;color:#191718;box-sizing:border-box;width:100%}
+.acc-card input:focus{outline:none;border-color:#014621;box-shadow:0 0 0 4px rgba(91,194,15,.45)}
+.acc-card .c-checkout{min-height:60px;margin-top:4px;border-radius:999px;background:#f53509;color:#191718;font:700 16px 'Inter Tight',sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.acc-card .a-link{justify-self:center}
+.acc-switch{display:flex!important;justify-content:center;margin-top:20px;padding:0!important;border:0!important;background:none!important}
+.acc-switch button{padding:6px;border:0!important;background:none!important;color:#014621!important;font:700 15px 'Inter Tight',sans-serif;text-transform:none;letter-spacing:0;text-decoration:underline;text-underline-offset:4px;cursor:pointer;min-height:0!important}
+.acc-switch [aria-selected="true"]{display:none}
+.acc-switch [data-a="up"]::before{content:"New here? ";font-weight:500;text-decoration:none;display:inline-block;margin-right:4px}
+.acc-switch [data-a="in"]::before{content:"Have an account? ";font-weight:500;display:inline-block;margin-right:4px}
+.acc-switch .ix-bar{display:none}
+.acc .a-note{margin-top:10px;font-size:13px;color:#014621;opacity:.75}
+.acc-off{background:#f6eceb;border-radius:18px;padding:16px}
+/* signed in */
+.acc #aIn:not([hidden]){display:block!important}
+.acc .n-next{background:none!important;border:0!important;padding:0!important;color:#014621!important;display:grid;justify-items:center;gap:6px;min-height:0!important;margin-top:10px}
+.acc .n-next::after{display:none}
+.acc .n-k{color:#014621!important;font-size:13px}
+.acc .n-big{font-size:clamp(64px,11vw,170px)!important;line-height:.86;margin:6px 0 6px}
+.acc .n-sub{font:600 17px/1.45 'Inter Tight',sans-serif;opacity:1;max-width:none!important}
+.acc .n-track{width:min(440px,100%);margin:18px auto 0!important;padding:0!important;max-width:none!important}
+.acc .n-track li{border-top-color:rgba(1,70,33,.2);color:rgba(1,70,33,.55);text-align:left}
+.acc .n-track li.on{border-top-color:#014621;color:#014621}
+.acc .n-cta{justify-self:stretch;justify-content:center;min-height:68px;margin-top:22px;background:#014621;color:#5bc20f;font:700 18px 'Inter Tight',sans-serif;letter-spacing:.06em;text-transform:uppercase;border-radius:999px}
+.acc-go{width:100%;margin-top:28px;min-height:76px;border:0;border-radius:999px;background:#014621;color:#5bc20f;display:grid;place-content:center;gap:2px;cursor:pointer;box-shadow:0 20px 40px rgba(1,70,33,.3);transition:transform .25s cubic-bezier(.2,.9,.25,1.5)}
+.acc-go:hover{transform:translateY(-3px)}
+.acc-go b{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(22px,2.4vw,30px);text-transform:uppercase}
+.acc-go small{font:600 13px 'Inter Tight',sans-serif;color:#f6eceb;opacity:.8}
+.acc-go:disabled{display:none}
+.acc-more{margin-top:22px}
+.acc-more summary{list-style:none;display:inline-flex;gap:6px;align-items:center;cursor:pointer;font:700 15px 'Inter Tight',sans-serif;color:#014621;text-decoration:underline;text-underline-offset:4px}
+.acc-more summary::-webkit-details-marker{display:none}
+.acc-more summary span{transition:rotate .25s;text-decoration:none}
+.acc-more[open] summary span{rotate:180deg}
+.acc-sheet{margin-top:16px;display:grid;gap:10px;text-align:left;background:#f6eceb;border-radius:26px;padding:16px;box-shadow:0 24px 50px rgba(1,70,33,.22);animation:ixRise .4s cubic-bezier(.2,.9,.25,1.2)}
+.acc-sheet .n-row{padding:14px 16px!important}
+.acc-sheet .n-orders{padding:6px 4px 0!important;background:none!important;border:0!important}
+.acc-sheet .a-link{justify-self:center}
+@media (max-width:743px){
+ .acc-top{padding:16px 18px}
+ .acc-logo svg{width:92px}
+ .acc-x{width:44px;height:44px;font-size:22px}
+ .acc-big{font-size:17vw;margin-bottom:20px}
+ .acc .n-big{font-size:18vw!important}
+ .acc-egg1{width:36vw;right:-8vw;bottom:-4vh}
+ .acc-egg2{width:20vw;left:-6vw;top:12vh}
+ .acc-card{padding:20px;border-radius:24px}
+ .acc-main{padding:1vh 18px 14vh;align-items:start}
+}
+@media (prefers-reduced-motion:reduce){.acc{transition:none}}
+.acc .n-big{font-size:clamp(56px,7.4vw,124px)!important;overflow-wrap:normal}
+.acc-wide{width:min(760px,100%)}
+@media (max-width:743px){.acc .n-big{font-size:15vw!important}}
+@media (max-width:743px){.acc-egg2{top:auto;bottom:22vh;width:16vw;left:-6vw}}
 </style></head>
 <body>
 
@@ -1441,33 +1516,20 @@ a{color:#014621}a:hover{color:#191718}
 <p class="f-meta f-small">Store in a cool, dry place · © 2026 Krate Farms</p>
 </div>
 </footer>
-<!-- ================= ACCOUNT drawer ================= -->
 <button type="button" class="a-fab" id="aOpen"><span id="aTag">Sign in</span></button>
 <div class="c-scrim" id="aScrim" hidden></div>
-<aside class="a-drawer" id="aDrawer" aria-label="My account" aria-hidden="true" role="dialog" aria-modal="true">
-<button type="button" class="a-x" id="aClose" aria-label="Close">×</button>
-<div class="a-hero" aria-hidden="true">
-<div class="k-paper"></div>
-<p class="a-kicker">Krate account</p>
-<p class="a-big" id="aBig">Welcome<br>back.</p>
-<div class="a-card"><span class="g-tape a-card-tape" aria-hidden="true"></span><p class="a-card-h">Why sign up?</p><ul class="a-perks"><li>Faster checkout, details saved</li><li>Track every order</li><li>Pause or cancel your subscription</li></ul></div>
-<img loading="lazy" decoding="async" class="a-egg" src="img/egg-brown.webp" alt="">
-<img loading="lazy" decoding="async" class="a-egg a-egg2" src="img/egg-white.webp" alt="">
-</div>
-<div class="a-panel">
-<div class="a-brand" id="aBrand" aria-hidden="true"></div>
-<h3 class="a-title" id="aTitle">My Krate</h3>
-<p class="a-lead" id="aLead"></p>
+<aside class="acc" id="aDrawer" aria-label="My Krate account" aria-hidden="true" role="dialog" aria-modal="true">
+<div aria-hidden="true" class="k-paper"></div>
+<img loading="lazy" decoding="async" class="acc-egg acc-egg1" src="img/egg-brown.webp" alt="" aria-hidden="true">
+<img loading="lazy" decoding="async" class="acc-egg acc-egg2" src="img/egg-white.webp" alt="" aria-hidden="true">
+<header class="acc-top"><div class="acc-logo" id="aBrand" aria-hidden="true"></div><span class="acc-hide" id="aTitle"></span><button type="button" class="acc-x" id="aClose" aria-label="Close">×</button></header>
+<main class="acc-main">
 
-<p class="a-off" id="aOff" hidden>Accounts are almost ready. For now, order on WhatsApp and we’ll keep track for you.</p>
-
-<!-- signed out -->
-<div id="aOut" hidden>
-<div class="a-switch" role="tablist" aria-label="Sign in or create account">
-<button type="button" role="tab" aria-selected="true" data-a="in">Log in</button>
-<button type="button" role="tab" aria-selected="false" data-a="up">Create account</button>
-</div>
-<form class="c-form" id="aForm" novalidate>
+<div class="acc-col" id="aOut" hidden>
+<p class="acc-kicker" id="aLead"></p>
+<h2 class="acc-big" id="aBig">Welcome back.</h2>
+<p class="a-off acc-off" id="aOff" hidden>Accounts are almost ready. For now, order on WhatsApp and we’ll keep track for you.</p>
+<form class="c-form acc-card" id="aForm" novalidate>
 <label class="a-up" hidden>Full name<input name="name" autocomplete="name"></label>
 <label class="a-up" hidden>Phone / WhatsApp<input name="phone" type="tel" autocomplete="tel"></label>
 <label>Email<input name="email" type="email" required autocomplete="email"></label>
@@ -1476,18 +1538,21 @@ a{color:#014621}a:hover{color:#191718}
 <button type="submit" class="c-checkout" id="aSubmit">Log in</button>
 <button type="button" class="a-link" id="aForgot">Forgot password?</button>
 <p class="p-done" id="aMsg" hidden></p>
-<p class="a-note" id="aLocal" hidden>Your account is saved on this phone or computer.</p>
 </form>
+<div class="a-switch acc-switch" role="tablist" aria-label="Log in or create an account">
+<button type="button" role="tab" aria-selected="true" data-a="in">Log in</button>
+<button type="button" role="tab" aria-selected="false" data-a="up">Create an account</button>
+</div>
+<p class="a-note" id="aLocal" hidden>Your account is saved on this phone or computer.</p>
 </div>
 
-<!-- signed in -->
-<div id="aIn" hidden>
-<p class="a-hi">Hi <strong id="aName">there</strong></p>
+<div class="acc-col acc-wide" id="aIn" hidden>
+<p class="acc-kicker">Hi <b id="aName">there</b></p>
 <section class="n-next" id="dNext" aria-live="polite"></section>
-<div class="n-actions">
-<button type="button" class="n-act" id="dAgain"><b>Reorder</b><small id="dAgainSub">Same as last time</small></button>
-<button type="button" class="n-act" id="dInvite"><b>Invite a friend</b><small>Share Krate on WhatsApp</small></button>
-</div>
+<button type="button" class="acc-go" id="dAgain"><b>Reorder in one tap</b><small id="dAgainSub">Same as last time</small></button>
+<details class="acc-more">
+<summary>More <span aria-hidden="true">▾</span></summary>
+<div class="acc-sheet">
 <section class="n-row" id="aSubs" aria-label="Your subscription"></section>
 <section class="n-row n-addr" aria-label="Delivery address">
 <div class="n-row-t"><small>Delivering to</small><b id="dAddr">Add your address</b></div>
@@ -1500,13 +1565,14 @@ a{color:#014621}a:hover{color:#191718}
 <button type="submit" class="c-checkout">Save</button>
 <p class="p-done" id="aSaved" hidden>Saved. We’ll use this at checkout.</p>
 </form>
-<section class="n-orders" aria-labelledby="aOrdT">
-<h4 id="aOrdT">Past orders</h4>
-<div id="aOrders"></div>
-</section>
+<section class="n-row"><div class="n-row-t"><small>Invite a friend</small><b>Share Krate on WhatsApp</b></div><button type="button" class="n-link" id="dInvite">Share</button></section>
+<section class="n-orders" aria-labelledby="aOrdT"><h4 id="aOrdT">Past orders</h4><div id="aOrders"></div></section>
 <button type="button" class="a-link" id="aLogout">Log out</button>
 </div>
+</details>
 </div>
+
+</main>
 </aside>
 
 
@@ -2111,8 +2177,8 @@ var KRATE_SUPABASE = {
     $('aOut').hidden = !on || !!user;
     $('aIn').hidden = !on || !user;
     $('aTitle').textContent = user ? 'Your account' : (mode === 'up' ? 'Create your account' : 'Log in to Krate');
-    $('aLead').textContent = user ? '' : (mode === 'up' ? 'Takes 30 seconds. Then checkout fills itself in.' : 'Good to see you again. Your eggs are waiting.');
-    $('aBig').innerHTML = user ? 'Hey<br>' + (($('aName').textContent || 'there').replace(/[<>&]/g, '')) + '!' : (mode === 'up' ? 'Join the<br>Krate.' : 'Welcome<br>back.');
+    $('aLead').textContent = user ? '' : (mode === 'up' ? 'Takes 30 seconds' : 'Good to see you again');
+    $('aBig').innerHTML = mode === 'up' ? 'Join the<br>Krate.' : 'Welcome<br>back.';
     $('aDrawer').classList.toggle('is-in', !!user);
     $('aBig').classList.toggle('a-long', !!user && ($('aName').textContent || '').length > 7);
     $('aOpen').classList.toggle('is-in', !!user);
@@ -2395,7 +2461,7 @@ var KRATE_SUPABASE = {
   tilt($('.sx-slip'), 5); tilt($('.e-photo'), 8); tilt($('.b-chat'), 5); tilt($('.sx-card'), 10);
 
   /* ---------- magnetic main buttons ---------- */
-  $$('.sx-go, .e-cta, .b-send, .a-drawer .c-checkout').forEach(function (b) {
+  $$('.sx-go, .e-cta, .b-send, .acc .c-checkout, .acc-go').forEach(function (b) {
     if (RM || !FINE) return;
     b.addEventListener('pointermove', function (e) {
       var r = b.getBoundingClientRect();
@@ -2446,7 +2512,7 @@ var KRATE_SUPABASE = {
   /* ================= SIGN IN / SIGN UP ================= */
   var drawer = document.getElementById('aDrawer');
   if (!drawer) return;
-  var hero = $('.a-hero', drawer), eggs = $$('.a-egg', drawer), bigT = document.getElementById('aBig');
+  var hero = drawer, eggs = $$('.acc-egg', drawer), bigT = document.getElementById('aBig');
   var form = document.getElementById('aForm');
 
   // eggs follow the pointer inside the pop-up
@@ -2463,7 +2529,6 @@ var KRATE_SUPABASE = {
       setTimeout(function () { eg.src = c ? eg.dataset.base : 'img/egg-cracked.webp'; }, 160);
     });
   });
-  hero.removeAttribute('aria-hidden'); eggs.forEach(function (eg) { eg.setAttribute('aria-hidden', 'true'); });
 
   // headline swaps with a flip when switching Log in / Create account
   var lastBig = '';
@@ -2475,7 +2540,7 @@ var KRATE_SUPABASE = {
   // fields rise in one by one whenever the form changes or opens
   function stagger() {
     if (RM) return;
-    $$('#aOut label:not([hidden]), #aOut .c-checkout, #aOut .a-link, #aIn .n-next, #aIn .n-actions, #aIn .n-row, #aIn .n-orders, #aIn .a-link', drawer).forEach(function (el, i) {
+    $$('#aOut .acc-big, #aOut label:not([hidden]), #aOut .c-checkout, #aOut .a-link, #aOut .acc-switch, #aIn > *', drawer).forEach(function (el, i) {
       el.classList.remove('ix-rise'); void el.offsetWidth; el.style.setProperty('--d', (i * 55) + 'ms'); el.classList.add('ix-rise');
     });
   }
