@@ -667,6 +667,21 @@ footer nav a{font-size:20px!important}
 .k-menu>div{pointer-events:none}.k-menu>div>#kPull{pointer-events:auto}
 .k-menu{pointer-events:none}.k-menu #kNav,.k-menu #kPull{pointer-events:auto}
 @media (max-width:743px){.a-fab{right:122px!important;top:8px!important}}
+/* shop v3.1: one clean product tile + buy box, Bagel + Inter Tight only */
+.sp-grid{margin-top:0;align-items:center;gap:5vw}
+.sp-main{aspect-ratio:1;max-width:560px;width:100%;margin:0 auto}
+.sp-tag{align-self:flex-start;margin-bottom:4px}
+.sp-name{margin:0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(56px,6.4vw,104px);line-height:.88;text-transform:uppercase;color:#014621}
+.sp-desc{font-family:'Inter Tight',sans-serif;font-size:18px;margin-top:-2px}
+.sp-buy,.sp-buy *{font-family:'Inter Tight',sans-serif}
+.sp-buy .sp-name,.sp-price strong{font-family:'Bagel Fat One',sans-serif}
+.sp-opt-t strong{font-weight:700}
+.sp-trust li{font-weight:600}
+@media (max-width:743px){
+ .sp-name{font-size:17vw}
+ .sp-main{border-radius:24px}
+ .sp-grid{gap:8vw}
+}
 </style></head>
 <body>
 
@@ -978,27 +993,17 @@ a{color:#014621}a:hover{color:#191718}
 <section id="shop" class="t-shop" aria-labelledby="shopTitle">
 <div aria-hidden="true" class="k-paper"></div>
 <div class="sp-wrap">
-<header class="sp-head">
-<p class="g-tag t-tag"><span aria-hidden="true"></span>Shop</p>
-<h2 id="shopTitle" class="sp-h2">Get a Krate delivered.</h2>
-</header>
 <div class="sp-grid">
 <div class="sp-gallery">
 <div class="sp-main">
 <img loading="lazy" decoding="async" id="spMain" src="img/egg-tray.webp" alt="A crate of 30 Krate jumbo eggs">
 <span class="hs-jumbo sp-seal" aria-label="Jumbo eggs"><svg class="hs-burst" viewBox="0 0 100 100" aria-hidden="true"><polygon points="100.0,50.0 93.6,55.7 98.3,62.9 90.7,66.8 93.3,75.0 84.9,76.8 85.4,85.4 76.8,84.9 75.0,93.3 66.8,90.7 62.9,98.3 55.7,93.6 50.0,100.0 44.3,93.6 37.1,98.3 33.2,90.7 25.0,93.3 23.2,84.9 14.6,85.4 15.1,76.8 6.7,75.0 9.3,66.8 1.7,62.9 6.4,55.7 0.0,50.0 6.4,44.3 1.7,37.1 9.3,33.2 6.7,25.0 15.1,23.2 14.6,14.6 23.2,15.1 25.0,6.7 33.2,9.3 37.1,1.7 44.3,6.4 50.0,0.0 55.7,6.4 62.9,1.7 66.8,9.3 75.0,6.7 76.8,15.1 85.4,14.6 84.9,23.2 93.3,25.0 90.7,33.2 98.3,37.1 93.6,44.3"></polygon><circle cx="50" cy="50" r="38"></circle></svg><small>Extra large</small><b>Jumbo</b><small>30 per crate</small></span>
 </div>
-<div class="sp-thumbs" role="group" aria-label="Product photos">
-<button type="button" class="sp-thumb" aria-pressed="true" aria-label="Show the crate" data-src="img/egg-tray.webp" data-alt="A crate of 30 Krate jumbo eggs"><img loading="lazy" decoding="async" src="img/egg-tray.webp" alt=""></button>
-<button type="button" class="sp-thumb" aria-pressed="false" aria-label="Show the Krate box" data-src="img/lid.jpg" data-alt="The Krate box: 30 fresh jumbo eggs, handled with care" data-cover="1"><img loading="lazy" decoding="async" src="img/lid.jpg" alt=""></button>
-<button type="button" class="sp-thumb" aria-pressed="false" aria-label="Show an egg cracked open" data-src="img/egg-cracked.webp" data-alt="A Krate jumbo egg cracked open"><img loading="lazy" decoding="async" src="img/egg-cracked.webp" alt=""></button>
-<button type="button" class="sp-thumb" aria-pressed="false" aria-label="Show one jumbo egg" data-src="img/egg-brown.webp" data-alt="One Krate jumbo egg"><img loading="lazy" decoding="async" src="img/egg-brown.webp" alt=""></button>
-</div>
 </div>
 <div class="sp-buy">
-<p class="sp-eyebrow">Direct from our farm</p>
-<h3 class="sp-name">The Krate</h3>
-<p class="sp-desc">30 fresh jumbo eggs, cleanly packed to reduce breakage.</p>
+<p class="g-tag t-tag sp-tag"><span aria-hidden="true"></span>Shop</p>
+<h2 id="shopTitle" class="sp-name">The Krate</h2>
+<p class="sp-desc">30 fresh jumbo eggs per crate, straight from our farm.</p>
 <p class="sp-price" aria-live="polite"><strong id="hsPrice">₦7,500</strong><s id="hsWas" hidden></s><span id="hsPer">per crate</span></p>
 <div class="sp-opts" role="radiogroup" aria-label="How do you want to buy?">
 <label class="sp-opt" data-mode="once"><input type="radio" name="spMode" value="once" checked><span class="sp-dot" aria-hidden="true"></span><span class="sp-opt-t"><strong>One-time</strong><small id="spOncePrice">₦7,500 per crate</small></span></label>
