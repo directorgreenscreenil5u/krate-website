@@ -1881,6 +1881,65 @@ footer nav a{font-size:20px!important}
 #aDrawer .kd-toast.on{transform:translate(-50%,0);opacity:1}
 @media (max-width:900px){#aDrawer .kd-toast{bottom:calc(100px + env(safe-area-inset-bottom))}}
 @media (prefers-reduced-motion:reduce){#aDrawer .kd-pillbg,#aDrawer .kd-toast{transition:none}#aDrawer .kd-page.kd-in button.kd-orow,#aDrawer .kd-page.kd-in .kd-track li.done::after,#aDrawer .kd-tile:hover .kd-ti{animation:none}}
+/* ---- overview v3 ---- */
+#aDrawer .kd-title h2.kd-greet{font-size:clamp(28px,3vw,40px)}
+#aDrawer .kd-eta{margin-top:10px!important;display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:rgba(91,194,15,.16);color:#5bc20f!important;font:700 13px 'Inter Tight',sans-serif!important}
+#aDrawer .kd-eta::before{content:"";width:8px;height:8px;border-radius:50%;background:#5bc20f;animation:kdPulse 1.8s infinite}
+#aDrawer .kd-perks{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+#aDrawer .kd-perks li{display:flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;border-radius:999px;background:rgba(1,70,33,.1);font:700 14px 'Inter Tight',sans-serif;color:#014621}
+#aDrawer .kd-perks .kd-ti{width:30px;height:30px;border-radius:50%;background:#014621;color:#5bc20f}
+#aDrawer .kd-perks .kd-ti svg{width:16px;height:16px}
+#aDrawer .kd-hero.is-empty h3{max-width:620px}
+/* reorder strip */
+#aDrawer .kd-again[hidden]{display:none}
+#aDrawer .kd-again{display:flex;align-items:center;gap:16px;padding:16px 18px;border-radius:22px;background:#fff;box-shadow:0 12px 30px -22px rgba(1,70,33,.35);animation:kdIn .4s cubic-bezier(.2,.8,.3,1)}
+#aDrawer .kd-again>.kd-ti{width:46px;height:46px;border-radius:14px;background:#014621;color:#5bc20f}
+#aDrawer .kd-again-t{flex:1;min-width:0;display:grid;gap:2px}
+#aDrawer .kd-again-t small{font:700 11px 'Inter Tight',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#1e7a0c}
+#aDrawer .kd-again-t b{font:800 16px 'Inter Tight',sans-serif;color:#014621}
+#aDrawer .kd-again-t span{font-size:13px;color:#6b6468;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#aDrawer .kd-again .kd-btn{flex:none;background:#5bc20f;color:#014621}
+#aDrawer .kd-again:hover>.kd-ti svg{animation:kdSpin1 .6s cubic-bezier(.3,1.3,.5,1)}
+@keyframes kdSpin1{to{transform:rotate(360deg)}}
+/* timeline */
+#aDrawer .kd-tl{list-style:none;margin:0;padding:0;display:grid}
+#aDrawer .kd-tl li{position:relative;display:grid;grid-template-columns:18px 1fr auto;gap:12px;padding:10px 8px;margin:0 -8px;border-radius:12px;cursor:pointer;transition:background .15s}
+#aDrawer .kd-tl li:hover{background:#f8f3f1}
+#aDrawer .kd-tl li>i{position:relative;width:12px;height:12px;margin-top:4px;border-radius:50%;background:#5bc20f;box-shadow:0 0 0 4px #e3f6d5}
+#aDrawer .kd-tl li:not(:last-child)>i::after{content:"";position:absolute;left:5px;top:16px;width:2px;height:calc(100% + 22px);background:#efe8e5}
+#aDrawer .kd-tl-wait>i{background:#f0b400!important;box-shadow:0 0 0 4px #fff3c4!important;animation:kdPulseY 1.8s infinite}
+@keyframes kdPulseY{50%{box-shadow:0 0 0 7px rgba(240,180,0,.15)}}
+#aDrawer .kd-tl-cash>i{background:#014621!important;box-shadow:0 0 0 4px #dfe9e2!important}
+#aDrawer .kd-tl-next>i{background:#fff!important;box-shadow:inset 0 0 0 2px #5bc20f,0 0 0 4px #e3f6d5!important}
+#aDrawer .kd-tl div{display:grid;gap:2px;min-width:0}
+#aDrawer .kd-tl b{font:700 14px 'Inter Tight',sans-serif;color:#191718}
+#aDrawer .kd-tl small{font-size:13px;color:#6b6468}
+#aDrawer .kd-tl .kd-link{justify-self:start;padding:2px 0;font-size:13px;color:#8a5b00}
+#aDrawer .kd-tl time{font-size:12px;color:#9a9396;white-space:nowrap;padding-top:2px}
+#aDrawer .kd-page.kd-in .kd-tl li{animation:kdRow .4s cubic-bezier(.2,.8,.3,1) backwards}
+#aDrawer .kd-page.kd-in .kd-tl li:nth-child(2){animation-delay:.05s}#aDrawer .kd-page.kd-in .kd-tl li:nth-child(3){animation-delay:.1s}#aDrawer .kd-page.kd-in .kd-tl li:nth-child(4){animation-delay:.15s}#aDrawer .kd-page.kd-in .kd-tl li:nth-child(n+5){animation-delay:.2s}
+@media (max-width:900px){
+ #aDrawer .kd-hero{padding:20px;gap:16px;border-radius:22px}
+ #aDrawer .kd-hero h3{font-size:30px;margin:6px 0}
+ #aDrawer .kd-hero p{font-size:14px}
+ #aDrawer .kd-hero .kd-track li{font-size:11px;padding-top:24px}
+ #aDrawer .kd-perks{margin-top:12px;gap:6px}
+ #aDrawer .kd-perks li{font-size:13px;padding:6px 12px 6px 6px}
+ #aDrawer .kd-perks .kd-ti{width:26px;height:26px}
+ #aDrawer .kd-hero.is-empty::after{width:120px;height:120px;right:-30px;bottom:-40px}
+ #aDrawer .kd-again{flex-wrap:wrap;padding:14px}
+ #aDrawer .kd-again .kd-btn{width:100%}
+ #aDrawer .kd-tl li{grid-template-columns:16px 1fr}
+ #aDrawer .kd-tl time{grid-column:2;padding:0;margin-top:-6px}
+ #aDrawer .kd-tiles{grid-template-columns:1fr 1fr}
+ #aDrawer .kd-tiles .kd-tile:last-child{grid-column:1/-1}
+ #aDrawer .kd-tile{grid-template-columns:1fr;padding:14px}
+ #aDrawer .kd-tile .kd-ti{grid-row:auto;width:34px;height:34px;margin-bottom:6px}
+ #aDrawer .kd-tile>small,#aDrawer .kd-tile>b,#aDrawer .kd-tile>span{grid-column:1}
+ #aDrawer .kd-tile b{font-size:17px}
+ #aDrawer .kd-tile::after{top:20px;translate:0}
+}
+@media (prefers-reduced-motion:reduce){#aDrawer .kd-page.kd-in .kd-tl li,#aDrawer .kd-again,#aDrawer .kd-eta::before,#aDrawer .kd-tl-wait>i{animation:none}}
 </style><script>try{if(sessionStorage.getItem('krSeen'))document.documentElement.classList.add('k-seen');sessionStorage.setItem('krSeen','1')}catch(e){}</script><style>.k-seen .k-pre,.k-seen .k-loader{display:none!important}.k-seen #top *{animation-delay:0s!important}</style><style>.k-pre,.k-loader{display:none!important}#top .k-char{animation-duration:.55s!important}</style></head>
 <body>
 
@@ -2318,6 +2377,7 @@ a{color:#014621}a:hover{color:#191718}
 
 <section class="kd-page" data-p="overview">
 <div class="kd-hero" id="dNext" aria-live="polite"></div>
+<div class="kd-again" id="kdAgain" hidden></div>
 <div class="kd-grid">
 <article class="kd-card kd-sum" id="kdSum"></article>
 <div class="kd-tiles">
@@ -2890,7 +2950,8 @@ a{color:#014621}a:hover{color:#191718}
 /* Homepage: partner enquiries + section reveals. Edit to go live: */
 var KRATE = {
   whatsapp: '234XXXXXXXXXX',    // your WhatsApp number, international format, no + or spaces
-  email: 'hello@krate.example'  // where business enquiries go by email
+  email: 'hello@krate.example', // where business enquiries go by email
+  deliveryWindow: 'Usually delivered within 24–48 hours in Lagos' // shown on the account dashboard (placeholder: change to your real window)
 };
 (function () {
   function wa(text) { return 'https://wa.me/' + KRATE.whatsapp + '?text=' + encodeURIComponent(text); }
@@ -3295,7 +3356,7 @@ var KRATE_SUPABASE = {
   function renderMe() {
     $('aName').textContent = profile.name || first(); $('kdEmail').textContent = user.email || '';
     $('dAv').textContent = ((profile.name || user.email || 'K').trim()[0] || 'K').toUpperCase();
-    $('kdHi').textContent = 'Hi ' + first();
+    $('kdHi').textContent = 'Hi ' + first(); greet();
     $('kdAvL').textContent = $('dAv').textContent; $('kdPName').textContent = profile.name || first();
     var since = user.created_at ? new Date(user.created_at) : /^u\d+$/.test(user.id) ? new Date(+user.id.slice(1)) : null;
     $('kdPMeta').textContent = (user.email || '') + (since ? ' · Member since ' + fmt(since, { month: 'long', year: 'numeric' }) : '');
@@ -3371,6 +3432,7 @@ var KRATE_SUPABASE = {
   function reorder(o) { openOrder({ mode: 'once', crates: (o && o.crates) || 1 }); }
   function helpFor(o) { return 'https://wa.me/' + (window.KRATE ? KRATE.whatsapp : '') + '?text=' + encodeURIComponent('Hello Krate! I need help with order ' + ref(o) + '.'); }
 
+  var WIN = function () { return (window.KRATE && KRATE.deliveryWindow) || 'Usually delivered within 24–48 hours'; };
   function renderHero(rows) {
     var box = $('dNext'); box.innerHTML = ''; box.className = 'kd-hero';
     var open = rows.find(function (o) { return o.kind !== 'sub' && o.status !== 'cancelled' && o.status !== 'delivered'; });
@@ -3378,26 +3440,83 @@ var KRATE_SUPABASE = {
     var top = el('div', 'kd-hero-t'), acts = el('div', 'kd-hero-a');
     if (open) {
       var s = st(open); box.classList.add('is-' + s.k);
-      top.append(el('small', '', 'Order ' + ref(open) + ' · ' + fmt(new Date(open.created_at), { day: 'numeric', month: 'short' })),
+      top.append(el('small', '', 'Order ' + ref(open) + ' · ' + open.summary + ' · ' + money(open.total)),
         el('h3', '', s.k === 'wait' ? 'Awaiting your transfer' : s.t),
-        el('p', '', s.k === 'wait' ? 'Send ' + money(open.total) + ' and we’ll start packing as soon as it lands.' : 'Paid, thank you. We’ll text you to confirm the delivery time.'));
+        el('p', '', s.k === 'wait' ? 'Send ' + money(open.total) + ' using reference ' + ref(open) + '. We start packing as soon as it lands.' : 'Paid, thank you. We’ll text you to confirm the exact time.'));
+      if (s.k !== 'wait') top.appendChild(el('p', 'kd-eta', WIN()));
       if (s.k === 'wait') acts.appendChild(btn('kd-btn kd-btn-y', 'Pay now · ' + money(open.total), function () { payNow(open); }));
       acts.appendChild(btn('kd-btn kd-btn-ghost', 'View order', function () { showDetail(open); }));
       box.append(top, tracker(s.s), acts);
-      renderSum(open);
     } else if (sub) {
       var d = nextDate(sub), days = Math.max(0, Math.round((d - Date.now()) / DAY));
-      top.append(el('small', '', 'Subscription · ' + sub.summary), el('h3', '', days === 0 ? 'Arriving today' : days === 1 ? 'Arriving tomorrow' : 'Arriving ' + fmt(d, { weekday: 'long' })), el('p', '', fmt(d) + (sub.skip_next ? ' · this one is skipped' : '')));
+      top.append(el('small', '', 'Subscription · ' + sub.summary), el('h3', '', days === 0 ? 'Arriving today' : days === 1 ? 'Arriving tomorrow' : 'Arriving ' + fmt(d, { weekday: 'long' })), el('p', '', fmt(d) + (sub.skip_next ? ' · this one is skipped' : ' · we’ll text you on the day')));
       acts.append(btn('kd-btn kd-btn-l', 'Manage subscription', function () { go('subs'); }));
       box.append(top, tracker(days <= 1 ? 2 : 1), acts);
-      renderSum(sub);
     } else {
       box.classList.add('is-empty');
-      top.append(el('small', '', rows.length ? 'Nothing on the way' : 'Welcome to Krate'), el('h3', '', rows.length ? 'Time for another crate?' : 'Your first Krate is one tap away'), el('p', '', '30 fresh jumbo eggs, packed snug and delivered to your door.'));
-      acts.append(btn('kd-btn kd-btn-l', rows.length ? 'Order again' : 'Order your first Krate', function () { rows.length ? reorder(rows[0]) : openOrder({}); }));
-      box.append(top, acts);
-      renderSum(rows[0] || null);
+      top.append(el('small', '', rows.length ? 'Nothing on the way' : 'Welcome to Krate'), el('h3', '', rows.length ? 'Ready when you are' : 'Fresh jumbo eggs, minus the market run'));
+      var perks = el('ul', 'kd-perks');
+      [['M12 7v5l3 2M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z', WIN().replace(/^Usually /, '').replace(/^d/, 'D')], ['M4 8h16v12H4zM4 8l2-4h12l2 4M10 12h4', 'Packed snug, arrives whole'], ['M3 7h18v10H3zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z', Math.round(KRATE_CASHBACK_RATE * 100) + '% cashback on every order']].forEach(function (p) { var li = el('li'); li.appendChild(svg(p[0])); li.appendChild(el('span', '', p[1])); perks.appendChild(li); });
+      top.appendChild(perks);
+      box.append(top);
     }
+    renderAgain(rows, open);
+    renderFeed(rows);
+  }
+  // one-tap reorder: same crates, same address, straight to payment
+  function renderAgain(rows, open) {
+    var box = $('kdAgain'); box.innerHTML = '';
+    var last = rows.find(function (o) { return o.kind !== 'sub' && o.status !== 'cancelled'; });
+    box.hidden = !last || (open && st(open).k === 'wait');
+    if (box.hidden) return;
+    var addr = last.delivery_address || defAddr(), lab = ((profile.addresses || []).find(function (x) { return x.text === addr; }) || {}).label;
+    var items = last.crates * PRICE, total = items + KRATE_PAY.deliveryFee;
+    var t = el('div', 'kd-again-t'); t.append(el('small', '', 'Same as last time'), el('b', '', last.summary + ' → ' + (lab || 'your address')), el('span', 'kd-cap', addr || ''));
+    var b = btn('kd-btn kd-btn-l', 'Reorder · ' + money(total), function () { quick(last, addr); });
+    box.append(svg('M4 12a8 8 0 0 1 13.7-5.7L20 9M20 4v5h-5M20 12a8 8 0 0 1-13.7 5.7L4 15M4 20v-5h5'), t, b);
+  }
+  function quick(last, addr) {
+    if (!addr) return reorder(last);
+    var q = last.crates || 1, what = q + (q > 1 ? ' crates' : ' crate');
+    window.KRATE_CHECKOUT_PAY({ items: q * PRICE, itemsLabel: what, credit: 0, kind: 'once', email: user.email, phone: profile.phone }, function (pay) {
+      window.KRATE_SAVE_ORDER({ kind: 'once', summary: what, crates: q, credit: 0, name: profile.name, phone: profile.phone || last.phone, address: addr, when: last.delivery_note || '', total: pay.amount, delivery_fee: pay.deliveryFee, payment: pay.method, pay_status: pay.status, pay_ref: pay.ref }).then(function () { if (window.kdToast) kdToast('Order ' + pay.ref + ' placed'); });
+    });
+  }
+  // "What's happening": a short timeline of recent activity
+  function when(d) {
+    var t = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }).toLowerCase().replace(' ', '');
+    var days = Math.floor((new Date().setHours(0, 0, 0, 0) - new Date(d).setHours(0, 0, 0, 0)) / DAY);
+    return (days === 0 ? 'Today' : days === 1 ? 'Yesterday' : fmt(d, { day: 'numeric', month: 'short' })) + ', ' + t;
+  }
+  function renderFeed(rows) {
+    var box = $('kdSum'); box.innerHTML = ''; box.classList.remove('kd-buy', 'kd-feed');
+    if (!rows.length) { buyCard(box); return; }
+    box.classList.add('kd-feed');
+    var h = el('div', 'kd-card-h'); h.append(el('h3', '', 'What’s happening'), btn('kd-link', 'All orders →', function () { go('orders'); })); box.appendChild(h);
+    var ev = [];
+    rows.slice(0, 6).forEach(function (o) {
+      var d = new Date(o.created_at), s = st(o), r = ref(o);
+      if (o.kind === 'sub') {
+        ev.push({ d: d, k: 'ok', t: 'Subscription started', s: o.summary + ' · ' + money(o.total) + ' each', o: o });
+        if (o.status === 'active') ev.push({ d: nextDate(o), k: 'next', t: 'Next delivery', s: fmt(nextDate(o)), o: o, future: true });
+      } else {
+        ev.push({ d: d, k: 'go', t: 'Order ' + r + ' placed', s: o.summary + ' · ' + money(o.total), o: o });
+        if (s.k === 'wait') ev.push({ d: new Date(d.getTime() + 1), k: 'wait', t: 'Waiting for your transfer', s: 'Send ' + money(o.total) + ' with reference ' + r, o: o, pay: true });
+        else if (o.payment_method) ev.push({ d: new Date(d.getTime() + 1), k: 'ok', t: 'Payment received', s: money(o.total) + (o.payment_method === 'paystack' ? ' by card' : ' by transfer'), o: o });
+      }
+      if (o.status !== 'cancelled') ev.push({ d: new Date(d.getTime() + 2), k: 'cash', t: '+' + money(Math.round((+o.total || 0) * KRATE_CASHBACK_RATE)) + ' cashback earned', s: 'On ' + r, o: o });
+    });
+    ev.sort(function (a, b) { return (b.future ? 1 : 0) - (a.future ? 1 : 0) || b.d - a.d; });
+    var ol = el('ol', 'kd-tl');
+    ev.slice(0, 6).forEach(function (e) {
+      var li = el('li', 'kd-tl-' + e.k), tx = el('div');
+      tx.append(el('b', '', e.t), el('small', '', e.s));
+      li.append(el('i'), tx, el('time', '', e.future ? 'Upcoming' : when(e.d)));
+      if (e.pay) { var p = btn('kd-link', 'Pay now', function () { payNow(e.o); }); tx.appendChild(p); }
+      li.onclick = function (ev2) { if (ev2.target.closest('button')) return; if (e.o.kind === 'sub') go('subs'); else showDetail(e.o); };
+      ol.appendChild(li);
+    });
+    box.appendChild(ol);
   }
   function sumLines(o, box) {
     var it = itemsOf(o), lines = el('dl', 'kd-lines');
@@ -3544,6 +3663,11 @@ var KRATE_SUPABASE = {
     var sb2 = rows.find(function (x) { return x.kind === 'sub' && x.status !== 'cancelled'; });
     $('tSub').textContent = sb2 ? (sb2.status === 'paused' ? 'Paused' : 'Active') : 'Not set up';
     $('tSubSub').textContent = sb2 ? sb2.summary : 'Save up to 5% on repeat';
+    var lastOne = rows.find(function (o) { return o.kind !== 'sub'; });
+    if (!sb2 && lastOne) { var save = Math.round((lastOne.crates || 1) * PRICE * OFF.week / 25) * 25; $('tSub').textContent = 'Save ' + money(save) + ' a week'; $('tSubSub').textContent = 'Get your ' + lastOne.summary + ' weekly, 5% off'; }
+    else if (sb2 && sb2.status === 'active') { $('tSubSub').textContent = 'Next: ' + fmt(nextDate(sb2), { weekday: 'short', day: 'numeric', month: 'short' }); }
+    $('tCb').textContent = bal ? money(bal) + ' ready' : 'Earn ' + Math.round(KRATE_CASHBACK_RATE * 100) + '% back';
+    $('tCbSub').textContent = bal ? 'Tap to see how to use it' : 'On every order, subscriptions too';
     var waitN = rows.filter(function (o) { return o.kind !== 'sub' && st(o).k === 'wait'; }).length;
     var bd = drawer.querySelector('.kd-badge'); if (bd) { bd.hidden = !rows.length; bd.textContent = waitN ? '!' : rows.length; bd.classList.toggle('is-w', !!waitN); bd.title = waitN ? 'Payment needed' : ''; }
     var crates = rows.filter(function (o) { return o.status !== 'cancelled'; }).reduce(function (n, o) { return n + (+o.crates || 0); }, 0);
@@ -3576,6 +3700,12 @@ var KRATE_SUPABASE = {
   };
 
   // ---- pages ----
+  function greet() {
+    if (!user) return; var h = new Date().getHours();
+    TITLES.overview = (h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening') + ', ' + first();
+    if (cur === 'overview') { $('kdTitle').textContent = TITLES.overview; }
+    $('kdHi').textContent = cur === 'overview' ? fmt(new Date()) : 'Hi ' + first();
+  }
   var TITLES = { overview: 'Overview', orders: 'Orders', subs: 'Subscription', addrs: 'Addresses', cash: 'Cashback', account: 'Account', 'new': 'New order' };
   var ALIAS = { home: 'overview', details: 'account', help: 'account' };
   var cur = 'overview';
@@ -3585,7 +3715,7 @@ var KRATE_SUPABASE = {
     cur = p;
     drawer.querySelectorAll('.kd-page').forEach(function (x) { var on = x.dataset.p === p; x.hidden = !on; x.querySelectorAll('.ix-rise').forEach(function (r) { r.classList.remove('ix-rise'); }); if (on) { x.classList.remove('kd-in'); void x.offsetWidth; x.classList.add('kd-in'); } });
     drawer.querySelectorAll('[data-go]').forEach(function (b) { if (b.closest('.kd-nav,.kd-tabbar')) b.setAttribute('aria-current', b.dataset.go === p ? 'page' : 'false'); });
-    $('kdTitle').textContent = TITLES[p];
+    $('kdTitle').textContent = TITLES[p]; $('kdTitle').classList.toggle('kd-greet', p === 'overview'); if (user) $('kdHi').textContent = p === 'overview' ? fmt(new Date()) : 'Hi ' + first();
     if (p === 'orders' && !keep) { $('kdDetail').hidden = true; $('aOrders').hidden = false; $('kdDetail').parentNode.classList.remove('is-detail'); }
     if (p === 'new' && !keep && $('oForm').hidden) { $('oForm').hidden = false; $('oOk').hidden = true; }
     drawer.scrollTop = 0;
