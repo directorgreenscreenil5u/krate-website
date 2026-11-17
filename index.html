@@ -862,6 +862,56 @@ footer nav a{font-size:20px!important}
  .a-x{left:16px;right:auto}
 }
 .a-egg{transition:transform .35s ease-out,bottom .5s cubic-bezier(.2,.9,.25,1.3),top .5s cubic-bezier(.2,.9,.25,1.3)}
+/* ================= account dashboard ================= */
+#aIn{display:grid;gap:18px}
+#aIn[hidden]{display:none}
+.d-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.d-stats span{display:grid;gap:2px;padding:12px;border-radius:16px;background:#fff;border:2px solid rgba(1,70,33,.1);font:600 12px 'Inter Tight',sans-serif;color:#4a4446;text-transform:uppercase;letter-spacing:.05em}
+.d-stats b{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:22px;letter-spacing:0;color:#014621;text-transform:none;line-height:1.1}
+.d-sec h4,.d-details summary{margin:0 0 10px;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:20px;text-transform:uppercase;color:#014621}
+.d-sub{position:relative;overflow:hidden;padding:18px;border-radius:22px;background:#014621;color:#f6eceb;display:grid;gap:4px}
+.d-sub::after{content:"";position:absolute;right:-30px;bottom:-40px;width:130px;height:160px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:#5bc20f;opacity:.18;rotate:-18deg}
+.d-sub-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.d-pill{padding:4px 10px;border-radius:999px;background:#5bc20f;color:#014621;font:700 12px 'Inter Tight',sans-serif}
+.d-paused .d-pill{background:#ffd27a;color:#5a3d00}
+.d-sub-price{font:700 14px 'Inter Tight',sans-serif;color:#5bc20f}
+.d-sub-big{margin:8px 0 0;font-family:'Bagel Fat One',sans-serif;font-size:40px;line-height:.95;text-transform:uppercase;color:#f6eceb}
+.d-sub-every{margin:0;font:500 14px 'Inter Tight',sans-serif;color:rgba(246,236,235,.8)}
+.d-sub-acts{position:relative;z-index:1;display:flex;gap:8px;margin-top:12px}
+.d-sub-acts button{flex:1;min-height:44px;border-radius:999px;border:2px solid #5bc20f;background:#5bc20f;color:#014621;font:700 14px 'Inter Tight',sans-serif;cursor:pointer}
+.d-sub-acts .d-ghost{background:transparent;color:#f6eceb;border-color:rgba(246,236,235,.4)}
+.d-empty-sub{display:grid;gap:4px;padding:18px;border-radius:22px;border:2px dashed rgba(1,70,33,.35);background:#fff;text-decoration:none;color:#014621;transition:transform .25s cubic-bezier(.2,.9,.25,1.5),border-color .2s}
+.d-empty-sub:hover{transform:translateY(-2px);border-color:#014621}
+.d-empty-sub b{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:22px;text-transform:uppercase}
+.d-empty-sub span{font:500 14px 'Inter Tight',sans-serif;color:#4a4446}
+.d-empty-sub em{font-style:normal;font:700 14px 'Inter Tight',sans-serif;color:#1e9207;margin-top:4px}
+.d-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.d-act{display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;border-radius:16px;border:2px solid #014621;background:#fff;color:#014621;font:700 14px 'Inter Tight',sans-serif;text-decoration:none;cursor:pointer;transition:background .2s,color .2s}
+.d-act:hover{background:#014621;color:#5bc20f}
+.d-act:disabled{opacity:.4;cursor:not-allowed}
+.d-orders{display:grid;background:#fff;border-radius:18px;border:2px solid rgba(1,70,33,.1);overflow:hidden}
+.d-order{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px dashed rgba(1,70,33,.18)}
+.d-order:last-child{border-bottom:0}
+.d-date{flex:none;width:42px;height:46px;border-radius:12px;background:#f6eceb;display:grid;place-items:center;align-content:center;line-height:1}
+.d-date b{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:18px;color:#014621}
+.d-date small{font:700 10px 'Inter Tight',sans-serif;text-transform:uppercase;color:#4a4446}
+.d-what{flex:1;font:600 14px 'Inter Tight',sans-serif;color:#191718}
+.d-amt{font:700 15px 'Inter Tight',sans-serif;color:#014621}
+.d-none{margin:0;padding:16px;font:500 14px 'Inter Tight',sans-serif;color:#4a4446}
+.d-details{padding:14px 16px;border-radius:18px;background:#fff;border:2px solid rgba(1,70,33,.1)}
+.d-details summary{margin:0;list-style:none;display:flex;justify-content:space-between;cursor:pointer}
+.d-details summary::-webkit-details-marker{display:none}
+.d-details summary span{transition:rotate .25s}
+.d-details[open] summary span{rotate:45deg}
+.d-details[open] summary{margin-bottom:12px}
+#aLogout{justify-self:center}
+.a-drawer.is-in .a-title{display:none}
+.a-drawer.is-in .a-perks{display:none}
+@media (max-width:743px){
+ .a-drawer.is-in .a-hero{min-height:26vh}
+ .d-stats b{font-size:18px}
+ .d-sub-big{font-size:34px}
+}
 </style></head>
 <body>
 
@@ -1296,17 +1346,22 @@ a{color:#014621}a:hover{color:#191718}
 
 <!-- signed in -->
 <div id="aIn" hidden>
-<p class="a-hi">Hi <strong id="aName">there</strong> 👋</p>
-<section class="a-block" aria-labelledby="aSubsT">
-<h4 id="aSubsT">Subscriptions</h4>
-<div id="aSubs" class="a-list"></div>
+<p class="a-hi">Hi <strong id="aName">there</strong></p>
+<div class="d-stats"><span><b id="dOrders">0</b> orders</span><span><b id="dSpent">₦0</b> spent</span><span><b id="dSaved">₦0</b> saved</span></div>
+<section class="d-sec" aria-labelledby="aSubsT">
+<h4 id="aSubsT">Your subscription</h4>
+<div id="aSubs" class="d-subs"></div>
 </section>
-<section class="a-block" aria-labelledby="aOrdT">
-<h4 id="aOrdT">Order history</h4>
-<div id="aOrders" class="a-list"></div>
+<div class="d-actions">
+<button type="button" class="d-act" id="dAgain"><span aria-hidden="true">↻</span>Order again</button>
+<a class="d-act" id="dChat" href="#partners" target="_blank" rel="noopener"><span aria-hidden="true">💬</span>Chat with us</a>
+</div>
+<section class="d-sec" aria-labelledby="aOrdT">
+<h4 id="aOrdT">Recent orders</h4>
+<div id="aOrders" class="d-orders"></div>
 </section>
-<section class="a-block" aria-labelledby="aDetT">
-<h4 id="aDetT">My details</h4>
+<details class="d-sec d-details">
+<summary>My details <span aria-hidden="true">+</span></summary>
 <form class="c-form" id="aDetails" novalidate>
 <label>Full name<input name="name" autocomplete="name"></label>
 <label>Phone / WhatsApp<input name="phone" type="tel" autocomplete="tel"></label>
@@ -1314,7 +1369,7 @@ a{color:#014621}a:hover{color:#191718}
 <button type="submit" class="c-checkout">Save details</button>
 <p class="p-done" id="aSaved" hidden>Saved. We’ll fill these in at checkout.</p>
 </form>
-</section>
+</details>
 <button type="button" class="a-link" id="aLogout">Log out</button>
 </div>
 </div>
@@ -2054,35 +2109,68 @@ var KRATE_SUPABASE = {
     var c = $('cForm'); if (!c) return;
     ['name', 'phone', 'address'].forEach(function (k) { if (c.elements[k] && !c.elements[k].value && profile[k]) c.elements[k].value = profile[k]; });
   }
-  function row(o, sub) {
-    var el = document.createElement('div'); el.className = 'a-item';
-    var t = document.createElement('div'); t.className = 'c-info';
-    var s1 = document.createElement('strong'); s1.textContent = o.summary;
-    var s2 = document.createElement('span');
-    s2.textContent = money(o.total) + (sub ? ' per delivery' : '') + ' · ' + new Date(o.created_at).toLocaleDateString('en-NG', { day: 'numeric', month: 'short', year: 'numeric' });
-    t.append(s1, s2);
-    var st = document.createElement('span'); st.className = 'a-status a-' + o.status; st.textContent = o.status;
-    el.append(t, st);
-    if (sub && o.status !== 'cancelled') {
-      var acts = document.createElement('div'); acts.className = 'a-acts';
+  var lastOrder = null;
+  function fmtDate(d) { return new Date(d).toLocaleDateString('en-NG', { day: 'numeric', month: 'short' }); }
+  function subCard(o) {
+    var el = document.createElement('div'); el.className = 'd-sub d-' + o.status;
+    var top = document.createElement('div'); top.className = 'd-sub-top';
+    var st = document.createElement('span'); st.className = 'd-pill'; st.textContent = o.status === 'active' ? '● Active' : o.status === 'paused' ? '❚❚ Paused' : 'Cancelled';
+    var pr = document.createElement('span'); pr.className = 'd-sub-price'; pr.textContent = money(o.total) + ' / delivery';
+    top.append(st, pr);
+    var big = document.createElement('p'); big.className = 'd-sub-big';
+    big.textContent = o.crates + (o.crates > 1 ? ' crates' : ' crate');
+    var every = document.createElement('p'); every.className = 'd-sub-every'; every.textContent = 'every ' + (o.frequency || 'week') + ' · since ' + fmtDate(o.created_at);
+    el.append(top, big, every);
+    if (o.status !== 'cancelled') {
+      var acts = document.createElement('div'); acts.className = 'd-sub-acts';
       var pz = document.createElement('button'); pz.type = 'button'; pz.textContent = o.status === 'paused' ? 'Resume' : 'Pause';
       pz.onclick = function () { setStatus(o, o.status === 'paused' ? 'active' : 'paused'); };
-      var cx = document.createElement('button'); cx.type = 'button'; cx.textContent = 'Cancel';
+      var cx = document.createElement('button'); cx.type = 'button'; cx.className = 'd-ghost'; cx.textContent = 'Cancel';
       cx.onclick = function () { if (confirmCancel(cx)) setStatus(o, 'cancelled'); };
       acts.append(pz, cx); el.appendChild(acts);
     }
     return el;
   }
+  function orderRow(o) {
+    var el = document.createElement('div'); el.className = 'd-order';
+    var d = document.createElement('span'); d.className = 'd-date'; d.innerHTML = '<b></b><small></small>';
+    var dt = new Date(o.created_at); d.querySelector('b').textContent = dt.getDate(); d.querySelector('small').textContent = dt.toLocaleDateString('en-NG', { month: 'short' });
+    var t = document.createElement('span'); t.className = 'd-what'; t.textContent = o.summary + (o.kind === 'sub' ? ' (subscription)' : '');
+    var p = document.createElement('span'); p.className = 'd-amt'; p.textContent = money(o.total);
+    el.append(d, t, p); return el;
+  }
   function confirmCancel(b) { if (b.dataset.sure) return true; b.dataset.sure = '1'; b.textContent = 'Tap again to cancel'; setTimeout(function () { delete b.dataset.sure; b.textContent = 'Cancel'; }, 3000); return false; }
   function setStatus(o, s) { sb.from('orders').update({ status: s }).eq('id', o.id).then(load); }
   function list(rows) {
-    var subs = rows.filter(function (o) { return o.kind === 'sub'; }), once = rows.filter(function (o) { return o.kind !== 'sub'; });
+    var subs = rows.filter(function (o) { return o.kind === 'sub' && o.status !== 'cancelled'; });
     var a = $('aSubs'), b = $('aOrders'); a.innerHTML = ''; b.innerHTML = '';
-    subs.forEach(function (o) { a.appendChild(row(o, true)); });
-    once.forEach(function (o) { b.appendChild(row(o, false)); });
-    if (!subs.length) a.innerHTML = '<p class="c-empty">No subscription yet. Subscribe in the shop and save up to 5%.</p>';
-    if (!once.length) b.innerHTML = '<p class="c-empty">No orders yet.</p>';
+    if (subs.length) subs.forEach(function (o) { a.appendChild(subCard(o)); });
+    else {
+      var e = document.createElement('a'); e.href = '#shop'; e.className = 'd-empty-sub';
+      e.innerHTML = '<b>No subscription yet</b><span>Get eggs on repeat and save up to 5% on every delivery.</span><em>Start one →</em>';
+      e.onclick = function () { show(false); setTimeout(function () { var r = document.querySelector('input[name=spMode][value=sub]'); if (r) { r.checked = true; r.dispatchEvent(new Event('change')); } }, 400); };
+      a.appendChild(e);
+    }
+    rows.slice(0, 6).forEach(function (o) { b.appendChild(orderRow(o)); });
+    if (!rows.length) b.innerHTML = '<p class="d-none">No orders yet. Your first Krate is one tap away.</p>';
+    var spent = 0, saved = 0;
+    rows.forEach(function (o) { spent += +o.total || 0; if (o.kind === 'sub') saved += Math.max(0, (o.crates || 1) * 7500 - (+o.total || 0)); });
+    $('dOrders').textContent = rows.length; $('dSpent').textContent = money(spent); $('dSaved').textContent = money(saved);
+    lastOrder = rows[0] || null;
+    $('dAgain').disabled = !lastOrder;
   }
+  $('dAgain').onclick = function () {
+    if (!lastOrder) return;
+    show(false);
+    setTimeout(function () {
+      var r = document.querySelector('input[name=spMode][value=' + (lastOrder.kind === 'sub' ? 'sub' : 'once') + ']');
+      if (r) { r.checked = true; r.dispatchEvent(new Event('change')); }
+      var q = document.getElementById('hsQty'), plus = document.getElementById('hsPlus'), minus = document.getElementById('hsMinus');
+      if (q && plus && minus) { for (var i = 0; i < 60 && +q.textContent > 1; i++) minus.click(); for (var j = 1; j < (lastOrder.crates || 1); j++) plus.click(); }
+      var sh = document.getElementById('shop'); if (sh) sh.scrollIntoView({ behavior: 'smooth' });
+    }, 350);
+  };
+  $('dChat').href = 'https://wa.me/' + (window.KRATE ? KRATE.whatsapp : '') + '?text=' + encodeURIComponent('Hello Krate! I have a question about my order.');
   $('aDetails').addEventListener('submit', function (e) {
     e.preventDefault(); var d = this.elements;
     var rec = { id: user.id, name: d.name.value.trim(), phone: d.phone.value.trim(), address: d.address.value.trim() };
@@ -2228,7 +2316,7 @@ var KRATE_SUPABASE = {
   // fields rise in one by one whenever the form changes or opens
   function stagger() {
     if (RM) return;
-    $$('#aOut label:not([hidden]), #aOut .c-checkout, #aOut .a-link, #aIn .a-block, #aIn .a-link', drawer).forEach(function (el, i) {
+    $$('#aOut label:not([hidden]), #aOut .c-checkout, #aOut .a-link, #aIn .d-stats, #aIn .d-sec, #aIn .d-actions, #aIn .a-link', drawer).forEach(function (el, i) {
       el.classList.remove('ix-rise'); void el.offsetWidth; el.style.setProperty('--d', (i * 55) + 'ms'); el.classList.add('ix-rise');
     });
   }
