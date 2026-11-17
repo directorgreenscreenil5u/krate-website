@@ -10,6 +10,7 @@
 .k-pick[aria-pressed="true"]{border-color:#f6eceb!important;box-shadow:0 0 0 4px #191718,0 10px 18px rgba(0,0,0,.25);scale:1.12}
 .k-grabbing{z-index:30!important;scale:1.04;filter:drop-shadow(0 30px 30px rgba(0,0,0,.35));cursor:grabbing!important}
 .k-drag{transition:scale .25s}
+.k-paper{position:absolute;inset:0;pointer-events:none;background:url(img/paper.jpg) 0 0/100% auto repeat-y;mix-blend-mode:overlay;opacity:.24}
 </style></head>
 <body>
 
@@ -154,9 +155,9 @@ a{color:#014621}a:hover{color:#191718}
 
 <!-- ================= 1. HERO ================= -->
 <section id="top"  style="position: relative; background: #014621; height: 178vw; overflow: clip">
-<svg aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: multiply; opacity: 0.5"><filter id="kPaperB"><feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="4" seed="9"></feTurbulence><feDiffuseLighting lighting-color="#ffffff" surfaceScale="2.8"><feDistantLight azimuth="60" elevation="48"></feDistantLight></feDiffuseLighting></filter><rect width="100%" height="100%" filter="url(#kPaperB)"></rect></svg>
+<div aria-hidden="true" class="k-paper"></div>
 <div class="k-hero-top" style="position: absolute; left: 0; right: 0; top: 0; height: 52vw; background: #5bc20f; border-radius: 0 0 50% 50% / 0 0 9vw 9vw; overflow: hidden">
-<svg aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: multiply; opacity: 0.34"><filter id="kPaperA"><feTurbulence type="fractalNoise" baseFrequency="0.011" numOctaves="4" seed="4"></feTurbulence><feDiffuseLighting lighting-color="#ffffff" surfaceScale="2.4"><feDistantLight azimuth="45" elevation="52"></feDistantLight></feDiffuseLighting></filter><rect width="100%" height="100%" filter="url(#kPaperA)"></rect></svg>
+<div aria-hidden="true" class="k-paper"></div>
 </div>
 
 <!-- corner mark with perforation that draws in -->
@@ -191,12 +192,11 @@ a{color:#014621}a:hover{color:#191718}
 
 <!-- ===== the collage, laid out like the reference (all in vw) ===== -->
 
-<!-- clear tape strip running down from the curve, pinning the cardboard -->
-<div aria-hidden="true" class="k-strip" style="position: absolute; left: 44vw; top: 50vw; width: 7vw; height: 76vw; z-index: 6; background: linear-gradient(90deg, rgba(255,255,255,0.10), rgba(255,255,255,0.28) 30%, rgba(255,255,255,0.14) 70%, rgba(255,255,255,0.24)); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12); rotate: -1deg"></div>
+
 
 <!-- sticky note -->
 <div class="k-drag k-rev" data-drag="note" style="position: absolute; left: 4.5vw; top: 63vw; width: 30vw; z-index: 7; ">
-<div style="position: relative; rotate: 3deg; background: #f7d65a; aspect-ratio: 1 / 0.94; padding: 4.4vw 3vw 2vw; box-sizing: border-box; box-shadow: 0 1.6vw 2.6vw rgba(0,0,0,0.4)">
+<div data-note3d style="position: relative; rotate: 3deg; background: #f7d65a; aspect-ratio: 1 / 0.94; padding: 4.4vw 3vw 2vw; box-sizing: border-box; box-shadow: 0 1.6vw 2.6vw rgba(0,0,0,0.4)">
 <span aria-hidden="true" class="k-tape k-peel" style="top: -1.3vw; left: 9vw; width: 11vw; height: 3vw; rotate: -4deg"></span>
 <p style="margin: 0 0 1.4vw; font-family: 'Bagel Fat One', sans-serif; font-size: 3.2vw; line-height: 1; text-transform: uppercase; color: #3b2a12">Market list</p>
 <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.8vw; font-family: 'Caveat', cursive; font-size: 2.3vw; color: #3b2a12">
@@ -258,7 +258,7 @@ a{color:#014621}a:hover{color:#191718}
 
 <!-- ================= 4. THE KRATE (orange) ================= -->
 <section id="eggs" style="position: relative; overflow: hidden; background: #f53509; padding: 30px 32px 40px; margin-top: -1px">
-<svg aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: multiply; opacity: 0.3"><filter id="kPaperC"><feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="4" seed="21"></feTurbulence><feDiffuseLighting lighting-color="#ffffff" surfaceScale="2.4"><feDistantLight azimuth="30" elevation="55"></feDistantLight></feDiffuseLighting></filter><rect width="100%" height="100%" filter="url(#kPaperC)"></rect></svg>
+<div aria-hidden="true" class="k-paper"></div>
 
 <div style="position: relative; max-width: 1440px; margin: 0 auto; display: flex; flex-direction: column; align-items: center">
 <p style="margin: 0 0 16px; display: inline-flex; gap: 8px; align-items: center; padding: 7px 14px; background: #f6eceb; border-radius: 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #191718"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #f53509"></span>Meet the one that carries it all</p>
@@ -309,7 +309,7 @@ a{color:#014621}a:hover{color:#191718}
 
 <!-- ================= 5. WHY WE EXIST ================= -->
 <section id="about" style="position: relative; background: #5bc20f">
-<svg aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: multiply; opacity: 0.32"><filter id="kPaperD"><feTurbulence type="fractalNoise" baseFrequency="0.011" numOctaves="4" seed="13"></feTurbulence><feDiffuseLighting lighting-color="#ffffff" surfaceScale="2.4"><feDistantLight azimuth="45" elevation="52"></feDistantLight></feDiffuseLighting></filter><rect width="100%" height="100%" filter="url(#kPaperD)"></rect></svg>
+<div aria-hidden="true" class="k-paper"></div>
 
 <div style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 40px 32px 0; text-align: center">
 <p style="margin: 0; display: inline-flex; gap: 8px; align-items: center; padding: 7px 14px; background: #014621; color: #5bc20f; border-radius: 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #5bc20f"></span>Why we exist</p>
@@ -349,7 +349,7 @@ a{color:#014621}a:hover{color:#191718}
 
 <!-- ================= 6. CTA CARDS ================= -->
 <section id="order" style="position: relative; overflow: hidden; background: #5bc20f; padding: 0 32px 120px">
-<svg aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: multiply; opacity: 0.32"><filter id="kPaperE"><feTurbulence type="fractalNoise" baseFrequency="0.011" numOctaves="4" seed="17"></feTurbulence><feDiffuseLighting lighting-color="#ffffff" surfaceScale="2.4"><feDistantLight azimuth="45" elevation="52"></feDistantLight></feDiffuseLighting></filter><rect width="100%" height="100%" filter="url(#kPaperE)"></rect></svg>
+<div aria-hidden="true" class="k-paper"></div>
 <div style="position: relative; max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 28px; align-items: center">
 <div class="k-rev" style="position: relative; flex: 1 1 440px; min-width: 0; aspect-ratio: 1 / 0.95; border-radius: 120px 120px 120px 30px; overflow: hidden; background: #f53509">
 <img src="img/photo-hands.webp" alt="Hands holding a tray of Krate jumbo eggs" style="display: block; width: 100%; height: 100%; object-fit: cover">
@@ -372,7 +372,7 @@ a{color:#014621}a:hover{color:#191718}
 
 <!-- ================= 7. FOOTER ================= -->
 <footer id="contact" style="position: relative; overflow: hidden; background: #014621; padding: 10px 32px 24px; color: #f6eceb; margin-top: -1px">
-<svg aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: multiply; opacity: 0.5"><filter id="kPaperF"><feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="4" seed="31"></feTurbulence><feDiffuseLighting lighting-color="#ffffff" surfaceScale="2.8"><feDistantLight azimuth="60" elevation="48"></feDistantLight></feDiffuseLighting></filter><rect width="100%" height="100%" filter="url(#kPaperF)"></rect></svg>
+<div aria-hidden="true" class="k-paper"></div>
 
 <div style="position: relative; max-width: 1440px; margin: 0 auto; display: flex; flex-direction: column; align-items: center">
 <nav aria-label="Footer" style="width: 100%; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 32px">
@@ -493,6 +493,144 @@ a{color:#014621}a:hover{color:#191718}
     hero.style.setProperty('--my', (((e.clientY - r.top) / Math.min(r.height, window.innerHeight)) - 0.5).toFixed(3));
   });
   hero.addEventListener('mouseleave', function () { hero.style.setProperty('--mx', 0); hero.style.setProperty('--my', 0); });
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>/* Krate 3D sticky note: taped at the top, curled at the bottom, flutters,
+   flaps with scroll speed and lifts toward the cursor. three.js r128. */
+(function () {
+  var host = document.querySelector('[data-note3d]');
+  if (!host || !window.THREE) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var P = { W: 1, H: 0.94, SEGS: 44, CURL: 0.17, FLUTTER: 0.035, TREMBLE: 0.016, SCROLL: 1.1, POKE: 0.6, PIN: 0.3 };
+  var MARGIN = 0.22; // canvas overflow around the note so the curl can lift out
+
+  // ---- draw the note face onto a canvas ----
+  function drawFace() {
+    var c = document.createElement('canvas');
+    var w = 1024, h = Math.round(w * P.H);
+    c.width = w; c.height = h;
+    var g = c.getContext('2d');
+    var grad = g.createLinearGradient(0, 0, w * 0.3, h);
+    grad.addColorStop(0, '#fbe27a'); grad.addColorStop(0.55, '#f7d65a'); grad.addColorStop(1, '#efc945');
+    g.fillStyle = grad; g.fillRect(0, 0, w, h);
+    // paper grain
+    var img = g.getImageData(0, 0, w, h), d = img.data;
+    for (var i = 0; i < d.length; i += 4) { var n = (Math.random() - 0.5) * 14; d[i] += n; d[i + 1] += n; d[i + 2] += n * 0.6; }
+    g.putImageData(img, 0, 0);
+    // adhesive band at top (slightly darker)
+    g.fillStyle = 'rgba(160,120,20,0.08)'; g.fillRect(0, 0, w, h * 0.16);
+    // title + list
+    g.fillStyle = '#3b2a12';
+    g.font = '400 ' + Math.round(w * 0.105) + 'px "Bagel Fat One", sans-serif';
+    g.fillText('MARKET LIST', w * 0.09, h * 0.3);
+    var items = [['bread', false], ['tomatoes & pepper', false], ['a Krate of jumbo eggs!!', true]];
+    g.font = '700 ' + Math.round(w * 0.072) + 'px Caveat, cursive';
+    items.forEach(function (it, k) {
+      var y = h * (0.47 + k * 0.15);
+      g.lineWidth = w * 0.006; g.strokeStyle = '#3b2a12';
+      g.beginPath(); g.arc(w * 0.12, y - w * 0.022, w * 0.022, 0, Math.PI * 2);
+      if (it[1]) { g.fill(); } else { g.stroke(); }
+      g.fillText(it[0], w * 0.18, y);
+      g.strokeStyle = 'rgba(59,42,18,0.35)'; g.lineWidth = 2;
+      g.beginPath(); g.moveTo(w * 0.09, y + h * 0.035); g.lineTo(w * 0.9, y + h * 0.035); g.stroke();
+    });
+    return c;
+  }
+
+  var canvas = document.createElement('canvas');
+  canvas.setAttribute('aria-hidden', 'true');
+  canvas.style.cssText = 'position:absolute;z-index:1;pointer-events:none;filter:drop-shadow(0 1.4vw 1.8vw rgba(0,0,0,.42));';
+  var renderer;
+  try { renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true }); } catch (e) { return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(20, 1, 0.1, 50);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.72));
+  var sun = new THREE.DirectionalLight(0xffffff, 0.55); sun.position.set(-2, 2.5, 3); scene.add(sun);
+
+  var geo = new THREE.PlaneGeometry(P.W, P.H, P.SEGS, P.SEGS);
+  var base = geo.attributes.position.array.slice();
+  var tex, mat, mesh;
+
+  function build() {
+    tex = new THREE.CanvasTexture(drawFace());
+    tex.anisotropy = 4;
+    mat = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.92, metalness: 0, side: THREE.DoubleSide });
+    mesh = new THREE.Mesh(geo, mat);
+    scene.add(mesh);
+    // swap the flat DOM note for the 3D one
+    host.style.background = 'transparent';
+    host.style.boxShadow = 'none';
+    host.querySelectorAll('p, ul').forEach(function (e) { e.style.visibility = 'hidden'; });
+    host.querySelectorAll('.k-tape').forEach(function (e) { e.style.zIndex = '2'; });
+    host.insertBefore(canvas, host.firstChild);
+    size();
+    requestAnimationFrame(tick);
+  }
+
+  function size() {
+    var r = host.getBoundingClientRect();
+    var w = host.offsetWidth, h = host.offsetHeight;
+    var cw = w * (1 + MARGIN * 2), ch = h * (1 + MARGIN * 2);
+    canvas.style.left = (-w * MARGIN) + 'px'; canvas.style.top = (-h * MARGIN) + 'px';
+    canvas.style.width = cw + 'px'; canvas.style.height = ch + 'px';
+    renderer.setSize(cw, ch, false);
+    camera.aspect = cw / ch;
+    // fit the plane (plus margin) exactly in view
+    var viewH = P.H * (1 + MARGIN * 2);
+    camera.position.set(0, 0, (viewH / 2) / Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)));
+    camera.updateProjectionMatrix();
+    void r;
+  }
+  window.addEventListener('resize', size);
+
+  // ---- inputs: scroll speed and cursor ----
+  var lastY = window.scrollY, vel = 0, gust = 0;
+  var mx = -9, my = -9, poke = 0;
+  window.addEventListener('pointermove', function (e) {
+    var r = host.getBoundingClientRect();
+    mx = ((e.clientX - r.left) / r.width - 0.5) * P.W;
+    my = (0.5 - (e.clientY - r.top) / r.height) * P.H;
+  });
+
+  function smooth(x) { x = Math.max(0, Math.min(1, x)); return x * x * (3 - 2 * x); }
+  var pos = geo.attributes.position, t0 = performance.now();
+
+  function tick(now) {
+    var t = (now - t0) / 1000;
+    var y = window.scrollY; vel = vel * 0.85 + (y - lastY) * 0.15; lastY = y;
+    gust += (Math.max(-1, Math.min(1, vel / 40)) * P.SCROLL - gust) * 0.08;
+    var near = Math.exp(-((mx * mx) + (my + 0.15) * (my + 0.15)) / 0.12);
+    poke += (near * P.POKE - poke) * 0.1;
+
+    var a = pos.array;
+    for (var i = 0; i < a.length; i += 3) {
+      var x = base[i], yy = base[i + 1];
+      var u = x / P.W + 0.5;            // 0..1 left→right
+      var v = 0.5 - yy / P.H;           // 0 top → 1 bottom
+      var free = smooth((v - P.PIN) / (1 - P.PIN)); // 0 where taped, 1 at the bottom
+      var lift = free * free;
+      var z = P.CURL * lift
+        + P.FLUTTER * free * Math.sin(t * 2.1 + u * 3.1 + v * 4.0)
+        + P.TREMBLE * free * Math.sin(t * 13 + u * 9 + v * 3)
+        + gust * 0.12 * Math.pow(free, 1.5) * (0.6 + 0.4 * Math.sin(u * Math.PI))
+        + poke * 0.16 * lift * (0.7 + 0.3 * Math.cos((u - 0.5) * 3));
+      a[i + 2] = z;
+      a[i + 1] = yy + z * 0.25 * free; // the lifted bottom pulls up a touch
+    }
+    pos.needsUpdate = true;
+    geo.computeVertexNormals();
+    renderer.render(scene, camera);
+    requestAnimationFrame(tick);
+  }
+
+  var fonts = document.fonts ? Promise.all([
+    document.fonts.load('400 40px "Bagel Fat One"'), document.fonts.load('700 40px Caveat')
+  ]) : Promise.resolve();
+  fonts.then(build, build);
 })();
 </script>
 </body>
