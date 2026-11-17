@@ -1458,7 +1458,7 @@ footer nav a{font-size:20px!important}
 <body>
 
 
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="image" href="img/egg-brown.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="image" href="img/egg-brown.webp"><link rel="preload" as="image" href="img/egg-cracked.webp">
 <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&amp;family=Caveat:wght@500;700&amp;family=Inter+Tight:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#014621}
@@ -2056,7 +2056,8 @@ a{color:#014621}a:hover{color:#191718}
   window.addEventListener('scroll', function () { if (!toneTick) { toneTick = true; requestAnimationFrame(function () { toneTick = false; tagTone(); }); } }, { passive: true });
   window.addEventListener('load', tagTone);
 
-  // Crack the eggs
+  // Crack the eggs (cracked image is fetched up front so the crack is instant)
+  var pre = new Image(); pre.src = EC; if (pre.decode) pre.decode().catch(function () {});
   document.querySelectorAll('[data-egg]').forEach(function (b) {
     var img = b.querySelector('img');
     b.addEventListener('click', function () {
