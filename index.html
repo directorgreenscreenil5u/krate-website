@@ -21,16 +21,16 @@
 .g-tag{margin:0;display:inline-flex;gap:.6vw;align-items:center;padding:.5vw 1vw;background:#014621;color:#5bc20f;border-radius:.4vw;font-family:'Inter Tight',sans-serif;font-size:max(.85vw,11px);font-weight:700;letter-spacing:.06em;text-transform:uppercase;rotate:-2deg}
 .g-tag span{width:.55vw;height:.55vw;border-radius:50%;background:#5bc20f}
 .g-title h2{margin:0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:5.6vw;line-height:.95;text-transform:uppercase}
-.g-row{position:absolute;color:#014621}
-.g-giant{margin:0;display:flex;align-items:center;font-family:'Bagel Fat One',sans-serif;font-size:var(--G);line-height:.82;text-transform:uppercase;white-space:nowrap;position:relative;z-index:1}
+.g-row{position:absolute;color:#014621;font-size:var(--G)}
+.g-giant{margin:0;display:flex;align-items:center;font-family:'Bagel Fat One',sans-serif;font-size:1em;line-height:.82;text-transform:uppercase;white-space:nowrap;position:relative;z-index:1}
 .g-slot{position:relative;flex:0 0 auto;width:.6em;margin:0 .04em;rotate:var(--tilt,0deg);z-index:2;transition:rotate .5s cubic-bezier(.2,.9,.25,1.4)}
 .g-slot:hover{rotate:0deg}
 .g-card{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:.14em;border:.022em solid #f6eceb;box-shadow:-.02em .03em .06em rgba(1,70,33,.35)}
 .g-tape{position:absolute;top:0;left:50%;width:.42em;height:.11em;translate:-50% -46%;rotate:-3deg;background:rgba(236,220,190,.85);box-shadow:0 2px 4px rgba(0,0,0,.12)}
 .g-prop{position:absolute;height:auto;z-index:3;pointer-events:none;filter:drop-shadow(.35vw .5vw .6vw rgba(1,70,33,.35));will-change:transform}
-.g-shot img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:2.2vw;border:.35vw solid #f6eceb}
-.g-shot .g-tape{font-size:17vw}
-.g-note{position:absolute;margin:0;font-family:'Caveat',cursive;font-size:2.2vw;line-height:1.05;color:#014621;rotate:-3deg;white-space:nowrap;z-index:2}
+.g-shot img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:.07em;border:.012em solid #f6eceb}
+.g-shot .g-tape{width:.24em;height:.065em}
+.g-note{position:absolute;margin:0;font-family:'Caveat',cursive;font-size:.075em;line-height:1.05;color:#014621;rotate:-3deg;white-space:nowrap;z-index:2}
 .g-arrow{position:absolute;width:24vw;height:auto;color:#014621;opacity:.8;overflow:visible}
 .g-arrow path{stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:var(--draw,1)}
 @media (prefers-reduced-motion: reduce){
@@ -50,6 +50,16 @@
 .g-title .g-tag{opacity:0;transition:opacity .5s}
 .g-title.live .g-tag{opacity:1}
 @media (prefers-reduced-motion: reduce){.gc{transform:none;transition:none}.g-row .g-slot,.g-row .g-note,.g-title .g-tag{scale:1;opacity:1;translate:none}}
+
+@media (max-width: 743px){
+.g-pin{--G:58vw}
+.g-title{top:26vw;gap:3vw}
+.g-title h2{font-size:10.5vw}
+.g-tag{font-size:3vw;padding:1.4vw 2.6vw;border-radius:1.2vw;gap:1.6vw}
+.g-tag span{width:1.6vw;height:1.6vw}
+.g-arrow{width:40vw}
+.g-note{font-size:.09em}
+}
 /* ---- Shop ---- */
 .s-shop{position:relative;background:#f6eceb;color:#014621;padding:9vw 4vw 10vw;overflow:hidden}
 .s-shop .k-paper{opacity:.5}
@@ -142,6 +152,67 @@
 .c-total strong{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:26px;color:#014621}
 .c-note{margin:0;font-size:13px;color:#4a4446}
 .c-form{display:grid;gap:12px}
+
+@media (max-width: 743px){
+/* pull-me tag + menu */
+.k-menu{right:12px}
+#kPull{width:72px!important;height:60px!important;padding-top:12px!important;font-size:11px!important}
+.k-row-label{font-size:30px}
+/* hero */
+#top{height:540vw!important}
+.k-hero-top{height:150vw!important;border-radius:0 0 50% 50% / 0 0 14vw 14vw!important}
+#top [style*="font-size: 1.25vw"]{font-size:3.1vw!important}
+#top .k-par[style*="padding-top: 4.2vw"]{padding-top:20vw!important}
+#top [style*="font-size: 2.35vw"]{font-size:5.4vw!important;gap:3vw!important}
+#top [style*="width: 10.5vw"]{width:23vw!important}
+#top .k-mark{padding:2vw 3vw!important;border-radius:3.4vw!important}
+#top h1{font-size:21.5vw!important;line-height:.82!important;--drop:2vw!important;--tilt:5deg!important}
+#top .k-line{flex-wrap:wrap}
+#top .k-line>span:not(.k-clip){flex-basis:100%;height:0}
+.k-egg-in{top:108vw!important;width:42vw!important;margin-left:-21vw!important}
+.k-hint{left:auto!important;right:6vw!important;top:142vw!important;font-size:4.6vw!important}
+[data-drag="note"]{left:7vw!important;top:178vw!important;width:62vw!important}
+[data-note3d]{padding:9vw 6vw 4vw!important}
+[data-note3d] p{font-size:6.6vw!important}
+[data-note3d] ul{font-size:4.9vw!important;gap:1.6vw!important}
+[data-note3d] .k-tape{width:22vw!important;height:6vw!important;left:20vw!important;top:-2.6vw!important}
+[data-drag="note"]>svg{width:10vw!important;top:40vw!important}
+#top [style*="left: 1.5vw; top: 99vw"]{left:auto!important;right:4vw!important;top:186vw!important;width:30vw!important}
+#top [style*="left: 1.5vw; top: 99vw"] p{font-size:4.2vw!important}
+#top [style*="left: 1.5vw; top: 99vw"] svg{width:18vw!important}
+[data-drag="card"]{left:5vw!important;top:250vw!important;width:100vw!important;height:118vw!important}
+[data-drag="card"] p{left:8vw!important;top:16vw!important;width:80vw!important;font-size:9.6vw!important}
+[data-drag="card"] span[style*="height: 6vw"]{height:11vw!important}
+#top [style*="left: 62vw; top: 70vw"]{left:38vw!important;top:244vw!important;width:72vw!important;height:12vw!important}
+[data-drag="print"]{left:-5vw!important;top:372vw!important;width:84vw!important}
+[data-drag="print"] p{font-size:5vw!important}
+[data-drag="box"]{left:18vw!important;top:452vw!important;width:88vw!important}
+/* orange product section */
+#eggs [style*="flex: 1 1 640px"]{order:0!important;flex:1 1 100%!important}
+#eggs h2{font-size:25vw!important}
+#eggs [style*="width: min(300px, 44vw)"]{width:36vw!important}
+#eggs .k-rev[style*="width: 200px"]{display:none!important}
+#eggs a[href="#shop"].k-hover{width:24vw!important;height:24vw!important;right:2%!important;top:-6%!important}
+#eggs a[href="#shop"].k-hover span:first-child{font-size:4vw!important}
+#eggs [style*="flex: 0 1 230px"]{order:1!important;flex:1 1 100%!important;padding:0!important;align-self:auto!important}
+#eggs [role="tablist"]{flex-direction:row!important;flex-wrap:wrap}
+#eggs [style*="order: 3"]{order:2!important;flex-direction:row!important;flex-wrap:wrap;justify-content:center;width:100%}
+#eggs .k-pick{width:64px!important;height:64px!important}
+/* CTA cards */
+#order [style*="left: calc(50% - 30px); top: 46%"]{display:none}
+#order [style*="border-radius: 120px"]{border-radius:60px 60px 60px 20px!important}
+/* footer */
+footer [style*="clamp(76px, 12.5vw, 190px)"]{font-size:17vw!important}
+footer [style*="margin-top: 40px; display: flex; flex-direction: column"]{flex-direction:row!important;flex-wrap:wrap;justify-content:center;gap:14px}
+footer [style*="margin-top: 40px; display: flex; flex-direction: column"]>p{flex-basis:100%}
+footer a[aria-label="Instagram"],footer a[aria-label="TikTok"],footer a[aria-label="Facebook"]{position:static!important;width:60px!important;height:60px!important}
+footer [style*="margin-top: -30px; z-index: 2"]{transform:scale(.55);margin:-30px 0 -50px!important}
+footer nav a{font-size:20px!important}
+/* shop */
+.s-add{font-size:14px;white-space:nowrap;padding:0 18px}
+.s-body{padding:22px}
+.s-title{font-size:32px}
+}
 </style></head>
 <body>
 
@@ -453,8 +524,8 @@ a{color:#014621}a:hover{color:#191718}
 <!-- row 1: TO [photo] NOURISH -->
 <div class="g-row" data-row="0">
 <p class="g-giant" aria-label="To nourish"><span aria-hidden="true">To</span><span class="g-slot" style="--tilt: -6deg"><img class="g-card" src="img/card-nourish.webp" alt="A Krate jumbo egg cracked open, with a bright orange yolk"><span aria-hidden="true" class="g-tape"></span></span><span aria-hidden="true">Nourish</span></p>
-<img aria-hidden="true" class="g-prop" data-depth="1.6" src="img/egg-brown.webp" alt="" style="left: 58%; top: 62%; width: 13vw; rotate: 14deg">
-<img aria-hidden="true" class="g-prop" data-depth="2.2" src="img/egg-cracked.webp" alt="" style="left: 82%; top: -14%; width: 15vw; rotate: -10deg">
+<img aria-hidden="true" class="g-prop" data-depth="1.6" src="img/egg-brown.webp" alt="" style="left: 58%; top: 62%; width: .43em; rotate: 14deg">
+<img aria-hidden="true" class="g-prop" data-depth="2.2" src="img/egg-cracked.webp" alt="" style="left: 82%; top: -14%; width: .5em; rotate: -10deg">
 <p class="g-note" style="left: 22%; top: 104%">big yolks for big mornings<br>&amp; growing kids ↗</p>
 </div>
 <svg aria-hidden="true" class="g-arrow" data-arrow="0" viewBox="0 0 260 170" fill="none"><path d="M6 10 C 70 20, 150 60, 236 150" pathLength="1"></path><path d="M214 150 L 238 152 L 232 128" pathLength="1"></path></svg>
@@ -462,8 +533,8 @@ a{color:#014621}a:hover{color:#191718}
 <!-- row 2: TO [photo] PROTECT -->
 <div class="g-row" data-row="1">
 <p class="g-giant" aria-label="To protect"><span aria-hidden="true">To</span><span class="g-slot" style="--tilt: 7deg"><img class="g-card" src="img/card-protect.webp" alt="A full tray of 30 Krate jumbo eggs"><span aria-hidden="true" class="g-tape"></span></span><span aria-hidden="true">Protect</span></p>
-<img aria-hidden="true" class="g-prop" data-depth="1.8" src="img/egg-tray.webp" alt="" style="left: 66%; top: 70%; width: 20vw; rotate: -8deg">
-<img aria-hidden="true" class="g-prop" data-depth="1.3" src="img/egg-white.webp" alt="" style="left: 40%; top: -18%; width: 10vw; rotate: 18deg">
+<img aria-hidden="true" class="g-prop" data-depth="1.8" src="img/egg-tray.webp" alt="" style="left: 66%; top: 70%; width: .67em; rotate: -8deg">
+<img aria-hidden="true" class="g-prop" data-depth="1.3" src="img/egg-white.webp" alt="" style="left: 40%; top: -18%; width: .33em; rotate: 18deg">
 <p class="g-note" style="left: 30%; top: 104%">packed snug, so what leaves<br>our farm whole arrives whole</p>
 </div>
 <svg aria-hidden="true" class="g-arrow" data-arrow="1" viewBox="0 0 260 170" fill="none"><path d="M6 160 C 80 150, 160 110, 236 20" pathLength="1"></path><path d="M212 26 L 238 18 L 240 44" pathLength="1"></path></svg>
@@ -471,8 +542,8 @@ a{color:#014621}a:hover{color:#191718}
 <!-- row 3: TO [photo] DELIVER -->
 <div class="g-row" data-row="2">
 <p class="g-giant" aria-label="To deliver"><span aria-hidden="true">To</span><span class="g-slot" style="--tilt: -5deg"><img class="g-card" src="img/card-deliver.webp" alt="A white and a brown Krate jumbo egg"><span aria-hidden="true" class="g-tape"></span></span><span aria-hidden="true">Deliver</span></p>
-<img aria-hidden="true" class="g-prop" data-depth="1.7" src="img/egg-brown.webp" alt="" style="left: 50%; top: 66%; width: 12vw; rotate: -16deg">
-<div aria-hidden="true" class="g-prop g-shot" data-depth="2.1" style="left: 80%; top: -16%; width: 17vw; rotate: 8deg"><img src="img/card-bake.webp" alt=""><span class="g-tape"></span></div>
+<img aria-hidden="true" class="g-prop" data-depth="1.7" src="img/egg-brown.webp" alt="" style="left: 50%; top: 66%; width: .4em; rotate: -16deg">
+<div aria-hidden="true" class="g-prop g-shot" data-depth="2.1" style="left: 80%; top: -16%; width: .57em; rotate: 8deg"><img src="img/card-bake.webp" alt=""><span class="g-tape"></span></div>
 <p class="g-note" style="left: 18%; top: 104%">from our farm to your market,<br>shop &amp; front door →</p>
 </div>
 
@@ -936,8 +1007,10 @@ a{color:#014621}a:hover{color:#191718}
 
   function layout() {
     vw = window.innerWidth / 100; vh = window.innerHeight;
-    var gap = 16 * vw;
-    var y1 = 36 * vw, y2 = y1 + 48 * vw;
+    var h0 = rows[0].offsetHeight;
+    var gap = Math.max(16 * vw, h0 * 0.55);
+    var y1 = title.offsetTop + title.offsetHeight + Math.max(6 * vw, h0 * 0.25);
+    var y2 = y1 + h0 * 1.35;
     var x = 2 * vw;
     var ys = [y1, y2, y1];
     var info = rows.map(function (r, i) {
