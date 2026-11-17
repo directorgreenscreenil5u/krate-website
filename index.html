@@ -1833,6 +1833,54 @@ footer nav a{font-size:20px!important}
 @keyframes kdShadow{0%,50%,100%{transform:scaleX(1);opacity:1}25%{transform:scaleX(.75);opacity:.6}}
 @media (max-width:900px){#aDrawer .kd-coin3{width:78px;height:78px}#aDrawer .kd-coin-in .f{font-size:36px}#aDrawer .kd-coin-in .b{font-size:30px}}
 @media (prefers-reduced-motion:reduce){#aDrawer .kd-coin-in,#aDrawer .kd-coin-sh,#aDrawer .kd-coin-in i::after{animation:none}}
+/* ---- micro-interactions ---- */
+#aDrawer .kd-coin-in .b svg{width:52%;height:auto;color:#5bc20f;filter:drop-shadow(0 2px 0 rgba(0,0,0,.25))}
+#aDrawer .kd-coin-in .f{text-shadow:0 2px 0 rgba(0,0,0,.25)}
+#aDrawer .kd-coin3.is-hold .kd-coin-in{animation-play-state:paused;transform:rotateX(var(--rx,0)) rotateY(var(--ry,0));transition:transform .15s}
+#aDrawer .kd-coin3.is-flip .kd-coin-in{animation:kdFlip .9s cubic-bezier(.2,.8,.3,1.2)}
+@keyframes kdFlip{0%{transform:rotateY(0) translateY(0) scale(1)}40%{transform:rotateY(540deg) translateY(-26px) scale(1.08)}100%{transform:rotateY(720deg) translateY(0) scale(1)}}
+#aDrawer .kd-spark{position:absolute;left:50%;top:50%;width:8px;height:8px;margin:-4px;border-radius:50%;background:#fff;pointer-events:none;animation:kdSpark .7s ease-out forwards}
+#aDrawer .kd-spark:nth-of-type(2n){background:#ffd23f}
+@keyframes kdSpark{to{transform:rotate(var(--a)) translateY(calc(var(--d) * -1)) scale(.2);opacity:0}}
+/* sliding sidebar highlight */
+#aDrawer .kd-nav{position:relative}
+#aDrawer .kd-pillbg{position:absolute;left:0;right:0;top:0;border-radius:12px;background:#5bc20f;transition:transform .35s cubic-bezier(.3,1.3,.5,1),height .2s,opacity .2s;z-index:0;pointer-events:none}
+#aDrawer .kd-nav button{position:relative;z-index:1}
+#aDrawer .kd-nav button[aria-current="page"]{background:transparent!important}
+#aDrawer .kd-nav button svg{transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
+#aDrawer .kd-nav button:hover svg{transform:scale(1.15) rotate(-8deg)}
+/* press feedback everywhere */
+#aDrawer .kd-btn:active,#aDrawer .kd-chips button:active,#aDrawer .kd-seg button:active,#aDrawer .kd-step button:active,#aDrawer .kd-plan:active,#aDrawer .kd-tile:active,#aDrawer .kd-tabbar button:active,#aDrawer .kd-acard.kd-aadd:active{transform:scale(.95)!important;transition:transform .08s}
+#aDrawer .kd-chips button,#aDrawer .kd-seg button,#aDrawer .kd-step button,#aDrawer .kd-tabbar button{transition:transform .2s cubic-bezier(.3,1.6,.5,1),background .2s,color .2s}
+#aDrawer .kd-tabbar button[aria-current="page"] svg{animation:kdHop .4s cubic-bezier(.3,1.6,.5,1)}
+@keyframes kdHop{40%{transform:translateY(-4px) scale(1.12)}}
+/* tile icons bounce on hover */
+#aDrawer .kd-tile:hover .kd-ti{animation:kdHop .45s cubic-bezier(.3,1.6,.5,1)}
+#aDrawer .kd-ti{transition:background .2s,color .2s}
+#aDrawer .kd-tile:hover .kd-ti{background:#5bc20f;color:#014621}
+/* number pop */
+#aDrawer .kd-pop{animation:kdPop .3s cubic-bezier(.3,1.8,.5,1)}
+@keyframes kdPop{40%{transform:scale(1.35)}}
+/* order rows slide in, hover nudge */
+#aDrawer .kd-page.kd-in button.kd-orow{animation:kdRow .4s cubic-bezier(.2,.8,.3,1) backwards}
+#aDrawer .kd-page.kd-in button.kd-orow:nth-of-type(2){animation-delay:.04s}#aDrawer .kd-page.kd-in button.kd-orow:nth-of-type(3){animation-delay:.08s}#aDrawer .kd-page.kd-in button.kd-orow:nth-of-type(4){animation-delay:.12s}#aDrawer .kd-page.kd-in button.kd-orow:nth-of-type(n+5){animation-delay:.16s}
+@keyframes kdRow{from{opacity:0;transform:translateX(-10px)}}
+#aDrawer button.kd-orow:hover .kd-oref{text-decoration:underline}
+#aDrawer .kd-copyref{cursor:copy}
+/* hero egg follows pointer */
+#aDrawer .kd-hero::after{transform:translate(var(--ex,0),var(--ey,0));transition:transform .4s cubic-bezier(.2,.8,.3,1)}
+/* tracker fills in */
+#aDrawer .kd-page.kd-in .kd-track li.done::after{animation:kdFill .6s .15s ease-out backwards;transform-origin:left}
+@keyframes kdFill{from{transform:scaleX(0)}}
+/* address card lift */
+#aDrawer .kd-acard{transition:transform .2s,box-shadow .2s}
+#aDrawer .kd-acard:hover{transform:translateY(-3px)}
+/* toast */
+#aDrawer .kd-toast{position:fixed;left:50%;bottom:28px;z-index:20;transform:translate(-50%,20px);opacity:0;padding:12px 18px;border-radius:999px;background:#191718;color:#fff;font:600 14px 'Inter Tight',sans-serif;box-shadow:0 12px 30px -10px rgba(0,0,0,.4);pointer-events:none;transition:transform .35s cubic-bezier(.3,1.5,.5,1),opacity .25s;white-space:nowrap}
+#aDrawer .kd-toast::before{content:"✓";display:inline-grid;place-items:center;width:20px;height:20px;margin-right:8px;border-radius:50%;background:#5bc20f;color:#014621;font-size:12px;font-weight:800}
+#aDrawer .kd-toast.on{transform:translate(-50%,0);opacity:1}
+@media (max-width:900px){#aDrawer .kd-toast{bottom:calc(100px + env(safe-area-inset-bottom))}}
+@media (prefers-reduced-motion:reduce){#aDrawer .kd-pillbg,#aDrawer .kd-toast{transition:none}#aDrawer .kd-page.kd-in button.kd-orow,#aDrawer .kd-page.kd-in .kd-track li.done::after,#aDrawer .kd-tile:hover .kd-ti{animation:none}}
 </style><script>try{if(sessionStorage.getItem('krSeen'))document.documentElement.classList.add('k-seen');sessionStorage.setItem('krSeen','1')}catch(e){}</script><style>.k-seen .k-pre,.k-seen .k-loader{display:none!important}.k-seen #top *{animation-delay:0s!important}</style><style>.k-pre,.k-loader{display:none!important}#top .k-char{animation-duration:.55s!important}</style></head>
 <body>
 
@@ -2298,7 +2346,7 @@ a{color:#014621}a:hover{color:#191718}
 </section>
 
 <section class="kd-page" data-p="cash">
-<div class="kd-cash"><div><small>Your cashback</small><b id="dCb">₦0</b><span>You get <strong id="dCbRate">2%</strong> back on every order. Tick “Use cashback” at checkout to spend it.</span></div><span class="kd-coin3" aria-hidden="true"><span class="kd-coin-in"><i class="e" style="--z:-5"></i><i class="e" style="--z:-4"></i><i class="e" style="--z:-3"></i><i class="e" style="--z:-2"></i><i class="e" style="--z:-1"></i><i class="e" style="--z:0"></i><i class="e" style="--z:1"></i><i class="e" style="--z:2"></i><i class="e" style="--z:3"></i><i class="e" style="--z:4"></i><i class="e" style="--z:5"></i><i class="f">₦</i><i class="b">K</i></span><span class="kd-coin-sh"></span></span></div>
+<div class="kd-cash"><div><small>Your cashback</small><b id="dCb">₦0</b><span>You get <strong id="dCbRate">2%</strong> back on every order. Tick “Use cashback” at checkout to spend it.</span></div><span class="kd-coin3" aria-hidden="true"><span class="kd-coin-in"><i class="e" style="--z:-5"></i><i class="e" style="--z:-4"></i><i class="e" style="--z:-3"></i><i class="e" style="--z:-2"></i><i class="e" style="--z:-1"></i><i class="e" style="--z:0"></i><i class="e" style="--z:1"></i><i class="e" style="--z:2"></i><i class="e" style="--z:3"></i><i class="e" style="--z:4"></i><i class="e" style="--z:5"></i><i class="f">₦</i><i class="b"><svg viewBox="-4 -4 88 94.14" aria-hidden="true"><path d="M41.74,3.52c.49-2.35,1.94-3.52,4.37-3.52h29.24c2.35,0,3.11,1.13,2.31,3.4l-12.74,33.24c-.81,2.1-.12,3.72,2.06,4.85,1.94,1.05,3.64,2.43,5.1,4.13,1.46,1.7,2.67,4.06,3.64,7.1.97,3.03,1.74,6.85,2.31,11.47.56,4.61.89,10.31.97,17.11,0,2.43-1.25,3.64-3.76,3.64h-31.55c-2.35,0-3.4-1.21-3.15-3.64.65-4.85.83-9.44.55-13.77-.28-4.33-1.07-7.62-2.37-9.89-.32-.57-.67-1.03-1.03-1.4-.36-.36-.95-.55-1.76-.55-1.38,0-2.06,1.05-2.06,3.15l.12,22.45c0,2.43-1.21,3.64-3.64,3.64H3.64c-2.43,0-3.64-1.21-3.64-3.64V3.64C0,1.21,1.21,0,3.64,0h26.69c2.43,0,3.64,1.21,3.64,3.64v20.02c0,.41.1.87.3,1.4.2.53.63.79,1.27.79.89,0,1.47-.26,1.76-.79.28-.53.46-.99.55-1.4l3.88-20.14Z" fill="currentColor"/></svg></i></span><span class="kd-coin-sh"></span></span></div>
 <div class="kd-steps"><div class="kd-card"><em>1</em><b>Order eggs</b><span>Every order earns <strong class="kdRate">2%</strong> back, subscriptions too.</span></div><div class="kd-card"><em>2</em><b>It lands here</b><span>Cashback is added as soon as your order is placed.</span></div><div class="kd-card"><em>3</em><b>Spend it</b><span>Tick “Use cashback” at checkout to take it off your total.</span></div></div>
 <div class="kd-card kd-list" id="kdCbList"></div>
 </section>
@@ -3266,7 +3314,7 @@ var KRATE_SUPABASE = {
       var h = el('div', 'kd-acard-h'); h.append(svg(AICON[a.label] || AICON.Other), el('b', '', a.label)); if (a.def) h.appendChild(el('em', 'kd-pill', 'Default'));
       c.append(h, el('p', 'kd-cap', a.text));
       var acts = el('div', 'kd-acts');
-      if (!a.def) { var mk = el('button', 'kd-link', 'Make default'); mk.type = 'button'; mk.onclick = function () { list.forEach(function (x) { x.def = x === a; }); saveProfile(); renderAddrs(); prefill(true); }; acts.appendChild(mk); }
+      if (!a.def) { var mk = el('button', 'kd-link', 'Make default'); mk.type = 'button'; mk.onclick = function () { list.forEach(function (x) { x.def = x === a; }); saveProfile(); renderAddrs(); prefill(true); if (window.kdToast) kdToast(a.label + ' is now your default'); }; acts.appendChild(mk); }
       var rm = el('button', 'kd-link kd-danger', 'Remove'); rm.type = 'button';
       rm.onclick = function () { if (!rm.dataset.sure) { rm.dataset.sure = 1; rm.textContent = 'Tap again'; setTimeout(function () { delete rm.dataset.sure; rm.textContent = 'Remove'; }, 3000); return; } profile.addresses = list.filter(function (x) { return x !== a; }); if (a.def && profile.addresses[0]) profile.addresses[0].def = true; saveProfile(); renderAddrs(); };
       acts.appendChild(rm); c.appendChild(acts); box.appendChild(c);
@@ -3287,7 +3335,7 @@ var KRATE_SUPABASE = {
     var isFirst = !profile.addresses.length;
     profile.addresses.push({ id: 'a' + Date.now(), label: f.label.value, text: txt, def: isFirst });
     saveProfile(); renderAddrs(); prefill(true);
-    this.reset(); this.hidden = true;
+    this.reset(); this.hidden = true; if (window.kdToast) kdToast('Address saved');
   });
   function prefill(force) {
     var c = $('cForm'); if (!c) return;
@@ -3414,7 +3462,7 @@ var KRATE_SUPABASE = {
     var s = st(o);
     d.appendChild(btn('kd-back', '← All orders', function () { d.hidden = true; $('aOrders').hidden = false; d.parentNode.classList.remove('is-detail'); $('kdTitle').textContent = 'Orders'; }));
     var head = el('div', 'kd-card kd-dhead');
-    var t = el('div'); t.append(el('small', '', 'Placed ' + fmt(new Date(o.created_at), { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' })), el('h3', '', 'Order ' + ref(o)));
+    var t = el('div'); var hh = el('h3', 'kd-copyref', 'Order ' + ref(o)); hh.title = 'Tap to copy'; t.append(el('small', '', 'Placed ' + fmt(new Date(o.created_at), { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' })), hh);
     head.append(t, el('em', 'kd-st kd-st-' + s.k, s.t));
     if (o.kind !== 'sub' && s.k !== 'mute') head.appendChild(tracker(s.s));
     d.appendChild(head);
@@ -3466,7 +3514,7 @@ var KRATE_SUPABASE = {
       a.appendChild(up);
     }
     var acts = el('div', 'kd-dact');
-    if (o.status === 'active') acts.appendChild(btn('kd-btn', o.skip_next ? 'Unskip next delivery' : 'Skip next delivery', function () { sb.from('orders').update({ skip_next: !o.skip_next }).eq('id', o.id).then(load); }));
+    if (o.status === 'active') acts.appendChild(btn('kd-btn', o.skip_next ? 'Unskip next delivery' : 'Skip next delivery', function () { sb.from('orders').update({ skip_next: !o.skip_next }).eq('id', o.id).then(function () { load(); kdToast(o.skip_next ? 'Next delivery is back on' : 'Next delivery skipped'); }); }));
     acts.appendChild(btn('kd-btn kd-btn-ghost', o.status === 'paused' ? 'Resume' : 'Pause', function () { setStatus(o, o.status === 'paused' ? 'active' : 'paused'); }));
     var cx = btn('kd-btn kd-btn-ghost kd-danger', 'Cancel subscription', function () { if (confirmCancel(cx)) setStatus(o, 'cancelled'); });
     acts.appendChild(cx); a.appendChild(acts);
@@ -3484,7 +3532,7 @@ var KRATE_SUPABASE = {
     if (!any) b.appendChild(el('p', 'kd-none', 'You’ll earn ' + Math.round(KRATE_CASHBACK_RATE * 100) + '% back on your first order.'));
   }
   function confirmCancel(b) { if (b.dataset.sure) return true; b.dataset.sure = '1'; var t = b.textContent; b.textContent = 'Tap again to confirm'; setTimeout(function () { delete b.dataset.sure; b.textContent = t; }, 3000); return false; }
-  function setStatus(o, s) { sb.from('orders').update({ status: s }).eq('id', o.id).then(load); }
+  function setStatus(o, s) { sb.from('orders').update({ status: s }).eq('id', o.id).then(function () { load(); if (window.kdToast) kdToast(s === 'paused' ? 'Subscription paused' : s === 'active' ? 'Subscription resumed' : 'Subscription cancelled'); }); }
   function list(rows) {
     rowsAll = rows; lastOrder = rows[0] || null;
     var earned = 0, used = 0;
@@ -3510,7 +3558,7 @@ var KRATE_SUPABASE = {
   $('aDetails').addEventListener('submit', function (e) {
     e.preventDefault(); var d = this.elements;
     profile.name = d.name.value.trim(); profile.phone = d.phone.value.trim();
-    saveProfile(function () { $('aSaved').hidden = false; setTimeout(function () { $('aSaved').hidden = true; }, 2500); renderMe(); });
+    saveProfile(function () { if (window.kdToast) kdToast('Details saved'); $('aSaved').hidden = false; setTimeout(function () { $('aSaved').hidden = true; }, 2500); renderMe(); });
   });
 
   // called by the shop and the in-account order form
@@ -3608,6 +3656,65 @@ var KRATE_SUPABASE = {
         drawer.scrollTop = 0;
       });
     });
+  });
+
+  // ---------- micro-interactions ----------
+  var RMo = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var toastEl = el('div', 'kd-toast'); toastEl.setAttribute('role', 'status'); drawer.appendChild(toastEl);
+  var tT = 0;
+  function toast(msg) { toastEl.textContent = msg; toastEl.classList.remove('on'); void toastEl.offsetWidth; toastEl.classList.add('on'); clearTimeout(tT); tT = setTimeout(function () { toastEl.classList.remove('on'); }, 2200); }
+  window.kdToast = toast;
+  // sliding highlight behind the active sidebar item
+  var navEl = drawer.querySelector('.kd-nav'), pill = el('span', 'kd-pillbg');
+  if (navEl) { navEl.appendChild(pill); }
+  function movePill() { var on = navEl && navEl.querySelector('[aria-current="page"]'); if (!on) { pill.style.opacity = 0; return; } pill.style.opacity = 1; pill.style.transform = 'translateY(' + on.offsetTop + 'px)'; pill.style.height = on.offsetHeight + 'px'; }
+  drawer.querySelectorAll('[data-go]').forEach(function (b) { b.addEventListener('click', function () { setTimeout(movePill, 0); }); });
+  new MutationObserver(function () { setTimeout(movePill, 30); }).observe(drawer, { attributes: true, attributeFilter: ['class'] });
+  // count numbers up when a page opens
+  function countUp(node) {
+    if (!node || RMo) return; var txt = node.textContent, m = txt.match(/[\d,]+/); if (!m) return;
+    var to = +m[0].replace(/,/g, ''), pre = txt.slice(0, m.index), post = txt.slice(m.index + m[0].length), t0 = performance.now(), D = 700;
+    if (!to) return;
+    (function f(t) { var k = Math.min(1, (t - t0) / D), e = 1 - Math.pow(1 - k, 3); node.textContent = pre + Math.round(to * e).toLocaleString('en-NG') + post; if (k < 1) requestAnimationFrame(f); else node.textContent = txt; })(t0);
+  }
+  var _go = go;
+  go = function (p, keep) {
+    _go(p, keep); movePill();
+    var pg = drawer.querySelector('.kd-page:not([hidden])'); if (!pg) return;
+    if (pg.dataset.p === 'cash') { countUp($('dCb')); }
+    if (pg.dataset.p === 'account') { ['kdSOrd', 'kdSEggs', 'kdSCb'].forEach(function (id) { countUp($(id)); }); }
+    if (pg.dataset.p === 'overview') { drawer.querySelectorAll('.kd-tile b').forEach(countUp); }
+  };
+  window.__kGo = function (v) { go(v); };
+  // coin: follows the pointer, tap to flip it fast
+  var coin = drawer.querySelector('.kd-coin3');
+  if (coin && !RMo) {
+    var inner = coin.querySelector('.kd-coin-in');
+    coin.addEventListener('pointermove', function (e) { var r = coin.getBoundingClientRect(); coin.style.setProperty('--rx', ((e.clientY - r.top) / r.height - .5) * -30 + 'deg'); coin.style.setProperty('--ry', ((e.clientX - r.left) / r.width - .5) * 40 + 'deg'); coin.classList.add('is-hold'); });
+    coin.addEventListener('pointerleave', function () { coin.classList.remove('is-hold'); });
+    coin.addEventListener('click', function () {
+      coin.classList.remove('is-hold', 'is-flip'); void coin.offsetWidth; coin.classList.add('is-flip');
+      for (var i = 0; i < 8; i++) { var sp = el('i', 'kd-spark'); sp.style.setProperty('--a', (i * 45) + 'deg'); sp.style.setProperty('--d', (40 + Math.random() * 25) + 'px'); coin.appendChild(sp); setTimeout(function (x) { x.remove(); }.bind(null, sp), 700); }
+      setTimeout(function () { coin.classList.remove('is-flip'); }, 900);
+    });
+    coin.style.cursor = 'pointer'; coin.setAttribute('title', 'Tap me');
+  }
+  // tap an order reference to copy it
+  drawer.addEventListener('click', function (e) {
+    var r = e.target.closest('.kd-copyref'); if (!r) return;
+    e.stopPropagation();
+    var v = r.textContent.replace(/^Order\s+/, '').trim();
+    (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).then(function () { toast('Copied ' + v); }, function () {});
+  }, true);
+  // little pop on any number that changes (steppers, prices)
+  drawer.addEventListener('click', function (e) {
+    var b = e.target.closest('.kd-step button, #oMinus, #oPlus'); if (!b) return;
+    var o = b.parentNode.querySelector('output'); if (!o) return; o.classList.remove('kd-pop'); void o.offsetWidth; o.classList.add('kd-pop');
+  });
+  // status card egg drifts with the pointer
+  drawer.addEventListener('pointermove', function (e) {
+    var h = drawer.querySelector('.kd-hero'); if (!h || RMo) return; var r = h.getBoundingClientRect(); if (e.clientY < r.top || e.clientY > r.bottom) return;
+    h.style.setProperty('--ex', ((e.clientX - r.left) / r.width - .5) * 18 + 'px'); h.style.setProperty('--ey', ((e.clientY - r.top) / r.height - .5) * 12 + 'px');
   });
   window.KRATE_OPEN_ACCOUNT = open;
   var fl = document.querySelector('.f-logo svg'); if (fl) { $('aBrand').appendChild(fl.cloneNode(true)); $('kdLogo').appendChild(fl.cloneNode(true)); $('kdLogoM').appendChild(fl.cloneNode(true)); }
