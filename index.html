@@ -1231,6 +1231,10 @@ footer nav a{font-size:20px!important}
 .ap-page .n-cash b{font-family:'Inter Tight',sans-serif;font-weight:800}
 @media (min-width:744px){.acc.is-in .acc-main{padding-top:10px}}
 .k-clip{padding-bottom:.16em!important;margin-bottom:-.16em!important;padding-left:.04em!important;padding-right:.04em!important;margin-left:-.04em!important;margin-right:-.04em!important}
+.acc .ap .n-next.n-empty{background:#014621 url(img/egg-tray.webp) no-repeat right -40px bottom -46px/46%!important;padding-right:38%!important}
+.acc .ap .n-next .n-big,.acc .ap .n-next .n-sub{color:#fff!important}
+.acc .ap .n-next.n-empty .n-big{font-size:24px!important;line-height:1.15}
+.acc .ap .n-next .n-cta{background:#5bc20f!important;color:#014621!important}
 </style></head>
 <body>
 
@@ -2510,12 +2514,11 @@ var KRATE_SUPABASE = {
       var d = nextDate(sub), days = Math.max(0, Math.round((d - Date.now()) / DAY));
       box.append(el('small', 'n-k', 'Next delivery'), el('p', 'n-big', days === 0 ? 'Today' : days === 1 ? 'Tomorrow' : 'In ' + days + ' days'), el('p', 'n-sub', fmt(d) + ' · ' + sub.summary.replace(/ every.*/, '') + ' · ' + money(sub.total)), tracker(days <= 1 ? 2 : 1));
     } else if (paused) {
-      box.classList.add('n-quiet');
-      box.append(el('small', 'n-k', 'Deliveries paused'), el('p', 'n-big', 'On hold'), el('p', 'n-sub', 'Resume your subscription below whenever you’re ready.'));
+      box.append(el('small', 'n-k', 'Subscription paused'), el('p', 'n-big', 'Deliveries are on hold'), el('p', 'n-sub', 'Resume your subscription any time from the Subscription page.'));
     } else {
-      box.classList.add('n-quiet');
-      var go = el('a', 'n-cta', 'Order a Krate →'); go.href = '#shop'; go.onclick = function () { show(false); };
-      box.append(el('small', 'n-k', 'Next delivery'), el('p', 'n-big', 'Nothing booked'), el('p', 'n-sub', '30 jumbo eggs, delivered. Pay on delivery.'), go);
+      box.classList.add('n-empty');
+      var go = el('a', 'n-cta', 'Order your first Krate →'); go.href = '#shop'; go.onclick = function () { show(false); };
+      box.append(el('p', 'n-big', 'Your first Krate is one tap away'), el('p', 'n-sub', '30 fresh jumbo eggs, delivered to your door. Pay on delivery.'), go);
     }
   }
   function renderSub(rows) {
