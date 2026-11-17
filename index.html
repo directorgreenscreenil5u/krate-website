@@ -53,9 +53,19 @@
 @media (prefers-reduced-motion: reduce){.gc{transform:none;transition:none}.g-row .g-slot,.g-row .g-note,.g-title .g-tag{scale:1;opacity:1;translate:none}}
 
 @media (max-width: 743px){
-.g-pin{--G:86vw}
+.g-pin{--G:16vw;height:auto!important}
+.g-slot{width:1em!important;margin-left:.08em!important}
+.g-stage{position:relative;height:auto;overflow:visible;padding:22vw 6vw 18vw}
+.g-canvas{position:relative;display:flex;flex-direction:column;gap:20vw;transform:none!important;width:auto!important;height:auto!important}
+.g-title{position:relative;top:auto;width:auto}
+.g-row{position:relative;left:auto!important;top:auto!important}
+.g-giant{display:grid;grid-template-columns:auto auto;justify-content:start;align-items:center;row-gap:.04em}
+.g-giant>span:last-child{grid-column:1 / -1}
+.g-arrow{display:none}
+.g-note{position:relative;left:auto!important;top:auto!important;display:block;margin-top:.15em;font-size:.24em!important}
+.g-prop{display:none}
 .g-title h2{font-size:8.6vw!important}
-.g-title{top:34vw;gap:3vw}
+.g-title{top:auto;gap:3vw}
 .g-title h2{font-size:10.5vw}
 .g-tag{font-size:3vw;padding:1.4vw 2.6vw;border-radius:1.2vw;gap:1.6vw}
 .g-tag span{width:1.6vw;height:1.6vw}
@@ -497,6 +507,8 @@ footer nav a{font-size:20px!important}
 .t-shop .hs-jumbo b{font-size:19cqw!important;line-height:1}
 .t-shop .hs-jumbo small{font-size:6.6cqw!important;letter-spacing:.08em}
 @media (max-width:743px){.t-shop .hs-jumbo{width:32%}}
+.e-cta{box-sizing:border-box;max-width:100%}
+@media (max-width:743px){.e-sec .e-wrap{overflow:hidden}}
 </style></head>
 <body>
 
@@ -764,7 +776,7 @@ a{color:#014621}a:hover{color:#191718}
 
 
 <div aria-hidden="true" style="position: relative; height: 170px; background: #5bc20f; overflow: hidden; margin-top: -1px">
-<div style="position: absolute; left: -15%; right: -15%; top: -170px; height: 340px; border-radius: 50%; background: #f53509"></div>
+<div style="position: absolute; left: -15%; right: -15%; top: -170px; height: 340px; border-radius: 50%; background: #ef7a4c"></div>
 </div>
 
 <!-- ================= 5. WHY WE EXIST — pinned board; the view pans along the giant words ================= -->
@@ -1262,7 +1274,12 @@ a{color:#014621}a:hover{color:#191718}
 (function () {
   var pin = document.querySelector('.g-pin');
   if (!pin) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce), (max-width: 743px)').matches) {
+    // phones: no pinned pan; each row is stacked and fully visible, letters still rise in
+    var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('live'); io.unobserve(e.target); } }); }, { threshold: 0.3 }) : null;
+    pin.querySelectorAll('.g-title, .g-row').forEach(function (el) { if (io) io.observe(el); else el.classList.add('live'); });
+    window.__kMobileBoard = true;
+  }
   var canvas = pin.querySelector('.g-canvas');
   var rows = [].slice.call(pin.querySelectorAll('.g-row'));
   var arrows = [].slice.call(pin.querySelectorAll('.g-arrow'));
@@ -1294,6 +1311,7 @@ a{color:#014621}a:hover{color:#191718}
   }
   split(title.querySelector('h2'));
   rows.forEach(function (r) { split(r.querySelector('.g-giant'), 0); });
+  if (window.__kMobileBoard) return;
 
   function layout() {
     vw = window.innerWidth / 100; vh = window.innerHeight;
