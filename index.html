@@ -33,6 +33,7 @@
 .g-note{position:absolute;margin:0;font-family:'Caveat',cursive;font-size:.075em;line-height:1.05;color:#014621;rotate:-3deg;white-space:nowrap;z-index:2}
 .g-arrow{position:absolute;width:24vw;height:auto;color:#014621;opacity:.8;overflow:visible}
 .g-arrow path{stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:var(--draw,1)}
+.g-arrow path+path{stroke-dashoffset:var(--head,1);transition:stroke-dashoffset .25s ease-out}
 @media (prefers-reduced-motion: reduce){
 .g-pin{height:auto}.g-stage{position:relative;height:auto;padding:8vw 0}
 .g-canvas{position:relative;display:flex;flex-direction:column;gap:6vw;transform:none!important}
@@ -450,6 +451,16 @@ footer nav a{font-size:20px!important}
 .t-shop .t-product:hover img.hs-trayimg{rotate:0deg;scale:1.04}
 .t-shop .hs-jumbo{right:4%;top:6%;width:27%}
 @media (prefers-reduced-motion:reduce){.hs-ring{animation:none}}
+/* jumbo badge v2: lime starburst seal */
+.t-shop .hs-jumbo{right:2%;top:4%;width:31%;background:none;box-shadow:none;color:#014621;gap:2px;filter:drop-shadow(0 12px 18px rgba(0,0,0,.25));animation:hsWob 5s ease-in-out infinite}
+.hs-burst{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.hs-burst polygon{fill:#5bc20f}
+.hs-burst circle{fill:none;stroke:#014621;stroke-width:1.2;stroke-dasharray:2.4 2}
+.t-shop .hs-jumbo b{font-size:clamp(28px,3.4vw,52px);color:#014621;letter-spacing:-.01em}
+.t-shop .hs-jumbo small{color:#014621;font-size:clamp(9px,.78vw,12px)}
+@keyframes hsWob{0%,100%{rotate:-10deg;scale:1}50%{rotate:-4deg;scale:1.04}}
+@media (max-width:743px){.t-shop .hs-jumbo b{font-size:7vw}.t-shop .hs-jumbo small{font-size:2.1vw}}
+.t-shop .hs-jumbo b{font-size:clamp(22px,2.6vw,40px)}@media (max-width:743px){.t-shop .hs-jumbo b{font-size:5.4vw}}
 </style></head>
 <body>
 
@@ -795,9 +806,8 @@ a{color:#014621}a:hover{color:#191718}
 
 <div class="t-product">
 <span class="t-disc" aria-hidden="true"></span>
-<svg class="hs-ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="hsRingPath" d="M100,100 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"></path></defs><text><textPath href="#hsRingPath">30 fresh jumbo eggs ✦ handled with care ✦ straight from our farm ✦ </textPath></text></svg>
 <img loading="lazy" decoding="async" class="hs-trayimg" src="img/egg-tray.webp" alt="A crate of 30 Krate jumbo eggs">
-<span class="hs-jumbo" aria-label="Jumbo eggs"><small>30 fresh</small><b>Jumbo</b><small>eggs</small></span>
+<span class="hs-jumbo" aria-label="Jumbo eggs"><svg class="hs-burst" viewBox="0 0 100 100" aria-hidden="true"><polygon points="100.0,50.0 93.6,55.7 98.3,62.9 90.7,66.8 93.3,75.0 84.9,76.8 85.4,85.4 76.8,84.9 75.0,93.3 66.8,90.7 62.9,98.3 55.7,93.6 50.0,100.0 44.3,93.6 37.1,98.3 33.2,90.7 25.0,93.3 23.2,84.9 14.6,85.4 15.1,76.8 6.7,75.0 9.3,66.8 1.7,62.9 6.4,55.7 0.0,50.0 6.4,44.3 1.7,37.1 9.3,33.2 6.7,25.0 15.1,23.2 14.6,14.6 23.2,15.1 25.0,6.7 33.2,9.3 37.1,1.7 44.3,6.4 50.0,0.0 55.7,6.4 62.9,1.7 66.8,9.3 75.0,6.7 76.8,15.1 85.4,14.6 84.9,23.2 93.3,25.0 90.7,33.2 98.3,37.1 93.6,44.3"></polygon><circle cx="50" cy="50" r="38"></circle></svg><small>Extra large</small><b>Jumbo</b><small>30 per crate</small></span>
 </div>
 </div>
 </section>
@@ -1211,12 +1221,24 @@ a{color:#014621}a:hover{color:#191718}
       x += w + gap;
       return o;
     });
-    // arrows sit in the gap between rows
+    // each arrow is one curve from the end of a row to the start of the next, with its head on the tip
     arrows.forEach(function (a, i) {
       var A = info[i], B = info[i + 1];
-      var down = B.y > A.y;
-      a.style.left = (A.x + A.w + 0.5 * vw) + 'px';
-      a.style.top = (down ? A.y + A.h * 0.7 : B.y + B.h * 0.55) + 'px';
+      var x0 = A.x + A.w + 1.5 * vw, y0 = A.y + A.h * 0.55;
+      var x3 = B.x - 1.5 * vw, y3 = B.y + B.h * 0.5;
+      var pad = 14 * vw, minX = Math.min(x0, x3) - pad, minY = Math.min(y0, y3) - pad;
+      var w = Math.abs(x3 - x0) + pad * 2, h = Math.abs(y3 - y0) + pad * 2;
+      var dx = x3 - x0, sag = (y3 > y0 ? -1 : 1) * Math.min(80, Math.abs(y3 - y0) * 0.35);
+      var hs = Math.max(14, 1.3 * vw);
+      var p0 = [x0 - minX, y0 - minY], p3 = [x3 - minX, y3 - minY];
+      var dy = p3[1] - p0[1], c1 = [p0[0] + Math.max(dx, 6 * vw) * 1.1, p0[1] + dy * 0.05], c2 = [p3[0] - Math.max(dx, 6 * vw) * 0.9, p3[1] - dy * 0.35];
+      var ang = Math.atan2(p3[1] - c2[1], p3[0] - c2[0]);
+      function hp(t) { return (p3[0] - hs * Math.cos(ang + t)).toFixed(1) + ',' + (p3[1] - hs * Math.sin(ang + t)).toFixed(1); }
+            a.setAttribute('viewBox', '0 0 ' + w.toFixed(0) + ' ' + h.toFixed(0));
+      a.style.left = minX + 'px'; a.style.top = minY + 'px'; a.style.width = w + 'px'; a.style.height = h + 'px';
+      var ps = a.querySelectorAll('path');
+      ps[0].setAttribute('d', 'M' + p0 + ' C' + c1 + ' ' + c2 + ' ' + p3);
+      ps[1].setAttribute('d', 'M' + hp(0.6) + ' L' + p3 + ' L' + hp(-0.6));
     });
     canvas.style.width = (x + 10 * vw) + 'px';
     canvas.style.height = (y2 + info[1].h + 30 * vw) + 'px';
@@ -1270,6 +1292,7 @@ a{color:#014621}a:hover{color:#191718}
       var s = segs[2 + i * 2];
       var t = s ? Math.max(0, Math.min(1, (d - s.start + s.len * 0.15) / s.len)) : 1;
       a.style.setProperty('--draw', (1 - t).toFixed(3));
+      a.style.setProperty('--head', t > 0.92 ? '0' : '1');
     });
   }
 
