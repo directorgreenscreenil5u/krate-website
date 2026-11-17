@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop · Krate — Fresh Jumbo Eggs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&amp;family=Caveat:wght@700&amp;family=Inter+Tight:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+:root{--dg:#014621;--lime:#5bc20f;--green:#1e9207;--org:#f53509;--cream:#f6eceb;--ink:#191718;--brown:#60452a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:'Inter Tight',system-ui,sans-serif}
+a{color:inherit}
+[hidden]{display:none!important}
+.paper{position:absolute;inset:0;pointer-events:none;background:url(img/paper.jpg) 0 0/100% auto repeat-y;mix-blend-mode:overlay;opacity:.14}
+
+/* header */
+.sh-head{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px clamp(16px,3vw,40px);background:var(--dg);color:var(--cream)}
+.sh-logo{display:block;width:118px;color:var(--cream)}
+.sh-logo svg{display:block;width:100%;height:auto}
+.sh-nav{display:flex;align-items:center;gap:clamp(12px,2.4vw,28px);font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase}
+.sh-nav a{text-decoration:none}
+.sh-nav a:hover{text-decoration:underline;text-underline-offset:4px}
+.sh-cart{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;background:var(--lime);color:var(--dg)!important;text-decoration:none!important}
+.sh-cart b{min-width:22px;height:22px;border-radius:999px;background:var(--dg);color:var(--cream);font-size:12px;display:inline-grid;place-items:center;padding:0 6px}
+
+/* hero */
+.sh-hero{position:relative;overflow:hidden;background:var(--lime);color:var(--dg);padding:clamp(40px,6vw,90px) clamp(16px,4vw,56px) clamp(70px,9vw,130px);border-radius:0 0 50% 50% / 0 0 6vw 6vw}
+.sh-hero h1{position:relative;margin:0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(54px,10vw,160px);line-height:.86;text-transform:uppercase}
+.sh-hero p{position:relative;max-width:560px;margin:16px 0 0;font-size:clamp(16px,1.4vw,20px);line-height:1.5;color:var(--ink)}
+.sh-perks{position:relative;display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;padding:0;list-style:none}
+.sh-perks li{padding:8px 14px;border-radius:999px;background:var(--dg);color:var(--cream);font-size:13px;font-weight:700;letter-spacing:.04em}
+
+/* layout */
+.sh-main{max-width:1320px;margin:0 auto;padding:clamp(28px,4vw,60px) clamp(16px,3vw,40px) 120px;display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:32px;align-items:start}
+.sh-h2{margin:0 0 18px;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(28px,3vw,40px);text-transform:uppercase;color:var(--dg)}
+.sh-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+
+/* product card */
+.pc{position:relative;display:flex;flex-direction:column;background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 14px 34px rgba(1,70,33,.12);transition:transform .35s cubic-bezier(.2,.9,.25,1.4)}
+.pc:hover{transform:translateY(-4px)}
+.pc-media{position:relative;aspect-ratio:1/.82;display:grid;place-items:center;overflow:hidden}
+.pc-media img{width:74%;height:auto;rotate:-6deg;filter:drop-shadow(0 18px 18px rgba(0,0,0,.3));transition:rotate .5s cubic-bezier(.2,.9,.25,1.4)}
+.pc:hover .pc-media img{rotate:0deg}
+.pc-stack img+img{position:absolute;width:60%;translate:14% 10%;rotate:6deg}
+.pc-tag{position:absolute;top:14px;left:14px;padding:6px 12px;border-radius:999px;background:var(--cream);font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.pc-body{flex:1;display:flex;flex-direction:column;gap:8px;padding:20px 20px 22px}
+.pc-title{margin:0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:26px;line-height:1;text-transform:uppercase;color:var(--dg)}
+.pc-desc{margin:0;font-size:15px;line-height:1.45;color:#3d3a3b}
+.pc-price{margin:4px 0 0;font-family:'Bagel Fat One',sans-serif;font-size:24px;color:var(--dg)}
+.pc-price small{font-family:'Inter Tight',sans-serif;font-size:13px;color:#4a4446}
+.pc-row{margin-top:auto;padding-top:10px;display:flex;gap:10px;align-items:center}
+.qty{display:flex;align-items:center;border:2px solid var(--dg);border-radius:999px;overflow:hidden;flex:0 0 auto}
+.qty button{width:40px;height:44px;border:0;background:transparent;color:var(--dg);font:700 20px 'Inter Tight',sans-serif;cursor:pointer}
+.qty output{min-width:26px;text-align:center;font-weight:700}
+.add{flex:1;min-height:48px;border:0;border-radius:999px;background:var(--org);color:var(--ink);font:700 14px 'Inter Tight',sans-serif;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:transform .2s}
+.add:hover{transform:translateY(-2px)}
+.add.ok{background:var(--lime);color:var(--dg)}
+
+/* order summary */
+.sum{position:sticky;top:88px;background:var(--dg);color:var(--cream);border-radius:28px;padding:22px;display:grid;gap:14px;box-shadow:0 20px 50px rgba(1,70,33,.25)}
+.sum h2{margin:0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:28px;text-transform:uppercase;color:var(--lime)}
+.steps{display:flex;gap:8px;margin:0;padding:0;list-style:none;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.steps li{flex:1;padding:6px 8px;border-radius:999px;background:rgba(246,236,235,.12);text-align:center}
+.steps li.on{background:var(--lime);color:var(--dg)}
+.lines{display:grid;gap:10px}
+.empty{margin:0;font-size:15px;opacity:.85}
+.line{display:flex;align-items:center;gap:10px;background:rgba(246,236,235,.08);border-radius:16px;padding:10px}
+.line img{width:52px;height:52px;object-fit:contain;border-radius:12px;background:var(--org);padding:4px}
+.line .li{flex:1;display:grid;gap:2px;font-size:14px}
+.line .li strong{font-size:15px}
+.line .qty{border-color:var(--cream)}
+.line .qty button{color:var(--cream);width:34px;height:38px;font-size:17px}
+.tot{display:flex;justify-content:space-between;align-items:baseline;border-top:2px dashed rgba(246,236,235,.25);padding-top:12px}
+.tot strong{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:28px;color:var(--lime)}
+.note{margin:0;font-size:13px;opacity:.85}
+.co{display:grid;gap:10px}
+.co label{display:grid;gap:5px;font-size:13px;font-weight:700}
+.co input,.co textarea,.co select{font:400 16px 'Inter Tight',sans-serif;color:var(--ink);background:var(--cream);border:2px solid transparent;border-radius:12px;padding:11px 12px;min-height:46px;width:100%}
+.co textarea{resize:vertical;min-height:0}
+.co :focus-visible{outline:3px solid var(--lime);outline-offset:1px}
+.bad{border-color:#ff8a6b!important}
+.err{margin:0;color:#ffb09b;font-weight:700;font-size:14px}
+.go{min-height:54px;border:0;border-radius:999px;background:var(--lime);color:var(--dg);font:700 15px 'Inter Tight',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.go:disabled{opacity:.5;cursor:not-allowed}
+.done{margin:0;padding:12px 14px;border-radius:14px;background:var(--cream);color:var(--dg);font-weight:700;font-size:14px;line-height:1.45}
+.biz{margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:22px 24px;border-radius:24px;background:var(--org);color:var(--ink)}
+.biz strong{display:block;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:24px;text-transform:uppercase}
+.biz a{display:inline-flex;align-items:center;min-height:48px;padding:0 20px;border-radius:999px;background:var(--ink);color:var(--cream);font-weight:700;text-decoration:none;letter-spacing:.05em;text-transform:uppercase;font-size:14px}
+
+/* mobile bottom bar */
+.bar{display:none}
+@media (max-width: 900px){
+.sh-main{grid-template-columns:1fr}
+.sum{position:static}
+.bar{position:fixed;left:12px;right:12px;bottom:12px;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px 10px 18px;border-radius:999px;background:var(--dg);color:var(--cream);box-shadow:0 12px 30px rgba(0,0,0,.3);text-decoration:none;font-weight:700}
+.bar span:last-child{padding:12px 18px;border-radius:999px;background:var(--lime);color:var(--dg);font-size:14px;letter-spacing:.05em;text-transform:uppercase}
+.sh-nav .hide-sm{display:none}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="sh-head">
+<a class="sh-logo" href="index.html" aria-label="Krate home"><svg viewBox="0 0 383.16 86.14" fill="currentColor" aria-hidden="true"><path d="M41.74,3.52c.49-2.35,1.94-3.52,4.37-3.52h29.24c2.35,0,3.11,1.13,2.31,3.4l-12.74,33.24c-.81,2.1-.12,3.72,2.06,4.85,1.94,1.05,3.64,2.43,5.1,4.13,1.46,1.7,2.67,4.06,3.64,7.1.97,3.03,1.74,6.85,2.31,11.47.56,4.61.89,10.31.97,17.11,0,2.43-1.25,3.64-3.76,3.64h-31.55c-2.35,0-3.4-1.21-3.15-3.64.65-4.85.83-9.44.55-13.77-.28-4.33-1.07-7.62-2.37-9.89-.32-.57-.67-1.03-1.03-1.4-.36-.36-.95-.55-1.76-.55-1.38,0-2.06,1.05-2.06,3.15l.12,22.45c0,2.43-1.21,3.64-3.64,3.64H3.64c-2.43,0-3.64-1.21-3.64-3.64V3.64C0,1.21,1.21,0,3.64,0h26.69c2.43,0,3.64,1.21,3.64,3.64v20.02c0,.41.1.87.3,1.4.2.53.63.79,1.27.79.89,0,1.47-.26,1.76-.79.28-.53.46-.99.55-1.4l3.88-20.14Z"></path><path d="M136.01,48.77c2.26,1.46,4.93,2.18,8.01,2.18,2.43,0,4.71-.24,6.86-.73,2.14-.49,4.02-1.05,5.64-1.7.65-.24,1.21-.36,1.7-.36,1.21,0,1.94.85,2.18,2.55l3.88,26.81c.49,2.83-.41,4.65-2.67,5.46-3.07,1.13-5.99,1.94-8.74,2.43-2.75.49-5.46.73-8.13.73-4.77,0-8.74-.67-11.89-2s-5.7-3.32-7.64-5.95c-1.94-2.63-3.34-5.82-4.19-9.58s-1.32-8.07-1.4-12.92c0-1.46-.77-2.18-2.31-2.18-1.38,0-2.06.73-2.06,2.18l1.21,25.6c.16,2.43-1.01,3.64-3.52,3.64h-26.69c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h36.52c5.9,0,11.2.47,15.89,1.4,4.69.93,8.69,2.37,12.01,4.31,3.32,1.94,5.86,4.39,7.64,7.34,1.78,2.95,2.67,6.49,2.67,10.62,0,3.64-.51,6.71-1.52,9.22-1.01,2.51-2.53,4.61-4.55,6.31-2.02,1.7-4.55,3.03-7.58,4-3.03.97-6.57,1.78-10.62,2.43-1.05.08-1.7.45-1.94,1.09-.24.65.16,1.33,1.21,2.06ZM122.79,36.4c1.29,0,2.22-.32,2.79-.97.56-.65.85-1.37.85-2.18,0-.73-.28-1.4-.85-2-.57-.61-1.5-.91-2.79-.91h-3.15c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h3.15Z"></path><path d="M210.87,69.76c-.08-2.43-1.38-3.64-3.88-3.64h-.97c-2.43,0-3.72,1.21-3.88,3.64l-.85,11.53c-.08,2.43-1.38,3.64-3.88,3.64h-31.67c-2.43,0-3.4-1.17-2.91-3.52L179.2,3.52c.49-2.35,1.94-3.52,4.37-3.52h45.86c2.43,0,3.88,1.17,4.37,3.52l16.38,77.89c.49,2.35-.49,3.52-2.91,3.52h-31.67c-2.43,0-3.72-1.21-3.88-3.64l-.85-11.53ZM208.44,37.01c-.08-1.21-.73-1.82-1.94-1.82-1.13,0-1.78.61-1.94,1.82l-.97,13.83c-.16,2.1.81,3.15,2.91,3.15s3.07-1.05,2.91-3.15l-.97-13.83Z"></path><path d="M302.11,54.6c-2.99,0-4.49,1.5-4.49,4.49v22.2c0,2.43-1.21,3.64-3.64,3.64h-26.69c-2.43,0-3.64-1.21-3.64-3.64v-22.2c0-2.99-1.5-4.49-4.49-4.49h-8.86c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h60.66c2.43,0,3.64,1.21,3.64,3.64v47.32c0,2.43-1.21,3.64-3.64,3.64h-8.86Z"></path><path d="M354.65,53.38c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h24.87c2.43,0,3.64,1.21,3.64,3.64v18.2c0,2.43-1.21,3.64-3.64,3.64h-58.24c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h58.24c2.43,0,3.64,1.21,3.64,3.64v18.2c0,2.43-1.21,3.64-3.64,3.64h-24.87c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h21.23c2.43,0,3.64,1.21,3.64,3.64v14.56c0,2.43-1.21,3.64-3.64,3.64h-21.23Z"></path></svg></a>
+<nav class="sh-nav" aria-label="Main">
+<a class="hide-sm" href="index.html">Home</a>
+<a class="hide-sm" href="index.html#partners">For business</a>
+<a class="sh-cart" href="#order">Order <b id="hCount">0</b></a>
+</nav>
+</header>
+
+<section class="sh-hero">
+<div class="paper" aria-hidden="true"></div>
+<h1>The Krate<br>shop.</h1>
+<p>Fresh jumbo eggs, straight from our farm. Pick your crates, tell us where to bring them, and pay when they arrive.</p>
+<ul class="sh-perks"><li>30 jumbo eggs per crate</li><li>Farm direct</li><li>Pay on delivery</li></ul>
+</section>
+
+<main class="sh-main">
+<div>
+<h2 class="sh-h2">Pick your crates</h2>
+<div class="sh-grid" id="grid"></div>
+<div class="biz"><div><strong>Buying for a business?</strong>Supermarkets, restaurants and hotels get steady weekly supply.</div><a href="index.html#partners">Partner with us</a></div>
+</div>
+
+<aside class="sum" id="order" aria-label="Your order">
+<h2>Your order</h2>
+<ol class="steps" aria-label="Checkout steps"><li id="st1" class="on">1 · Crates</li><li id="st2">2 · Delivery</li><li id="st3">3 · Send</li></ol>
+<div class="lines" id="lines"></div>
+<div class="tot"><span>Total</span><strong id="total">₦0</strong></div>
+<p class="note">Delivery fee confirmed on WhatsApp. Pay on delivery.</p>
+<form class="co" id="co" novalidate>
+<label>Full name<input name="name" required autocomplete="name"></label>
+<label>Phone / WhatsApp<input name="phone" type="tel" required autocomplete="tel"></label>
+<label>Delivery address<textarea name="address" rows="2" required autocomplete="street-address"></textarea></label>
+<label>Preferred delivery day<input name="when" placeholder="e.g. Saturday morning"></label>
+<p class="err" id="err" role="alert" hidden>Add at least one crate, then fill in your name, phone and address.</p>
+<button class="go" id="go" type="submit">Place order on WhatsApp</button>
+<p class="done" id="done" hidden>Your order is ready in WhatsApp. Press send, and we’ll confirm delivery and the total.</p>
+</form>
+</aside>
+</main>
+
+<a class="bar" id="bar" href="#order" hidden><span id="barText">0 crates · ₦0</span><span>Checkout</span></a>
+
+<script>
+var KRATE = {
+  pricePerCrate: 7500,         // placeholder price per crate of 30 — change to your real price
+  currency: '₦',
+  whatsapp: '234XXXXXXXXXX'    // your WhatsApp number, international format, no + or spaces
+};
+(function () {
+  var products = [
+    { id: 'one', name: 'The Krate', tag: '1 crate', crates: 1, desc: '30 fresh jumbo eggs, packed snug to reduce breakage.', img: ['img/egg-tray.webp'], bg: '#f53509' },
+    { id: 'family', name: 'Family stack', tag: '3 crates', crates: 3, desc: '90 jumbo eggs for big households and busy weeks.', img: ['img/egg-tray.webp', 'img/egg-tray.webp'], bg: '#1e9207' },
+    { id: 'party', name: 'Party pack', tag: '5 crates', crates: 5, desc: '150 jumbo eggs for events, owambe and catering.', img: ['img/egg-tray.webp', 'img/egg-tray.webp'], bg: '#014621' },
+    { id: 'weekly', name: 'Weekly Krate', tag: 'Every week', crates: 1, weekly: true, desc: 'One crate delivered every week. Pay on each delivery, stop anytime.', img: ['img/egg-brown.webp'], bg: '#5bc20f' }
+  ];
+  function money(n) { return KRATE.currency + Math.round(n).toLocaleString('en-NG'); }
+  function price(p) { return p.crates * KRATE.pricePerCrate; }
+  var cart = {};
+  try { cart = JSON.parse(localStorage.getItem('krateShop') || '{}') || {}; } catch (e) { cart = {}; }
+  function save() { try { localStorage.setItem('krateShop', JSON.stringify(cart)); } catch (e) {} }
+
+  // product cards
+  var grid = document.getElementById('grid');
+  products.forEach(function (p) {
+    var q = 1;
+    var card = document.createElement('article'); card.className = 'pc';
+    var media = document.createElement('div'); media.className = 'pc-media' + (p.img.length > 1 ? ' pc-stack' : ''); media.style.background = p.bg;
+    p.img.forEach(function (src) { var im = document.createElement('img'); im.src = src; im.alt = ''; media.appendChild(im); });
+    var tag = document.createElement('span'); tag.className = 'pc-tag'; tag.textContent = p.tag; media.appendChild(tag);
+    var body = document.createElement('div'); body.className = 'pc-body';
+    var h = document.createElement('h3'); h.className = 'pc-title'; h.textContent = p.name;
+    var d = document.createElement('p'); d.className = 'pc-desc'; d.textContent = p.desc;
+    var pr = document.createElement('p'); pr.className = 'pc-price'; pr.innerHTML = money(price(p)) + ' <small>' + (p.weekly ? 'per week' : (p.crates > 1 ? p.crates + ' × ' + money(KRATE.pricePerCrate) : 'per crate')) + '</small>';
+    var row = document.createElement('div'); row.className = 'pc-row';
+    var qty = document.createElement('div'); qty.className = 'qty'; qty.setAttribute('role', 'group'); qty.setAttribute('aria-label', p.name + ' quantity');
+    var minus = document.createElement('button'); minus.type = 'button'; minus.textContent = '−'; minus.setAttribute('aria-label', 'One fewer');
+    var out = document.createElement('output'); out.textContent = '1';
+    var plus = document.createElement('button'); plus.type = 'button'; plus.textContent = '+'; plus.setAttribute('aria-label', 'One more');
+    minus.onclick = function () { q = Math.max(1, q - 1); out.textContent = q; };
+    plus.onclick = function () { q = Math.min(50, q + 1); out.textContent = q; };
+    qty.append(minus, out, plus);
+    var add = document.createElement('button'); add.type = 'button'; add.className = 'add'; add.textContent = 'Add to order';
+    add.onclick = function () {
+      cart[p.id] = (cart[p.id] || 0) + q; save(); render();
+      add.textContent = 'Added ✓'; add.classList.add('ok');
+      setTimeout(function () { add.textContent = 'Add to order'; add.classList.remove('ok'); }, 1300);
+    };
+    row.append(qty, add);
+    body.append(h, d, pr, row);
+    card.append(media, body);
+    grid.appendChild(card);
+  });
+
+  // summary
+  var lines = document.getElementById('lines'), total = document.getElementById('total');
+  function render() {
+    lines.innerHTML = '';
+    var sum = 0, crates = 0, any = false;
+    products.forEach(function (p) {
+      var n = cart[p.id]; if (!n) return; any = true;
+      sum += n * price(p); crates += n * p.crates;
+      var l = document.createElement('div'); l.className = 'line';
+      var im = document.createElement('img'); im.src = p.img[0]; im.alt = '';
+      var li = document.createElement('div'); li.className = 'li';
+      li.innerHTML = '<strong></strong><span></span>';
+      li.firstChild.textContent = p.name + (p.weekly ? ' (weekly)' : '');
+      li.lastChild.textContent = money(n * price(p));
+      var q = document.createElement('div'); q.className = 'qty';
+      var a = document.createElement('button'); a.type = 'button'; a.textContent = '−'; a.setAttribute('aria-label', 'Remove one ' + p.name);
+      var o = document.createElement('output'); o.textContent = n;
+      var b = document.createElement('button'); b.type = 'button'; b.textContent = '+'; b.setAttribute('aria-label', 'Add one ' + p.name);
+      a.onclick = function () { cart[p.id] = Math.max(0, n - 1); if (!cart[p.id]) delete cart[p.id]; save(); render(); };
+      b.onclick = function () { cart[p.id] = n + 1; save(); render(); };
+      q.append(a, o, b); l.append(im, li, q); lines.appendChild(l);
+    });
+    if (!any) { var e = document.createElement('p'); e.className = 'empty'; e.textContent = 'Nothing yet. Add a crate to start your order.'; lines.appendChild(e); }
+    total.textContent = money(sum);
+    var count = Object.keys(cart).reduce(function (s, k) { return s + cart[k]; }, 0);
+    document.getElementById('hCount').textContent = count;
+    var bar = document.getElementById('bar'); bar.hidden = !any;
+    document.getElementById('barText').textContent = crates + ' crate' + (crates === 1 ? '' : 's') + ' · ' + money(sum);
+    document.getElementById('st1').className = 'on';
+    document.getElementById('st2').className = any ? 'on' : '';
+  }
+
+  // checkout
+  var co = document.getElementById('co');
+  co.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var any = Object.keys(cart).length > 0, ok = any;
+    co.querySelectorAll('[required]').forEach(function (f) { var bad = !f.value.trim(); f.classList.toggle('bad', bad); f.setAttribute('aria-invalid', bad); if (bad) ok = false; });
+    document.getElementById('err').hidden = ok;
+    if (!ok) { var first = co.querySelector('.bad'); if (first) first.focus(); return; }
+    var f = co.elements, msg = ['Hello Krate! I’d like to order:'], sum = 0;
+    products.forEach(function (p) { var n = cart[p.id]; if (!n) return; sum += n * price(p); msg.push('• ' + n + ' × ' + p.name + ' (' + p.tag + ')' + ' = ' + money(n * price(p))); });
+    msg.push('Total: ' + money(sum), '', 'Name: ' + f.name.value, 'Phone: ' + f.phone.value, 'Address: ' + f.address.value);
+    if (f.when.value) msg.push('Delivery: ' + f.when.value);
+    var a = document.createElement('a'); a.href = 'https://wa.me/' + KRATE.whatsapp + '?text=' + encodeURIComponent(msg.join('\n')); a.target = '_blank'; a.rel = 'noopener';
+    document.body.appendChild(a); a.click(); a.remove();
+    document.getElementById('st3').className = 'on';
+    document.getElementById('done').hidden = false;
+  });
+  render();
+})();
+</script>
+</body>
+</html>

@@ -192,8 +192,8 @@
 #eggs h2{font-size:25vw!important}
 #eggs [style*="width: min(300px, 44vw)"]{width:36vw!important}
 #eggs .k-rev[style*="width: 200px"]{display:none!important}
-#eggs a[href="#shop"].k-hover{width:24vw!important;height:24vw!important;right:2%!important;top:-6%!important}
-#eggs a[href="#shop"].k-hover span:first-child{font-size:4vw!important}
+#eggs a[href="shop.html"].k-hover{width:24vw!important;height:24vw!important;right:2%!important;top:-6%!important}
+#eggs a[href="shop.html"].k-hover span:first-child{font-size:4vw!important}
 #eggs [style*="flex: 0 1 230px"]{order:1!important;flex:1 1 100%!important;padding:0!important;align-self:auto!important}
 #eggs [role="tablist"]{flex-direction:row!important;flex-wrap:wrap}
 #eggs [style*="order: 3"]{order:2!important;flex-direction:row!important;flex-wrap:wrap;justify-content:center;width:100%}
@@ -212,6 +212,60 @@ footer nav a{font-size:20px!important}
 .s-add{font-size:14px;white-space:nowrap;padding:0 18px}
 .s-body{padding:22px}
 .s-title{font-size:32px}
+}
+/* ---- calmer overall ---- */
+.k-paper{opacity:.14!important}
+
+/* ---- homepage shop teaser ---- */
+.t-shop{position:relative;z-index:2;overflow:hidden;background:#f6eceb;color:#014621;padding:9vw 4vw 12vw;border-radius:0 0 50% 50% / 0 0 7vw 7vw}
+.t-wrap{position:relative;max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:4vw}
+.t-copy{flex:1 1 420px;min-width:0}
+.t-tag{background:#014621;color:#5bc20f}
+.t-tag span{background:#5bc20f}
+.t-h2{margin:1.4vw 0 0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(54px,8.4vw,140px);line-height:.88;text-transform:uppercase}
+.t-lede{max-width:460px;margin:1.6vw 0 0;font-size:clamp(16px,1.35vw,20px);line-height:1.5;color:#191718}
+.t-actions{margin-top:2.4vw;display:flex;flex-wrap:wrap;align-items:center;gap:20px}
+.t-btn{display:inline-flex;align-items:center;min-height:58px;padding:0 30px;border-radius:999px;background:#f53509;color:#191718;font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;transition:transform .25s cubic-bezier(.2,.9,.25,1.5)}
+.t-btn:hover{transform:translateY(-3px) rotate(-1deg);color:#191718}
+.t-link{font-weight:700;color:#014621;text-underline-offset:4px}
+.t-product{position:relative;flex:1 1 360px;max-width:560px;aspect-ratio:1;display:grid;place-items:center;text-decoration:none}
+.t-disc{position:absolute;inset:7%;border-radius:50%;background:#f53509}
+.t-product img{position:relative;width:76%;height:auto;rotate:-8deg;filter:drop-shadow(0 26px 26px rgba(0,0,0,.32));transition:rotate .6s cubic-bezier(.2,.9,.25,1.4),scale .6s cubic-bezier(.2,.9,.25,1.4)}
+.t-product:hover img{rotate:0deg;scale:1.04}
+.t-badge{position:absolute;right:3%;top:5%;width:31%;aspect-ratio:1;border-radius:50%;background:#014621;color:#5bc20f;display:flex;flex-direction:column;align-items:center;justify-content:center;rotate:12deg;box-shadow:0 12px 24px rgba(0,0,0,.25)}
+.t-badge strong{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(20px,2.5vw,38px);line-height:1}
+.t-badge small{font-size:clamp(10px,.9vw,13px);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#f6eceb}
+
+/* ---- partners, restyled to match the top ---- */
+.p-sec{margin-top:-7vw;padding-top:15vw!important}
+.p-h2{color:#5bc20f}
+.p-form{position:relative;rotate:-1.2deg;border-radius:28px!important}
+.p-form::before{content:"";position:absolute;top:-16px;left:50%;width:140px;height:34px;translate:-50% 0;rotate:3deg;background:rgba(236,220,190,.88);box-shadow:0 2px 4px rgba(0,0,0,.12)}
+.p-form input,.p-form select,.p-form textarea{border-color:#e4d9d6!important;background:#fffdfc!important}
+.p-send{background:#5bc20f!important;color:#014621!important}
+.p-list li::before{background:#5bc20f!important}
+.p-photo{rotate:-6deg}
+
+/* ---- "let's get cracking" cards, calmer ---- */
+#order [style*="border-radius: 120px 120px 120px 30px"]{background:#f53509!important}
+
+/* ---- ribbon: keep the text on the band at every width ---- */
+@media (max-width: 743px){
+.k-ribbon{height:190px!important}
+}
+
+/* ---- phones: no dragging, the page just scrolls ---- */
+@media (max-width: 743px), (pointer: coarse){
+.k-drag{touch-action:auto!important;cursor:default!important}
+}
+@media (max-width: 743px){
+.t-shop{padding:16vw 6vw 22vw;border-radius:0 0 50% 50% / 0 0 12vw 12vw}
+.t-h2{margin-top:3vw}
+.t-lede{margin-top:3vw}
+.t-actions{margin-top:6vw}
+.t-product{margin-top:6vw}
+.p-sec{margin-top:-12vw;padding-top:26vw!important}
+.p-form{rotate:0deg}
 }
 </style></head>
 <body>
@@ -347,7 +401,7 @@ a{color:#014621}a:hover{color:#191718}
 <nav aria-label="Main" id="kNav" style="background: #f6eceb; padding: 18px 26px 10px; border-radius: 0 0 6px 6px; transition: box-shadow .4s">
 <a class="k-row" href="#about" data-close="1"><img class="k-row-thumb" src="img/card-nourish.webp" alt=""><span class="k-row-label">About</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
 <a class="k-row" href="#eggs" data-close="1"><img class="k-row-thumb" src="img/egg-tray.webp" alt="" style="background: #f53509"><span class="k-row-label">Our Eggs</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
-<a class="k-row" href="#shop" data-close="1"><img class="k-row-thumb" src="img/photo-fryup.webp" alt=""><span class="k-row-label">Shop</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
+<a class="k-row" href="shop.html" data-close="1"><img class="k-row-thumb" src="img/photo-fryup.webp" alt=""><span class="k-row-label">Shop</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
 <a class="k-row" href="#partners" data-close="1"><img class="k-row-thumb" src="img/card-partner.webp" alt=""><span class="k-row-label">Partners</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
 <a class="k-row" href="#contact" data-close="1" style="border-bottom: 0"><img class="k-row-thumb" src="img/card-deliver.webp" alt=""><span class="k-row-label">Contact</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
 </nav>
@@ -419,8 +473,7 @@ a{color:#014621}a:hover{color:#191718}
 <p class="k-rev" style="position: absolute; left: 9vw; top: 8vw; width: 37vw; margin: 0; font-family: 'Bagel Fat One', sans-serif; font-size: 5vw; line-height: 0.92; text-transform: uppercase; color: #6b4318">Sunday fry-up, birthday cake, busy kitchen, last-minute jollof. We’ve always got the eggs.</p>
 </div>
 </div>
-<!-- clear tape across the top of the cardboard -->
-<div aria-hidden="true" class="k-peel" style="position: absolute; left: 62vw; top: 70vw; width: 42vw; height: 7vw; z-index: 8; background: linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.32) 40%, rgba(255,255,255,0.16)); rotate: 2deg; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15)"></div>
+
 
 <!-- big fry-up print, bottom-left, bleeding off the edge -->
 <div class="k-drag k-rev" data-drag="print" style="position: absolute; left: -3vw; top: 106vw; width: 47vw; z-index: 5; ">
@@ -429,12 +482,6 @@ a{color:#014621}a:hover{color:#191718}
 <p style="position: absolute; left: 2vw; bottom: 0.8vw; margin: 0; font-family: 'Caveat', cursive; font-size: 2.4vw; color: #3b2a12">sunday, sorted.</p>
 <span aria-hidden="true" class="k-tape k-peel" style="top: -1.8vw; left: 21vw; width: 17vw; height: 4vw; rotate: 8deg"></span>
 </div>
-</div>
-
-<!-- handwritten note -->
-<div aria-hidden="true" style="position: absolute; left: 1.5vw; top: 99vw; width: 22vw; z-index: 6; rotate: -6deg">
-<p style="margin: 0; font-family: 'Caveat', cursive; font-size: 1.8vw; line-height: 1.05; color: #5bc20f">we’re here for everyday moments. not a factory — just real life.</p>
-<svg viewBox="0 0 120 40" fill="none" stroke="#5bc20f" stroke-width="2.4" stroke-linecap="round" style="display: block; width: 9vw; height: auto; margin-top: 0.4vw"><path d="M4 8c20 4 40 22 70 22 12 0 24-4 36-12"></path><path d="M100 10l10 8-12 4"></path></svg>
 </div>
 
 <!-- big Krate box, bottom-right (like their gift) -->
@@ -449,11 +496,11 @@ a{color:#014621}a:hover{color:#191718}
 </section>
 
 <!-- ================= 3. RIBBON ================= -->
-<div aria-hidden="true" style="position: relative; height: 300px; background: linear-gradient(#014621 0 50%, #f53509 50% 100%); margin-top: -1px">
-<svg viewBox="0 0 1440 300" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%">
+<div aria-hidden="true" class="k-ribbon" style="position: relative; height: 300px; background: linear-gradient(#014621 0 50%, #f53509 50% 100%); margin-top: -1px; overflow: hidden">
+<svg viewBox="0 0 1440 300" preserveAspectRatio="xMidYMid slice" style="position: absolute; inset: 0; width: 100%; height: 100%">
 <path d="M-200 250 C 300 120, 700 260, 1050 140 S 1500 40, 1700 70" fill="none" stroke="#5bc20f" stroke-width="120"></path>
 </svg>
-<svg viewBox="0 0 1440 300" style="position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible">
+<svg viewBox="0 0 1440 300" preserveAspectRatio="xMidYMid slice" style="position: absolute; inset: 0; width: 100%; height: 100%">
 <path id="kRibbonPath" d="M-200 250 C 300 120, 700 260, 1050 140 S 1500 40, 1700 70" fill="none"></path>
 <text style="font-family: 'Bagel Fat One', sans-serif; font-size: 62px; text-transform: uppercase" fill="#014621" dy="22"><textPath href="#kRibbonPath" startOffset="0">When life gets busy, we’ve got breakfast ✦ When life gets busy, we’ve got breakfast ✦ When life gets busy, we’ve got breakfast ✦ When life gets busy, we’ve got breakfast ✦<animate attributeName="startOffset" from="0" to="-1560" dur="18s" repeatCount="indefinite"></animate></textPath></text>
 </svg>
@@ -491,7 +538,7 @@ a{color:#014621}a:hover{color:#191718}
 <div class="k-hover k-rev" style="position: absolute; right: -2%; top: 34%; width: 200px; height: 200px; border-radius: 36px; overflow: hidden; transform: rotate(9deg); border: 5px solid #f6eceb; box-shadow: 0 20px 34px rgba(0,0,0,0.35); z-index: 3">
 <img src="img/card-protect.webp" alt="A tray of 30 Krate jumbo eggs" style="display: block; width: 100%; height: 100%; object-fit: cover">
 </div>
-<a href="#shop" class="k-hover" style="position: absolute; right: 16%; top: 2%; width: 130px; height: 130px; border-radius: 50%; background: #f6eceb; border: 3px dashed #014621; outline: 6px solid #f6eceb; display: flex; align-items: center; justify-content: center; gap: 4px; flex-direction: column; text-decoration: none; transform: rotate(-10deg); box-shadow: 0 16px 26px rgba(0,0,0,0.3); z-index: 4">
+<a href="shop.html" class="k-hover" style="position: absolute; right: 16%; top: 2%; width: 130px; height: 130px; border-radius: 50%; background: #f6eceb; border: 3px dashed #014621; outline: 6px solid #f6eceb; display: flex; align-items: center; justify-content: center; gap: 4px; flex-direction: column; text-decoration: none; transform: rotate(-10deg); box-shadow: 0 16px 26px rgba(0,0,0,0.3); z-index: 4">
 <span style="font-family: 'Bagel Fat One', sans-serif; font-size: 22px; text-transform: uppercase; color: #014621">Explore</span>
 <span aria-hidden="true" style="width: 26px; height: 26px; border-radius: 50%; background: #1e9207; color: #f6eceb; display: flex; align-items: center; justify-content: center; font-weight: 700">↗</span>
 </a>
@@ -525,7 +572,6 @@ a{color:#014621}a:hover{color:#191718}
 <div class="g-row" data-row="0">
 <p class="g-giant" aria-label="To nourish"><span aria-hidden="true">To</span><span class="g-slot" style="--tilt: -6deg"><img class="g-card" src="img/card-nourish.webp" alt="A Krate jumbo egg cracked open, with a bright orange yolk"><span aria-hidden="true" class="g-tape"></span></span><span aria-hidden="true">Nourish</span></p>
 <img aria-hidden="true" class="g-prop" data-depth="1.6" src="img/egg-brown.webp" alt="" style="left: 58%; top: 62%; width: .43em; rotate: 14deg">
-<img aria-hidden="true" class="g-prop" data-depth="2.2" src="img/egg-cracked.webp" alt="" style="left: 82%; top: -14%; width: .5em; rotate: -10deg">
 <p class="g-note" style="left: 22%; top: 104%">big yolks for big mornings<br>&amp; growing kids ↗</p>
 </div>
 <svg aria-hidden="true" class="g-arrow" data-arrow="0" viewBox="0 0 260 170" fill="none"><path d="M6 10 C 70 20, 150 60, 236 150" pathLength="1"></path><path d="M214 150 L 238 152 L 232 128" pathLength="1"></path></svg>
@@ -534,7 +580,6 @@ a{color:#014621}a:hover{color:#191718}
 <div class="g-row" data-row="1">
 <p class="g-giant" aria-label="To protect"><span aria-hidden="true">To</span><span class="g-slot" style="--tilt: 7deg"><img class="g-card" src="img/card-protect.webp" alt="A full tray of 30 Krate jumbo eggs"><span aria-hidden="true" class="g-tape"></span></span><span aria-hidden="true">Protect</span></p>
 <img aria-hidden="true" class="g-prop" data-depth="1.8" src="img/egg-tray.webp" alt="" style="left: 66%; top: 70%; width: .67em; rotate: -8deg">
-<img aria-hidden="true" class="g-prop" data-depth="1.3" src="img/egg-white.webp" alt="" style="left: 40%; top: -18%; width: .33em; rotate: 18deg">
 <p class="g-note" style="left: 30%; top: 104%">packed snug, so what leaves<br>our farm whole arrives whole</p>
 </div>
 <svg aria-hidden="true" class="g-arrow" data-arrow="1" viewBox="0 0 260 170" fill="none"><path d="M6 160 C 80 150, 160 110, 236 20" pathLength="1"></path><path d="M212 26 L 238 18 L 240 44" pathLength="1"></path></svg>
@@ -543,60 +588,32 @@ a{color:#014621}a:hover{color:#191718}
 <div class="g-row" data-row="2">
 <p class="g-giant" aria-label="To deliver"><span aria-hidden="true">To</span><span class="g-slot" style="--tilt: -5deg"><img class="g-card" src="img/card-deliver.webp" alt="A white and a brown Krate jumbo egg"><span aria-hidden="true" class="g-tape"></span></span><span aria-hidden="true">Deliver</span></p>
 <img aria-hidden="true" class="g-prop" data-depth="1.7" src="img/egg-brown.webp" alt="" style="left: 50%; top: 66%; width: .4em; rotate: -16deg">
-<div aria-hidden="true" class="g-prop g-shot" data-depth="2.1" style="left: 80%; top: -16%; width: .57em; rotate: 8deg"><img src="img/card-bake.webp" alt=""><span class="g-tape"></span></div>
 <p class="g-note" style="left: 18%; top: 104%">from our farm to your market,<br>shop &amp; front door →</p>
 </div>
 
 </div>
 </div>
 </section>
-<!-- ================= SHOP ================= -->
-<section id="shop" class="s-shop" aria-label="Shop">
+<!-- ================= SHOP TEASER (homepage) ================= -->
+<section id="shop" class="t-shop" aria-label="Shop">
 <div aria-hidden="true" class="k-paper"></div>
-<div class="s-wrap">
-<p class="g-tag s-tag"><span aria-hidden="true"></span>Shop</p>
-<h2 class="s-h2">Get a Krate<br>delivered.</h2>
-<p class="s-lede">30 fresh jumbo eggs per crate, straight from our farm. Pick how many, and we’ll bring them to your door.</p>
-
-<div class="s-grid">
-<!-- product card -->
-<article class="s-card" aria-labelledby="sKrateTitle">
-<div class="s-media">
-<img src="img/egg-tray.webp" alt="A full tray of 30 Krate jumbo eggs">
-<span class="s-badge">30 jumbo eggs</span>
-</div>
-<div class="s-body">
-<h3 id="sKrateTitle" class="s-title">The Krate</h3>
-<p class="s-desc">One crate of 30 fresh jumbo eggs, packed to reduce breakage.</p>
-<p class="s-price"><span data-price-each>[YOUR PRICE]</span><small> per crate</small></p>
-<fieldset class="s-packs">
-<legend>How many crates?</legend>
-<button type="button" class="s-pack" data-pack="1" aria-pressed="true">1 crate</button>
-<button type="button" class="s-pack" data-pack="3" aria-pressed="false">3 crates</button>
-<button type="button" class="s-pack" data-pack="5" aria-pressed="false">5 crates</button>
-</fieldset>
-<div class="s-row">
-<div class="s-qty" role="group" aria-label="Quantity">
-<button type="button" data-qty="-1" aria-label="One fewer crate">−</button>
-<output id="sQty" aria-live="polite">1</output>
-<button type="button" data-qty="1" aria-label="One more crate">+</button>
-</div>
-<button type="button" class="s-add" id="sAdd">Add to cart</button>
+<div class="t-wrap">
+<div class="t-copy">
+<p class="g-tag t-tag"><span aria-hidden="true"></span>Shop</p>
+<h2 class="t-h2 t-split">Get a Krate<br>delivered.</h2>
+<p class="t-lede">30 fresh jumbo eggs per crate, straight from our farm to your door. Pay on delivery.</p>
+<div class="t-actions">
+<a class="t-btn" href="shop.html">Shop now →</a>
+<a class="t-link" href="#partners">Buying for a business?</a>
 </div>
 </div>
-</article>
-
-<!-- why buy -->
-<div class="s-side">
-<div class="s-perk"><strong>Farm direct</strong><span>No middlemen. Eggs go from our farm to you.</span></div>
-<div class="s-perk"><strong>Packed snug</strong><span>Crates built to reduce breakage on the road.</span></div>
-<div class="s-perk"><strong>Pay on delivery</strong><span>Order on WhatsApp, pay when it arrives. Online payment coming soon.</span></div>
-<div class="s-perk s-perk-b2b"><strong>Buying for a business?</strong><span>Supermarkets, restaurants and hotels get steady weekly supply.</span><a href="#partners">Partner with us →</a></div>
-</div>
-</div>
+<a class="t-product" href="shop.html" aria-label="The Krate, 30 jumbo eggs. Go to the shop">
+<span class="t-disc" aria-hidden="true"></span>
+<img src="img/egg-tray.webp" alt="">
+<span class="t-badge"><strong data-price-each>₦7,500</strong><small>per crate</small></span>
+</a>
 </div>
 </section>
-
 <!-- ================= PARTNERS (B2B) ================= -->
 <section id="partners" class="p-sec" aria-label="Partner with Krate">
 <div aria-hidden="true" class="k-paper"></div>
@@ -666,27 +683,6 @@ a{color:#014621}a:hover{color:#191718}
 </div>
 </section>
 
-<!-- ================= CART ================= -->
-<button type="button" class="c-fab" id="cOpen" aria-label="Open cart" hidden>
-<svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"></path><circle cx="10" cy="20" r="1.4"></circle><circle cx="17" cy="20" r="1.4"></circle></svg>
-<span class="c-count" id="cCount">0</span>
-</button>
-<div class="c-scrim" id="cScrim" hidden></div>
-<aside class="c-drawer" id="cDrawer" aria-label="Your cart" aria-hidden="true">
-<div class="c-head"><h3>Your Krate cart</h3><button type="button" class="c-close" id="cClose" aria-label="Close cart">×</button></div>
-<div class="c-items" id="cItems"></div>
-<div class="c-total"><span>Subtotal</span><strong id="cSubtotal">—</strong></div>
-<p class="c-note">Delivery fee confirmed on WhatsApp. Pay on delivery.</p>
-<form class="c-form" id="cForm" novalidate>
-<label>Full name<input name="name" required autocomplete="name"></label>
-<label>Phone / WhatsApp<input name="phone" type="tel" required autocomplete="tel"></label>
-<label>Delivery address<textarea name="address" rows="2" required autocomplete="street-address"></textarea></label>
-<label>Preferred delivery day<input name="when" placeholder="e.g. Saturday morning"></label>
-<p class="p-error" id="cError" role="alert" hidden>Please fill in your name, phone and address.</p>
-<button type="submit" class="c-checkout">Place order on WhatsApp</button>
-<p class="p-done" id="cDone" hidden>Your order is ready in WhatsApp. Press send and we’ll confirm delivery and the total.</p>
-</form>
-</aside>
 <!-- ================= 6. CTA CARDS ================= -->
 <section id="order" style="position: relative; overflow: hidden; background: #5bc20f; padding: 0 32px 120px">
 <div aria-hidden="true" class="k-paper"></div>
@@ -698,7 +694,7 @@ a{color:#014621}a:hover{color:#191718}
 <div class="k-rev" style="position: relative; flex: 1 1 440px; min-width: 0; aspect-ratio: 1 / 0.95; border-radius: 120px 120px 30px 120px; background: #014621; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; padding: 40px; text-align: center">
 <h2 style="margin: 0; font-family: 'Bagel Fat One', sans-serif; font-weight: 400; font-size: clamp(56px, 6.4vw, 104px); line-height: 0.95; text-transform: uppercase; color: #5bc20f">Let’s get<br>cracking!</h2>
 <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center">
-<a class="k-nav" href="#shop" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; border-radius: 999px; background: #5bc20f; color: #014621; font-weight: 700; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase">Shop now</a>
+<a class="k-nav" href="shop.html" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; border-radius: 999px; background: #5bc20f; color: #014621; font-weight: 700; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase">Shop now</a>
 <a class="k-nav" href="#partners" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; border-radius: 999px; border: 2px solid #f6eceb; color: #f6eceb; font-weight: 700; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase">For businesses</a>
 </div>
 <p style="margin: 0; font-size: 15px; color: #f6eceb">For every kind of hungry.</p>
@@ -718,7 +714,7 @@ a{color:#014621}a:hover{color:#191718}
 <nav aria-label="Footer" style="width: 100%; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 32px">
 <a class="k-nav" href="#eggs" style="display: flex; flex-direction: column; align-items: center; gap: 8px; font-family: 'Bagel Fat One', sans-serif; font-size: 26px; text-transform: uppercase; color: #5bc20f">Our Eggs<span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: #5bc20f"></span></a>
 <a class="k-nav" href="#about" style="display: flex; flex-direction: column; align-items: center; gap: 8px; font-family: 'Bagel Fat One', sans-serif; font-size: 26px; text-transform: uppercase; color: #5bc20f">About<span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: #5bc20f"></span></a>
-<a class="k-nav" href="#shop" style="display: flex; flex-direction: column; align-items: center; gap: 8px; font-family: 'Bagel Fat One', sans-serif; font-size: 26px; text-transform: uppercase; color: #5bc20f">Shop<span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: #5bc20f"></span></a>
+<a class="k-nav" href="shop.html" style="display: flex; flex-direction: column; align-items: center; gap: 8px; font-family: 'Bagel Fat One', sans-serif; font-size: 26px; text-transform: uppercase; color: #5bc20f">Shop<span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: #5bc20f"></span></a>
 <a class="k-nav" href="#partners" style="display: flex; flex-direction: column; align-items: center; gap: 8px; font-family: 'Bagel Fat One', sans-serif; font-size: 26px; text-transform: uppercase; color: #5bc20f">Partners<span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: #5bc20f"></span></a>
 </nav>
 
@@ -784,6 +780,7 @@ a{color:#014621}a:hover{color:#191718}
   document.querySelectorAll('[data-drag]').forEach(function (el) {
     el.addEventListener('pointerdown', function (e) {
       if (e.button !== 0) return;
+      if (window.matchMedia('(max-width: 743px), (pointer: coarse)').matches) return;
       e.preventDefault();
       var p = (el.dataset.pos || '0,0').split(',').map(Number);
       drag = { el: el, sx: e.clientX, sy: e.clientY, ox: p[0], oy: p[1] };
@@ -1091,67 +1088,14 @@ a{color:#014621}a:hover{color:#191718}
   window.addEventListener('load', layout);
 })();
 
-/* ===== Krate shop + partner enquiries =====
-   Edit these to go live: */
+/* Homepage: partner enquiries + section reveals. Edit to go live: */
 var KRATE = {
-  pricePerCrate: 7500,         // placeholder price per crate of 30 — change to your real price (0 = "Price on WhatsApp")
-  currency: '₦',
-  whatsapp: '234XXXXXXXXXX',   // your WhatsApp number in international format, no + or spaces
-  email: 'hello@krate.example' // where business enquiries go by email
+  whatsapp: '234XXXXXXXXXX',    // your WhatsApp number, international format, no + or spaces
+  email: 'hello@krate.example'  // where business enquiries go by email
 };
-
 (function () {
-  function money(n) { return KRATE.currency + Math.round(n).toLocaleString('en-NG'); }
   function wa(text) { return 'https://wa.me/' + KRATE.whatsapp + '?text=' + encodeURIComponent(text); }
   function openLink(url) { var a = document.createElement('a'); a.href = url; a.target = '_blank'; a.rel = 'noopener'; document.body.appendChild(a); a.click(); a.remove(); }
-
-  // price label
-  document.querySelectorAll('[data-price-each]').forEach(function (el) {
-    el.textContent = KRATE.pricePerCrate ? money(KRATE.pricePerCrate) : 'Price on WhatsApp';
-  });
-
-  // ---- product picker ----
-  var qty = 1, qtyEl = document.getElementById('sQty');
-  function setQty(n) { qty = Math.max(1, Math.min(99, n)); qtyEl.textContent = qty;
-    document.querySelectorAll('.s-pack').forEach(function (b) { b.setAttribute('aria-pressed', +b.dataset.pack === qty ? 'true' : 'false'); }); }
-  document.querySelectorAll('.s-pack').forEach(function (b) { b.addEventListener('click', function () { setQty(+b.dataset.pack); }); });
-  document.querySelectorAll('.s-card [data-qty]').forEach(function (b) { b.addEventListener('click', function () { setQty(qty + (+b.dataset.qty)); }); });
-
-  // ---- cart ----
-  var cart = 0; // crates
-  try { cart = +(localStorage.getItem('krateCart') || 0) || 0; } catch (e) {}
-  var fab = document.getElementById('cOpen'), count = document.getElementById('cCount');
-  var drawer = document.getElementById('cDrawer'), scrim = document.getElementById('cScrim');
-  var items = document.getElementById('cItems'), sub = document.getElementById('cSubtotal');
-
-  function save() { try { localStorage.setItem('krateCart', String(cart)); } catch (e) {} }
-  function render() {
-    count.textContent = cart;
-    fab.hidden = cart === 0;
-    if (!cart) { items.innerHTML = '<p class="c-empty">Your cart is empty.</p>'; sub.textContent = '—'; return; }
-    items.innerHTML = '<div class="c-item"><img src="img/egg-tray.webp" alt=""><div class="c-info"><strong>The Krate · 30 jumbo eggs</strong><span>' +
-      (KRATE.pricePerCrate ? money(KRATE.pricePerCrate) + ' each' : 'Price confirmed on WhatsApp') + '</span></div>' +
-      '<div class="s-qty" role="group" aria-label="Crates in cart"><button type="button" data-c="-1" aria-label="Remove one crate">−</button><output aria-live="polite">' + cart + '</output><button type="button" data-c="1" aria-label="Add one crate">+</button></div></div>';
-    sub.textContent = KRATE.pricePerCrate ? money(cart * KRATE.pricePerCrate) : cart + ' crate' + (cart > 1 ? 's' : '');
-    items.querySelectorAll('[data-c]').forEach(function (b) { b.addEventListener('click', function () { cart = Math.max(0, cart + (+b.dataset.c)); save(); render(); if (!cart) close(); }); });
-  }
-  function open() { drawer.classList.add('open'); drawer.setAttribute('aria-hidden', 'false'); scrim.hidden = false; document.getElementById('cClose').focus(); }
-  function close() { drawer.classList.remove('open'); drawer.setAttribute('aria-hidden', 'true'); scrim.hidden = true; }
-  fab.addEventListener('click', open);
-  document.getElementById('cClose').addEventListener('click', close);
-  scrim.addEventListener('click', close);
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && drawer.classList.contains('open')) close(); });
-
-  var add = document.getElementById('sAdd');
-  add.addEventListener('click', function () {
-    cart += qty; save(); render();
-    add.textContent = 'Added ✓'; add.classList.add('is-added');
-    fab.classList.remove('bump'); void fab.offsetWidth; fab.classList.add('bump');
-    setTimeout(function () { add.textContent = 'Add to cart'; add.classList.remove('is-added'); }, 1400);
-    setTimeout(open, 350);
-  });
-
-  // ---- shared validation ----
   function check(form, errEl) {
     var ok = true;
     form.querySelectorAll('[required]').forEach(function (f) {
@@ -1163,45 +1107,56 @@ var KRATE = {
     if (!ok) { var first = form.querySelector('.is-bad'); if (first) first.focus(); }
     return ok;
   }
-
-  // ---- checkout → WhatsApp ----
-  var cForm = document.getElementById('cForm');
-  cForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (!cart || !check(cForm, document.getElementById('cError'))) return;
-    var f = cForm.elements;
-    var lines = ['Hello Krate! I’d like to order:', '• ' + cart + ' × The Krate (30 jumbo eggs)'];
-    if (KRATE.pricePerCrate) lines.push('Subtotal: ' + money(cart * KRATE.pricePerCrate));
-    lines.push('', 'Name: ' + f.name.value, 'Phone: ' + f.phone.value, 'Address: ' + f.address.value);
-    if (f.when.value) lines.push('Delivery: ' + f.when.value);
-    openLink(wa(lines.join('\n')));
-    document.getElementById('cDone').hidden = false;
-  });
-
-  // ---- partner enquiry → WhatsApp or email ----
   var pForm = document.getElementById('pForm');
-  function enquiry() {
-    var f = pForm.elements;
-    return ['New partnership enquiry for Krate',
-      'Business: ' + f.business.value + ' (' + f.type.value + ')',
-      'Contact: ' + f.name.value + ', ' + f.phone.value + (f.email.value ? ', ' + f.email.value : ''),
-      'Location: ' + f.city.value,
-      'Volume: ' + f.volume.value + ', ' + f.frequency.value,
-      f.notes.value ? 'Notes: ' + f.notes.value : ''].filter(Boolean).join('\n');
+  if (pForm) {
+    var enquiry = function () {
+      var f = pForm.elements;
+      return ['New partnership enquiry for Krate',
+        'Business: ' + f.business.value + ' (' + f.type.value + ')',
+        'Contact: ' + f.name.value + ', ' + f.phone.value + (f.email.value ? ', ' + f.email.value : ''),
+        'Location: ' + f.city.value,
+        'Volume: ' + f.volume.value + ', ' + f.frequency.value,
+        f.notes.value ? 'Notes: ' + f.notes.value : ''].filter(Boolean).join('\n');
+    };
+    pForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!check(pForm, document.getElementById('pError'))) return;
+      openLink(wa(enquiry()));
+      document.getElementById('pDone').hidden = false;
+    });
+    document.getElementById('pMail').addEventListener('click', function () {
+      if (!check(pForm, document.getElementById('pError'))) return;
+      openLink('mailto:' + KRATE.email + '?subject=' + encodeURIComponent('Partnership enquiry: ' + pForm.elements.business.value) + '&body=' + encodeURIComponent(enquiry()));
+      document.getElementById('pDone').hidden = false;
+    });
   }
-  pForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (!check(pForm, document.getElementById('pError'))) return;
-    openLink(wa(enquiry()));
-    document.getElementById('pDone').hidden = false;
-  });
-  document.getElementById('pMail').addEventListener('click', function () {
-    if (!check(pForm, document.getElementById('pError'))) return;
-    openLink('mailto:' + KRATE.email + '?subject=' + encodeURIComponent('Partnership enquiry: ' + pForm.elements.business.value) + '&body=' + encodeURIComponent(enquiry()));
-    document.getElementById('pDone').hidden = false;
-  });
 
-  render();
+  // big headings below the board slide up letter by letter when they scroll in
+  var heads = [].slice.call(document.querySelectorAll('.t-split'));
+  heads.forEach(function (el) {
+    var i = 0, walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null), nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      if (!n.nodeValue.trim()) return;
+      var frag = document.createDocumentFragment();
+      n.nodeValue.split(/(\s+)/).forEach(function (word) {
+        if (!word) return;
+        if (/^\s+$/.test(word)) { frag.appendChild(document.createTextNode(' ')); return; }
+        var w = document.createElement('span'); w.style.cssText = 'display:inline-block;white-space:nowrap';
+        word.split('').forEach(function (ch) {
+          var o = document.createElement('span'); o.className = 'gl';
+          var c = document.createElement('span'); c.className = 'gc'; c.style.setProperty('--i', i++); c.textContent = ch;
+          o.appendChild(c); w.appendChild(o);
+        });
+        frag.appendChild(w);
+      });
+      n.parentNode.replaceChild(frag, n);
+    });
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('live'); io.unobserve(e.target); } }); }, { threshold: 0.35 });
+    heads.forEach(function (h) { io.observe(h); });
+  } else { heads.forEach(function (h) { h.classList.add('live'); }); }
 })();
 </script>
 </body>
