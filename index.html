@@ -303,6 +303,45 @@ footer nav a{font-size:20px!important}
  .hs-chips{flex-wrap:nowrap;gap:6px}
  .hs-chips button{padding:0 13px;font-size:13px}
 }
+
+/* ---- calm bottom: partners + footer ---- */
+.b-sec{position:relative;z-index:1;overflow:hidden;background:#014621;color:#f6eceb;margin-top:-7vw;padding:15vw 4vw 8vw}
+.b-wrap{position:relative;max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:5vw}
+.b-copy{flex:1 1 420px;min-width:0}
+.b-tag{background:#5bc20f;color:#014621}
+.b-tag span{background:#014621}
+.b-h2{margin:1.4vw 0 0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(54px,8.4vw,140px);line-height:.88;text-transform:uppercase;color:#5bc20f}
+.b-lede{max-width:440px;margin:1.6vw 0 0;font-size:clamp(16px,1.3vw,19px);line-height:1.5}
+.b-ticks{list-style:none;margin:24px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.b-ticks li{padding:8px 16px;border:1.5px solid rgba(246,236,235,.45);border-radius:999px;font-size:14px;font-weight:700}
+.b-form{flex:1 1 380px;max-width:500px;display:grid;gap:14px;padding:30px;border-radius:28px;background:#f6eceb;color:#191718}
+.b-form label{display:grid;gap:6px;font-size:14px;font-weight:700;color:#014621}
+.b-form input,.b-form select{min-height:50px;padding:0 14px;border:1.5px solid rgba(1,70,33,.25);border-radius:12px;background:#fff;font:400 16px 'Inter Tight',sans-serif;color:#191718}
+.b-form :focus-visible{outline:3px solid #f53509;outline-offset:1px}
+.b-send{min-height:56px;border:0;border-radius:999px;background:#5bc20f;color:#014621;font:700 15px 'Inter Tight',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:transform .25s cubic-bezier(.2,.9,.25,1.5)}
+.b-send:hover{transform:translateY(-2px)}
+.f-sec{position:relative;overflow:hidden;background:#014621;color:#f6eceb;padding:0 4vw 34px}
+.f-wrap{position:relative;max-width:1200px;margin:0 auto;padding-top:7vw;border-top:1.5px solid rgba(246,236,235,.18);display:flex;flex-direction:column;align-items:center;text-align:center}
+.f-logo{color:#f6eceb}
+.f-logo svg{display:block;width:120px;height:auto}
+.f-big{margin:22px 0 0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(48px,8vw,128px);line-height:.92;text-transform:uppercase;color:#5bc20f}
+.f-nav{margin-top:40px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 34px}
+.f-nav a{color:#f6eceb;font-weight:700;font-size:15px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+.f-nav a:hover{color:#5bc20f}
+.f-social{margin-top:26px;display:flex;gap:12px}
+.f-social a{width:48px;height:48px;border-radius:50%;background:#5bc20f;color:#014621;display:grid;place-items:center;transition:transform .25s cubic-bezier(.2,.9,.25,1.5)}
+.f-social a:hover{transform:translateY(-3px)}
+.f-meta{margin:34px 0 0;font-size:14px;opacity:.85}
+.f-small{margin-top:6px;font-size:12px;opacity:.65}
+@media (max-width:743px){
+ .b-sec{margin-top:-12vw;padding:24vw 6vw 14vw}
+ .b-h2{margin-top:3vw}
+ .b-lede{margin-top:3vw}
+ .b-form{padding:22px}
+ .f-wrap{padding-top:14vw}
+ .f-nav{gap:10px 22px}
+}
+@media (max-width:743px){.f-big{font-size:14vw}.f-social a{width:52px!important;height:52px!important}}
 </style></head>
 <body>
 
@@ -688,134 +727,45 @@ a{color:#014621}a:hover{color:#191718}
 </form>
 </aside>
 <!-- ================= PARTNERS (B2B) ================= -->
-<section id="partners" class="p-sec" aria-label="Partner with Krate">
+<section id="partners" class="b-sec" aria-labelledby="pTitle">
 <div aria-hidden="true" class="k-paper"></div>
-<div class="p-wrap">
-<div class="p-left">
-<p class="g-tag p-tag"><span aria-hidden="true"></span>For business</p>
-<h2 class="p-h2">Stock<br>Krate.</h2>
-<p class="p-lede">Supermarkets, restaurants, hotels, bakeries and caterers: get a steady supply of jumbo eggs, straight from our farm.</p>
-<ul class="p-list">
-<li><strong>Weekly supply</strong> on a schedule that fits your shelves or kitchen.</li>
-<li><strong>Consistent jumbo size</strong>, crate after crate.</li>
-<li><strong>Branded Krate crates</strong> that stack, travel well and look good on shelf.</li>
-<li><strong>Farm-direct pricing</strong> for regular orders.</li>
+<div class="b-wrap">
+<div class="b-copy">
+<p class="g-tag b-tag"><span aria-hidden="true"></span>For business</p>
+<h2 id="pTitle" class="b-h2 t-split">Stock<br>Krate.</h2>
+<p class="b-lede">Supermarkets, restaurants, hotels and caterers: get a steady supply of jumbo eggs, straight from our farm.</p>
+<ul class="b-ticks">
+<li>Regular delivery</li><li>Consistent jumbo size</li><li>Farm-direct pricing</li>
 </ul>
-<div class="p-photo"><img src="img/card-partner.webp" alt="Trays of Krate jumbo eggs ready for stores"><span aria-hidden="true" class="g-tape"></span></div>
 </div>
-
-<form class="p-form" id="pForm" novalidate>
-<h3 class="p-formtitle">Partner with us</h3>
-<div class="p-two">
+<form class="b-form" id="pForm" novalidate>
 <label>Business name<input name="business" required autocomplete="organization"></label>
-<label>Business type
-<select name="type" required>
-<option value="">Choose one</option>
-<option>Supermarket / grocery store</option>
-<option>Restaurant / fast food</option>
-<option>Hotel</option>
-<option>Bakery</option>
-<option>Caterer / events</option>
-<option>Distributor / retailer</option>
-<option>Other</option>
-</select></label>
-</div>
-<div class="p-two">
 <label>Your name<input name="name" required autocomplete="name"></label>
 <label>Phone / WhatsApp<input name="phone" type="tel" required autocomplete="tel"></label>
-</div>
-<div class="p-two">
-<label>Email<input name="email" type="email" autocomplete="email"></label>
-<label>City / area<input name="city" required autocomplete="address-level2"></label>
-</div>
-<div class="p-two">
-<label>Crates per week
-<select name="volume" required>
-<option value="">Choose a range</option>
-<option>10–25 crates</option>
-<option>25–50 crates</option>
-<option>50–100 crates</option>
-<option>100+ crates</option>
-</select></label>
-<label>Delivery frequency
-<select name="frequency">
-<option>Weekly</option>
-<option>Twice a week</option>
-<option>Every two weeks</option>
-<option>Not sure yet</option>
-</select></label>
-</div>
-<label>Anything else?<textarea name="notes" rows="3" placeholder="Number of branches, start date, packaging needs…"></textarea></label>
-<p class="p-error" id="pError" role="alert" hidden>Please fill in the highlighted fields.</p>
-<div class="p-actions">
-<button type="submit" class="p-send">Send on WhatsApp</button>
-<button type="button" class="p-mail" id="pMail">Send by email instead</button>
-</div>
-<p class="p-done" id="pDone" hidden>Your enquiry is ready in WhatsApp (or your email app). Just press send, and we’ll get back to you within one working day.</p>
+<label>Crates per week<select name="volume" required><option value="">Choose</option><option>5–20</option><option>20–50</option><option>50–100</option><option>100+</option></select></label>
+<p class="p-error" id="pError" role="alert" hidden>Please fill in all four fields.</p>
+<button type="submit" class="b-send">Send on WhatsApp</button>
+<p class="p-done" id="pDone" hidden>Your message is ready in WhatsApp. Press send and we’ll get back to you.</p>
 </form>
 </div>
 </section>
-
-<!-- ================= 6. CTA CARDS ================= -->
-<section id="order" style="position: relative; overflow: hidden; background: #5bc20f; padding: 0 32px 120px">
+<!-- ================= FOOTER ================= -->
+<footer id="contact" class="f-sec">
 <div aria-hidden="true" class="k-paper"></div>
-<div style="position: relative; max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 28px; align-items: center">
-<div class="k-rev" style="position: relative; flex: 1 1 440px; min-width: 0; aspect-ratio: 1 / 0.95; border-radius: 120px 120px 120px 30px; overflow: hidden; background: #f53509">
-<img src="img/card-partner.webp" alt="A tray of Krate jumbo eggs on orange" style="display: block; width: 100%; height: 100%; object-fit: cover">
+<div class="f-wrap">
+<span class="f-logo"><svg viewBox="0 0 383.16 86.14" role="img" aria-label="Krate" fill="currentColor" style="display: block; width: 140px; height: auto"><path d="M41.74,3.52c.49-2.35,1.94-3.52,4.37-3.52h29.24c2.35,0,3.11,1.13,2.31,3.4l-12.74,33.24c-.81,2.1-.12,3.72,2.06,4.85,1.94,1.05,3.64,2.43,5.1,4.13,1.46,1.7,2.67,4.06,3.64,7.1.97,3.03,1.74,6.85,2.31,11.47.56,4.61.89,10.31.97,17.11,0,2.43-1.25,3.64-3.76,3.64h-31.55c-2.35,0-3.4-1.21-3.15-3.64.65-4.85.83-9.44.55-13.77-.28-4.33-1.07-7.62-2.37-9.89-.32-.57-.67-1.03-1.03-1.4-.36-.36-.95-.55-1.76-.55-1.38,0-2.06,1.05-2.06,3.15l.12,22.45c0,2.43-1.21,3.64-3.64,3.64H3.64c-2.43,0-3.64-1.21-3.64-3.64V3.64C0,1.21,1.21,0,3.64,0h26.69c2.43,0,3.64,1.21,3.64,3.64v20.02c0,.41.1.87.3,1.4.2.53.63.79,1.27.79.89,0,1.47-.26,1.76-.79.28-.53.46-.99.55-1.4l3.88-20.14Z"></path><path d="M136.01,48.77c2.26,1.46,4.93,2.18,8.01,2.18,2.43,0,4.71-.24,6.86-.73,2.14-.49,4.02-1.05,5.64-1.7.65-.24,1.21-.36,1.7-.36,1.21,0,1.94.85,2.18,2.55l3.88,26.81c.49,2.83-.41,4.65-2.67,5.46-3.07,1.13-5.99,1.94-8.74,2.43-2.75.49-5.46.73-8.13.73-4.77,0-8.74-.67-11.89-2s-5.7-3.32-7.64-5.95c-1.94-2.63-3.34-5.82-4.19-9.58s-1.32-8.07-1.4-12.92c0-1.46-.77-2.18-2.31-2.18-1.38,0-2.06.73-2.06,2.18l1.21,25.6c.16,2.43-1.01,3.64-3.52,3.64h-26.69c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h36.52c5.9,0,11.2.47,15.89,1.4,4.69.93,8.69,2.37,12.01,4.31,3.32,1.94,5.86,4.39,7.64,7.34,1.78,2.95,2.67,6.49,2.67,10.62,0,3.64-.51,6.71-1.52,9.22-1.01,2.51-2.53,4.61-4.55,6.31-2.02,1.7-4.55,3.03-7.58,4-3.03.97-6.57,1.78-10.62,2.43-1.05.08-1.7.45-1.94,1.09-.24.65.16,1.33,1.21,2.06ZM122.79,36.4c1.29,0,2.22-.32,2.79-.97.56-.65.85-1.37.85-2.18,0-.73-.28-1.4-.85-2-.57-.61-1.5-.91-2.79-.91h-3.15c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h3.15Z"></path><path d="M210.87,69.76c-.08-2.43-1.38-3.64-3.88-3.64h-.97c-2.43,0-3.72,1.21-3.88,3.64l-.85,11.53c-.08,2.43-1.38,3.64-3.88,3.64h-31.67c-2.43,0-3.4-1.17-2.91-3.52L179.2,3.52c.49-2.35,1.94-3.52,4.37-3.52h45.86c2.43,0,3.88,1.17,4.37,3.52l16.38,77.89c.49,2.35-.49,3.52-2.91,3.52h-31.67c-2.43,0-3.72-1.21-3.88-3.64l-.85-11.53ZM208.44,37.01c-.08-1.21-.73-1.82-1.94-1.82-1.13,0-1.78.61-1.94,1.82l-.97,13.83c-.16,2.1.81,3.15,2.91,3.15s3.07-1.05,2.91-3.15l-.97-13.83Z"></path><path d="M302.11,54.6c-2.99,0-4.49,1.5-4.49,4.49v22.2c0,2.43-1.21,3.64-3.64,3.64h-26.69c-2.43,0-3.64-1.21-3.64-3.64v-22.2c0-2.99-1.5-4.49-4.49-4.49h-8.86c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h60.66c2.43,0,3.64,1.21,3.64,3.64v47.32c0,2.43-1.21,3.64-3.64,3.64h-8.86Z"></path><path d="M354.65,53.38c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h24.87c2.43,0,3.64,1.21,3.64,3.64v18.2c0,2.43-1.21,3.64-3.64,3.64h-58.24c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h58.24c2.43,0,3.64,1.21,3.64,3.64v18.2c0,2.43-1.21,3.64-3.64,3.64h-24.87c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h21.23c2.43,0,3.64,1.21,3.64,3.64v14.56c0,2.43-1.21,3.64-3.64,3.64h-21.23Z"></path></svg></span>
+<p class="f-big t-split" aria-hidden="true">Handled with care.</p>
+<nav class="f-nav" aria-label="Footer"><a href="#eggs">Our eggs</a><a href="#about">About</a><a href="#shop">Shop</a><a href="#partners">Partners</a></nav>
+<div class="f-social">
+<a href="#" aria-label="Instagram"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><path d="M17.5 6.5h.01"></path></svg></a>
+<a href="#" aria-label="TikTok"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"></path><path d="M14 3c.5 2.8 2.3 4.5 5 4.8"></path></svg></a>
+<a href="#" aria-label="Facebook"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V9H7v3.5h2V21h3.5v-8.5H15l.5-3.5h-3V7a1 1 0 0 1 1-1H15z"></path></svg></a>
 </div>
-<span aria-hidden="true" class="k-tape" style="left: calc(50% - 30px); top: 46%; width: 60px; height: 120px; z-index: 2; rotate: 4deg"></span>
-<div class="k-rev" style="position: relative; flex: 1 1 440px; min-width: 0; aspect-ratio: 1 / 0.95; border-radius: 120px 120px 30px 120px; background: #014621; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; padding: 40px; text-align: center">
-<h2 style="margin: 0; font-family: 'Bagel Fat One', sans-serif; font-weight: 400; font-size: clamp(56px, 6.4vw, 104px); line-height: 0.95; text-transform: uppercase; color: #5bc20f">Let’s get<br>cracking!</h2>
-<div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center">
-<a class="k-nav" href="#shop" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; border-radius: 999px; background: #5bc20f; color: #014621; font-weight: 700; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase">Shop now</a>
-<a class="k-nav" href="#partners" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; border-radius: 999px; border: 2px solid #f6eceb; color: #f6eceb; font-weight: 700; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase">For businesses</a>
-</div>
-<p style="margin: 0; font-size: 15px; color: #f6eceb">For every kind of hungry.</p>
-</div>
-</div>
-</section>
-
-<div aria-hidden="true" style="position: relative; height: 170px; background: #014621; overflow: hidden; margin-top: -1px">
-<div style="position: absolute; left: -15%; right: -15%; top: -170px; height: 340px; border-radius: 50%; background: #5bc20f"></div>
-</div>
-
-<!-- ================= 7. FOOTER ================= -->
-<footer id="contact" style="position: relative; overflow: hidden; background: #014621; padding: 10px 32px 24px; color: #f6eceb; margin-top: -1px">
-<div aria-hidden="true" class="k-paper"></div>
-
-<div style="position: relative; max-width: 1440px; margin: 0 auto; display: flex; flex-direction: column; align-items: center">
-<nav aria-label="Footer" style="width: 100%; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 32px">
-<a class="k-nav" href="#eggs" style="display: flex; flex-direction: column; align-items: center; gap: 8px; font-family: 'Bagel Fat One', sans-serif; font-size: 26px; text-transform: uppercase; color: #5bc20f">Our Eggs<span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: #5bc20f"></span></a>
-<a class="k-nav" href="#about" style="display: flex; flex-direction: column; align-items: center; gap: 8px; font-family: 'Bagel Fat One', sans-serif; font-size: 26px; text-transform: uppercase; color: #5bc20f">About<span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: #5bc20f"></span></a>
-<a class="k-nav" href="#shop" style="display: flex; flex-direction: column; align-items: center; gap: 8px; font-family: 'Bagel Fat One', sans-serif; font-size: 26px; text-transform: uppercase; color: #5bc20f">Shop<span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: #5bc20f"></span></a>
-<a class="k-nav" href="#partners" style="display: flex; flex-direction: column; align-items: center; gap: 8px; font-family: 'Bagel Fat One', sans-serif; font-size: 26px; text-transform: uppercase; color: #5bc20f">Partners<span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: #5bc20f"></span></a>
-</nav>
-
-<div style="position: relative; width: 100%; margin-top: 40px; display: flex; flex-direction: column; align-items: center">
-<span style="display: inline-flex; padding: 12px 18px; background: #f6eceb; border-radius: 22px; rotate: -7deg; color: #014621; z-index: 2; margin-bottom: -18px">
-<svg viewBox="0 0 383.16 86.14" role="img" aria-label="Krate" fill="currentColor" style="display: block; width: 140px; height: auto"><path d="M41.74,3.52c.49-2.35,1.94-3.52,4.37-3.52h29.24c2.35,0,3.11,1.13,2.31,3.4l-12.74,33.24c-.81,2.1-.12,3.72,2.06,4.85,1.94,1.05,3.64,2.43,5.1,4.13,1.46,1.7,2.67,4.06,3.64,7.1.97,3.03,1.74,6.85,2.31,11.47.56,4.61.89,10.31.97,17.11,0,2.43-1.25,3.64-3.76,3.64h-31.55c-2.35,0-3.4-1.21-3.15-3.64.65-4.85.83-9.44.55-13.77-.28-4.33-1.07-7.62-2.37-9.89-.32-.57-.67-1.03-1.03-1.4-.36-.36-.95-.55-1.76-.55-1.38,0-2.06,1.05-2.06,3.15l.12,22.45c0,2.43-1.21,3.64-3.64,3.64H3.64c-2.43,0-3.64-1.21-3.64-3.64V3.64C0,1.21,1.21,0,3.64,0h26.69c2.43,0,3.64,1.21,3.64,3.64v20.02c0,.41.1.87.3,1.4.2.53.63.79,1.27.79.89,0,1.47-.26,1.76-.79.28-.53.46-.99.55-1.4l3.88-20.14Z"></path><path d="M136.01,48.77c2.26,1.46,4.93,2.18,8.01,2.18,2.43,0,4.71-.24,6.86-.73,2.14-.49,4.02-1.05,5.64-1.7.65-.24,1.21-.36,1.7-.36,1.21,0,1.94.85,2.18,2.55l3.88,26.81c.49,2.83-.41,4.65-2.67,5.46-3.07,1.13-5.99,1.94-8.74,2.43-2.75.49-5.46.73-8.13.73-4.77,0-8.74-.67-11.89-2s-5.7-3.32-7.64-5.95c-1.94-2.63-3.34-5.82-4.19-9.58s-1.32-8.07-1.4-12.92c0-1.46-.77-2.18-2.31-2.18-1.38,0-2.06.73-2.06,2.18l1.21,25.6c.16,2.43-1.01,3.64-3.52,3.64h-26.69c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h36.52c5.9,0,11.2.47,15.89,1.4,4.69.93,8.69,2.37,12.01,4.31,3.32,1.94,5.86,4.39,7.64,7.34,1.78,2.95,2.67,6.49,2.67,10.62,0,3.64-.51,6.71-1.52,9.22-1.01,2.51-2.53,4.61-4.55,6.31-2.02,1.7-4.55,3.03-7.58,4-3.03.97-6.57,1.78-10.62,2.43-1.05.08-1.7.45-1.94,1.09-.24.65.16,1.33,1.21,2.06ZM122.79,36.4c1.29,0,2.22-.32,2.79-.97.56-.65.85-1.37.85-2.18,0-.73-.28-1.4-.85-2-.57-.61-1.5-.91-2.79-.91h-3.15c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h3.15Z"></path><path d="M210.87,69.76c-.08-2.43-1.38-3.64-3.88-3.64h-.97c-2.43,0-3.72,1.21-3.88,3.64l-.85,11.53c-.08,2.43-1.38,3.64-3.88,3.64h-31.67c-2.43,0-3.4-1.17-2.91-3.52L179.2,3.52c.49-2.35,1.94-3.52,4.37-3.52h45.86c2.43,0,3.88,1.17,4.37,3.52l16.38,77.89c.49,2.35-.49,3.52-2.91,3.52h-31.67c-2.43,0-3.72-1.21-3.88-3.64l-.85-11.53ZM208.44,37.01c-.08-1.21-.73-1.82-1.94-1.82-1.13,0-1.78.61-1.94,1.82l-.97,13.83c-.16,2.1.81,3.15,2.91,3.15s3.07-1.05,2.91-3.15l-.97-13.83Z"></path><path d="M302.11,54.6c-2.99,0-4.49,1.5-4.49,4.49v22.2c0,2.43-1.21,3.64-3.64,3.64h-26.69c-2.43,0-3.64-1.21-3.64-3.64v-22.2c0-2.99-1.5-4.49-4.49-4.49h-8.86c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h60.66c2.43,0,3.64,1.21,3.64,3.64v47.32c0,2.43-1.21,3.64-3.64,3.64h-8.86Z"></path><path d="M354.65,53.38c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h24.87c2.43,0,3.64,1.21,3.64,3.64v18.2c0,2.43-1.21,3.64-3.64,3.64h-58.24c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h58.24c2.43,0,3.64,1.21,3.64,3.64v18.2c0,2.43-1.21,3.64-3.64,3.64h-24.87c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h21.23c2.43,0,3.64,1.21,3.64,3.64v14.56c0,2.43-1.21,3.64-3.64,3.64h-21.23Z"></path></svg>
-</span>
-<p aria-hidden="true" style="margin: 0; font-family: 'Bagel Fat One', sans-serif; font-size: clamp(76px, 12.5vw, 190px); line-height: 0.9; text-align: center; text-transform: uppercase; color: #5bc20f">
-<span style="display: block; rotate: -2deg">Handle it</span>
-<span style="display: block; rotate: 1.5deg">with care</span>
-</p>
-<a href="#" aria-label="Instagram" class="k-nav" style="position: absolute; left: 0; bottom: -40px; width: 130px; height: 130px; border-radius: 50%; background: #5bc20f; display: flex; align-items: center; justify-content: center; color: #014621; z-index: 3"><svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><path d="M17.5 6.5h.01"></path></svg></a>
-<a href="#" aria-label="TikTok" class="k-nav" style="position: absolute; left: 60%; top: 34%; width: 110px; height: 110px; border-radius: 50%; background: #5bc20f; display: flex; align-items: center; justify-content: center; color: #014621; z-index: 3"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"></path><path d="M14 3c.5 2.8 2.3 4.5 5 4.8"></path></svg></a>
-<a href="#" aria-label="Facebook" class="k-nav" style="position: absolute; right: 6%; top: 52%; width: 130px; height: 130px; border-radius: 50%; background: #5bc20f; display: flex; align-items: center; justify-content: center; color: #014621; z-index: 3"><svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V10H6.5v3.5H9V21h3.5v-7.5H15l.5-3.5h-3V7a1 1 0 0 1 1-1H15Z"></path></svg></a>
-</div>
-
-<!-- pile (click eggs to crack) -->
-<div style="position: relative; display: flex; justify-content: center; align-items: flex-end; margin-top: -30px; z-index: 2">
-<button type="button" class="k-egg-btn" data-egg="f1" aria-label="Crack this egg" style="rotate: -18deg; margin-right: -20px"><img class="k-cut" src="img/egg-brown.webp" data-egg-img="f1" data-base="img/egg-brown.webp" alt="" style="width: 150px"></button>
-<img class="k-cut" src="img/egg-tray.webp" alt="" style="width: 300px; rotate: 6deg; z-index: 1; margin-bottom: 20px">
-<button type="button" class="k-egg-btn" data-egg="f2" aria-label="Crack this egg" style="rotate: 16deg; margin-left: -30px; z-index: 2"><img class="k-cut" src="img/egg-white.webp" data-egg-img="f2" data-base="img/egg-white.webp" alt="" style="width: 130px"></button>
-<button type="button" class="k-egg-btn" data-egg="f3" aria-label="Crack this egg" style="rotate: -8deg; margin-left: -10px"><img class="k-cut" src="img/egg-brown.webp" data-egg-img="f3" data-base="img/egg-brown.webp" alt="" style="width: 150px"></button>
-</div>
-
-<p style="margin: 22px 0 6px; font-size: 14px; text-align: center; color: #f6eceb">[YOUR PHONE NUMBER] · [YOUR EMAIL] · [YOUR FARM ADDRESS], Nigeria</p>
-<p style="margin: 0; font-size: 12px; text-align: center; color: #f6eceb">Store in a cool, dry place · Copyright © 2026 Krate Farms</p>
+<p class="f-meta">[YOUR PHONE NUMBER] · [YOUR EMAIL] · Nigeria</p>
+<p class="f-meta f-small">Store in a cool, dry place · © 2026 Krate Farms</p>
 </div>
 </footer>
+
 
 </div>
 
@@ -1184,22 +1134,12 @@ var KRATE = {
   if (pForm) {
     var enquiry = function () {
       var f = pForm.elements;
-      return ['New partnership enquiry for Krate',
-        'Business: ' + f.business.value + ' (' + f.type.value + ')',
-        'Contact: ' + f.name.value + ', ' + f.phone.value + (f.email.value ? ', ' + f.email.value : ''),
-        'Location: ' + f.city.value,
-        'Volume: ' + f.volume.value + ', ' + f.frequency.value,
-        f.notes.value ? 'Notes: ' + f.notes.value : ''].filter(Boolean).join('\n');
+      return ['New business enquiry for Krate', 'Business: ' + f.business.value, 'Contact: ' + f.name.value + ', ' + f.phone.value, 'Crates per week: ' + f.volume.value].join('\n');
     };
     pForm.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!check(pForm, document.getElementById('pError'))) return;
       openLink(wa(enquiry()));
-      document.getElementById('pDone').hidden = false;
-    });
-    document.getElementById('pMail').addEventListener('click', function () {
-      if (!check(pForm, document.getElementById('pError'))) return;
-      openLink('mailto:' + KRATE.email + '?subject=' + encodeURIComponent('Partnership enquiry: ' + pForm.elements.business.value) + '&body=' + encodeURIComponent(enquiry()));
       document.getElementById('pDone').hidden = false;
     });
   }
