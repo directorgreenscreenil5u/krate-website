@@ -52,7 +52,10 @@
 @media (prefers-reduced-motion: reduce){.gc{transform:none;transition:none}.g-row .g-slot,.g-row .g-note,.g-title .g-tag{scale:1;opacity:1;translate:none}}
 
 @media (max-width: 743px){
-.g-pin{--G:86vw}
+.g-pin{--G:40vw}
+.g-giant{display:grid;grid-template-columns:auto auto;justify-content:start;align-items:center;row-gap:.06em}
+.g-giant>span:last-child{grid-column:1 / -1}
+.g-title h2{font-size:8.6vw!important}
 .g-title{top:34vw;gap:3vw}
 .g-title h2{font-size:10.5vw}
 .g-tag{font-size:3vw;padding:1.4vw 2.6vw;border-radius:1.2vw;gap:1.6vw}
@@ -60,6 +63,8 @@
 .g-arrow{width:56vw}
 .g-note{font-size:.065em}
 }
+
+.gw{display:inline-block;white-space:nowrap}
 /* ---- Shop ---- */
 .s-shop{position:relative;background:#f6eceb;color:#014621;padding:9vw 4vw 10vw;overflow:hidden}
 .s-shop .k-paper{opacity:.5}
@@ -392,6 +397,20 @@ footer nav a{font-size:20px!important}
 @keyframes kUseIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .k-use-link{margin-top:6px;font-weight:700;color:#191718;text-underline-offset:4px}
 @media (prefers-reduced-motion:reduce){.k-use-in *{animation:none!important}}
+/* shop product: the real Krate box + a JUMBO stamp */
+.t-shop .t-product img.hs-tray{position:absolute;width:62%;left:12%;top:10%;rotate:-14deg;filter:drop-shadow(0 18px 20px rgba(0,0,0,.28))}
+.t-shop .t-product img.hs-box{position:relative;width:78%;top:9%;rotate:5deg;border-radius:14px;border:5px solid #f6eceb;box-shadow:0 30px 50px rgba(25,23,24,.4);transition:rotate .6s cubic-bezier(.2,.9,.25,1.4)}
+.t-shop .t-product:hover img.hs-box{rotate:1deg}
+.hs-jumbo{position:absolute;right:2%;top:4%;width:30%;aspect-ratio:1;border-radius:50%;background:#014621;color:#5bc20f;display:flex;flex-direction:column;align-items:center;justify-content:center;rotate:-12deg;box-shadow:0 12px 24px rgba(0,0,0,.28),inset 0 0 0 .5vw #014621,inset 0 0 0 .7vw #5bc20f;z-index:3;animation:hsStamp 4s ease-in-out infinite}
+.hs-jumbo b{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(26px,3.1vw,48px);line-height:.95;text-transform:uppercase}
+.hs-jumbo small{font-size:clamp(10px,.85vw,13px);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#f6eceb}
+@keyframes hsStamp{0%,100%{rotate:-12deg}50%{rotate:-6deg}}
+@media (max-width:743px){.hs-jumbo{width:34%;box-shadow:0 10px 20px rgba(0,0,0,.28),inset 0 0 0 1.6vw #014621,inset 0 0 0 2.2vw #5bc20f}}
+@media (prefers-reduced-motion:reduce){.hs-jumbo{animation:none}}
+/* pull-me tag turns dark over cream sections so it never blends in */
+#kPull{transition:background .3s,color .3s}
+#kPull.on-light{background:#014621!important;color:#5bc20f!important;border-top-color:#5bc20f!important}
+@media (max-width:743px){.hs-jumbo b{font-size:6.6vw}.hs-jumbo small{font-size:2.3vw}}
 </style></head>
 <body>
 
@@ -758,7 +777,9 @@ a{color:#014621}a:hover{color:#191718}
 
 <div class="t-product">
 <span class="t-disc" aria-hidden="true"></span>
-<img loading="lazy" decoding="async" src="img/egg-tray.webp" alt="A Krate: 30 jumbo eggs">
+<img loading="lazy" decoding="async" class="hs-tray" src="img/egg-tray.webp" alt="" aria-hidden="true">
+<img loading="lazy" decoding="async" class="hs-box" src="img/lid.jpg" alt="The Krate box: 30 fresh jumbo eggs, handled with care">
+<span class="hs-jumbo" aria-label="Jumbo eggs"><small>30 fresh</small><b>Jumbo</b><small>eggs</small></span>
 </div>
 </div>
 </section>
@@ -836,6 +857,7 @@ a{color:#014621}a:hover{color:#191718}
     nav.style.boxShadow = v ? '0 20px 40px rgba(0,0,0,0.3)' : 'none';
     pull.textContent = v ? 'Push back' : 'Pull me';
     pull.setAttribute('aria-expanded', v ? 'true' : 'false');
+    if (typeof tagTone === 'function') setTimeout(tagTone, 50);
   }
   // click OR pull it down (and push it back up)
   var pd = null, moved = false;
@@ -867,6 +889,26 @@ a{color:#014621}a:hover{color:#191718}
   pull.addEventListener('pointercancel', endPull);
   pull.addEventListener('click', function (e) { if (moved) { moved = false; e.preventDefault(); return; } setMenu(!open); });
   document.querySelectorAll('[data-close]').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+
+  // keep the pull tag visible: dark when it sits over a cream section
+  function tagTone() {
+    if (open) { pull.classList.remove('on-light'); return; }
+    var r = pull.getBoundingClientRect(), x = r.left + r.width / 2, y = r.bottom + 4;
+    var light = false;
+    pull.style.visibility = 'hidden'; menu.style.pointerEvents = 'none';
+    var el = document.elementFromPoint(x, Math.min(y, innerHeight - 1));
+    pull.style.visibility = ''; menu.style.pointerEvents = '';
+    while (el && el !== document.body) {
+      var bg = getComputedStyle(el).backgroundColor;
+      var m = bg.match(/\d+(\.\d+)?/g);
+      if (m && (m.length < 4 || +m[3] > 0.5)) { light = (+m[0] * 0.299 + +m[1] * 0.587 + +m[2] * 0.114) > 200; break; }
+      el = el.parentElement;
+    }
+    pull.classList.toggle('on-light', light);
+  }
+  var toneTick = false;
+  window.addEventListener('scroll', function () { if (!toneTick) { toneTick = true; requestAnimationFrame(function () { toneTick = false; tagTone(); }); } }, { passive: true });
+  window.addEventListener('load', tagTone);
 
   // Crack the eggs
   document.querySelectorAll('[data-egg]').forEach(function (b) {
@@ -1120,11 +1162,16 @@ a{color:#014621}a:hover{color:#191718}
     nodes.forEach(function (n) {
       if (!n.nodeValue.trim()) return;
       var frag = document.createDocumentFragment();
-      n.nodeValue.split('').forEach(function (ch) {
-        if (ch === ' ') { frag.appendChild(document.createTextNode(' ')); return; }
-        var o = document.createElement('span'); o.className = 'gl';
-        var c = document.createElement('span'); c.className = 'gc'; c.style.setProperty('--i', i++); c.textContent = ch;
-        o.appendChild(c); frag.appendChild(o);
+      n.nodeValue.split(/(\s+)/).forEach(function (word) {
+        if (!word) return;
+        if (/^\s+$/.test(word)) { frag.appendChild(document.createTextNode(' ')); return; }
+        var w = document.createElement('span'); w.className = 'gw';
+        word.split('').forEach(function (ch) {
+          var o = document.createElement('span'); o.className = 'gl';
+          var c = document.createElement('span'); c.className = 'gc'; c.style.setProperty('--i', i++); c.textContent = ch;
+          o.appendChild(c); w.appendChild(o);
+        });
+        frag.appendChild(w);
       });
       n.parentNode.replaceChild(frag, n);
     });
@@ -1134,6 +1181,12 @@ a{color:#014621}a:hover{color:#191718}
 
   function layout() {
     vw = window.innerWidth / 100; vh = window.innerHeight;
+    // shrink the giant words until the widest row fits on screen, so no word is ever cut off
+    pin.style.removeProperty('--G');
+    var maxW = 0; rows.forEach(function (r) { maxW = Math.max(maxW, r.offsetWidth); });
+    var fs = parseFloat(getComputedStyle(rows[0]).fontSize);
+    var fit = Math.min(1, (window.innerWidth * 0.9) / Math.max(1, maxW));
+    pin.style.setProperty('--G', (fs * fit).toFixed(1) + 'px');
     var h0 = rows[0].offsetHeight;
     var gap = Math.max(16 * vw, h0 * 0.55);
     var y1 = title.offsetTop + title.offsetHeight + Math.max(6 * vw, h0 * 0.25);
@@ -1159,11 +1212,15 @@ a{color:#014621}a:hover{color:#191718}
 
     // the view's path (top-left corner of the screen on the board)
     var W = window.innerWidth, pad = 4 * vw;
-    function at(row, end) { var r = info[row]; return { x: end ? r.x + r.w - W + pad : Math.max(0, r.x - pad), y: r.cy - vh / 2 }; }
+    function at(row, end) {
+      var r = info[row];
+      if (r.w <= W - 2 * pad) return { x: Math.max(0, r.x + r.w / 2 - W / 2), y: r.cy - vh / 2 }; // whole row on screen: centre it
+      return { x: end ? r.x + r.w - W + pad : Math.max(0, r.x - pad), y: r.cy - vh / 2 };
+    }
     pts = [{ x: 0, y: Math.min(0, info[0].cy - vh / 2) }, at(0, false), at(0, true), at(1, false), at(1, true), at(2, false), at(2, true)];
     segs = []; total = 0;
     for (var i = 1; i < pts.length; i++) {
-      var dx = pts[i].x - pts[i - 1].x, dy = pts[i].y - pts[i - 1].y, len = Math.max(1, Math.hypot(dx, dy));
+      var dx = pts[i].x - pts[i - 1].x, dy = pts[i].y - pts[i - 1].y, len = Math.max(vh * 0.45, Math.hypot(dx, dy)); // a short pause on each row
       segs.push({ a: pts[i - 1], b: pts[i], len: len, start: total }); total += len;
     }
     pin.style.height = (vh + total) + 'px';
