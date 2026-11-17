@@ -1258,6 +1258,17 @@ footer nav a{font-size:20px!important}
 .g-row.live .g-note.hw-ready::after{animation:hwLine .5s ease-out forwards;animation-delay:calc(.85s + var(--n) * 42ms)}
 @keyframes hwLine{to{width:62%}}
 @media (prefers-reduced-motion:reduce){.hw{opacity:1;transform:none;filter:none}}
+/* back to the lime one-big-focus dashboard */
+.acc.is-in{background:#5bc20f}
+.acc.is-in>.k-paper{display:block}
+.acc.is-in .acc-egg{display:block}
+.acc.is-in .acc-main{place-items:center;padding:2vh 20px 10vh}
+.acc.is-in .acc-top{padding:22px 28px}
+.acc.is-in .acc-logo svg{width:110px}
+.acc.is-in .acc-x{width:52px;height:52px;font-size:26px}
+.acc .n-next.n-empty .n-big{font-size:clamp(44px,6.4vw,96px)!important}
+.acc .n-next.n-empty{max-width:640px;margin-left:auto;margin-right:auto}
+@media (max-width:743px){.acc.is-in .acc-top{padding:16px 18px}.acc.is-in .acc-logo svg{width:92px}.acc.is-in .acc-x{width:44px;height:44px;font-size:22px}.acc.is-in .acc-main{place-items:start center;padding:1vh 18px 14vh}.acc .n-next.n-empty .n-big{font-size:11vw!important}}
 </style></head>
 <body>
 
@@ -1693,27 +1704,21 @@ a{color:#014621}a:hover{color:#191718}
 <p class="a-note" id="aLocal" hidden>Your account is saved on this phone or computer.</p>
 </div>
 
-<div class="acc-col ap" id="aIn" hidden>
-<div class="ap-home" data-view="home">
-<div class="ap-prof">
-<span class="ap-av" id="dAv" aria-hidden="true">K</span>
-<div class="ap-who"><p class="ap-name">Hi, <b id="aName">there</b></p><small id="dWho">Add your name and phone</small></div>
-<button type="button" class="ap-edit" data-page="details">Edit</button>
-</div>
-<section class="ap-status" id="dNext" aria-live="polite"></section>
-<button type="button" class="ap-again" id="dAgain"><span>Reorder</span><small id="dAgainSub">Same as last time</small></button>
-<button type="button" class="ap-wallet" id="dCbChip" data-page="cash"><span class="ap-coin" aria-hidden="true">₦</span><span class="ap-wtxt"><small>Krate cashback</small><b id="tCb">₦0</b></span><span class="ap-wcta">View</span></button>
-<nav class="ap-list" aria-label="Account">
-<button type="button" class="ap-row" data-page="orders"><span class="ap-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16l-1.5 11a2 2 0 0 1-2 1.7H7.5a2 2 0 0 1-2-1.7L4 7zM9 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ap-txt"><b>My orders</b></span><span class="ap-val" id="tOrd"></span><svg class="ap-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="ap-row" data-page="subs"><span class="ap-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 13.7-5.7L20 9M20 4v5h-5M20 12a8 8 0 0 1-13.7 5.7L4 15M4 20v-5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ap-txt"><b>Subscription</b><small id="tSubSub"></small></span><span class="ap-val" id="tSub"></span><svg class="ap-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="ap-row" data-page="addrs"><span class="ap-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ap-txt"><b>Delivery addresses</b><small id="tAddrSub"></small></span><span class="ap-val" id="tAddr"></span><svg class="ap-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="ap-row" data-page="details"><span class="ap-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ap-txt"><b>Personal details</b></span><svg class="ap-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></nav>
-<nav class="ap-list" aria-label="More">
-<button type="button" class="ap-row" id="dInvite"><span class="ap-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 11h16v10H4zM2 7h20v4H2zM12 7v14M12 7S10 3 7.5 3 5 6 7.5 7M12 7s2-4 4.5-4S19 6 16.5 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ap-txt"><b>Invite a friend</b><small>Share Krate on WhatsApp</small></span><svg class="ap-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<a class="ap-row" id="dHelp" href="#" target="_blank" rel="noopener"><span class="ap-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-4-7.5L21 3l-1 4.5A9 9 0 0 1 21 12zM8 11h8M8 15h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ap-txt"><b>Help &amp; support</b><small>Chat with us on WhatsApp</small></span><svg class="ap-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-<button type="button" class="ap-row ap-out" id="aLogout"><span class="ap-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ap-txt"><b>Log out</b></span></button>
-</nav>
-</div>
-<section class="ap-page" data-view="orders" hidden><header class="ap-ph"><button type="button" class="ap-back" aria-label="Back">←</button><h3>My orders</h3></header><div id="aOrders"></div></section>
-<section class="ap-page" data-view="subs" hidden><header class="ap-ph"><button type="button" class="ap-back" aria-label="Back">←</button><h3>Subscription</h3></header><section class="n-row" id="aSubs" aria-label="Your subscription"></section></section>
-<section class="ap-page" data-view="addrs" hidden><header class="ap-ph"><button type="button" class="ap-back" aria-label="Back">←</button><h3>Addresses</h3></header><section class="n-addrs" aria-labelledby="dAddrT">
+<div class="acc-col acc-wide" id="aIn" hidden>
+<span hidden><span id="dAv"></span><span id="tOrd"></span><span id="tCb"></span><span id="tSub"></span><span id="tSubSub"></span><span id="tAddr"></span><span id="tAddrSub"></span></span>
+<p class="acc-kicker">Hi <b id="aName">there</b></p>
+<button type="button" class="acc-cb" id="dCbChip" data-page="cash">Cashback</button>
+<section class="n-next" id="dNext" aria-live="polite"></section>
+<button type="button" class="acc-go" id="dAgain"><b>Reorder in one tap</b><small id="dAgainSub">Same as last time</small></button>
+<details class="acc-more">
+<summary>More <span aria-hidden="true">▾</span></summary>
+<div class="acc-sheet">
+<section class="n-row" id="aSubs" data-sec="subs" aria-label="Your subscription"></section>
+<div data-sec="cash"><section class="n-cash" aria-label="Cashback">
+<div><small>Krate cashback</small><b id="dCb">₦0</b><span>You get <strong id="dCbRate">2%</strong> back on every order. Use it at checkout.</span></div>
+<span class="n-cash-coin" aria-hidden="true">₦</span>
+</section></div>
+<div data-sec="addrs"><section class="n-addrs" aria-labelledby="dAddrT">
 <div class="n-head"><h4 id="dAddrT">Delivery addresses</h4><button type="button" class="n-link" id="dAddAddr" aria-expanded="false">+ Add</button></div>
 <div id="dAddrList" class="n-addr-list"></div>
 <form class="c-form n-form" id="dAddrForm" novalidate hidden>
@@ -1721,17 +1726,20 @@ a{color:#014621}a:hover{color:#191718}
 <label>Address<textarea name="text" rows="2" required autocomplete="street-address" placeholder="House number, street, area, city"></textarea></label>
 <button type="submit" class="c-checkout">Save address</button>
 </form>
-</section></section>
-<section class="ap-page" data-view="cash" hidden><header class="ap-ph"><button type="button" class="ap-back" aria-label="Back">←</button><h3>Cashback</h3></header><section class="n-cash" aria-label="Cashback">
-<div><small>Krate cashback</small><b id="dCb">₦0</b><span>You get <strong id="dCbRate">2%</strong> back on every order. Use it at checkout.</span></div>
-<span class="n-cash-coin" aria-hidden="true">₦</span>
-</section><p class="ap-note">Cashback is added after each order and can be used at checkout. It has no cash value outside Krate.</p></section>
-<section class="ap-page" data-view="details" hidden><header class="ap-ph"><button type="button" class="ap-back" aria-label="Back">←</button><h3>Personal details</h3></header><form class="c-form n-form" id="aDetails" novalidate>
+</section></div>
+<section class="n-row" data-sec="details"><div class="n-row-t"><small>Your details</small><b id="dWho">Add your name and phone</b></div><button type="button" class="n-link" id="dDetBtn" aria-expanded="false">Edit</button></section>
+<form class="c-form n-form" id="aDetails" novalidate hidden>
 <label>Full name<input name="name" autocomplete="name"></label>
 <label>Phone / WhatsApp<input name="phone" type="tel" autocomplete="tel"></label>
 <button type="submit" class="c-checkout">Save</button>
 <p class="p-done" id="aSaved" hidden>Saved.</p>
-</form></section>
+</form>
+<section class="n-row"><div class="n-row-t"><small>Invite a friend</small><b>Share Krate on WhatsApp</b></div><button type="button" class="n-link" id="dInvite">Share</button></section>
+<section class="n-row"><div class="n-row-t"><small>Help &amp; support</small><b>Chat with us on WhatsApp</b></div><a class="n-link" id="dHelp" href="#" target="_blank" rel="noopener">Chat</a></section>
+<section class="n-orders" data-sec="orders" aria-labelledby="aOrdT"><h4 id="aOrdT">Past orders</h4><div id="aOrders"></div></section>
+<button type="button" class="a-link" id="aLogout">Log out</button>
+</div>
+</details>
 </div>
 </main>
 </aside>
@@ -2615,6 +2623,7 @@ var KRATE_SUPABASE = {
     $('tSub').textContent = sb2 ? (sb2.status === 'paused' ? 'Paused' : 'Active') : 'Not set up';
     $('tSubSub').textContent = sb2 ? sb2.summary.replace(/^\d+ crates? /, '').replace('every', 'Every') : 'Save up to 5%';
     $('tOrd').textContent = rows.length ? rows.length + (rows.length > 1 ? ' orders' : ' order') : '';
+    $('dCbChip').hidden = !bal; $('dCbChip').textContent = money(bal) + ' cashback ready';
   }
   // one-tap reorder: same crates, straight to checkout with details filled in
   $('dAgain').onclick = function () {
@@ -2653,8 +2662,15 @@ var KRATE_SUPABASE = {
     return done;
   };
   // app-style sub pages
+  $('dDetBtn').onclick = function () { var f = $('aDetails'), o = f.hidden; f.hidden = !o; this.textContent = o ? 'Close' : 'Edit'; this.setAttribute('aria-expanded', o); };
   window.__kGo = function (v) { go(v); };
   function go(view) {
+    if (!drawer.querySelector('[data-view]')) {
+      var m = drawer.querySelector('.acc-more'); if (!m || view === 'home') return;
+      m.open = true;
+      setTimeout(function () { var x = drawer.querySelector('[data-sec="' + view + '"]'); if (x) { x.scrollIntoView({ behavior: 'smooth', block: 'center' }); x.classList.remove('ix-pop'); void x.offsetWidth; x.classList.add('ix-pop'); } }, 60);
+      return;
+    }
     $$a('[data-view]').forEach(function (v) { v.hidden = v.dataset.view !== view; });
     var pg = document.querySelector('[data-view="' + view + '"]'); if (pg && view !== 'home') { pg.classList.remove('ap-in'); void pg.offsetWidth; pg.classList.add('ap-in'); }
     drawer.scrollTop = 0;
