@@ -522,6 +522,7 @@ footer nav a{font-size:20px!important}
  .e-h2{font-size:19vw}
 }
 .e-photo img{height:auto!important}
+.a-note{margin:0;text-align:center;font-size:13px;color:#4a4446}
 </style></head>
 <body>
 
@@ -951,6 +952,7 @@ a{color:#014621}a:hover{color:#191718}
 <button type="submit" class="c-checkout" id="aSubmit">Log in</button>
 <button type="button" class="a-link" id="aForgot">Forgot password?</button>
 <p class="p-done" id="aMsg" hidden></p>
+<p class="a-note" id="aLocal" hidden>Your account is saved on this phone or computer.</p>
 </form>
 </div>
 
@@ -1580,27 +1582,85 @@ var KRATE_SUPABASE = {
   function view() {
     var on = !!sb;
     $('aOff').hidden = on;
+    $('aLocal').hidden = !(sb && sb.local);
     $('aOut').hidden = !on || !!user;
     $('aIn').hidden = !on || !user;
     $('aTitle').textContent = (user || !on) ? 'My Krate' : (mode === 'up' ? 'Join Krate' : 'Welcome back');
     $('aOpen').classList.toggle('is-in', !!user);
   }
 
+
+  // ---- built-in accounts (no Supabase yet): saved on this device, passwords stored as salted SHA-256 hashes ----
+  function localClient() {
+    var KEY = 'krateAccounts', SES = 'krateSession', cbs = [];
+    function db() { try { return JSON.parse(localStorage.getItem(KEY)) || { users: [], profiles: [], orders: [] }; } catch (e) { return { users: [], profiles: [], orders: [] }; } }
+    function save(d) { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) {} }
+    function hash(pw, salt) {
+      if (!(window.crypto && crypto.subtle)) return Promise.resolve(btoa(salt + pw));
+      return crypto.subtle.digest('SHA-256', new TextEncoder().encode(salt + ':' + pw)).then(function (b) { return Array.from(new Uint8Array(b)).map(function (x) { return x.toString(16).padStart(2, '0'); }).join(''); });
+    }
+    function current() { var id = null; try { id = localStorage.getItem(SES); } catch (e) {} var u = id && db().users.find(function (x) { return x.id === id; }); return u ? { id: u.id, email: u.email, user_metadata: u.meta || {} } : null; }
+    function emit(u) { cbs.forEach(function (c) { c(u ? 'SIGNED_IN' : 'SIGNED_OUT', u ? { user: u } : null); }); }
+    function q(tbl) {
+      var f = [], self = {
+        select: function () { return self; }, order: function () { return self; },
+        eq: function (k, v) { f.push([k, v]); return self; },
+        maybeSingle: function () { return Promise.resolve({ data: rows()[0] || null }); },
+        then: function (r, j) { return Promise.resolve({ data: rows().slice().reverse() }).then(r, j); },
+        insert: function (o) { var d = db(); o.id = Date.now(); o.created_at = new Date().toISOString(); d[tbl].push(o); save(d); return Promise.resolve({}); },
+        upsert: function (o) { var d = db(), i = d[tbl].findIndex(function (x) { return x.id === o.id; }); if (i >= 0) d[tbl][i] = o; else d[tbl].push(o); save(d); return Promise.resolve({}); },
+        update: function (p) { return { eq: function (k, v) { var d = db(); d[tbl].forEach(function (r) { if (r[k] === v) Object.assign(r, p); }); save(d); return Promise.resolve({}); } }; }
+      };
+      function rows() { return db()[tbl].filter(function (r) { return f.every(function (c) { return r[c[0]] === c[1]; }); }); }
+      return self;
+    }
+    return {
+      local: true,
+      auth: {
+        onAuthStateChange: function (cb) { cbs.push(cb); },
+        getSession: function () { var u = current(); return Promise.resolve({ data: { session: u ? { user: u } : null } }); },
+        signUp: function (o) {
+          var d = db(), em = o.email.toLowerCase();
+          if (d.users.some(function (x) { return x.email === em; })) return Promise.resolve({ error: { message: 'An account with this email already exists. Log in instead.' } });
+          var salt = Math.random().toString(36).slice(2);
+          return hash(o.password, salt).then(function (h) {
+            var u = { id: 'u' + Date.now(), email: em, salt: salt, hash: h, meta: (o.options || {}).data || {} };
+            d.users.push(u); d.profiles.push({ id: u.id, name: u.meta.name || '', phone: u.meta.phone || '', address: '' }); save(d);
+            try { localStorage.setItem(SES, u.id); } catch (e) {}
+            var cu = current(); emit(cu); return { data: { session: { user: cu } } };
+          });
+        },
+        signInWithPassword: function (o) {
+          var u = db().users.find(function (x) { return x.email === o.email.toLowerCase(); });
+          if (!u) return Promise.resolve({ error: { message: 'No account with that email on this device. Create one first.' } });
+          return hash(o.password, u.salt).then(function (h) {
+            if (h !== u.hash) return { error: { message: 'Wrong password. Try again.' } };
+            try { localStorage.setItem(SES, u.id); } catch (e) {}
+            var cu = current(); emit(cu); return { data: { session: { user: cu } } };
+          });
+        },
+        resetPasswordForEmail: function () { return Promise.resolve({ error: { message: 'Password reset isn’t switched on yet. Message us on WhatsApp and we’ll help.' } }); },
+        signOut: function () { try { localStorage.removeItem(SES); } catch (e) {} emit(null); return Promise.resolve({}); }
+      },
+      from: q
+    };
+  }
+  function attach(client) {
+    sb = client; window.KRATE_DB = sb;
+    sb.auth.onAuthStateChange(function (_e, session) { user = session ? session.user : null; window.KRATE_USER = user; view(); if (user) load(); });
+    sb.auth.getSession().then(function (r) { user = r.data.session ? r.data.session.user : null; window.KRATE_USER = user; view(); if (user) load(); });
+  }
   function start() {
-    if (!KRATE_SUPABASE.url || !KRATE_SUPABASE.anonKey) { view(); return; }
+    if (sb) return;
+    if (!KRATE_SUPABASE.url || !KRATE_SUPABASE.anonKey) { attach(localClient()); return; }
     var s = document.createElement('script');
     s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
-    s.onload = function () {
-      sb = window.supabase.createClient(KRATE_SUPABASE.url, KRATE_SUPABASE.anonKey);
-      window.KRATE_DB = sb;
-      sb.auth.onAuthStateChange(function (_e, session) { user = session ? session.user : null; window.KRATE_USER = user; view(); if (user) load(); });
-      sb.auth.getSession().then(function (r) { user = r.data.session ? r.data.session.user : null; window.KRATE_USER = user; view(); if (user) load(); });
-    };
-    s.onerror = function () { view(); };
+    s.onload = function () { attach(window.supabase.createClient(KRATE_SUPABASE.url, KRATE_SUPABASE.anonKey)); };
+    s.onerror = function () { attach(localClient()); };
     document.head.appendChild(s);
   }
   // load in the background too, so a returning customer is recognised and checkout is prefilled
-  if (KRATE_SUPABASE.url && KRATE_SUPABASE.anonKey) window.addEventListener('load', function () { if (!sb) start(); });
+  window.addEventListener('load', function () { if (!sb) start(); });
 
   // log in / create account
   document.querySelectorAll('.a-switch [data-a]').forEach(function (b) {
@@ -1626,7 +1686,7 @@ var KRATE_SUPABASE = {
     p.then(function (r) {
       btn.disabled = false;
       if (r.error) return err(r.error.message);
-      if (mode === 'up' && !r.data.session) { $('aMsg').textContent = 'Check your email to confirm your account, then log in.'; $('aMsg').hidden = false; }
+      if (mode === 'up' && r.data && !r.data.session) { $('aMsg').textContent = 'Check your email to confirm your account, then log in.'; $('aMsg').hidden = false; }
     });
   });
   $('aForgot').onclick = function () {
