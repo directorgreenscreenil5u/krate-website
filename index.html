@@ -979,6 +979,73 @@ footer nav a{font-size:20px!important}
  .n-big{font-size:clamp(48px,5vw,76px)}
 }
 @media (min-width:744px){.a-big.a-long{font-size:clamp(36px,3.5vw,64px)}.a-big{overflow-wrap:anywhere}}
+/* ---- sign in v3 (desktop): richer left collage, headed form on the right ---- */
+.a-brand svg{display:block;width:110px;height:auto;color:#014621}
+.a-lead{margin:-6px 0 4px;font:500 16px 'Inter Tight',sans-serif;color:#4a4446}
+.a-lead:empty{display:none}
+.a-card{position:relative;background:#f6eceb;color:#014621;border-radius:6px;padding:22px 22px 18px;rotate:-2deg;box-shadow:0 18px 36px rgba(1,70,33,.25);max-width:340px}
+.a-card-tape{position:absolute;top:-12px;left:50%;width:100px;height:28px;translate:-50% 0;rotate:3deg}
+.a-card-h{margin:0 0 10px;font-family:'Bagel Fat One',sans-serif;font-size:20px;text-transform:uppercase}
+.a-card .a-perks{margin:0;max-width:none}
+.a-drawer.is-in .a-card{display:none}
+@media (min-width:744px){
+ .a-hero{justify-content:space-between;padding:56px 56px 64px}
+ .a-kicker{order:0}
+ .a-big{order:1;font-size:clamp(64px,7.4vw,128px);margin-top:12px}
+ .a-card{order:2;margin-top:auto}
+ .a-egg{width:44%;right:4%;top:auto;bottom:6%}
+ .a-egg2{width:26%;right:36%;top:auto;bottom:2%}
+ .a-hero.ix-shy .a-egg{top:auto;bottom:-60%!important}
+ .a-panel{padding:48px 6vw}
+ .a-panel>*{max-width:460px}
+ .a-brand{margin-bottom:auto}
+ .a-drawer:not(.is-in) .a-title{display:block;margin-top:auto;font-size:clamp(40px,3.4vw,56px);line-height:.95}
+ .a-drawer:not(.is-in) #aOut{margin-bottom:auto}
+ .a-switch{display:grid!important;grid-template-columns:1fr 1fr;padding:5px;gap:0;border:2px solid #014621!important;border-radius:999px;background:#fff!important;margin:6px 0 4px}
+ .a-switch button{min-height:48px;border:0!important;border-radius:999px!important;color:#014621!important;margin:0;font-size:14px}
+ .a-switch [aria-selected="true"]{background:#014621!important;color:#5bc20f!important}
+ .a-switch .ix-bar{display:none}
+ .a-drawer .c-form input{min-height:56px}
+ .a-drawer .c-checkout{min-height:60px}
+ .a-drawer.is-in .a-brand{display:none}
+}
+@media (max-width:743px){.a-brand,.a-card{display:none}.a-lead{display:none}}
+@media (min-width:744px){
+ .a-big{font-size:clamp(52px,5.4vw,96px)!important;overflow-wrap:normal!important;word-break:normal}
+ .a-big.a-long{font-size:clamp(36px,3.5vw,64px)!important}
+ .a-lead{margin:-6px auto 6px!important}
+ .a-egg{width:36%;right:6%;bottom:30%}
+ .a-egg2{width:22%;right:34%;bottom:27%}
+ .a-card{align-self:flex-start}
+}
+/* ---- dashboard desktop v3: slim name rail + filled two-column board ---- */
+@media (min-width:744px){
+ .a-drawer.is-in{grid-template-columns:minmax(300px,30vw) 1fr}
+ .a-drawer.is-in .a-hero{justify-content:flex-start;padding:56px 44px}
+ .a-drawer.is-in .a-big{margin-top:18px}
+ .a-drawer.is-in .a-egg{width:56%;right:10%;bottom:8%;top:auto}
+ .a-drawer.is-in .a-egg2{width:34%;right:52%;bottom:5%;top:auto}
+ .a-drawer.is-in .a-panel{justify-content:center;padding:64px 5vw}
+ .a-drawer.is-in .a-panel>*{max-width:1040px}
+ #aIn{grid-template-columns:1.15fr 1fr;grid-auto-flow:dense;gap:16px}
+ #aIn>.n-next{grid-column:1;grid-row:1 / span 4;min-height:420px;align-content:start}
+ #aIn>.n-actions{grid-column:2;grid-row:1}
+ #aIn>#aSubs{grid-column:2;grid-row:2}
+ #aIn>.n-addr{grid-column:2;grid-row:3}
+ #aIn>.n-form{grid-column:2;grid-row:4}
+ #aIn>.n-orders{grid-column:1 / -1;padding:18px 22px;border-radius:20px;background:#fff;border:2px solid rgba(1,70,33,.1)}
+ #aIn>#aLogout{grid-column:1 / -1}
+ .n-next{padding:36px;background:#014621 url(img/egg-tray.webp) no-repeat right -60px bottom -50px/62%}
+ .n-next.n-quiet{background:#fff url(img/egg-tray.webp) no-repeat right -60px bottom -50px/62%}
+ .n-next::after{display:none}
+ .n-next .n-big{font-size:clamp(52px,5vw,84px)}
+ .n-next .n-sub{max-width:60%;font-size:16px}
+ .n-next .n-track{margin-top:auto;padding-top:24px;max-width:70%}
+ .n-next>*{position:relative;z-index:1}
+ .n-act{padding:20px}
+ .n-act b{font-size:18px}
+ .n-row{padding:20px 22px}
+}
 </style></head>
 <body>
 
@@ -1383,12 +1450,14 @@ a{color:#014621}a:hover{color:#191718}
 <div class="k-paper"></div>
 <p class="a-kicker">Krate account</p>
 <p class="a-big" id="aBig">Welcome<br>back.</p>
-<ul class="a-perks"><li>Faster checkout, details saved</li><li>Track every order</li><li>Pause or cancel your subscription</li></ul>
+<div class="a-card"><span class="g-tape a-card-tape" aria-hidden="true"></span><p class="a-card-h">Why sign up?</p><ul class="a-perks"><li>Faster checkout, details saved</li><li>Track every order</li><li>Pause or cancel your subscription</li></ul></div>
 <img loading="lazy" decoding="async" class="a-egg" src="img/egg-brown.webp" alt="">
 <img loading="lazy" decoding="async" class="a-egg a-egg2" src="img/egg-white.webp" alt="">
 </div>
 <div class="a-panel">
+<div class="a-brand" id="aBrand" aria-hidden="true"></div>
 <h3 class="a-title" id="aTitle">My Krate</h3>
+<p class="a-lead" id="aLead"></p>
 
 <p class="a-off" id="aOff" hidden>Accounts are almost ready. For now, order on WhatsApp and we’ll keep track for you.</p>
 
@@ -2041,7 +2110,8 @@ var KRATE_SUPABASE = {
     $('aLocal').hidden = !(sb && sb.local);
     $('aOut').hidden = !on || !!user;
     $('aIn').hidden = !on || !user;
-    $('aTitle').textContent = user ? 'Your account' : (mode === 'up' ? 'Create your account' : 'Log in');
+    $('aTitle').textContent = user ? 'Your account' : (mode === 'up' ? 'Create your account' : 'Log in to Krate');
+    $('aLead').textContent = user ? '' : (mode === 'up' ? 'Takes 30 seconds. Then checkout fills itself in.' : 'Good to see you again. Your eggs are waiting.');
     $('aBig').innerHTML = user ? 'Hey<br>' + (($('aName').textContent || 'there').replace(/[<>&]/g, '')) + '!' : (mode === 'up' ? 'Join the<br>Krate.' : 'Welcome<br>back.');
     $('aDrawer').classList.toggle('is-in', !!user);
     $('aBig').classList.toggle('a-long', !!user && ($('aName').textContent || '').length > 7);
@@ -2272,6 +2342,7 @@ var KRATE_SUPABASE = {
     if (o.name || o.phone || o.address) sb.from('profiles').upsert({ id: user.id, name: o.name || profile.name, phone: o.phone || profile.phone, address: o.address || profile.address });
   };
   window.KRATE_OPEN_ACCOUNT = open;
+  var fl = document.querySelector('.f-logo svg'); if (fl) $('aBrand').appendChild(fl.cloneNode(true));
   view();
 })();
 
