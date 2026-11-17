@@ -1277,6 +1277,33 @@ footer nav a{font-size:20px!important}
 .acc #aIn .n-track li{color:rgba(255,255,255,.7)!important;border-top-color:rgba(255,255,255,.35)!important}
 .acc #aIn .n-track li.on{color:#fff!important;border-top-color:#fff!important}
 .acc.is-in .acc-more summary{color:#fff}
+/* ---- shop layout v5: headline on top, product tile + order slip side by side ---- */
+.sx{padding:7vw 5vw 9vw}
+.sx-wrap{max-width:1180px;grid-template-columns:1fr 1fr!important;grid-template-areas:"tag tag" "h2 h2" "prod slip"!important;column-gap:40px!important;row-gap:18px!important;align-items:stretch!important}
+.sx-tag{justify-self:center!important}
+.sx-h2{display:block!important;text-align:center;font-size:clamp(56px,7.6vw,124px)!important;line-height:.9!important;margin-bottom:22px!important}
+.sx-product{grid-area:prod;position:relative;border-radius:32px;background:radial-gradient(circle at 50% 42%,#f9a07a,#ef7a4c 60%,#e0643a);display:grid;place-items:center;padding:40px 30px 92px;box-shadow:0 30px 60px rgba(1,70,33,.16);overflow:visible;min-height:440px}
+.sx-product::after{content:"";position:absolute;inset:0;border-radius:inherit;background:url(img/paper.webp) 0 0/100% auto;mix-blend-mode:overlay;opacity:.25;pointer-events:none}
+.sx-product img{width:74%;max-width:420px;height:auto;rotate:-6deg;filter:drop-shadow(0 26px 26px rgba(0,0,0,.3));transition:rotate .5s cubic-bezier(.2,.9,.25,1.4)}
+.sx-product:hover img{rotate:-1deg}
+.sx-ptape{position:absolute;top:-12px;left:50%;width:130px;height:34px;translate:-50% 0;rotate:-3deg;z-index:2}
+.t-shop .sx-product .sx-seal{position:absolute;width:30%;max-width:150px;top:22px;right:22px;font-size:14px;z-index:2}
+.sx-pcap{position:absolute;left:24px;right:24px;bottom:22px;margin:0;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;z-index:1;color:#fff}
+.sx-pcap b{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:28px;text-transform:uppercase}
+.sx-pcap span{font:600 14px 'Inter Tight',sans-serif;opacity:.95}
+.sx-slip{grid-area:slip!important;rotate:0deg!important;align-self:stretch;display:flex;flex-direction:column;border-radius:6px;padding:34px 30px 44px!important}
+.sx-slip .sx-lines{margin-top:auto;padding-top:20px}
+@media (max-width:900px){
+ .sx-wrap{grid-template-columns:1fr!important;grid-template-areas:"tag" "h2" "prod" "slip"!important;row-gap:22px!important}
+ .sx-h2{font-size:15vw!important;margin-bottom:6px!important}
+ .sx-product{min-height:0;padding:34px 20px 80px;border-radius:26px}
+ .sx-pcap b{font-size:22px}
+ .sx-slip{padding:28px 18px 40px!important}
+}
+.sx-slip .sx-lines{margin-top:22px!important}
+.sx-product{min-height:0!important;padding:46px 30px 84px}
+.sx-product img{width:62%}
+@media (max-width:900px){.sx-product img{width:74%}}
 </style></head>
 <body>
 
@@ -1589,12 +1616,14 @@ a{color:#014621}a:hover{color:#191718}
 <div aria-hidden="true" class="k-paper"></div>
 <div class="sx-wrap">
 <p class="g-tag t-tag sx-tag"><span aria-hidden="true"></span>Shop</p>
-<h2 id="shopTitle" class="sx-h2" aria-label="Get a Krate delivered">
-<span class="sx-line" aria-hidden="true"><span>Get a</span><span class="sx-card"><span aria-hidden="true" class="g-tape sx-tape"></span><img loading="lazy" decoding="async" id="spMain" src="img/egg-tray.webp" alt=""><span class="hs-jumbo sx-seal"><svg class="hs-burst" viewBox="0 0 100 100" aria-hidden="true"><polygon points="100.0,50.0 93.6,55.7 98.3,62.9 90.7,66.8 93.3,75.0 84.9,76.8 85.4,85.4 76.8,84.9 75.0,93.3 66.8,90.7 62.9,98.3 55.7,93.6 50.0,100.0 44.3,93.6 37.1,98.3 33.2,90.7 25.0,93.3 23.2,84.9 14.6,85.4 15.1,76.8 6.7,75.0 9.3,66.8 1.7,62.9 6.4,55.7 0.0,50.0 6.4,44.3 1.7,37.1 9.3,33.2 6.7,25.0 15.1,23.2 14.6,14.6 23.2,15.1 25.0,6.7 33.2,9.3 37.1,1.7 44.3,6.4 50.0,0.0 55.7,6.4 62.9,1.7 66.8,9.3 75.0,6.7 76.8,15.1 85.4,14.6 84.9,23.2 93.3,25.0 90.7,33.2 98.3,37.1 93.6,44.3"></polygon><circle cx="50" cy="50" r="38"></circle></svg><small>Extra large</small><b>Jumbo</b><small>30 per crate</small></span></span></span>
-<span class="sx-line" aria-hidden="true"><span>Krate</span></span>
-<span class="sx-line sx-l3" aria-hidden="true"><span>delivered.</span></span>
-</h2>
+<h2 id="shopTitle" class="sx-h2">Get a Krate delivered.</h2>
 
+<div class="sx-product">
+<span aria-hidden="true" class="g-tape sx-ptape"></span>
+<img loading="lazy" decoding="async" id="spMain" src="img/egg-tray.webp" alt="A crate of 30 Krate jumbo eggs">
+<span class="hs-jumbo sx-seal"><svg class="hs-burst" viewBox="0 0 100 100" aria-hidden="true"><polygon points="100.0,50.0 93.6,55.7 98.3,62.9 90.7,66.8 93.3,75.0 84.9,76.8 85.4,85.4 76.8,84.9 75.0,93.3 66.8,90.7 62.9,98.3 55.7,93.6 50.0,100.0 44.3,93.6 37.1,98.3 33.2,90.7 25.0,93.3 23.2,84.9 14.6,85.4 15.1,76.8 6.7,75.0 9.3,66.8 1.7,62.9 6.4,55.7 0.0,50.0 6.4,44.3 1.7,37.1 9.3,33.2 6.7,25.0 15.1,23.2 14.6,14.6 23.2,15.1 25.0,6.7 33.2,9.3 37.1,1.7 44.3,6.4 50.0,0.0 55.7,6.4 62.9,1.7 66.8,9.3 75.0,6.7 76.8,15.1 85.4,14.6 84.9,23.2 93.3,25.0 90.7,33.2 98.3,37.1 93.6,44.3"></polygon><circle cx="50" cy="50" r="38"></circle></svg><small>Extra large</small><b>Jumbo</b><small>30 per crate</small></span>
+<p class="sx-pcap"><b>The Krate</b><span>30 fresh jumbo eggs · straight from our farm</span></p>
+</div>
 <div class="sx-slip">
 <span aria-hidden="true" class="g-tape sx-slip-tape"></span>
 <div class="sx-slip-head"><span>Order slip</span><span>Pay on delivery</span></div>
