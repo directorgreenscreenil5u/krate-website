@@ -1235,6 +1235,19 @@ footer nav a{font-size:20px!important}
 .acc .ap .n-next .n-big,.acc .ap .n-next .n-sub{color:#fff!important}
 .acc .ap .n-next.n-empty .n-big{font-size:24px!important;line-height:1.15}
 .acc .ap .n-next .n-cta{background:#5bc20f!important;color:#014621!important}
+.n-w{display:grid;gap:2px}.n-w small{font:500 12px 'Inter Tight',sans-serif;color:#6b6466}
+.c-need{padding:10px 12px;border-radius:12px;background:#eef8e6;color:#014621!important;font-weight:600}
+.c-need[hidden]{display:none}
+.c-ok{display:grid;justify-items:center;text-align:center;gap:10px;padding:30px 6px}
+.c-ok[hidden]{display:none}
+.c-ok-tick{width:76px;height:76px;border-radius:50%;background:#5bc20f;color:#014621;display:grid;place-items:center;animation:ixPop .5s cubic-bezier(.2,.9,.25,1.6)}
+.c-ok-tick svg{width:40px;height:40px}
+.c-ok h3{margin:6px 0 0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:32px;text-transform:uppercase;color:#014621}
+.c-ok-num{margin:0;padding:6px 12px;border-radius:999px;background:#fff;font:700 14px 'Inter Tight',sans-serif;color:#014621}
+.c-ok p{margin:0;font:500 15px/1.5 'Inter Tight',sans-serif;color:#4a4446}
+.c-ok .c-checkout{width:100%;margin-top:10px}
+.c-checkout:disabled{opacity:.7}
+.c-form[hidden]{display:none}
 </style></head>
 <body>
 
@@ -1566,7 +1579,7 @@ a{color:#014621}a:hover{color:#191718}
 <div class="sx-lines" aria-live="polite">
 <div class="sx-item"><span class="sx-q"><span class="hs-qty" role="group" aria-label="Crates"><button type="button" id="hsMinus" aria-label="One fewer crate">−</button><output id="hsQty">1</output><button type="button" id="hsPlus" aria-label="One more crate">+</button></span><span>× Krate<span class="sx-hide-m"> · 30 jumbo eggs</span></span></span><span class="sx-dots" aria-hidden="true"></span><span id="sxSub">₦7,500</span></div>
 <div class="sx-item sx-disc" id="sxDiscRow" hidden><span id="sxDiscLabel">Subscription saving</span><span class="sx-dots" aria-hidden="true"></span><span id="hsSave">−₦0</span></div>
-<div class="sx-item sx-muted"><span>Delivery</span><span class="sx-dots" aria-hidden="true"></span><span>confirmed on WhatsApp</span></div>
+<div class="sx-item sx-muted"><span>Delivery</span><span class="sx-dots" aria-hidden="true"></span><span>we’ll confirm the time</span></div>
 <div class="sx-total"><span id="hsPer">Total</span><strong id="hsPrice">₦7,500</strong></div>
 <s id="hsWas" hidden></s>
 </div>
@@ -1581,8 +1594,8 @@ a{color:#014621}a:hover{color:#191718}
 <aside class="c-drawer" id="cDrawer" aria-label="Checkout" aria-hidden="true">
 <div class="c-head"><h3>Checkout</h3><button type="button" class="c-close" id="cClose" aria-label="Close">×</button></div>
 <div class="c-total"><span id="cWhat"></span><strong id="cSubtotal">₦0</strong></div>
-<p class="c-note">Delivery fee confirmed on WhatsApp. Pay on delivery.</p>
-<p class="c-note" id="cAcct"><a href="#account" data-account>Log in or create an account</a> to save your details and track orders.</p>
+<p class="c-note">Pay on delivery. We’ll text you to confirm the delivery time.</p>
+<p class="c-note c-need" id="cAcct">You’ll need a free Krate account so you can track your order.</p>
 <form class="c-form" id="cForm" novalidate>
 <label>Full name<input name="name" required autocomplete="name"></label>
 <label>Phone / WhatsApp<input name="phone" type="tel" required autocomplete="tel"></label>
@@ -1591,9 +1604,17 @@ a{color:#014621}a:hover{color:#191718}
 <label class="c-cb" id="cCbRow" hidden><input type="checkbox" id="cCb"><span>Use <b id="cCbAmt">₦0</b> cashback</span></label>
 <label>Preferred delivery day<input name="when" placeholder="e.g. Saturday morning"></label>
 <p class="p-error" id="cError" role="alert" hidden>Please fill in your name, phone and address.</p>
-<button type="submit" class="c-checkout">Send order on WhatsApp</button>
-<p class="p-done" id="cDone" hidden>Your order is ready in WhatsApp. Press send and we’ll confirm.</p>
+<button type="submit" class="c-checkout" id="cPlace">Place order</button>
+<p class="p-done" id="cDone" hidden></p>
 </form>
+<div class="c-ok" id="cOk" hidden>
+<span class="c-ok-tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+<h3 id="cOkT">Order placed!</h3>
+<p class="c-ok-num" id="cOkNum"></p>
+<p id="cOkMsg"></p>
+<button type="button" class="c-checkout" id="cOkView">See it in my account</button>
+<button type="button" class="a-link" id="cOkBack">Back to the shop</button>
+</div>
 </aside>
 <!-- ================= PARTNERS (B2B) ================= -->
 <section id="partners" class="b-sec" aria-labelledby="pTitle">
@@ -2236,6 +2257,7 @@ var KRATE = {
     var fr = $('hsFreq'); fr.classList.toggle('open', sub);
     fr.querySelectorAll('button').forEach(function (b) { b.tabIndex = sub ? 0 : -1; });
     $('hsGo').textContent = sub ? 'Start subscription' : 'Order now';
+    $('cPlace').textContent = window.KRATE_USER ? (sub ? 'Start subscription' : 'Place order') : 'Create account & order';
     $('cWhat').textContent = what();
     $('cSubtotal').textContent = money(now) + (sub ? ' / delivery' : '');
   }
@@ -2255,7 +2277,7 @@ var KRATE = {
   function open() {
     var P0 = window.KRATE_PROFILE, cf = $('cForm');
     if (P0 && cf) ['name', 'phone', 'address'].forEach(function (k) { if (!cf.elements[k].value && P0[k]) cf.elements[k].value = P0[k]; });
-    var nudge = $('cAcct'); if (nudge) nudge.hidden = !!window.KRATE_USER;
+    resetCheckout(); update();
     // saved addresses as quick picks
     var box = $('cAddrs'), list = (P0 && P0.addresses) || [];
     box.innerHTML = ''; box.hidden = list.length < 1;
@@ -2286,18 +2308,33 @@ var KRATE = {
     form.querySelectorAll('[required]').forEach(function (f) { var bad = !f.value.trim(); f.classList.toggle('is-bad', bad); f.setAttribute('aria-invalid', bad); if (bad) ok = false; });
     $('cError').hidden = ok;
     if (!ok) { form.querySelector('.is-bad').focus(); return; }
-    var f = form.elements;
-    var msg = mode === 'sub'
-      ? ['Hello Krate! I’d like to subscribe:', '• ' + what() + ' = ' + money(each()) + ' per delivery (' + Math.round(OFF[freq] * 100) + '% off ' + money(full()) + ')']
-      : ['Hello Krate! I’d like to order:', '• ' + what() + ' = ' + money(each())];
-    var cr = credit(); if (cr) msg.push('Cashback used: −' + money(cr), 'To pay: ' + money(each() - cr));
-    msg.push('', 'Name: ' + f.name.value, 'Phone: ' + f.phone.value, 'Address: ' + f.address.value);
-    if (f.when.value) msg.push((mode === 'sub' ? 'Delivery day: ' : 'Delivery: ') + f.when.value);
-    var a = document.createElement('a'); a.href = 'https://wa.me/' + KRATE.whatsapp + '?text=' + encodeURIComponent(msg.join('\n')); a.target = '_blank'; a.rel = 'noopener';
-    document.body.appendChild(a); a.click(); a.remove();
-    if (window.KRATE_SAVE_ORDER) window.KRATE_SAVE_ORDER({ kind: mode, summary: what(), crates: qty, frequency: mode === 'sub' ? freq : null, total: each() - credit(), credit: credit(), name: f.name.value, phone: f.phone.value, address: f.address.value });
-    $('cDone').hidden = false;
+    if (!window.KRATE_USER) { needAccount(); return; }
+    var f = form.elements, btn = $('cPlace');
+    btn.disabled = true; btn.textContent = 'Placing…';
+    var order = { kind: mode, summary: what(), crates: qty, frequency: mode === 'sub' ? freq : null, total: each() - credit(), credit: credit(), name: f.name.value, phone: f.phone.value, address: f.address.value, when: f.when.value };
+    Promise.resolve(window.KRATE_SAVE_ORDER ? window.KRATE_SAVE_ORDER(order) : null).then(function (saved) {
+      btn.disabled = false; btn.textContent = mode === 'sub' ? 'Start subscription' : 'Place order';
+      var num = 'KR' + String((saved && saved.id) || Date.now()).slice(-5);
+      form.hidden = true; $('cOk').hidden = false;
+      $('cOkT').textContent = mode === 'sub' ? 'Subscription started!' : 'Order placed!';
+      $('cOkNum').textContent = 'Order ' + num;
+      $('cOkMsg').textContent = (mode === 'sub' ? what() + ' at ' + money(order.total) + ' per delivery. ' : what() + ' · ' + money(order.total) + ', pay on delivery. ') + 'We’ll text ' + order.phone + ' to confirm the delivery time.';
+      document.querySelectorAll('#cDrawer .c-total, #cDrawer .c-note').forEach(function (x) { x.hidden = true; });
+    });
   });
+  function needAccount() {
+    close();
+    window.KRATE_PENDING_CHECKOUT = true;
+    if (window.KRATE_OPEN_ACCOUNT) window.KRATE_OPEN_ACCOUNT('up', 'Create a free account to place your order');
+  }
+  function resetCheckout() {
+    form.hidden = false; $('cOk').hidden = true;
+    document.querySelectorAll('#cDrawer .c-total, #cDrawer .c-note').forEach(function (x) { x.hidden = false; });
+    $('cAcct').hidden = !!window.KRATE_USER;
+  }
+  $('cOkView').onclick = function () { close(); resetCheckout(); if (window.KRATE_OPEN_ACCOUNT) window.KRATE_OPEN_ACCOUNT(null, null, 'orders'); };
+  $('cOkBack').onclick = function () { close(); resetCheckout(); };
+  window.KRATE_RESUME_CHECKOUT = function () { if (!window.KRATE_PENDING_CHECKOUT) return; window.KRATE_PENDING_CHECKOUT = false; setTimeout(open, 450); };
   update();
 })();
 
@@ -2314,7 +2351,12 @@ var KRATE_SUPABASE = {
   var sb = null, user = null, profile = {}, mode = 'in';
   function money(n) { return '₦' + Math.round(n).toLocaleString('en-NG'); }
   function show(v) { drawer.classList.toggle('open', v); drawer.setAttribute('aria-hidden', v ? 'false' : 'true'); scrim.hidden = !v; if (v) $('aClose').focus(); }
-  function open() { show(true); if (!sb) start(); }
+  function open(m, note, page) {
+    show(true); if (!sb) start();
+    if (m && !user) { var t = document.querySelector('.a-switch [data-a="' + m + '"]'); if (t) t.click(); }
+    view();
+    if (page && user && window.__kGo) setTimeout(function () { window.__kGo(page); }, 60);
+  }
   $('aOpen').onclick = open; $('aClose').onclick = function () { show(false); }; scrim.onclick = function () { show(false); };
   document.addEventListener('click', function (e) { var a = e.target.closest('[data-account]'); if (a) { e.preventDefault(); setTimeout(open, 250); } });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && drawer.classList.contains('open')) show(false); });
@@ -2326,7 +2368,7 @@ var KRATE_SUPABASE = {
     $('aOut').hidden = !on || !!user;
     $('aIn').hidden = !on || !user;
     $('aTitle').textContent = user ? 'Your account' : (mode === 'up' ? 'Create your account' : 'Log in to Krate');
-    $('aLead').textContent = user ? '' : (mode === 'up' ? 'Takes 30 seconds' : 'Good to see you again');
+    $('aLead').textContent = user ? '' : (window.KRATE_PENDING_CHECKOUT ? 'One quick step and your order is in' : (mode === 'up' ? 'Takes 30 seconds' : 'Good to see you again'));
     $('aBig').innerHTML = mode === 'up' ? 'Join the<br>Krate.' : 'Welcome<br>back.';
     $('aDrawer').classList.toggle('is-in', !!user);
     $('aBig').classList.toggle('a-long', !!user && ($('aName').textContent || '').length > 7);
@@ -2392,7 +2434,7 @@ var KRATE_SUPABASE = {
   }
   function attach(client) {
     sb = client; window.KRATE_DB = sb;
-    sb.auth.onAuthStateChange(function (_e, session) { user = session ? session.user : null; window.KRATE_USER = user; view(); if (user) load(); });
+    sb.auth.onAuthStateChange(function (_e, session) { user = session ? session.user : null; window.KRATE_USER = user; view(); if (user) { load(); if (window.KRATE_PENDING_CHECKOUT && window.KRATE_RESUME_CHECKOUT) { show(false); window.KRATE_RESUME_CHECKOUT(); } } });
     sb.auth.getSession().then(function (r) { user = r.data.session ? r.data.session.user : null; window.KRATE_USER = user; view(); if (user) load(); });
   }
   function start() {
@@ -2542,7 +2584,8 @@ var KRATE_SUPABASE = {
     if (!rows.length) { b.appendChild(el('p', 'n-none', 'Your orders will show up here.')); return; }
     rows.slice(0, 5).forEach(function (o) {
       var r = el('div', 'n-order');
-      r.append(el('span', 'n-d', fmt(new Date(o.created_at), { day: 'numeric', month: 'short' })), el('span', 'n-w', o.summary), el('span', 'n-p', money(o.total)));
+      var w = el('span', 'n-w'); w.append(el('b', '', o.summary), el('small', '', 'KR' + String(o.id).slice(-5) + ' · ' + (o.kind === 'sub' ? (o.status === 'active' ? 'Subscription active' : 'Subscription ' + o.status) : (o.status === 'placed' ? 'Placed, awaiting confirmation' : o.status))));
+      r.append(el('span', 'n-d', fmt(new Date(o.created_at), { day: 'numeric', month: 'short' })), w, el('span', 'n-p', money(o.total)));
       b.appendChild(r);
     });
   }
@@ -2588,15 +2631,19 @@ var KRATE_SUPABASE = {
 
   // called by the shop when someone sends an order to WhatsApp
   window.KRATE_SAVE_ORDER = function (o) {
-    if (!sb || !user) return;
-    sb.from('orders').insert({ user_id: user.id, kind: o.kind, summary: o.summary, crates: o.crates, frequency: o.frequency || null, total: o.total, credit_used: o.credit || 0, status: o.kind === 'sub' ? 'active' : 'placed' }).then(function () { load(); });
+    if (!sb || !user) return Promise.resolve(null);
+    var rec = { user_id: user.id, kind: o.kind, summary: o.summary, crates: o.crates, frequency: o.frequency || null, total: o.total, credit_used: o.credit || 0, delivery_address: o.address || null, delivery_note: o.when || null, status: o.kind === 'sub' ? 'active' : 'placed' };
+    var p = sb.from('orders').insert(rec);
+    var done = (p && p.select ? p.select().single() : p).then(function (r) { load(); return (r && r.data) || rec; });
     profile.name = profile.name || o.name; profile.phone = profile.phone || o.phone;
     profile.addresses = profile.addresses || [];
     var addr = (o.address || '').trim();
     if (addr && !profile.addresses.some(function (x) { return x.text.toLowerCase() === addr.toLowerCase(); })) profile.addresses.push({ id: 'a' + Date.now(), label: profile.addresses.length ? 'Other' : 'Home', text: addr, def: !profile.addresses.length });
     saveProfile(function () { renderAddrs(); });
+    return done;
   };
   // app-style sub pages
+  window.__kGo = function (v) { go(v); };
   function go(view) {
     $$a('[data-view]').forEach(function (v) { v.hidden = v.dataset.view !== view; });
     var pg = document.querySelector('[data-view="' + view + '"]'); if (pg && view !== 'home') { pg.classList.remove('ap-in'); void pg.offsetWidth; pg.classList.add('ap-in'); }

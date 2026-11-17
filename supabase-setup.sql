@@ -21,6 +21,8 @@ create table if not exists public.orders (
   total numeric not null,
   skip_next boolean default false,
   credit_used numeric default 0,
+  delivery_address text,
+  delivery_note text,
   status text not null default 'placed' check (status in ('placed', 'delivered', 'active', 'paused', 'cancelled')),
   created_at timestamptz default now()
 );
