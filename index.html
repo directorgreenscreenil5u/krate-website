@@ -757,9 +757,12 @@ a{color:#014621}a:hover{color:#191718}
   // Pull-me menu
   var menu = document.getElementById('kMenu'), nav = document.getElementById('kNav'), pull = document.getElementById('kPull');
   var open = false;
+  function shut() { return 'translateY(calc(-100% + ' + (pull.offsetHeight - 2) + 'px))'; }
+  menu.style.transform = shut();
+  window.addEventListener('resize', function () { if (!open) menu.style.transform = shut(); });
   function setMenu(v) {
     open = v;
-    menu.style.transform = v ? 'translateY(0)' : 'translateY(calc(-100% + 74px))';
+    menu.style.transform = v ? 'translateY(0)' : shut();
     nav.style.boxShadow = v ? '0 20px 40px rgba(0,0,0,0.3)' : 'none';
     pull.textContent = v ? 'Push back' : 'Pull me';
     pull.setAttribute('aria-expanded', v ? 'true' : 'false');
