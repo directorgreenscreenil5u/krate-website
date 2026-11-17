@@ -74,6 +74,25 @@
 }
 
 .gw{display:inline-block;white-space:nowrap}
+/* ---- board: livelier entrances ---- */
+.g-giant{transform:skewX(var(--sk,0deg));transform-origin:50% 100%;transition:transform .15s linear}
+.gc{transform:translateY(120%) rotate(10deg) scale(.9)!important;transition:transform .7s cubic-bezier(.2,1.5,.3,1)!important;transition-delay:calc(var(--i) * 38ms)!important}
+.live .gc{transform:none!important}
+/* card slaps onto the page, then the tape presses down */
+.g-row .g-slot{scale:1!important;opacity:0;translate:0 -40%;rotate:calc(var(--tilt,0deg) - 18deg);transition:none}
+.g-row.live .g-slot{animation:gSlap .75s cubic-bezier(.2,1.4,.35,1) .22s both}
+@keyframes gSlap{0%{opacity:0;translate:0 -60%;rotate:calc(var(--tilt,0deg) - 20deg);scale:1.25;filter:drop-shadow(0 .3em .3em rgba(0,0,0,.35))}60%{opacity:1;translate:0 3%;scale:.96}80%{translate:0 -1%;scale:1.02}100%{opacity:1;translate:0 0;rotate:var(--tilt,0deg);scale:1;filter:none}}
+.g-row .g-tape{opacity:0;transform:translateY(-.15em) scaleX(.6)}
+.g-row.live .g-tape{animation:gTape .4s cubic-bezier(.2,1.4,.3,1) .85s both}
+@keyframes gTape{to{opacity:1;transform:none}}
+.g-slot:hover{rotate:0deg!important}
+.g-slot:hover .g-card{transform:scale(1.04);transition:transform .3s}
+/* floating eggs bob gently */
+.g-prop{animation:gBob 4.5s ease-in-out infinite}
+.g-prop:nth-of-type(2n){animation-delay:-2s}
+@keyframes gBob{50%{margin-top:-.04em}}
+@media (prefers-reduced-motion:reduce){.g-giant{transform:none}.g-row .g-slot,.g-row .g-tape{opacity:1;translate:none;rotate:var(--tilt,0deg);transform:none;animation:none!important}.g-prop{animation:none}}
+@media (max-width:743px){.g-row .g-slot{rotate:var(--tilt,0deg)}}
 /* ---- Shop ---- */
 .s-shop{position:relative;background:#f6eceb;color:#014621;padding:9vw 4vw 10vw;overflow:hidden}
 .s-shop .k-paper{opacity:.5}
@@ -2386,9 +2405,18 @@ a{color:#014621}a:hover{color:#191718}
 
   function ease(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
 
+  var dCur = null, raf2 = 0, vel = 0;
   function update() {
     var top = pin.getBoundingClientRect().top;
-    var d = Math.max(0, Math.min(total, -top * SPEED));
+    var dT = Math.max(0, Math.min(total, -top * SPEED));
+    if (dCur === null || Math.abs(dT - dCur) > total * 0.6) dCur = dT;
+    var step = (dT - dCur) * 0.14; dCur += step; vel = vel * 0.8 + step * 0.2;
+    var d = dCur;
+    var sk = Math.max(-7, Math.min(7, -vel * 0.06));
+    pin.style.setProperty('--sk', sk.toFixed(2) + 'deg');
+    cancelAnimationFrame(raf2);
+    if (Math.abs(dT - dCur) > 0.5 || Math.abs(vel) > 0.3) raf2 = requestAnimationFrame(update);
+    else pin.style.setProperty('--sk', '0deg');
     var cam = pts[0], segIndex = 0;
     for (var i = 0; i < segs.length; i++) {
       var s = segs[i];

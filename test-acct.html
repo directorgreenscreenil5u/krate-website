@@ -1,0 +1,1665 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Krate — Handled With Care | Fresh Jumbo Eggs</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.k-tab{min-height:40px;padding:0 14px;border-radius:6px;border:1.5px solid #191718;font-family:'Inter Tight',system-ui,sans-serif;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#f6eceb;color:#191718}
+.k-tab[aria-selected="true"]{background:#191718;color:#f6eceb}
+.k-pick[aria-pressed="true"]{border-color:#f6eceb!important;box-shadow:0 0 0 4px #191718,0 10px 18px rgba(0,0,0,.25);scale:1.12}
+.k-grabbing{z-index:30!important;scale:1.04;filter:drop-shadow(0 30px 30px rgba(0,0,0,.35));cursor:grabbing!important}
+.k-drag{transition:scale .25s}
+[hidden]{display:none!important}
+.k-paper{position:absolute;inset:0;pointer-events:none;background:url(img/paper.webp) 0 0/100% auto repeat-y;mix-blend-mode:overlay;opacity:.24}
+</style><style>/* ---- Why we exist: pinned board ---- */
+.g-pin{position:relative;background:#5bc20f;height:700vh;--G:30vw}
+.g-stage{position:sticky;top:0;height:100vh;overflow:hidden}
+.g-stage .k-paper{z-index:0}
+.g-canvas{position:absolute;left:0;top:0;will-change:transform;z-index:1}
+.g-title{position:absolute;left:0;top:13vw;width:100vw;display:flex;flex-direction:column;align-items:center;gap:1.2vw;text-align:center;color:#014621}
+.g-tag{margin:0;display:inline-flex;gap:.6vw;align-items:center;padding:.5vw 1vw;background:#014621;color:#5bc20f;border-radius:.4vw;font-family:'Inter Tight',sans-serif;font-size:max(.85vw,11px);font-weight:700;letter-spacing:.06em;text-transform:uppercase;rotate:-2deg}
+.g-tag span{width:.55vw;height:.55vw;border-radius:50%;background:#5bc20f}
+.g-title h2{margin:0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:5.6vw;line-height:.95;text-transform:uppercase}
+.g-row{position:absolute;color:#014621;font-size:var(--G)}
+.g-giant{margin:0;display:flex;align-items:center;font-family:'Bagel Fat One',sans-serif;font-size:1em;line-height:.82;text-transform:uppercase;white-space:nowrap;position:relative;z-index:1}
+.g-slot{position:relative;flex:0 0 auto;width:.6em;margin:0 .04em;rotate:var(--tilt,0deg);z-index:2;transition:rotate .5s cubic-bezier(.2,.9,.25,1.4)}
+.g-slot:hover{rotate:0deg}
+.g-card{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:.14em;border:.022em solid #f6eceb;box-shadow:-.02em .03em .06em rgba(1,70,33,.35)}
+.g-tape{position:absolute;top:0;left:50%;width:.42em;height:.11em;translate:-50% -46%;rotate:-3deg;background:rgba(236,220,190,.85);box-shadow:0 2px 4px rgba(0,0,0,.12)}
+.g-prop{position:absolute;height:auto;z-index:3;pointer-events:none;filter:drop-shadow(.35vw .5vw .6vw rgba(1,70,33,.35));will-change:transform}
+.g-shot img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:.07em;border:.012em solid #f6eceb}
+.g-shot .g-tape{width:.24em;height:.065em}
+.g-note{position:absolute;margin:0;font-family:'Caveat',cursive;font-size:.075em;line-height:1.05;color:#014621;rotate:-3deg;white-space:nowrap;z-index:2}
+.g-arrow{position:absolute;width:24vw;height:auto;color:#014621;opacity:.8;overflow:visible}
+.g-arrow path{stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:var(--draw,1)}
+.g-arrow path+path{stroke-dashoffset:var(--head,1);transition:stroke-dashoffset .25s ease-out}
+@media (prefers-reduced-motion: reduce){
+.g-pin{height:auto}.g-stage{position:relative;height:auto;padding:8vw 0}
+.g-canvas{position:relative;display:flex;flex-direction:column;gap:6vw;transform:none!important}
+.g-title,.g-row{position:relative;left:auto!important;top:auto!important}.g-pin{--G:16vw}.g-arrow{display:none}
+}
+
+/* letter-by-letter reveal (like the reference) */
+.gl{display:inline-block;overflow:hidden;vertical-align:bottom;margin:-.2em -.04em -.16em;padding:.2em .04em .16em}
+.gc{display:inline-block;transform:translateY(135%) rotate(6deg);transition:transform .9s cubic-bezier(.2,.9,.25,1.08);transition-delay:calc(var(--i) * 45ms)}
+.live .gc{transform:none}
+.g-row .g-slot{scale:.4;opacity:0;transition:scale .8s cubic-bezier(.2,.9,.25,1.4) .25s,opacity .4s .25s,rotate .5s}
+.g-row.live .g-slot{scale:1;opacity:1}
+.g-row .g-note{opacity:0;translate:0 1vw;transition:opacity .6s .7s,translate .6s .7s}
+.g-row.live .g-note{opacity:1;translate:0 0}
+.g-title .g-tag{opacity:0;transition:opacity .5s}
+.g-title.live .g-tag{opacity:1}
+@media (prefers-reduced-motion: reduce){.gc{transform:none;transition:none}.g-row .g-slot,.g-row .g-note,.g-title .g-tag{scale:1;opacity:1;translate:none}}
+
+@media (max-width: 743px){
+.g-pin{--G:86vw}
+.g-title h2{font-size:8.6vw!important}
+.g-title{top:34vw;gap:3vw}
+.g-title h2{font-size:10.5vw}
+.g-tag{font-size:3vw;padding:1.4vw 2.6vw;border-radius:1.2vw;gap:1.6vw}
+.g-tag span{width:1.6vw;height:1.6vw}
+.g-arrow{width:56vw}
+.g-note{font-size:.065em}
+}
+
+.gw{display:inline-block;white-space:nowrap}
+/* ---- Shop ---- */
+.s-shop{position:relative;background:#f6eceb;color:#014621;padding:9vw 4vw 10vw;overflow:hidden}
+.s-shop .k-paper{opacity:.5}
+.s-wrap{position:relative;max-width:1280px;margin:0 auto}
+.s-tag{background:#014621;color:#5bc20f}
+.s-tag span{background:#5bc20f}
+.s-h2{margin:1.4vw 0 0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(52px,8vw,128px);line-height:.88;text-transform:uppercase}
+.s-lede{max-width:520px;margin:1.6vw 0 0;font-size:clamp(16px,1.35vw,20px);line-height:1.5;color:#191718}
+.s-grid{margin-top:3.5vw;display:flex;flex-wrap:wrap;gap:28px;align-items:stretch}
+.s-card{flex:1 1 560px;min-width:0;display:flex;flex-wrap:wrap;background:#fff;border-radius:32px;overflow:hidden;box-shadow:0 30px 60px rgba(1,70,33,.18)}
+.s-media{position:relative;flex:1 1 280px;min-height:300px;background:#f53509;display:flex;align-items:center;justify-content:center;padding:24px}
+.s-media img{width:100%;max-width:360px;height:auto;filter:drop-shadow(0 24px 30px rgba(0,0,0,.35));rotate:-6deg;transition:rotate .5s cubic-bezier(.2,.9,.25,1.4)}
+.s-card:hover .s-media img{rotate:0deg}
+.s-badge{position:absolute;top:18px;left:18px;padding:6px 12px;border-radius:999px;background:#f6eceb;color:#191718;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.s-body{flex:1 1 280px;padding:32px;display:flex;flex-direction:column;gap:14px}
+.s-title{margin:0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:40px;line-height:1;text-transform:uppercase}
+.s-desc{margin:0;font-size:16px;line-height:1.5;color:#191718}
+.s-price{margin:0;font-family:'Bagel Fat One',sans-serif;font-size:30px;color:#014621}
+.s-price small{font-family:'Inter Tight',sans-serif;font-size:14px;color:#191718}
+.s-packs{border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.s-packs legend{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;color:#191718}
+.s-pack{min-height:44px;padding:0 16px;border-radius:999px;border:2px solid #014621;background:#fff;color:#014621;font:700 15px 'Inter Tight',sans-serif}
+.s-pack[aria-pressed="true"]{background:#014621;color:#f6eceb}
+.s-row{margin-top:auto;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.s-qty{display:flex;align-items:center;border:2px solid #014621;border-radius:999px;overflow:hidden}
+.s-qty button{width:46px;height:48px;border:0;background:transparent;color:#014621;font:700 22px 'Inter Tight',sans-serif}
+.s-qty output{min-width:34px;text-align:center;font:700 18px 'Inter Tight',sans-serif}
+.s-add{flex:1;min-height:52px;padding:0 26px;border:0;border-radius:999px;background:#f53509;color:#191718;font:700 16px 'Inter Tight',sans-serif;letter-spacing:.06em;text-transform:uppercase;transition:transform .2s}
+.s-add:hover{transform:translateY(-2px)}
+.s-add.is-added{background:#5bc20f;color:#014621}
+.s-side{flex:0 1 360px;display:grid;gap:14px;align-content:start}
+.s-perk{background:#014621;color:#f6eceb;border-radius:24px;padding:20px 22px;display:flex;flex-direction:column;gap:4px}
+.s-perk strong{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:22px;color:#5bc20f;text-transform:uppercase}
+.s-perk span{font-size:15px;line-height:1.45}
+.s-perk-b2b{background:#5bc20f;color:#014621}
+.s-perk-b2b strong{color:#014621}
+.s-perk-b2b a{margin-top:6px;font-weight:700;color:#014621}
+
+/* ---- Partners ---- */
+.p-sec{position:relative;background:#014621;color:#f6eceb;padding:9vw 4vw 10vw;overflow:hidden}
+.p-wrap{position:relative;max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:4vw;align-items:flex-start}
+.p-left{flex:1 1 420px;min-width:0;position:relative}
+.p-tag{background:#5bc20f;color:#014621}
+.p-tag span{background:#014621}
+.p-h2{margin:1.4vw 0 0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(64px,11vw,170px);line-height:.85;text-transform:uppercase;color:#5bc20f}
+.p-lede{max-width:520px;margin:1.6vw 0 0;font-size:clamp(16px,1.35vw,20px);line-height:1.5}
+.p-list{list-style:none;margin:2vw 0 0;padding:0;display:grid;gap:12px;max-width:520px}
+.p-list li{position:relative;padding-left:30px;font-size:16px;line-height:1.5}
+.p-list li::before{content:"";position:absolute;left:0;top:.35em;width:16px;height:20px;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;background:#f6eceb}
+.p-list strong{color:#5bc20f}
+.p-photo{position:relative;width:min(340px,70%);margin-top:3vw;rotate:-5deg;font-size:340px}
+.p-photo img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:36px;border:6px solid #f6eceb;box-shadow:0 30px 50px rgba(0,0,0,.4)}
+.p-photo .g-tape{font-size:340px}
+.p-form{flex:1 1 460px;min-width:0;background:#f6eceb;color:#191718;border-radius:32px;padding:clamp(22px,3vw,40px);display:grid;gap:16px;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+.p-formtitle{margin:0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(30px,3vw,42px);text-transform:uppercase;color:#014621}
+.p-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.p-form label,.c-form label{display:grid;gap:6px;font-size:14px;font-weight:700;color:#014621}
+.p-form input,.p-form select,.p-form textarea,.c-form input,.c-form textarea{font:400 16px 'Inter Tight',sans-serif;color:#191718;background:#fff;border:2px solid #d9cfcc;border-radius:14px;padding:12px 14px;min-height:48px;box-sizing:border-box;width:100%}
+.p-form textarea,.c-form textarea{min-height:0;resize:vertical}
+.p-form :focus-visible,.c-form :focus-visible{outline:3px solid #5bc20f;outline-offset:1px;border-color:#014621}
+.is-bad{border-color:#c4260a!important}
+.p-error{margin:0;color:#b02208;font-weight:700;font-size:14px}
+.p-actions{display:flex;flex-wrap:wrap;gap:12px}
+.p-send,.c-checkout{min-height:54px;padding:0 26px;border:0;border-radius:999px;background:#014621;color:#f6eceb;font:700 15px 'Inter Tight',sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.p-mail{min-height:54px;padding:0 22px;border:2px solid #014621;border-radius:999px;background:transparent;color:#014621;font:700 15px 'Inter Tight',sans-serif}
+.p-done{margin:0;padding:14px 16px;border-radius:14px;background:#5bc20f;color:#014621;font-weight:700;font-size:15px;line-height:1.45}
+
+/* ---- Cart ---- */
+.c-fab{position:fixed;right:24px;bottom:24px;z-index:70;width:64px;height:64px;border-radius:50%;border:0;background:#f53509;color:#191718;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 24px rgba(0,0,0,.3);transition:transform .25s cubic-bezier(.2,.9,.25,1.5)}
+.c-fab:hover{transform:scale(1.08)}
+.c-fab.bump{animation:cBump .5s cubic-bezier(.2,.9,.25,1.5)}
+@keyframes cBump{0%{transform:scale(1)}40%{transform:scale(1.25) rotate(-8deg)}100%{transform:scale(1)}}
+.c-count{position:absolute;top:-4px;right:-4px;min-width:24px;height:24px;padding:0 6px;border-radius:999px;background:#014621;color:#f6eceb;font:700 13px/24px 'Inter Tight',sans-serif;box-sizing:border-box}
+.c-scrim{position:fixed;inset:0;z-index:74;background:rgba(1,30,14,.45)}
+.c-drawer{position:fixed;top:0;right:0;bottom:0;z-index:75;width:min(440px,100vw);background:#f6eceb;color:#191718;box-shadow:-20px 0 50px rgba(0,0,0,.3);display:flex;flex-direction:column;gap:14px;padding:24px;box-sizing:border-box;overflow-y:auto;transform:translateX(105%);transition:transform .5s cubic-bezier(.3,1.2,.4,1)}
+.c-drawer.open{transform:none}
+.c-head{display:flex;align-items:center;justify-content:space-between}
+.c-head h3{margin:0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:28px;text-transform:uppercase;color:#014621}
+.c-close{width:44px;height:44px;border-radius:50%;border:2px solid #014621;background:transparent;color:#014621;font-size:24px;line-height:1}
+.c-items{display:grid;gap:10px}
+.c-empty{margin:0;color:#4a4446}
+.c-item{display:flex;gap:12px;align-items:center;background:#fff;border-radius:18px;padding:10px}
+.c-item img{width:64px;height:64px;object-fit:contain;border-radius:12px;background:#f53509;padding:4px;box-sizing:border-box}
+.c-item .c-info{flex:1;display:grid;gap:2px}
+.c-item strong{font-size:15px;color:#014621}
+.c-item span{font-size:14px;color:#4a4446}
+.c-item .s-qty button{width:38px;height:40px;font-size:18px}
+.c-item .s-qty output{min-width:26px;font-size:15px}
+.c-total{display:flex;justify-content:space-between;align-items:baseline;border-top:2px dashed rgba(1,70,33,.3);padding-top:12px;font-size:16px}
+.c-total strong{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:26px;color:#014621}
+.c-note{margin:0;font-size:13px;color:#4a4446}
+.c-form{display:grid;gap:12px}
+
+@media (max-width: 743px){
+/* pull-me tag + menu */
+.k-menu{right:12px}
+#kPull{width:72px!important;height:60px!important;padding-top:12px!important;font-size:11px!important}
+.k-row-label{font-size:30px}
+/* hero */
+#top{height:500vw!important}
+.k-hero-top{height:128vw!important;border-radius:0 0 50% 50% / 0 0 14vw 14vw!important}
+#top [style*="font-size: 1.25vw"]{font-size:3.1vw!important}
+#top .k-par[style*="padding-top: 4.2vw"]{padding-top:20vw!important}
+#top [style*="font-size: 2.35vw"]{font-size:5.4vw!important;gap:3vw!important}
+#top [style*="width: 10.5vw"]{width:23vw!important}
+#top .k-mark{padding:2vw 3vw!important;border-radius:3.4vw!important}
+#top h1{font-size:21.5vw!important;line-height:.82!important;--drop:2vw!important;--tilt:5deg!important}
+#top .k-line{flex-wrap:wrap}
+#top .k-line>span:not(.k-clip){flex-basis:100%;height:0}
+.k-egg-in{top:84vw!important;width:44vw!important;margin-left:-22vw!important}
+.k-hint{display:none!important}
+[data-drag="note"]{left:7vw!important;top:152vw!important;width:62vw!important}
+[data-note3d]{padding:9vw 6vw 4vw!important}
+[data-note3d] p{font-size:6.6vw!important}
+[data-note3d] ul{font-size:4.9vw!important;gap:1.6vw!important}
+[data-note3d] .k-tape{width:22vw!important;height:6vw!important;left:20vw!important;top:-2.6vw!important}
+[data-drag="note"]>svg{width:10vw!important;top:40vw!important}
+#top [style*="left: 1.5vw; top: 99vw"]{left:auto!important;right:3vw!important;top:214vw!important;width:34vw!important}
+#top [style*="left: 1.5vw; top: 99vw"] p{font-size:4.2vw!important}
+#top [style*="left: 1.5vw; top: 99vw"] svg{width:18vw!important}
+[data-drag="card"]{left:5vw!important;top:236vw!important;width:100vw!important;height:118vw!important}
+[data-drag="card"] p{left:8vw!important;top:16vw!important;width:80vw!important;font-size:9.6vw!important}
+[data-drag="card"] span[style*="height: 6vw"]{height:11vw!important}
+#top [style*="left: 62vw; top: 70vw"]{left:38vw!important;top:230vw!important;width:72vw!important;height:12vw!important}
+[data-drag="print"]{left:-5vw!important;top:352vw!important;width:84vw!important}
+[data-drag="print"] p{font-size:5vw!important}
+[data-drag="box"]{left:18vw!important;top:420vw!important;width:88vw!important}
+/* orange product section */
+#eggs [style*="flex: 1 1 640px"]{order:0!important;flex:1 1 100%!important}
+#eggs h2{font-size:25vw!important}
+#eggs [style*="width: min(300px, 44vw)"]{width:36vw!important}
+#eggs .k-rev[style*="width: 200px"]{display:none!important}
+#eggs a[href="#shop"].k-hover{width:24vw!important;height:24vw!important;right:2%!important;top:-6%!important}
+#eggs a[href="#shop"].k-hover span:first-child{font-size:4vw!important}
+#eggs [style*="flex: 0 1 230px"]{order:1!important;flex:1 1 100%!important;padding:0!important;align-self:auto!important}
+#eggs [role="tablist"]{flex-direction:row!important;flex-wrap:wrap}
+#eggs [style*="order: 3"]{order:2!important;flex-direction:row!important;flex-wrap:wrap;justify-content:center;width:100%}
+#eggs .k-pick{width:64px!important;height:64px!important}
+/* CTA cards */
+#order [style*="left: calc(50% - 30px); top: 46%"]{display:none}
+#order [style*="border-radius: 120px"]{border-radius:60px 60px 60px 20px!important}
+/* footer */
+footer [style*="clamp(76px, 12.5vw, 190px)"]{font-size:17vw!important}
+footer [style*="margin-top: 40px; display: flex; flex-direction: column"]{flex-direction:row!important;flex-wrap:wrap;justify-content:center;gap:14px}
+footer [style*="margin-top: 40px; display: flex; flex-direction: column"]>p{flex-basis:100%}
+footer a[aria-label="Instagram"],footer a[aria-label="TikTok"],footer a[aria-label="Facebook"]{position:static!important;width:60px!important;height:60px!important}
+footer [style*="margin-top: -30px; z-index: 2"]{transform:scale(.55);margin:-30px 0 -50px!important}
+footer nav a{font-size:20px!important}
+/* shop */
+.s-add{font-size:14px;white-space:nowrap;padding:0 18px}
+.s-body{padding:22px}
+.s-title{font-size:32px}
+}
+/* ---- calmer overall ---- */
+.k-paper{opacity:.14!important}
+
+/* ---- homepage shop teaser ---- */
+.t-shop{position:relative;z-index:2;overflow:hidden;background:#f6eceb;color:#014621;padding:9vw 4vw 12vw;border-radius:0 0 50% 50% / 0 0 7vw 7vw}
+.t-wrap{position:relative;max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:4vw}
+.t-copy{flex:1 1 420px;min-width:0}
+.t-tag{background:#014621;color:#5bc20f}
+.t-tag span{background:#5bc20f}
+.t-h2{margin:1.4vw 0 0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(54px,8.4vw,140px);line-height:.88;text-transform:uppercase}
+.t-lede{max-width:460px;margin:1.6vw 0 0;font-size:clamp(16px,1.35vw,20px);line-height:1.5;color:#191718}
+.t-actions{margin-top:2.4vw;display:flex;flex-wrap:wrap;align-items:center;gap:20px}
+.t-btn{display:inline-flex;align-items:center;min-height:58px;padding:0 30px;border-radius:999px;background:#f53509;color:#191718;font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;transition:transform .25s cubic-bezier(.2,.9,.25,1.5)}
+.t-btn:hover{transform:translateY(-3px) rotate(-1deg);color:#191718}
+.t-link{font-weight:700;color:#014621;text-underline-offset:4px}
+.t-product{position:relative;flex:1 1 360px;max-width:560px;aspect-ratio:1;display:grid;place-items:center;text-decoration:none}
+.t-disc{position:absolute;inset:7%;border-radius:50%;background:#f53509}
+.t-product img{position:relative;width:76%;height:auto;rotate:-8deg;filter:drop-shadow(0 26px 26px rgba(0,0,0,.32));transition:rotate .6s cubic-bezier(.2,.9,.25,1.4),scale .6s cubic-bezier(.2,.9,.25,1.4)}
+.t-product:hover img{rotate:0deg;scale:1.04}
+.t-badge{position:absolute;right:3%;top:5%;width:31%;aspect-ratio:1;border-radius:50%;background:#014621;color:#5bc20f;display:flex;flex-direction:column;align-items:center;justify-content:center;rotate:12deg;box-shadow:0 12px 24px rgba(0,0,0,.25)}
+.t-badge strong{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(20px,2.5vw,38px);line-height:1}
+.t-badge small{font-size:clamp(10px,.9vw,13px);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#f6eceb}
+
+/* ---- partners, restyled to match the top ---- */
+.p-sec{margin-top:-7vw;padding-top:15vw!important}
+.p-h2{color:#5bc20f}
+.p-form{position:relative;rotate:-1.2deg;border-radius:28px!important}
+.p-form::before{content:"";position:absolute;top:-16px;left:50%;width:140px;height:34px;translate:-50% 0;rotate:3deg;background:rgba(236,220,190,.88);box-shadow:0 2px 4px rgba(0,0,0,.12)}
+.p-form input,.p-form select,.p-form textarea{border-color:#e4d9d6!important;background:#fffdfc!important}
+.p-send{background:#5bc20f!important;color:#014621!important}
+.p-list li::before{background:#5bc20f!important}
+.p-photo{rotate:-6deg}
+
+/* ---- "let's get cracking" cards, calmer ---- */
+#order [style*="border-radius: 120px 120px 120px 30px"]{background:#f53509!important}
+
+/* ---- ribbon: keep the text on the band at every width ---- */
+@media (max-width: 743px){
+.k-ribbon{height:190px!important}
+}
+
+/* ---- phones: no dragging, the page just scrolls ---- */
+@media (max-width: 743px), (pointer: coarse){
+.k-drag{touch-action:auto!important;cursor:default!important}
+}
+@media (max-width: 743px){
+.t-shop{padding:16vw 6vw 22vw;border-radius:0 0 50% 50% / 0 0 12vw 12vw}
+.t-h2{margin-top:3vw}
+.t-lede{margin-top:3vw}
+.t-actions{margin-top:6vw}
+.t-product{margin-top:6vw}
+.p-sec{margin-top:-12vw;padding-top:26vw!important}
+.p-form{rotate:0deg}
+}
+
+/* ---- homepage shop (calm) ---- */
+.hs-mode{margin-top:2.4vw;display:inline-flex;padding:5px;border-radius:999px;background:#fff;border:2px solid #014621}
+.hs-mode button{min-height:46px;padding:0 24px;border:0;border-radius:999px;background:transparent;color:#014621;font:700 15px 'Inter Tight',sans-serif;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:background .25s,color .25s}
+.hs-mode [aria-checked="true"]{background:#014621;color:#5bc20f}
+.hs-line{margin-top:18px;display:flex;align-items:center;gap:16px}
+.hs-line[hidden]{display:none!important}
+.hs-label{min-width:64px;font-family:'Caveat',cursive;font-size:26px;color:#014621}
+.hs-qty{display:inline-flex;align-items:center;border:2px solid #014621;border-radius:999px;background:#fff}
+.hs-qty button{width:48px;height:48px;border:0;background:transparent;color:#014621;font-size:22px;cursor:pointer}
+.hs-qty output{min-width:28px;text-align:center;font-weight:700;font-size:18px;color:#014621}
+.hs-chips{display:flex;gap:8px;flex-wrap:wrap}
+.hs-chips button{min-height:44px;padding:0 18px;border-radius:999px;border:2px solid #014621;background:transparent;color:#014621;font:700 14px 'Inter Tight',sans-serif;cursor:pointer}
+.hs-chips [aria-checked="true"]{background:#014621;color:#f6eceb}
+.hs-mode button:focus-visible,.hs-chips button:focus-visible,.hs-qty button:focus-visible{outline:3px solid #f53509;outline-offset:2px}
+.hs-price{margin:26px 0 0;color:#014621;font-size:16px}
+.hs-price strong{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(36px,3.4vw,52px);line-height:1;margin-right:6px}
+.hs-sub{margin:6px 0 0;font-size:15px;color:#4a4446}
+.hs-sub[hidden]{display:none}
+.hs-go{margin-top:22px;border:0;cursor:pointer;font-family:'Inter Tight',sans-serif}
+.hs-biz{display:block;width:max-content;margin-top:18px;font-size:15px}
+.c-drawer .c-total span{font-weight:700;color:#014621}
+@media (max-width:743px){
+ .t-shop .t-wrap{flex-direction:column-reverse;align-items:stretch}
+ .t-shop .t-product{margin:0 auto;width:78%}
+ .hs-mode{margin-top:6vw;display:flex}
+ .hs-mode button{flex:1}
+ .hs-go{width:100%;justify-content:center}
+}
+.c-drawer .c-total{flex-wrap:wrap;gap:4px 12px}
+@media (max-width:743px){
+ .t-shop .t-product{flex:none;width:72%;height:auto;aspect-ratio:1}
+ .hs-label{min-width:52px;font-size:23px}
+ .hs-chips{flex-wrap:nowrap;gap:6px}
+ .hs-chips button{padding:0 13px;font-size:13px}
+}
+
+/* ---- calm bottom: partners + footer ---- */
+.b-sec{position:relative;z-index:1;overflow:hidden;background:#014621;color:#f6eceb;margin-top:-7vw;padding:15vw 4vw 8vw}
+.b-wrap{position:relative;max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:5vw}
+.b-copy{flex:1 1 420px;min-width:0}
+.b-tag{background:#5bc20f;color:#014621}
+.b-tag span{background:#014621}
+.b-h2{margin:1.4vw 0 0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(54px,8.4vw,140px);line-height:.88;text-transform:uppercase;color:#5bc20f}
+.b-lede{max-width:440px;margin:1.6vw 0 0;font-size:clamp(16px,1.3vw,19px);line-height:1.5}
+.b-ticks{list-style:none;margin:24px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.b-ticks li{padding:8px 16px;border:1.5px solid rgba(246,236,235,.45);border-radius:999px;font-size:14px;font-weight:700}
+.b-form{flex:1 1 380px;max-width:500px;display:grid;gap:14px;padding:30px;border-radius:28px;background:#f6eceb;color:#191718}
+.b-form label{display:grid;gap:6px;font-size:14px;font-weight:700;color:#014621}
+.b-form input,.b-form select{min-height:50px;padding:0 14px;border:1.5px solid rgba(1,70,33,.25);border-radius:12px;background:#fff;font:400 16px 'Inter Tight',sans-serif;color:#191718}
+.b-form :focus-visible{outline:3px solid #f53509;outline-offset:1px}
+.b-send{min-height:56px;border:0;border-radius:999px;background:#5bc20f;color:#014621;font:700 15px 'Inter Tight',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:transform .25s cubic-bezier(.2,.9,.25,1.5)}
+.b-send:hover{transform:translateY(-2px)}
+.f-sec{position:relative;overflow:hidden;background:#014621;color:#f6eceb;padding:0 4vw 34px}
+.f-wrap{position:relative;max-width:1200px;margin:0 auto;padding-top:7vw;border-top:1.5px solid rgba(246,236,235,.18);display:flex;flex-direction:column;align-items:center;text-align:center}
+.f-logo{color:#f6eceb}
+.f-logo svg{display:block;width:120px;height:auto}
+.f-big{margin:22px 0 0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(48px,8vw,128px);line-height:.92;text-transform:uppercase;color:#5bc20f}
+.f-nav{margin-top:40px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 34px}
+.f-nav a{color:#f6eceb;font-weight:700;font-size:15px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+.f-nav a:hover{color:#5bc20f}
+.f-social{margin-top:26px;display:flex;gap:12px}
+.f-social a{width:48px;height:48px;border-radius:50%;background:#5bc20f;color:#014621;display:grid;place-items:center;transition:transform .25s cubic-bezier(.2,.9,.25,1.5)}
+.f-social a:hover{transform:translateY(-3px)}
+.f-meta{margin:34px 0 0;font-size:14px;opacity:.85}
+.f-small{margin-top:6px;font-size:12px;opacity:.65}
+@media (max-width:743px){
+ .b-sec{margin-top:-12vw;padding:24vw 6vw 14vw}
+ .b-h2{margin-top:3vw}
+ .b-lede{margin-top:3vw}
+ .b-form{padding:22px}
+ .f-wrap{padding-top:14vw}
+ .f-nav{gap:10px 22px}
+}
+@media (max-width:743px){.f-big{font-size:14vw}.f-social a{width:52px!important;height:52px!important}}
+/* paperclip grips the top edge of the sticky note */
+[data-drag="note"]>svg{left:auto!important;right:3.2vw!important;top:-1.5vw!important;width:2.8vw!important;rotate:4deg!important;z-index:3;filter:drop-shadow(0 .3vw .3vw rgba(0,0,0,.35))}
+@media (max-width:743px){[data-drag="note"]>svg{right:7vw!important;top:-3.2vw!important;width:6.4vw!important}}
+/* subscription pricing */
+.hs-mode em{font-style:normal;font-size:11px;letter-spacing:.04em;padding:3px 7px;margin-left:6px;border-radius:999px;background:#5bc20f;color:#014621;vertical-align:2px}
+.hs-mode [aria-checked="true"] em{background:#f6eceb}
+.hs-freq{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .4s cubic-bezier(.3,1,.4,1),opacity .3s}
+.hs-freq.open{grid-template-rows:1fr;opacity:1}
+.hs-freq-in{overflow:hidden;min-height:0}
+.hs-freq .hs-line{padding-top:4px}
+.hs-chips button{position:relative;display:inline-flex;align-items:center;gap:6px}
+.hs-chips small{font-size:12px;color:#1e9207;font-weight:700}
+.hs-chips [aria-checked="true"] small{color:#5bc20f}
+.hs-chips i{position:absolute;top:-10px;right:-6px;padding:2px 7px;border-radius:999px;background:#f53509;color:#191718;font-style:normal;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.hs-price{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px}
+.hs-price s{font-size:20px;font-weight:700;color:#8a8183}
+.hs-price s[hidden]{display:none}
+.hs-price strong{margin:0}
+.hs-tick{animation:hsTick .35s cubic-bezier(.2,.9,.25,1.4)}
+@keyframes hsTick{from{transform:translateY(8px);opacity:.2}to{transform:none;opacity:1}}
+.hs-save{margin:8px 0 0;min-height:24px;font-size:15px;color:#4a4446}
+.hs-save.is-sub{color:#1e9207;font-weight:700}
+.hs-up{padding:0;border:0;background:none;color:#1e9207;font:700 15px 'Inter Tight',sans-serif;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
+@media (max-width:743px){.hs-mode button{padding:0 10px;font-size:13px}.hs-mode em{display:block;width:max-content;margin:3px auto 0}.hs-mode button{min-height:56px}}
+@media (prefers-reduced-motion:reduce){.hs-freq{transition:none}.hs-tick{animation:none}}
+/* business: chat on WhatsApp */
+.b-chat{flex:1 1 380px;max-width:480px;padding:34px;border-radius:28px;background:#f6eceb;color:#191718;display:grid;gap:16px}
+.b-chat h3{margin:0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(28px,2.6vw,40px);line-height:1;text-transform:uppercase;color:#014621}
+.b-chat p{margin:0;font-size:16px;line-height:1.5;color:#4a4446}
+.b-bubble{padding:14px 16px;border-radius:18px 18px 18px 4px;background:#dcf8c6;color:#191718;font-size:15px;line-height:1.45;box-shadow:0 2px 0 rgba(0,0,0,.08)}
+.b-bubble b{color:#014621}
+.b-send{display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none}
+.b-mail{font-size:14px;font-weight:700;color:#014621;text-align:center}
+@media (max-width:743px){
+ .hs-freq .hs-line{flex-direction:column;align-items:stretch;gap:8px}
+ .hs-freq .hs-chips{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding-top:8px}
+ .hs-chips button{flex-direction:column;justify-content:center;gap:0;min-height:56px;padding:0 6px;font-size:14px}
+ .hs-chips i{right:50%;translate:50% 0;top:-11px}
+}
+/* use-case tabs */
+#kTabBody{display:grid;gap:6px}
+.k-use-title{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:24px;line-height:1.05;text-transform:uppercase;color:#191718}
+.k-use-line{font-size:15px}
+.k-use-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.k-use-list span{padding:6px 12px;border-radius:999px;background:#f6eceb;color:#191718;font-size:13px;font-weight:700}
+.k-use-in .k-use-list span{animation:kUseIn .45s cubic-bezier(.2,.9,.25,1.4) both;animation-delay:calc(var(--j) * 50ms)}
+.k-use-in .k-use-title,.k-use-in .k-use-line{animation:kUseIn .4s ease both}
+@keyframes kUseIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.k-use-link{margin-top:6px;font-weight:700;color:#191718;text-underline-offset:4px}
+@media (prefers-reduced-motion:reduce){.k-use-in *{animation:none!important}}
+/* shop product: the real Krate box + a JUMBO stamp */
+.t-shop .t-product img.hs-tray{position:absolute;width:62%;left:12%;top:10%;rotate:-14deg;filter:drop-shadow(0 18px 20px rgba(0,0,0,.28))}
+.t-shop .t-product img.hs-box{position:relative;width:78%;top:9%;rotate:5deg;border-radius:14px;border:5px solid #f6eceb;box-shadow:0 30px 50px rgba(25,23,24,.4);transition:rotate .6s cubic-bezier(.2,.9,.25,1.4)}
+.t-shop .t-product:hover img.hs-box{rotate:1deg}
+.hs-jumbo{position:absolute;right:2%;top:4%;width:30%;aspect-ratio:1;border-radius:50%;background:#014621;color:#5bc20f;display:flex;flex-direction:column;align-items:center;justify-content:center;rotate:-12deg;box-shadow:0 12px 24px rgba(0,0,0,.28),inset 0 0 0 .5vw #014621,inset 0 0 0 .7vw #5bc20f;z-index:3;animation:hsStamp 4s ease-in-out infinite}
+.hs-jumbo b{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(26px,3.1vw,48px);line-height:.95;text-transform:uppercase}
+.hs-jumbo small{font-size:clamp(10px,.85vw,13px);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#f6eceb}
+@keyframes hsStamp{0%,100%{rotate:-12deg}50%{rotate:-6deg}}
+@media (max-width:743px){.hs-jumbo{width:34%;box-shadow:0 10px 20px rgba(0,0,0,.28),inset 0 0 0 1.6vw #014621,inset 0 0 0 2.2vw #5bc20f}}
+@media (prefers-reduced-motion:reduce){.hs-jumbo{animation:none}}
+/* pull-me tag turns dark over cream sections so it never blends in */
+#kPull{transition:background .3s,color .3s}
+#kPull.on-light{background:#014621!important;color:#5bc20f!important;border-top-color:#5bc20f!important}
+@media (max-width:743px){.hs-jumbo b{font-size:6.6vw}.hs-jumbo small{font-size:2.3vw}}
+/* ---- The Krate (orange): calm two-column ---- */
+.e-sec{position:relative;overflow:hidden;background:#f53509;color:#191718;padding:4vw 4vw 7vw;margin-top:-1px}
+.e-wrap{position:relative;max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center}
+.e-tag{margin:0;display:inline-flex;gap:8px;align-items:center;padding:7px 14px;background:#f6eceb;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.e-tag span{width:8px;height:8px;border-radius:50%;background:#f53509}
+.e-h2{margin:18px 0 0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(72px,11vw,170px);line-height:.9;text-transform:uppercase;color:#f6eceb;text-align:center}
+.e-grid{margin-top:4vw;width:100%;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:5vw;align-items:center}
+.e-photo{position:relative;margin:0;rotate:-3deg}
+.e-photo img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:34px;border:7px solid #f6eceb;box-shadow:0 30px 60px rgba(25,23,24,.35);transition:opacity .18s,scale .35s cubic-bezier(.2,.9,.25,1.3)}
+.e-photo img.e-out{opacity:0;scale:.96}
+.e-tape{top:-14px;left:50%;width:120px;height:34px;translate:-50% 0;rotate:-4deg;z-index:2}
+.e-tabs{display:flex;flex-wrap:wrap;gap:8px;padding:6px;background:rgba(25,23,24,.12);border-radius:999px;width:max-content;max-width:100%}
+.e-tabs .k-tab{min-height:46px;padding:0 20px;border:0;border-radius:999px;background:transparent;color:#191718;font:700 14px 'Inter Tight',sans-serif;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:background .25s,color .25s}
+.e-tabs .k-tab[aria-selected="true"]{background:#191718;color:#f6eceb}
+.e-tabs .k-tab:focus-visible{outline:3px solid #f6eceb;outline-offset:2px}
+.e-body{margin-top:26px;display:grid;gap:10px;min-height:210px;align-content:start}
+.e-body .k-use-title{font-size:clamp(32px,3.6vw,54px);line-height:.95;color:#f6eceb}
+.e-body .k-use-line{font-size:18px;line-height:1.45}
+.e-body .k-use-list span{background:#f6eceb;font-size:14px;padding:8px 14px}
+.e-body .k-use-link{color:#191718}
+.e-cta{display:inline-flex;align-items:center;gap:10px;margin-top:18px;min-height:56px;padding:0 28px;border-radius:999px;background:#014621;color:#5bc20f;font:700 15px 'Inter Tight',sans-serif;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:transform .25s cubic-bezier(.2,.9,.25,1.5)}
+.e-cta:hover{transform:translateY(-3px);color:#5bc20f}
+@media (max-width:743px){
+ .e-sec{padding:10vw 6vw 16vw}
+ .e-h2{font-size:22vw}
+ .e-grid{grid-template-columns:1fr;gap:9vw;margin-top:8vw}
+ .e-photo{width:88%;margin:0 auto}
+ .e-tabs{width:100%;justify-content:space-between}
+ .e-tabs .k-tab{flex:1;padding:0 8px;font-size:12px}
+ .e-body{min-height:0}
+ .e-cta{width:100%;justify-content:center}
+}
+/* shop circle: disc + spinning text ring + tray + JUMBO stamp */
+.t-shop .t-disc{inset:13%;background:radial-gradient(circle at 35% 30%,#ff5a2a,#f53509 55%,#d62c05);box-shadow:inset 0 -18px 40px rgba(0,0,0,.18),0 30px 60px rgba(245,53,9,.25)}
+.hs-ring{position:absolute;inset:2%;width:96%;height:96%;overflow:visible;animation:hsSpin 28s linear infinite}
+.hs-ring text{font-family:'Bagel Fat One',sans-serif;font-size:12.6px;letter-spacing:.06em;text-transform:uppercase;fill:#014621}
+@keyframes hsSpin{to{rotate:360deg}}
+.t-shop .t-product img.hs-trayimg{position:relative;width:62%;rotate:-8deg;filter:drop-shadow(0 26px 26px rgba(0,0,0,.32));transition:rotate .6s cubic-bezier(.2,.9,.25,1.4),scale .6s cubic-bezier(.2,.9,.25,1.4)}
+.t-shop .t-product:hover img.hs-trayimg{rotate:0deg;scale:1.04}
+.t-shop .hs-jumbo{right:4%;top:6%;width:27%}
+@media (prefers-reduced-motion:reduce){.hs-ring{animation:none}}
+/* jumbo badge v2: lime starburst seal */
+.t-shop .hs-jumbo{right:2%;top:4%;width:31%;background:none;box-shadow:none;color:#014621;gap:2px;filter:drop-shadow(0 12px 18px rgba(0,0,0,.25));animation:hsWob 5s ease-in-out infinite}
+.hs-burst{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.hs-burst polygon{fill:#5bc20f}
+.hs-burst circle{fill:none;stroke:#014621;stroke-width:1.2;stroke-dasharray:2.4 2}
+.t-shop .hs-jumbo b{font-size:clamp(28px,3.4vw,52px);color:#014621;letter-spacing:-.01em}
+.t-shop .hs-jumbo small{color:#014621;font-size:clamp(9px,.78vw,12px)}
+@keyframes hsWob{0%,100%{rotate:-10deg;scale:1}50%{rotate:-4deg;scale:1.04}}
+@media (max-width:743px){.t-shop .hs-jumbo b{font-size:7vw}.t-shop .hs-jumbo small{font-size:2.1vw}}
+.t-shop .hs-jumbo b{font-size:clamp(22px,2.6vw,40px)}@media (max-width:743px){.t-shop .hs-jumbo b{font-size:5.4vw}}
+/* account */
+.a-fab{position:fixed;left:20px;bottom:20px;z-index:70;width:54px;height:54px;border-radius:50%;border:2px solid #f6eceb;background:#014621;color:#5bc20f;display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 22px rgba(0,0,0,.28);transition:transform .25s cubic-bezier(.2,.9,.25,1.5)}
+.a-fab:hover{transform:scale(1.08)}
+.a-fab.is-in::after{content:"";position:absolute;top:2px;right:2px;width:12px;height:12px;border-radius:50%;background:#5bc20f;border:2px solid #014621}
+.a-fab:focus-visible{outline:3px solid #f53509;outline-offset:3px}
+.a-drawer{z-index:76}
+#aScrim{z-index:75}
+.a-off{margin:0;padding:16px;border-radius:16px;background:#fff;color:#4a4446;line-height:1.5}
+.a-switch{display:flex;padding:5px;border-radius:999px;background:#fff;border:2px solid #014621;margin-bottom:14px}
+.a-switch button{flex:1;min-height:44px;border:0;border-radius:999px;background:transparent;color:#014621;font:700 14px 'Inter Tight',sans-serif;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}
+.a-switch [aria-selected="true"]{background:#014621;color:#5bc20f}
+.a-link{justify-self:center;padding:6px;border:0;background:none;color:#014621;font:700 14px 'Inter Tight',sans-serif;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+#aIn{display:grid;gap:18px}
+#aIn[hidden],#aOut[hidden]{display:none}
+.a-hi{margin:0;font-size:18px}
+.a-block h4{margin:0 0 8px;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:20px;text-transform:uppercase;color:#014621}
+.a-list{display:grid;gap:8px}
+.a-item{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;background:#fff;border-radius:16px;padding:12px 14px}
+.a-item .c-info{flex:1;display:grid;gap:2px;min-width:0}
+.a-item strong{font-size:15px;color:#014621}
+.a-item span{font-size:13px;color:#4a4446}
+.a-status{padding:4px 10px;border-radius:999px;font-size:12px!important;font-weight:700;text-transform:capitalize;background:#f6eceb}
+.a-active,.a-placed{background:#dcf8c6!important;color:#014621!important}
+.a-paused{background:#ffe6b3!important;color:#6b4a00!important}
+.a-cancelled{background:#eee!important;color:#777!important}
+.a-acts{flex-basis:100%;display:flex;gap:8px}
+.a-acts button{min-height:38px;padding:0 14px;border-radius:999px;border:2px solid #014621;background:transparent;color:#014621;font:700 13px 'Inter Tight',sans-serif;cursor:pointer}
+#cAcct a{color:#014621;font-weight:700}
+@media (max-width:743px){.a-fab{left:14px;bottom:14px;width:50px;height:50px}}
+</style><style>@font-face{font-family:'Bagel Fat One';src:url(file:///home/claude/preview/node_modules/@fontsource/bagel-fat-one/files/bagel-fat-one-latin-400-normal.woff2)}@font-face{font-family:'Caveat';font-weight:500 700;src:url(file:///home/claude/preview/node_modules/@fontsource/caveat/files/caveat-latin-700-normal.woff2)}@font-face{font-family:'Inter Tight';font-weight:400;src:url(file:///home/claude/preview/node_modules/@fontsource/inter-tight/files/inter-tight-latin-400-normal.woff2)}@font-face{font-family:'Inter Tight';font-weight:700;src:url(file:///home/claude/preview/node_modules/@fontsource/inter-tight/files/inter-tight-latin-700-normal.woff2)}</style></head>
+<body>
+
+
+<link rel="preload" as="image" href="img/egg-brown.webp">
+
+<style>
+body{margin:0;background:#014621}
+a{color:#014621}a:hover{color:#191718}
+.k-root{cursor:url(img/cursor.svg) 10 4, auto}
+.k-root a,.k-root button{cursor:url(img/cursor.svg) 10 4, pointer}
+.k-drag{cursor:url(img/cursor-grab.svg) 14 14, grab;touch-action:none;user-select:none}
+.k-cut{display:block;height:auto;filter:drop-shadow(0 20px 22px rgba(0,0,0,.32));user-select:none;-webkit-user-drag:none;pointer-events:none}
+.k-egg-btn{display:block;padding:0;border:0;background:none;transition:transform .35s cubic-bezier(.2,.9,.25,1.5)}
+.k-egg-btn:hover{transform:scale(1.08) rotate(6deg)}
+.k-egg-btn:active{transform:scale(.92)}
+.k-tape{position:absolute;height:34px;background:rgba(236,220,190,.82);box-shadow:0 2px 4px rgba(0,0,0,.12)}
+@keyframes kBob{0%,100%{translate:0 0}50%{translate:0 -16px}}
+.k-bob{animation:kBob 5s ease-in-out infinite}
+@keyframes kRise{from{translate:0 220px;opacity:0}to{translate:0 0;opacity:1}}
+.k-rise{animation:kRise 1.3s cubic-bezier(.2,.9,.25,1.15) both 0.90s}
+@keyframes kPop{from{scale:.5;opacity:0}to{scale:1;opacity:1}}
+.k-pop{animation:kPop .8s cubic-bezier(.2,.9,.25,1.4) both 0.70s}
+@keyframes kUp{from{translate:0 80px;opacity:0}to{translate:0 0;opacity:1}}
+.k-up1{animation:kUp .9s cubic-bezier(.2,.9,.25,1.1) both 0.80s}
+.k-up2{animation:kUp .9s cubic-bezier(.2,.9,.25,1.1) both 0.95s}
+@keyframes kLoader{0%,70%{opacity:1;visibility:visible}100%{opacity:0;visibility:hidden}}
+.k-loader{animation:kLoader 1.8s ease both}
+@keyframes kLoaderLogo{0%{scale:.4;rotate:-20deg}35%{scale:1.1;rotate:4deg}50%,100%{scale:1;rotate:-6deg}}
+.k-loader-logo{animation:kLoaderLogo 1.4s cubic-bezier(.2,.9,.25,1.4) both}
+@keyframes kSwap{from{scale:.6;rotate:-14deg;opacity:0}to{scale:1;rotate:0deg;opacity:1}}
+.k-swap{animation:kSwap .6s cubic-bezier(.2,.9,.25,1.4) both}
+.k-hover{transition:transform .35s cubic-bezier(.2,.9,.25,1.4)}
+.k-hover:hover{transform:rotate(0deg) scale(1.05)!important}
+.k-nav{text-decoration:none;transition:transform .2s}
+.k-nav:hover{transform:translateY(-3px)}
+.k-par{transition:transform .5s cubic-bezier(.2,.8,.3,1)}
+
+/* --- intro --- */
+.k-pre{position:fixed;inset:0;z-index:80;pointer-events:none;--arc:14vw}
+.k-pre-sheet,.k-pre-layer{position:absolute;left:0;top:0;width:100%;height:calc(100% + var(--arc));border-radius:0 0 50% 50% / 0 0 var(--arc) var(--arc);animation:kPeel .95s cubic-bezier(.7,0,.2,1) both}
+.k-pre-sheet{background:#5bc20f;display:grid;place-items:center;padding-bottom:var(--arc);box-sizing:border-box;animation-delay:.75s}
+@keyframes kPeel{from{transform:translateY(0)}to{transform:translateY(-101%);visibility:hidden}}
+.k-pre-sticker{perspective:1000px;animation:kFlip .75s cubic-bezier(.2,.9,.25,1.3) both .15s}
+@keyframes kFlip{0%{transform:rotateY(-120deg) rotateZ(-30deg) scale(.3);opacity:0}55%{transform:rotateY(20deg) rotateZ(4deg) scale(1.08);opacity:1}100%{transform:rotateY(0) rotateZ(-6deg) scale(1);opacity:1}}
+.k-pre-sheen{position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);background-size:250% 100%;mix-blend-mode:screen;animation:kSheen .6s ease both .35s}
+@keyframes kSheen{from{background-position:120% 0}to{background-position:-60% 0}}
+/* --- hero headline: letters on an arc, each slides up --- */
+.k-line{display:flex;justify-content:center;align-items:flex-end}
+.k-clip{--u:calc(2 * var(--i) / (var(--n) - 1) - 1);display:block;overflow:hidden;margin:-.2em -.02em 0;padding:.2em .02em 0;transform-origin:50% 100%;transform:translateY(calc(var(--drop) * (1 - var(--u) * var(--u)))) rotate(calc(var(--tilt) * var(--u) * -1))}
+.k-char{display:block;animation:kChar .9s cubic-bezier(.2,.9,.25,1.05) both}
+@keyframes kChar{from{transform:translateY(130%)}to{transform:none}}
+.k-kick-l{animation:kKickL .8s cubic-bezier(.2,.9,.25,1.1) both 1.45s}
+.k-kick-r{animation:kKickR .8s cubic-bezier(.2,.9,.25,1.1) both 1.45s}
+@keyframes kKickL{from{transform:translateX(-60%);opacity:0}to{transform:none;opacity:1}}
+@keyframes kKickR{from{transform:translateX(60%);opacity:0}to{transform:none;opacity:1}}
+.k-mark{animation:kMark .9s cubic-bezier(.2,.9,.25,1.5) both 1.35s}
+@keyframes kMark{from{scale:0;rotate:-60deg}to{scale:1;rotate:-7deg}}
+.k-perf{position:absolute;left:0;top:2px;bottom:2px;width:3px;background-image:radial-gradient(circle,#014621 42%,transparent 45%);background-size:100% 5px;background-repeat:repeat-y;animation:kPerf .9s ease both 1.60s}
+@keyframes kPerf{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+.k-egg-in{animation:kEggIn 1.3s cubic-bezier(.2,.9,.25,1.15) both 1.70s}
+@keyframes kEggIn{from{transform:translateY(60vh) rotate(40deg)}to{transform:none}}
+.k-hint{animation:kUp .8s ease both 2.60s}
+@keyframes kEggScroll{0%{transform:none}55%{transform:translateY(34vw) rotate(90deg) scale(.82)}100%{transform:translateY(64vw) rotate(200deg) scale(.7)}}
+@supports (animation-timeline: scroll()){
+.k-egg-scroll{animation:kEggScroll linear both;animation-timeline:scroll(root);animation-range:0 95vw}
+}
+@media (prefers-reduced-motion: reduce){.k-pre{display:none}.k-char,.k-kick-l,.k-kick-r,.k-mark,.k-perf,.k-egg-in,.k-egg-scroll,.k-hint{animation:none}}
+.k-peel{transition:transform .35s cubic-bezier(.2,.9,.25,1.4),box-shadow .35s;transform-origin:0 50%}
+.k-peel:hover{transform:perspective(300px) rotateY(-28deg) translateZ(6px);box-shadow:-6px 8px 10px rgba(0,0,0,.25)}
+.k-strip{transform-origin:50% 0;animation:kStrip linear both}
+@keyframes kStrip{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@supports (animation-timeline: scroll()){.k-strip{animation-timeline:scroll(root);animation-range:5vh 70vw}}
+/* scroll reveal */
+@keyframes kRev{from{opacity:0;scale:.75;translate:0 60px}to{opacity:1;scale:1;translate:0 0}}
+@supports (animation-timeline: view()){
+.k-rev{animation:kRev linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+}
+/* pull menu */
+.k-menu{position:fixed;top:0;right:40px;z-index:60;width:440px;max-width:calc(100vw - 32px);transition:transform .7s cubic-bezier(.3,1.4,.4,1)}
+.k-row{display:flex;align-items:center;gap:0;padding:14px 4px;border-bottom:2px dashed rgba(1,70,33,.35);text-decoration:none;color:#014621}
+.k-row-thumb{width:0;height:56px;border-radius:14px;object-fit:cover;opacity:0;transform:rotate(-10deg) scale(.5);transition:all .35s cubic-bezier(.2,.9,.25,1.4);margin-right:0}
+.k-row:hover .k-row-thumb,.k-row:focus-visible .k-row-thumb{width:56px;opacity:1;transform:rotate(-6deg) scale(1);margin-right:14px}
+.k-row-label{flex:1;font-family:'Bagel Fat One',sans-serif;font-size:40px;line-height:1;text-transform:uppercase;transition:transform .3s}
+.k-row-arrow{width:30px;height:30px;border-radius:50%;background:#5bc20f;display:flex;align-items:center;justify-content:center;font-weight:700;transition:transform .3s}
+.k-row:hover .k-row-arrow{transform:rotate(-45deg) scale(1.15)}
+/* collage */
+.k-collage{position:relative;max-width:1440px;margin:0 auto;display:flex;flex-wrap:wrap;gap:48px;justify-content:center;align-items:center}
+@media (min-width: 1000px){
+.k-collage{display:block;height:1020px}
+.k-c-note{position:absolute;left:6%;top:10px;z-index:3}
+.k-c-card{position:absolute;right:3%;top:-10px;z-index:1}
+.k-c-print{position:absolute;left:4%;top:400px;z-index:2}
+.k-c-box{position:absolute;right:9%;top:540px;z-index:2}
+.k-c-eggs{position:absolute;left:38%;top:700px;z-index:4}
+}
+/* horizontal pinned scroll */
+.k-hs{position:relative;height:300vh}
+.k-hs-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center}
+@keyframes kHs{from{transform:translateX(4vw)}to{transform:translateX(calc(-100% + 96vw))}}
+@supports (animation-timeline: view()){
+.k-hs{view-timeline-name:--khs}
+.k-hs-track{animation:kHs linear both;animation-timeline:--khs;animation-range:contain 0% contain 100%}
+}
+@supports not (animation-timeline: view()){
+.k-hs{height:auto}
+.k-hs-sticky{position:static;height:auto;overflow-x:auto;padding:40px 0}
+}
+@media (prefers-reduced-motion: reduce){
+.k-bob,.k-rise,.k-pop,.k-up1,.k-up2,.k-loader-logo,.k-swap,.k-rev{animation:none}
+.k-loader{display:none}
+.k-hs{height:auto}.k-hs-sticky{position:static;height:auto;overflow-x:auto}.k-hs-track{animation:none}
+}
+</style>
+
+<div class="k-root" style="position: relative; font-family: 'Inter Tight', system-ui, sans-serif; color: #014621; background: #014621; overflow-x: clip; min-width: 0">
+
+<!-- PRELOADER: logo sticker flips in, then a lime sheet + six coloured layers peel up with curved edges -->
+<div aria-hidden="true" class="k-pre">
+<div class="k-pre-layer" style="background: #014621; z-index: 1; animation-delay: 1.20s"></div><div class="k-pre-layer" style="background: #1e9207; z-index: 2; animation-delay: 1.11s"></div><div class="k-pre-layer" style="background: #5bc20f; z-index: 3; animation-delay: 1.02s"></div><div class="k-pre-layer" style="background: #60452a; z-index: 4; animation-delay: 0.93s"></div><div class="k-pre-layer" style="background: #f6eceb; z-index: 5; animation-delay: 0.84s"></div><div class="k-pre-layer" style="background: #f53509; z-index: 6; animation-delay: 0.75s"></div>
+<div class="k-pre-sheet" style="z-index: 7">
+<div class="k-pre-sticker">
+<div style="position: relative; padding: 1.6vw 2.4vw; background: #014621; border-radius: 2.6vw; color: #f6eceb; overflow: hidden; box-shadow: 0 1vw 2vw rgba(1,70,33,0.3)">
+<svg viewBox="0 0 383.16 86.14" fill="currentColor" style="display: block; width: max(15vw, 160px); height: auto"><path d="M41.74,3.52c.49-2.35,1.94-3.52,4.37-3.52h29.24c2.35,0,3.11,1.13,2.31,3.4l-12.74,33.24c-.81,2.1-.12,3.72,2.06,4.85,1.94,1.05,3.64,2.43,5.1,4.13,1.46,1.7,2.67,4.06,3.64,7.1.97,3.03,1.74,6.85,2.31,11.47.56,4.61.89,10.31.97,17.11,0,2.43-1.25,3.64-3.76,3.64h-31.55c-2.35,0-3.4-1.21-3.15-3.64.65-4.85.83-9.44.55-13.77-.28-4.33-1.07-7.62-2.37-9.89-.32-.57-.67-1.03-1.03-1.4-.36-.36-.95-.55-1.76-.55-1.38,0-2.06,1.05-2.06,3.15l.12,22.45c0,2.43-1.21,3.64-3.64,3.64H3.64c-2.43,0-3.64-1.21-3.64-3.64V3.64C0,1.21,1.21,0,3.64,0h26.69c2.43,0,3.64,1.21,3.64,3.64v20.02c0,.41.1.87.3,1.4.2.53.63.79,1.27.79.89,0,1.47-.26,1.76-.79.28-.53.46-.99.55-1.4l3.88-20.14Z"></path><path d="M136.01,48.77c2.26,1.46,4.93,2.18,8.01,2.18,2.43,0,4.71-.24,6.86-.73,2.14-.49,4.02-1.05,5.64-1.7.65-.24,1.21-.36,1.7-.36,1.21,0,1.94.85,2.18,2.55l3.88,26.81c.49,2.83-.41,4.65-2.67,5.46-3.07,1.13-5.99,1.94-8.74,2.43-2.75.49-5.46.73-8.13.73-4.77,0-8.74-.67-11.89-2s-5.7-3.32-7.64-5.95c-1.94-2.63-3.34-5.82-4.19-9.58s-1.32-8.07-1.4-12.92c0-1.46-.77-2.18-2.31-2.18-1.38,0-2.06.73-2.06,2.18l1.21,25.6c.16,2.43-1.01,3.64-3.52,3.64h-26.69c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h36.52c5.9,0,11.2.47,15.89,1.4,4.69.93,8.69,2.37,12.01,4.31,3.32,1.94,5.86,4.39,7.64,7.34,1.78,2.95,2.67,6.49,2.67,10.62,0,3.64-.51,6.71-1.52,9.22-1.01,2.51-2.53,4.61-4.55,6.31-2.02,1.7-4.55,3.03-7.58,4-3.03.97-6.57,1.78-10.62,2.43-1.05.08-1.7.45-1.94,1.09-.24.65.16,1.33,1.21,2.06ZM122.79,36.4c1.29,0,2.22-.32,2.79-.97.56-.65.85-1.37.85-2.18,0-.73-.28-1.4-.85-2-.57-.61-1.5-.91-2.79-.91h-3.15c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h3.15Z"></path><path d="M210.87,69.76c-.08-2.43-1.38-3.64-3.88-3.64h-.97c-2.43,0-3.72,1.21-3.88,3.64l-.85,11.53c-.08,2.43-1.38,3.64-3.88,3.64h-31.67c-2.43,0-3.4-1.17-2.91-3.52L179.2,3.52c.49-2.35,1.94-3.52,4.37-3.52h45.86c2.43,0,3.88,1.17,4.37,3.52l16.38,77.89c.49,2.35-.49,3.52-2.91,3.52h-31.67c-2.43,0-3.72-1.21-3.88-3.64l-.85-11.53ZM208.44,37.01c-.08-1.21-.73-1.82-1.94-1.82-1.13,0-1.78.61-1.94,1.82l-.97,13.83c-.16,2.1.81,3.15,2.91,3.15s3.07-1.05,2.91-3.15l-.97-13.83Z"></path><path d="M302.11,54.6c-2.99,0-4.49,1.5-4.49,4.49v22.2c0,2.43-1.21,3.64-3.64,3.64h-26.69c-2.43,0-3.64-1.21-3.64-3.64v-22.2c0-2.99-1.5-4.49-4.49-4.49h-8.86c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h60.66c2.43,0,3.64,1.21,3.64,3.64v47.32c0,2.43-1.21,3.64-3.64,3.64h-8.86Z"></path><path d="M354.65,53.38c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h24.87c2.43,0,3.64,1.21,3.64,3.64v18.2c0,2.43-1.21,3.64-3.64,3.64h-58.24c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h58.24c2.43,0,3.64,1.21,3.64,3.64v18.2c0,2.43-1.21,3.64-3.64,3.64h-24.87c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h21.23c2.43,0,3.64,1.21,3.64,3.64v14.56c0,2.43-1.21,3.64-3.64,3.64h-21.23Z"></path></svg>
+<span class="k-pre-sheen"></span>
+</div>
+</div>
+</div>
+</div>
+<!-- PULL MENU -->
+<div class="k-menu" id="kMenu" style="transform: translateY(calc(-100% + 74px))">
+<nav aria-label="Main" id="kNav" style="background: #f6eceb; padding: 18px 26px 10px; border-radius: 0 0 6px 6px; transition: box-shadow .4s">
+<a class="k-row" href="#about" data-close="1"><img class="k-row-thumb" src="img/card-nourish.webp" alt=""><span class="k-row-label">About</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
+<a class="k-row" href="#eggs" data-close="1"><img class="k-row-thumb" src="img/egg-tray.webp" alt="" style="background: #f53509"><span class="k-row-label">Our Eggs</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
+<a class="k-row" href="#shop" data-close="1"><img class="k-row-thumb" src="img/photo-fryup.webp" alt=""><span class="k-row-label">Shop</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
+<a class="k-row" href="#partners" data-close="1"><img class="k-row-thumb" src="img/card-partner.webp" alt=""><span class="k-row-label">Partners</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
+<a class="k-row" href="#account" data-account data-close="1"><img class="k-row-thumb" src="img/egg-brown.webp" alt=""><span class="k-row-label">My account</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
+<a class="k-row" href="#contact" data-close="1" style="border-bottom: 0"><img class="k-row-thumb" src="img/card-deliver.webp" alt=""><span class="k-row-label">Contact</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
+</nav>
+<div style="display: flex; justify-content: flex-end; padding-right: 0">
+<button type="button" id="kPull" aria-expanded="false" aria-label="Menu" style="width: 96px; height: 76px; margin-top: -2px; padding: 16px 0 0; border: 0; border-top: 3px dotted #014621; background: #f6eceb; color: #014621; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; clip-path: polygon(0 0, 100% 0, 100% 100%, 83% 88%, 66% 100%, 50% 88%, 33% 100%, 17% 88%, 0 100%); filter: drop-shadow(0 6px 8px rgba(0,0,0,0.2))">Pull me</button>
+</div>
+</div>
+
+<!-- ================= 1. HERO ================= -->
+<section id="top"  style="position: relative; background: #014621; height: 178vw; overflow: clip">
+<div aria-hidden="true" class="k-paper"></div>
+<div class="k-hero-top" style="position: absolute; left: 0; right: 0; top: 0; height: 52vw; background: #5bc20f; border-radius: 0 0 50% 50% / 0 0 9vw 9vw; overflow: hidden">
+<div aria-hidden="true" class="k-paper"></div>
+</div>
+
+<!-- corner mark with perforation that draws in -->
+<div style="position: absolute; top: 0.9vw; left: 0.65vw; padding-left: 0.85vw; z-index: 3">
+<span aria-hidden="true" class="k-perf"></span>
+<p style="margin: 0; font-family: 'Bagel Fat One', sans-serif; font-size: 1.25vw; line-height: 1.1; text-transform: uppercase; color: #014621">Fresh jumbo eggs,<br>straight from our farm</p>
+</div>
+
+<div class="k-par" style="position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.25em; padding-top: 4.2vw; transform: translate(calc(var(--mx, 0) * -12px), calc(var(--my, 0) * -8px))">
+<div style="display: inline-flex; align-items: center; justify-content: center; gap: 1.6vw; font-family: 'Bagel Fat One', sans-serif; font-size: 2.35vw; line-height: 1; text-transform: uppercase; color: #014621">
+<span class="k-kick-l">We’re</span>
+<span class="k-mark" style="display: inline-flex; padding: 0.9vw 1.4vw; background: #014621; border-radius: 1.5vw; rotate: -7deg; box-shadow: 0 10px 20px rgba(1,70,33,0.3); color: #f6eceb">
+<svg viewBox="0 0 383.16 86.14" role="img" aria-label="Krate" fill="currentColor" style="display: block; width: 10.5vw; height: auto"><path d="M41.74,3.52c.49-2.35,1.94-3.52,4.37-3.52h29.24c2.35,0,3.11,1.13,2.31,3.4l-12.74,33.24c-.81,2.1-.12,3.72,2.06,4.85,1.94,1.05,3.64,2.43,5.1,4.13,1.46,1.7,2.67,4.06,3.64,7.1.97,3.03,1.74,6.85,2.31,11.47.56,4.61.89,10.31.97,17.11,0,2.43-1.25,3.64-3.76,3.64h-31.55c-2.35,0-3.4-1.21-3.15-3.64.65-4.85.83-9.44.55-13.77-.28-4.33-1.07-7.62-2.37-9.89-.32-.57-.67-1.03-1.03-1.4-.36-.36-.95-.55-1.76-.55-1.38,0-2.06,1.05-2.06,3.15l.12,22.45c0,2.43-1.21,3.64-3.64,3.64H3.64c-2.43,0-3.64-1.21-3.64-3.64V3.64C0,1.21,1.21,0,3.64,0h26.69c2.43,0,3.64,1.21,3.64,3.64v20.02c0,.41.1.87.3,1.4.2.53.63.79,1.27.79.89,0,1.47-.26,1.76-.79.28-.53.46-.99.55-1.4l3.88-20.14Z"></path><path d="M136.01,48.77c2.26,1.46,4.93,2.18,8.01,2.18,2.43,0,4.71-.24,6.86-.73,2.14-.49,4.02-1.05,5.64-1.7.65-.24,1.21-.36,1.7-.36,1.21,0,1.94.85,2.18,2.55l3.88,26.81c.49,2.83-.41,4.65-2.67,5.46-3.07,1.13-5.99,1.94-8.74,2.43-2.75.49-5.46.73-8.13.73-4.77,0-8.74-.67-11.89-2s-5.7-3.32-7.64-5.95c-1.94-2.63-3.34-5.82-4.19-9.58s-1.32-8.07-1.4-12.92c0-1.46-.77-2.18-2.31-2.18-1.38,0-2.06.73-2.06,2.18l1.21,25.6c.16,2.43-1.01,3.64-3.52,3.64h-26.69c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h36.52c5.9,0,11.2.47,15.89,1.4,4.69.93,8.69,2.37,12.01,4.31,3.32,1.94,5.86,4.39,7.64,7.34,1.78,2.95,2.67,6.49,2.67,10.62,0,3.64-.51,6.71-1.52,9.22-1.01,2.51-2.53,4.61-4.55,6.31-2.02,1.7-4.55,3.03-7.58,4-3.03.97-6.57,1.78-10.62,2.43-1.05.08-1.7.45-1.94,1.09-.24.65.16,1.33,1.21,2.06ZM122.79,36.4c1.29,0,2.22-.32,2.79-.97.56-.65.85-1.37.85-2.18,0-.73-.28-1.4-.85-2-.57-.61-1.5-.91-2.79-.91h-3.15c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h3.15Z"></path><path d="M210.87,69.76c-.08-2.43-1.38-3.64-3.88-3.64h-.97c-2.43,0-3.72,1.21-3.88,3.64l-.85,11.53c-.08,2.43-1.38,3.64-3.88,3.64h-31.67c-2.43,0-3.4-1.17-2.91-3.52L179.2,3.52c.49-2.35,1.94-3.52,4.37-3.52h45.86c2.43,0,3.88,1.17,4.37,3.52l16.38,77.89c.49,2.35-.49,3.52-2.91,3.52h-31.67c-2.43,0-3.72-1.21-3.88-3.64l-.85-11.53ZM208.44,37.01c-.08-1.21-.73-1.82-1.94-1.82-1.13,0-1.78.61-1.94,1.82l-.97,13.83c-.16,2.1.81,3.15,2.91,3.15s3.07-1.05,2.91-3.15l-.97-13.83Z"></path><path d="M302.11,54.6c-2.99,0-4.49,1.5-4.49,4.49v22.2c0,2.43-1.21,3.64-3.64,3.64h-26.69c-2.43,0-3.64-1.21-3.64-3.64v-22.2c0-2.99-1.5-4.49-4.49-4.49h-8.86c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h60.66c2.43,0,3.64,1.21,3.64,3.64v47.32c0,2.43-1.21,3.64-3.64,3.64h-8.86Z"></path><path d="M354.65,53.38c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h24.87c2.43,0,3.64,1.21,3.64,3.64v18.2c0,2.43-1.21,3.64-3.64,3.64h-58.24c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h58.24c2.43,0,3.64,1.21,3.64,3.64v18.2c0,2.43-1.21,3.64-3.64,3.64h-24.87c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h21.23c2.43,0,3.64,1.21,3.64,3.64v14.56c0,2.43-1.21,3.64-3.64,3.64h-21.23Z"></path></svg>
+</span>
+<span class="k-kick-r">Here to</span>
+</div>
+<h1 aria-label="Handle with care" style="margin: 0; font-family: 'Bagel Fat One', sans-serif; font-weight: 400; font-size: 16.8vw; line-height: 0.8; text-transform: uppercase; color: #014621; --drop: 1.1vw; --tilt: 6deg">
+<span aria-hidden="true" class="k-line"><span class="k-clip" style="--i: 0; --n: 6"><span class="k-char" style="animation-delay: 1.55s">H</span></span><span class="k-clip" style="--i: 1; --n: 6"><span class="k-char" style="animation-delay: 1.60s">A</span></span><span class="k-clip" style="--i: 2; --n: 6"><span class="k-char" style="animation-delay: 1.65s">N</span></span><span class="k-clip" style="--i: 3; --n: 6"><span class="k-char" style="animation-delay: 1.70s">D</span></span><span class="k-clip" style="--i: 4; --n: 6"><span class="k-char" style="animation-delay: 1.75s">L</span></span><span class="k-clip" style="--i: 5; --n: 6"><span class="k-char" style="animation-delay: 1.80s">E</span></span></span>
+<span aria-hidden="true" class="k-line"><span class="k-clip" style="--i: 0; --n: 8"><span class="k-char" style="animation-delay: 1.85s">W</span></span><span class="k-clip" style="--i: 1; --n: 8"><span class="k-char" style="animation-delay: 1.90s">I</span></span><span class="k-clip" style="--i: 2; --n: 8"><span class="k-char" style="animation-delay: 1.95s">T</span></span><span class="k-clip" style="--i: 3; --n: 8"><span class="k-char" style="animation-delay: 2.00s">H</span></span><span aria-hidden="true" style="display: block; width: 0.28em"></span><span class="k-clip" style="--i: 4; --n: 8"><span class="k-char" style="animation-delay: 2.05s">C</span></span><span class="k-clip" style="--i: 5; --n: 8"><span class="k-char" style="animation-delay: 2.10s">A</span></span><span class="k-clip" style="--i: 6; --n: 8"><span class="k-char" style="animation-delay: 2.15s">R</span></span><span class="k-clip" style="--i: 7; --n: 8"><span class="k-char" style="animation-delay: 2.20s">E</span></span></span>
+</h1>
+</div>
+
+<!-- ===== the product: giant egg on the curve; travels down through the scene as you scroll ===== -->
+<div class="k-egg-in" style="position: absolute; left: 50%; top: 37vw; width: 22vw; margin-left: -11vw; z-index: 12">
+<div class="k-egg-scroll">
+<div class="k-par" style="transform: translate(calc(var(--mx, 0) * 26px), calc(var(--my, 0) * 16px)) rotate(calc(var(--mx, 0) * 8deg))">
+<button type="button" class="k-egg-btn" data-egg="h1" aria-label="Crack the big egg" style="width: 100%; rotate: -6deg"><img class="k-cut" src="img/egg-brown.webp" data-egg-img="h1" data-base="img/egg-brown.webp" alt="A Krate jumbo egg" style="width: 100%"></button>
+</div>
+</div>
+</div>
+<p aria-hidden="true" class="k-hint" style="position: absolute; left: calc(50% + 13vw); top: 46vw; z-index: 4; margin: 0; font-family: 'Caveat', cursive; font-size: 1.9vw; color: #5bc20f; rotate: -6deg">← go on, crack it</p>
+
+<!-- ===== the collage, laid out like the reference (all in vw) ===== -->
+
+
+
+<!-- sticky note -->
+<div class="k-drag k-rev" data-drag="note" style="position: absolute; left: 4.5vw; top: 63vw; width: 30vw; z-index: 7; ">
+<div data-note3d style="position: relative; rotate: 3deg; background: #f7d65a; aspect-ratio: 1 / 0.94; padding: 4.4vw 3vw 2vw; box-sizing: border-box; box-shadow: 0 1.6vw 2.6vw rgba(0,0,0,0.4)">
+<span aria-hidden="true" class="k-tape k-peel" style="top: -1.3vw; left: 9vw; width: 11vw; height: 3vw; rotate: -4deg"></span>
+<p style="margin: 0 0 1.4vw; font-family: 'Bagel Fat One', sans-serif; font-size: 3.2vw; line-height: 1; text-transform: uppercase; color: #3b2a12">Market list</p>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.8vw; font-family: 'Caveat', cursive; font-size: 2.3vw; color: #3b2a12">
+<li style="display: flex; gap: 1vw; align-items: center; border-bottom: 1px solid rgba(59,42,18,0.35)"><span aria-hidden="true" style="width: 1.3vw; height: 1.3vw; border: 2px solid #3b2a12; border-radius: 50%"></span>bread</li>
+<li style="display: flex; gap: 1vw; align-items: center; border-bottom: 1px solid rgba(59,42,18,0.35)"><span aria-hidden="true" style="width: 1.3vw; height: 1.3vw; border: 2px solid #3b2a12; border-radius: 50%"></span>tomatoes &amp; pepper</li>
+<li style="display: flex; gap: 1vw; align-items: center; border-bottom: 1px solid rgba(59,42,18,0.35)"><span aria-hidden="true" style="width: 1.3vw; height: 1.3vw; border: 2px solid #3b2a12; border-radius: 50%; background: #3b2a12"></span>a Krate of jumbo eggs!!</li>
+</ul>
+</div>
+<svg aria-hidden="true" viewBox="0 0 44 60" fill="none" stroke="#b5bcc2" stroke-width="3" stroke-linecap="round" style="position: absolute; left: 1vw; top: 19vw; width: 5vw; height: auto; rotate: 18deg"><path d="M14 4v40a8 8 0 0 0 16 0V12a5 5 0 0 0-10 0v30"></path></svg>
+</div>
+
+<!-- giant cardboard, right half, bleeding off the edge -->
+<div class="k-drag" data-drag="card" style="position: absolute; left: 49vw; top: 75vw; width: 54vw; height: 65vw; z-index: 4; ">
+<div style="position: relative; width: 100%; height: 100%; background: #c89a68; rotate: -1deg; box-shadow: 0 2vw 3.4vw rgba(0,0,0,0.45); overflow: hidden">
+<svg aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: multiply; opacity: 0.6"><filter id="kKraft"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="2"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.45  0 0 0 0 0.3  0 0 0 0 0.15  0 0 0 0.55 0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#kKraft)"></rect></svg>
+<span aria-hidden="true" style="position: absolute; top: 0; left: 0; right: 0; height: 6vw; background: rgba(232,205,160,0.7)"></span>
+<p class="k-rev" style="position: absolute; left: 9vw; top: 8vw; width: 37vw; margin: 0; font-family: 'Bagel Fat One', sans-serif; font-size: 5vw; line-height: 0.92; text-transform: uppercase; color: #6b4318">Sunday fry-up, birthday cake, busy kitchen, last-minute jollof. We’ve always got the eggs.</p>
+</div>
+</div>
+
+
+<!-- big fry-up print, bottom-left, bleeding off the edge -->
+<div class="k-drag k-rev" data-drag="print" style="position: absolute; left: -3vw; top: 106vw; width: 47vw; z-index: 5; ">
+<div style="position: relative; rotate: -7deg; background: #f6eceb; padding: 1.4vw 1.4vw 4.4vw; box-shadow: 0 2vw 3vw rgba(0,0,0,0.45)">
+<img loading="lazy" decoding="async" src="img/photo-fryup.webp" alt="Two fried jumbo eggs in a pan with bread and tomatoes" draggable="false" style="display: block; width: 100%; height: auto; pointer-events: none">
+<p style="position: absolute; left: 2vw; bottom: 0.8vw; margin: 0; font-family: 'Caveat', cursive; font-size: 2.4vw; color: #3b2a12">sunday, sorted.</p>
+<span aria-hidden="true" class="k-tape k-peel" style="top: -1.8vw; left: 21vw; width: 17vw; height: 4vw; rotate: 8deg"></span>
+</div>
+</div>
+
+<!-- big Krate box, bottom-right (like their gift) -->
+<div class="k-drag k-rev" data-drag="box" style="position: absolute; left: 47vw; top: 132vw; width: 56vw; z-index: 9; ">
+<div style="position: relative; rotate: 8deg">
+<div style="border-radius: 1vw; overflow: hidden; border: 0.5vw solid #f6eceb; box-shadow: 0 3vw 4vw rgba(0,0,0,0.5)">
+<img loading="lazy" decoding="async" src="img/lid.jpg" alt="The Krate box: 30 fresh jumbo eggs, handled with care" draggable="false" style="display: block; width: 100%; height: auto; pointer-events: none">
+</div>
+<span aria-hidden="true" class="k-tape k-peel" style="top: -1.6vw; left: 6vw; width: 14vw; height: 3.6vw; rotate: -6deg"></span>
+</div>
+</div>
+</section>
+
+<!-- ================= 3. RIBBON ================= -->
+<div aria-hidden="true" class="k-ribbon" style="position: relative; height: 300px; background: #014621; margin-top: -1px; margin-bottom: -1px; overflow: hidden">
+<svg viewBox="0 0 1440 300" preserveAspectRatio="xMidYMid slice" style="position: absolute; inset: 0; width: 100%; height: 100%">
+<path d="M-400 250 C 300 120, 700 260, 1050 150 S 1500 80, 1900 85 L 1900 400 L -400 400 Z" fill="#f53509"></path><path d="M-400 250 C 300 120, 700 260, 1050 150 S 1500 80, 1900 85" fill="none" stroke="#5bc20f" stroke-width="120"></path>
+</svg>
+<svg viewBox="0 0 1440 300" preserveAspectRatio="xMidYMid slice" style="position: absolute; inset: 0; width: 100%; height: 100%">
+<path id="kRibbonPath" d="M-400 250 C 300 120, 700 260, 1050 150 S 1500 80, 1900 85" fill="none"></path>
+<text style="font-family: 'Bagel Fat One', sans-serif; font-size: 62px; text-transform: uppercase" fill="#014621" dy="22"><textPath href="#kRibbonPath" startOffset="0">When life gets busy, we’ve got breakfast ✦ When life gets busy, we’ve got breakfast ✦ When life gets busy, we’ve got breakfast ✦ When life gets busy, we’ve got breakfast ✦<animate attributeName="startOffset" from="0" to="-1560" dur="18s" repeatCount="indefinite"></animate></textPath></text>
+</svg>
+<div aria-hidden="true" class="k-paper" style="z-index:2"></div>
+</div>
+
+<!-- ================= 4. THE KRATE (orange) ================= -->
+<section id="eggs" class="e-sec" aria-labelledby="eTitle">
+<div aria-hidden="true" class="k-paper"></div>
+<div class="e-wrap">
+<p class="e-tag"><span aria-hidden="true"></span>Meet the one that carries it all</p>
+<h2 id="eTitle" class="e-h2">The Krate</h2>
+<div class="e-grid">
+<figure class="e-photo">
+<span aria-hidden="true" class="k-tape e-tape"></span>
+<img loading="lazy" decoding="async" id="kStage" src="img/photo-fryup.webp" alt="Two Krate eggs frying in a pan" width="800" height="800">
+</figure>
+<div class="e-side">
+<div role="tablist" aria-label="What it’s for" class="e-tabs">
+<button type="button" role="tab" class="k-tab" aria-selected="true">Home kitchens</button>
+<button type="button" role="tab" class="k-tab" aria-selected="false">Baking</button>
+<button type="button" role="tab" class="k-tab" aria-selected="false">Business</button>
+</div>
+<div role="tabpanel" id="kTabBody" class="e-body"></div>
+<a href="#shop" class="e-cta">Get a Krate <span aria-hidden="true">→</span></a>
+</div>
+</div>
+</div>
+</section>
+
+
+<div aria-hidden="true" style="position: relative; height: 170px; background: #5bc20f; overflow: hidden; margin-top: -1px">
+<div style="position: absolute; left: -15%; right: -15%; top: -170px; height: 340px; border-radius: 50%; background: #f53509"></div>
+</div>
+
+<!-- ================= 5. WHY WE EXIST — pinned board; the view pans along the giant words ================= -->
+<section id="about" class="g-pin" aria-label="Why we exist">
+<div class="g-stage">
+<div aria-hidden="true" class="k-paper"></div>
+<div class="g-canvas">
+
+<div class="g-title">
+<p class="g-tag"><span aria-hidden="true"></span>Why we exist</p>
+<h2>We’re here for the<br>everyday moments.</h2>
+</div>
+
+<!-- row 1: TO [photo] NOURISH -->
+<div class="g-row" data-row="0">
+<p class="g-giant" aria-label="To nourish"><span aria-hidden="true">To</span><span class="g-slot" style="--tilt: -6deg"><img loading="lazy" decoding="async" class="g-card" src="img/card-nourish.webp" alt="A Krate jumbo egg cracked open, with a bright orange yolk"><span aria-hidden="true" class="g-tape"></span></span><span aria-hidden="true">Nourish</span></p>
+<img loading="lazy" decoding="async" aria-hidden="true" class="g-prop" data-depth="1.6" src="img/egg-brown.webp" alt="" style="left: 58%; top: 62%; width: .43em; rotate: 14deg">
+<p class="g-note" style="left: 22%; top: 104%">big yolks for big mornings<br>&amp; growing kids ↗</p>
+</div>
+<svg aria-hidden="true" class="g-arrow" data-arrow="0" viewBox="0 0 260 170" fill="none"><path d="M6 10 C 70 20, 150 60, 236 150" pathLength="1"></path><path d="M214 150 L 238 152 L 232 128" pathLength="1"></path></svg>
+
+<!-- row 2: TO [photo] PROTECT -->
+<div class="g-row" data-row="1">
+<p class="g-giant" aria-label="To protect"><span aria-hidden="true">To</span><span class="g-slot" style="--tilt: 7deg"><img loading="lazy" decoding="async" class="g-card" src="img/card-protect.webp" alt="A full tray of 30 Krate jumbo eggs"><span aria-hidden="true" class="g-tape"></span></span><span aria-hidden="true">Protect</span></p>
+<img loading="lazy" decoding="async" aria-hidden="true" class="g-prop" data-depth="1.8" src="img/egg-tray.webp" alt="" style="left: 66%; top: 70%; width: .67em; rotate: -8deg">
+<p class="g-note" style="left: 30%; top: 104%">packed snug, so what leaves<br>our farm whole arrives whole</p>
+</div>
+<svg aria-hidden="true" class="g-arrow" data-arrow="1" viewBox="0 0 260 170" fill="none"><path d="M6 160 C 80 150, 160 110, 236 20" pathLength="1"></path><path d="M212 26 L 238 18 L 240 44" pathLength="1"></path></svg>
+
+<!-- row 3: TO [photo] DELIVER -->
+<div class="g-row" data-row="2">
+<p class="g-giant" aria-label="To deliver"><span aria-hidden="true">To</span><span class="g-slot" style="--tilt: -5deg"><img loading="lazy" decoding="async" class="g-card" src="img/card-deliver.webp" alt="A white and a brown Krate jumbo egg"><span aria-hidden="true" class="g-tape"></span></span><span aria-hidden="true">Deliver</span></p>
+<img loading="lazy" decoding="async" aria-hidden="true" class="g-prop" data-depth="1.7" src="img/egg-brown.webp" alt="" style="left: 50%; top: 66%; width: .4em; rotate: -16deg">
+<p class="g-note" style="left: 18%; top: 104%">from our farm to your market,<br>shop &amp; front door →</p>
+</div>
+
+</div>
+</div>
+</section>
+<!-- ================= SHOP (on the homepage) ================= -->
+<section id="shop" class="t-shop" aria-label="Shop">
+<div aria-hidden="true" class="k-paper"></div>
+<div class="t-wrap">
+<div class="t-copy">
+<p class="g-tag t-tag"><span aria-hidden="true"></span>Shop</p>
+<h2 class="t-h2 t-split">Get a Krate<br>delivered.</h2>
+<p class="t-lede">30 jumbo eggs a crate. Pay on delivery.</p>
+
+<div class="hs-mode" role="radiogroup" aria-label="How do you want to buy?">
+<button type="button" role="radio" aria-checked="true" data-mode="once">One-time</button>
+<button type="button" role="radio" aria-checked="false" data-mode="sub">Subscribe <em>save up to 10%</em></button>
+</div>
+
+<div class="hs-line">
+<span class="hs-label">Crates</span>
+<div class="hs-qty" role="group" aria-label="Crates"><button type="button" id="hsMinus" aria-label="One fewer crate">−</button><output id="hsQty" aria-live="polite">1</output><button type="button" id="hsPlus" aria-label="One more crate">+</button></div>
+</div>
+
+<div class="hs-freq" id="hsFreq" aria-hidden="true"><div class="hs-freq-in">
+<div class="hs-line">
+<span class="hs-label">Every</span>
+<div class="hs-chips" role="radiogroup" aria-label="Delivery frequency">
+<button type="button" role="radio" aria-checked="false" data-f="week">Week <small>−10%</small></button>
+<button type="button" role="radio" aria-checked="true" data-f="2 weeks">2 weeks <small>−7%</small><i>Popular</i></button>
+<button type="button" role="radio" aria-checked="false" data-f="month">Month <small>−5%</small></button>
+</div>
+</div>
+</div></div>
+
+<div class="hs-price" aria-live="polite"><strong id="hsPrice">₦7,500</strong><s id="hsWas" hidden></s><span id="hsPer"></span></div>
+<p class="hs-save" id="hsSave"></p>
+
+<button type="button" class="t-btn hs-go" id="hsGo">Order now</button>
+<a class="t-link hs-biz" href="#partners">Buying for a business?</a>
+</div>
+
+<div class="t-product">
+<span class="t-disc" aria-hidden="true"></span>
+<img loading="lazy" decoding="async" class="hs-trayimg" src="img/egg-tray.webp" alt="A crate of 30 Krate jumbo eggs">
+<span class="hs-jumbo" aria-label="Jumbo eggs"><svg class="hs-burst" viewBox="0 0 100 100" aria-hidden="true"><polygon points="100.0,50.0 93.6,55.7 98.3,62.9 90.7,66.8 93.3,75.0 84.9,76.8 85.4,85.4 76.8,84.9 75.0,93.3 66.8,90.7 62.9,98.3 55.7,93.6 50.0,100.0 44.3,93.6 37.1,98.3 33.2,90.7 25.0,93.3 23.2,84.9 14.6,85.4 15.1,76.8 6.7,75.0 9.3,66.8 1.7,62.9 6.4,55.7 0.0,50.0 6.4,44.3 1.7,37.1 9.3,33.2 6.7,25.0 15.1,23.2 14.6,14.6 23.2,15.1 25.0,6.7 33.2,9.3 37.1,1.7 44.3,6.4 50.0,0.0 55.7,6.4 62.9,1.7 66.8,9.3 75.0,6.7 76.8,15.1 85.4,14.6 84.9,23.2 93.3,25.0 90.7,33.2 98.3,37.1 93.6,44.3"></polygon><circle cx="50" cy="50" r="38"></circle></svg><small>Extra large</small><b>Jumbo</b><small>30 per crate</small></span>
+</div>
+</div>
+</section>
+
+<!-- checkout -->
+<div class="c-scrim" id="cScrim" hidden></div>
+<aside class="c-drawer" id="cDrawer" aria-label="Checkout" aria-hidden="true">
+<div class="c-head"><h3>Checkout</h3><button type="button" class="c-close" id="cClose" aria-label="Close">×</button></div>
+<div class="c-total"><span id="cWhat"></span><strong id="cSubtotal">₦0</strong></div>
+<p class="c-note">Delivery fee confirmed on WhatsApp. Pay on delivery.</p>
+<p class="c-note" id="cAcct"><a href="#account" data-account>Log in or create an account</a> to save your details and track orders.</p>
+<form class="c-form" id="cForm" novalidate>
+<label>Full name<input name="name" required autocomplete="name"></label>
+<label>Phone / WhatsApp<input name="phone" type="tel" required autocomplete="tel"></label>
+<label>Delivery address<textarea name="address" rows="2" required autocomplete="street-address"></textarea></label>
+<label>Preferred delivery day<input name="when" placeholder="e.g. Saturday morning"></label>
+<p class="p-error" id="cError" role="alert" hidden>Please fill in your name, phone and address.</p>
+<button type="submit" class="c-checkout">Send order on WhatsApp</button>
+<p class="p-done" id="cDone" hidden>Your order is ready in WhatsApp. Press send and we’ll confirm.</p>
+</form>
+</aside>
+<!-- ================= PARTNERS (B2B) ================= -->
+<section id="partners" class="b-sec" aria-labelledby="pTitle">
+<div aria-hidden="true" class="k-paper"></div>
+<div class="b-wrap">
+<div class="b-copy">
+<p class="g-tag b-tag"><span aria-hidden="true"></span>For business</p>
+<h2 id="pTitle" class="b-h2 t-split">Stock<br>Krate.</h2>
+<p class="b-lede">Supermarkets, restaurants, hotels and caterers: get a steady supply of jumbo eggs, straight from our farm.</p>
+<ul class="b-ticks">
+<li>Regular delivery</li><li>Consistent jumbo size</li><li>Farm-direct pricing</li>
+</ul>
+</div>
+<div class="b-chat">
+<h3>Chat with us</h3>
+<p>No forms. Tap below, add your business name, and we’ll reply on WhatsApp.</p>
+<div class="b-bubble" aria-hidden="true">Hello Krate! I’d like to stock your eggs. My business is <b>[your business name]</b>.</div>
+<a class="b-send" id="pChat" href="#" target="_blank" rel="noopener"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3a.4.4 0 0 0 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Chat on WhatsApp</a>
+<a class="b-mail" id="pMail" href="#">Prefer email?</a>
+</div>
+</div>
+</section>
+<!-- ================= FOOTER ================= -->
+<footer id="contact" class="f-sec">
+<div aria-hidden="true" class="k-paper"></div>
+<div class="f-wrap">
+<span class="f-logo"><svg viewBox="0 0 383.16 86.14" role="img" aria-label="Krate" fill="currentColor" style="display: block; width: 140px; height: auto"><path d="M41.74,3.52c.49-2.35,1.94-3.52,4.37-3.52h29.24c2.35,0,3.11,1.13,2.31,3.4l-12.74,33.24c-.81,2.1-.12,3.72,2.06,4.85,1.94,1.05,3.64,2.43,5.1,4.13,1.46,1.7,2.67,4.06,3.64,7.1.97,3.03,1.74,6.85,2.31,11.47.56,4.61.89,10.31.97,17.11,0,2.43-1.25,3.64-3.76,3.64h-31.55c-2.35,0-3.4-1.21-3.15-3.64.65-4.85.83-9.44.55-13.77-.28-4.33-1.07-7.62-2.37-9.89-.32-.57-.67-1.03-1.03-1.4-.36-.36-.95-.55-1.76-.55-1.38,0-2.06,1.05-2.06,3.15l.12,22.45c0,2.43-1.21,3.64-3.64,3.64H3.64c-2.43,0-3.64-1.21-3.64-3.64V3.64C0,1.21,1.21,0,3.64,0h26.69c2.43,0,3.64,1.21,3.64,3.64v20.02c0,.41.1.87.3,1.4.2.53.63.79,1.27.79.89,0,1.47-.26,1.76-.79.28-.53.46-.99.55-1.4l3.88-20.14Z"></path><path d="M136.01,48.77c2.26,1.46,4.93,2.18,8.01,2.18,2.43,0,4.71-.24,6.86-.73,2.14-.49,4.02-1.05,5.64-1.7.65-.24,1.21-.36,1.7-.36,1.21,0,1.94.85,2.18,2.55l3.88,26.81c.49,2.83-.41,4.65-2.67,5.46-3.07,1.13-5.99,1.94-8.74,2.43-2.75.49-5.46.73-8.13.73-4.77,0-8.74-.67-11.89-2s-5.7-3.32-7.64-5.95c-1.94-2.63-3.34-5.82-4.19-9.58s-1.32-8.07-1.4-12.92c0-1.46-.77-2.18-2.31-2.18-1.38,0-2.06.73-2.06,2.18l1.21,25.6c.16,2.43-1.01,3.64-3.52,3.64h-26.69c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h36.52c5.9,0,11.2.47,15.89,1.4,4.69.93,8.69,2.37,12.01,4.31,3.32,1.94,5.86,4.39,7.64,7.34,1.78,2.95,2.67,6.49,2.67,10.62,0,3.64-.51,6.71-1.52,9.22-1.01,2.51-2.53,4.61-4.55,6.31-2.02,1.7-4.55,3.03-7.58,4-3.03.97-6.57,1.78-10.62,2.43-1.05.08-1.7.45-1.94,1.09-.24.65.16,1.33,1.21,2.06ZM122.79,36.4c1.29,0,2.22-.32,2.79-.97.56-.65.85-1.37.85-2.18,0-.73-.28-1.4-.85-2-.57-.61-1.5-.91-2.79-.91h-3.15c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h3.15Z"></path><path d="M210.87,69.76c-.08-2.43-1.38-3.64-3.88-3.64h-.97c-2.43,0-3.72,1.21-3.88,3.64l-.85,11.53c-.08,2.43-1.38,3.64-3.88,3.64h-31.67c-2.43,0-3.4-1.17-2.91-3.52L179.2,3.52c.49-2.35,1.94-3.52,4.37-3.52h45.86c2.43,0,3.88,1.17,4.37,3.52l16.38,77.89c.49,2.35-.49,3.52-2.91,3.52h-31.67c-2.43,0-3.72-1.21-3.88-3.64l-.85-11.53ZM208.44,37.01c-.08-1.21-.73-1.82-1.94-1.82-1.13,0-1.78.61-1.94,1.82l-.97,13.83c-.16,2.1.81,3.15,2.91,3.15s3.07-1.05,2.91-3.15l-.97-13.83Z"></path><path d="M302.11,54.6c-2.99,0-4.49,1.5-4.49,4.49v22.2c0,2.43-1.21,3.64-3.64,3.64h-26.69c-2.43,0-3.64-1.21-3.64-3.64v-22.2c0-2.99-1.5-4.49-4.49-4.49h-8.86c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h60.66c2.43,0,3.64,1.21,3.64,3.64v47.32c0,2.43-1.21,3.64-3.64,3.64h-8.86Z"></path><path d="M354.65,53.38c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h24.87c2.43,0,3.64,1.21,3.64,3.64v18.2c0,2.43-1.21,3.64-3.64,3.64h-58.24c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h58.24c2.43,0,3.64,1.21,3.64,3.64v18.2c0,2.43-1.21,3.64-3.64,3.64h-24.87c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h21.23c2.43,0,3.64,1.21,3.64,3.64v14.56c0,2.43-1.21,3.64-3.64,3.64h-21.23Z"></path></svg></span>
+<p class="f-big t-split" aria-hidden="true">Handled with care.</p>
+<nav class="f-nav" aria-label="Footer"><a href="#eggs">Our eggs</a><a href="#about">About</a><a href="#shop">Shop</a><a href="#partners">Partners</a></nav>
+<div class="f-social">
+<a href="#" aria-label="Instagram"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><path d="M17.5 6.5h.01"></path></svg></a>
+<a href="#" aria-label="TikTok"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"></path><path d="M14 3c.5 2.8 2.3 4.5 5 4.8"></path></svg></a>
+<a href="#" aria-label="Facebook"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V9H7v3.5h2V21h3.5v-8.5H15l.5-3.5h-3V7a1 1 0 0 1 1-1H15z"></path></svg></a>
+</div>
+<p class="f-meta">[YOUR PHONE NUMBER] · [YOUR EMAIL] · Nigeria</p>
+<p class="f-meta f-small">Store in a cool, dry place · © 2026 Krate Farms</p>
+</div>
+</footer>
+<!-- ================= ACCOUNT drawer ================= -->
+<button type="button" class="a-fab" id="aOpen" aria-label="My account"><svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+<div class="c-scrim" id="aScrim" hidden></div>
+<aside class="c-drawer a-drawer" id="aDrawer" aria-label="My account" aria-hidden="true">
+<div class="c-head"><h3 id="aTitle">My Krate</h3><button type="button" class="c-close" id="aClose" aria-label="Close">×</button></div>
+
+<p class="a-off" id="aOff" hidden>Accounts are almost ready. For now, order on WhatsApp and we’ll keep track for you.</p>
+
+<!-- signed out -->
+<div id="aOut" hidden>
+<div class="a-switch" role="tablist" aria-label="Sign in or create account">
+<button type="button" role="tab" aria-selected="true" data-a="in">Log in</button>
+<button type="button" role="tab" aria-selected="false" data-a="up">Create account</button>
+</div>
+<form class="c-form" id="aForm" novalidate>
+<label class="a-up" hidden>Full name<input name="name" autocomplete="name"></label>
+<label class="a-up" hidden>Phone / WhatsApp<input name="phone" type="tel" autocomplete="tel"></label>
+<label>Email<input name="email" type="email" required autocomplete="email"></label>
+<label>Password<input name="password" type="password" required minlength="6" autocomplete="current-password"></label>
+<p class="p-error" id="aError" role="alert" hidden></p>
+<button type="submit" class="c-checkout" id="aSubmit">Log in</button>
+<button type="button" class="a-link" id="aForgot">Forgot password?</button>
+<p class="p-done" id="aMsg" hidden></p>
+</form>
+</div>
+
+<!-- signed in -->
+<div id="aIn" hidden>
+<p class="a-hi">Hi <strong id="aName">there</strong> 👋</p>
+<section class="a-block" aria-labelledby="aSubsT">
+<h4 id="aSubsT">Subscriptions</h4>
+<div id="aSubs" class="a-list"></div>
+</section>
+<section class="a-block" aria-labelledby="aOrdT">
+<h4 id="aOrdT">Order history</h4>
+<div id="aOrders" class="a-list"></div>
+</section>
+<section class="a-block" aria-labelledby="aDetT">
+<h4 id="aDetT">My details</h4>
+<form class="c-form" id="aDetails" novalidate>
+<label>Full name<input name="name" autocomplete="name"></label>
+<label>Phone / WhatsApp<input name="phone" type="tel" autocomplete="tel"></label>
+<label>Delivery address<textarea name="address" rows="2" autocomplete="street-address"></textarea></label>
+<button type="submit" class="c-checkout">Save details</button>
+<p class="p-done" id="aSaved" hidden>Saved. We’ll fill these in at checkout.</p>
+</form>
+</section>
+<button type="button" class="a-link" id="aLogout">Log out</button>
+</div>
+</aside>
+
+
+
+</div>
+
+
+<script>(function () {
+  var EC = 'img/egg-cracked.webp';
+
+  // Pull-me menu
+  var menu = document.getElementById('kMenu'), nav = document.getElementById('kNav'), pull = document.getElementById('kPull');
+  var open = false;
+  function shut() { return 'translateY(calc(-100% + ' + (pull.offsetHeight - 2) + 'px))'; }
+  menu.style.transform = shut();
+  window.addEventListener('resize', function () { if (!open) menu.style.transform = shut(); });
+  function setMenu(v) {
+    open = v;
+    menu.style.transform = v ? 'translateY(0)' : shut();
+    nav.style.boxShadow = v ? '0 20px 40px rgba(0,0,0,0.3)' : 'none';
+    pull.textContent = v ? 'Push back' : 'Pull me';
+    pull.setAttribute('aria-expanded', v ? 'true' : 'false');
+    if (typeof tagTone === 'function') setTimeout(tagTone, 50);
+  }
+  // click OR pull it down (and push it back up)
+  var pd = null, moved = false;
+  pull.style.touchAction = 'none'; pull.style.cursor = 'grab';
+  pull.addEventListener('pointerdown', function (e) {
+    if (e.button !== 0) return;
+    var full = menu.offsetHeight - pull.offsetHeight + 2;
+    pd = { y: e.clientY, base: open ? 0 : -full, full: full, tr: menu.style.transition };
+    moved = false;
+    try { pull.setPointerCapture(e.pointerId); } catch (x) {}
+  });
+  pull.addEventListener('pointermove', function (e) {
+    if (!pd) return;
+    var dy = e.clientY - pd.y;
+    if (!moved && Math.abs(dy) < 6) return;
+    if (!moved) { moved = true; menu.style.transition = 'none'; pull.style.cursor = 'grabbing'; }
+    var y = Math.max(-pd.full, Math.min(0, pd.base + dy));
+    menu.style.transform = 'translateY(' + y + 'px)';
+  });
+  function endPull(e) {
+    if (!pd) return;
+    var d = pd; pd = null; pull.style.cursor = 'grab';
+    if (!moved) return; // a plain click: handled by the click listener
+    menu.style.transition = d.tr;
+    var dy = e.clientY - d.y;
+    setMenu(open ? dy > -d.full * 0.25 : dy > Math.min(80, d.full * 0.2));
+  }
+  pull.addEventListener('pointerup', endPull);
+  pull.addEventListener('pointercancel', endPull);
+  pull.addEventListener('click', function (e) { if (moved) { moved = false; e.preventDefault(); return; } setMenu(!open); });
+  document.querySelectorAll('[data-close]').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+
+  // keep the pull tag visible: dark when it sits over a cream section
+  function tagTone() {
+    if (open) { pull.classList.remove('on-light'); return; }
+    var r = pull.getBoundingClientRect(), x = r.left + r.width / 2, y = r.bottom + 4;
+    var light = false;
+    pull.style.visibility = 'hidden'; menu.style.pointerEvents = 'none';
+    var el = document.elementFromPoint(x, Math.min(y, innerHeight - 1));
+    pull.style.visibility = ''; menu.style.pointerEvents = '';
+    while (el && el !== document.body) {
+      var bg = getComputedStyle(el).backgroundColor;
+      var m = bg.match(/\d+(\.\d+)?/g);
+      if (m && (m.length < 4 || +m[3] > 0.5)) { light = (+m[0] * 0.299 + +m[1] * 0.587 + +m[2] * 0.114) > 200; break; }
+      el = el.parentElement;
+    }
+    pull.classList.toggle('on-light', light);
+  }
+  var toneTick = false;
+  window.addEventListener('scroll', function () { if (!toneTick) { toneTick = true; requestAnimationFrame(function () { toneTick = false; tagTone(); }); } }, { passive: true });
+  window.addEventListener('load', tagTone);
+
+  // Crack the eggs
+  document.querySelectorAll('[data-egg]').forEach(function (b) {
+    var img = b.querySelector('img');
+    b.addEventListener('click', function () {
+      var cracked = img.getAttribute('src') === EC;
+      img.setAttribute('src', cracked ? img.getAttribute('data-base') : EC);
+    });
+  });
+
+  // Drag the collage pieces
+  var drag = null;
+  document.querySelectorAll('[data-drag]').forEach(function (el) {
+    el.addEventListener('pointerdown', function (e) {
+      if (e.button !== 0) return;
+      if (window.matchMedia('(max-width: 743px), (pointer: coarse)').matches) return;
+      e.preventDefault();
+      var p = (el.dataset.pos || '0,0').split(',').map(Number);
+      drag = { el: el, sx: e.clientX, sy: e.clientY, ox: p[0], oy: p[1] };
+      el.classList.add('k-grabbing');
+    });
+  });
+  window.addEventListener('pointermove', function (e) {
+    if (!drag) return;
+    var x = drag.ox + e.clientX - drag.sx, y = drag.oy + e.clientY - drag.sy;
+    drag.el.style.translate = x + 'px ' + y + 'px';
+    drag.el.dataset.pos = x + ',' + y;
+  });
+  function end() { if (drag) { drag.el.classList.remove('k-grabbing'); drag = null; } }
+  window.addEventListener('pointerup', end);
+  window.addEventListener('pointercancel', end);
+
+  var stage = document.getElementById('kStage');
+  // Use tabs: each one shows real ways people use Krate, and swaps the photo
+  var body = document.getElementById('kTabBody');
+  var USES = [
+    { title: 'Breakfast, sorted.', line: 'Big yolks for busy mornings.', uses: ['Pancakes', 'Fried eggs & bread', 'Omelette', 'Boiled eggs for school', 'Egg sauce & yam'],
+      img: 'img/photo-fryup.webp', alt: 'Two Krate eggs frying in a pan' },
+    { title: 'Bake it bigger.', line: 'Rich yolks and fewer cracks to fish out.', uses: ['Cakes', 'Chin chin', 'Puff-puff', 'Pancakes', 'Meat pie glaze'],
+      img: 'img/photo-bake.webp', alt: 'Eggs cracked into a bowl of flour' },
+    { title: 'Made for busy businesses.', line: 'Neat crates that stack, travel well and arrive whole.', uses: ['Restaurants', 'Hotels', 'Bakeries', 'Caterers', 'Supermarkets'],
+      img: 'img/photo-business.webp', alt: 'A market basket full of brown eggs', link: true }
+  ];
+  function showUse(i, keep) {
+    var u = USES[i];
+    body.innerHTML = '';
+    var h = document.createElement('strong'); h.className = 'k-use-title'; h.textContent = u.title;
+    var l = document.createElement('span'); l.className = 'k-use-line'; l.textContent = u.line;
+    var ul = document.createElement('span'); ul.className = 'k-use-list';
+    u.uses.forEach(function (x, j) { var c = document.createElement('span'); c.textContent = x; c.style.setProperty('--j', j); ul.appendChild(c); });
+    body.append(h, l, ul);
+    if (u.link) { var a = document.createElement('a'); a.href = '#partners'; a.className = 'k-use-link'; a.textContent = 'Stock Krate →'; body.appendChild(a); }
+    body.classList.remove('k-use-in'); void body.offsetWidth; body.classList.add('k-use-in');
+    if (stage && !keep) {
+      stage.classList.add('e-out');
+      setTimeout(function () { stage.src = u.img; stage.alt = u.alt; stage.classList.remove('e-out'); }, 180);
+      document.querySelectorAll('.k-pick').forEach(function (p) { p.setAttribute('aria-pressed', 'false'); });
+    }
+  }
+  document.querySelectorAll('.k-tab').forEach(function (b, i) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.k-tab').forEach(function (o) { o.setAttribute('aria-selected', 'false'); });
+      b.setAttribute('aria-selected', 'true');
+      showUse(i);
+    });
+  });
+  if (body) showUse(0, true);
+  // "Crack it!" product switcher
+  var prods = [
+    { src: 'img/egg-tray.webp', alt: 'A full tray of 30', style: 'display:block;width:100%;height:auto;filter:drop-shadow(0 30px 40px rgba(25,23,24,0.45))' },
+    { src: 'img/lid.jpg', alt: 'The Krate box', style: 'display:block;width:100%;height:auto;border-radius:18px;border:6px solid #f6eceb;box-shadow:0 40px 70px rgba(25,23,24,0.5);rotate:-4deg' },
+    { src: 'img/egg-brown.webp', alt: 'One brown jumbo egg', style: 'display:block;width:62%;margin:0 auto;height:auto;filter:drop-shadow(0 30px 40px rgba(25,23,24,0.45));rotate:8deg' },
+    { src: 'img/egg-cracked.webp', alt: 'A Krate egg cracked open', style: 'display:block;width:70%;margin:0 auto;height:auto;filter:drop-shadow(0 30px 40px rgba(25,23,24,0.45))' }
+  ];
+  document.querySelectorAll('.k-pick').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var p = prods[+b.dataset.prod];
+      document.querySelectorAll('.k-pick').forEach(function (o) { o.setAttribute('aria-pressed', 'false'); });
+      b.setAttribute('aria-pressed', 'true');
+      stage.setAttribute('src', p.src); stage.setAttribute('alt', p.alt); stage.setAttribute('style', p.style);
+      stage.classList.remove('k-swap'); void stage.offsetWidth; stage.classList.add('k-swap');
+    });
+  });
+
+  // Hero follows the mouse
+  var hero = document.getElementById('top');
+  hero.addEventListener('mousemove', function (e) {
+    var r = hero.getBoundingClientRect();
+    hero.style.setProperty('--mx', (((e.clientX - r.left) / r.width) - 0.5).toFixed(3));
+    hero.style.setProperty('--my', (((e.clientY - r.top) / Math.min(r.height, window.innerHeight)) - 0.5).toFixed(3));
+  });
+  hero.addEventListener('mouseleave', function () { hero.style.setProperty('--mx', 0); hero.style.setProperty('--my', 0); });
+})();
+</script>
+<script>window.addEventListener('load',function(){var s=document.createElement('script');s.src='file:///home/claude/preview/node_modules/three/build/three.min.js';s.async=true;s.onload=function(){/* Krate 3D sticky note: taped at the top, curled at the bottom, flutters,
+   flaps with scroll speed and lifts toward the cursor. three.js r128. */
+(function () {
+  var host = document.querySelector('[data-note3d]');
+  if (!host || !window.THREE) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var P = { W: 1, H: 0.94, SEGS: 44, CURL: 0.17, FLUTTER: 0.035, TREMBLE: 0.016, SCROLL: 1.1, POKE: 0.6, PIN: 0.3 };
+  var MARGIN = 0.22; // canvas overflow around the note so the curl can lift out
+
+  // ---- draw the note face onto a canvas ----
+  function drawFace() {
+    var c = document.createElement('canvas');
+    var w = 1024, h = Math.round(w * P.H);
+    c.width = w; c.height = h;
+    var g = c.getContext('2d');
+    var grad = g.createLinearGradient(0, 0, w * 0.3, h);
+    grad.addColorStop(0, '#fbe27a'); grad.addColorStop(0.55, '#f7d65a'); grad.addColorStop(1, '#efc945');
+    g.fillStyle = grad; g.fillRect(0, 0, w, h);
+    // paper grain
+    var img = g.getImageData(0, 0, w, h), d = img.data;
+    for (var i = 0; i < d.length; i += 4) { var n = (Math.random() - 0.5) * 14; d[i] += n; d[i + 1] += n; d[i + 2] += n * 0.6; }
+    g.putImageData(img, 0, 0);
+    // adhesive band at top (slightly darker)
+    g.fillStyle = 'rgba(160,120,20,0.08)'; g.fillRect(0, 0, w, h * 0.16);
+    // title + list
+    g.fillStyle = '#3b2a12';
+    g.font = '400 ' + Math.round(w * 0.105) + 'px "Bagel Fat One", sans-serif';
+    g.fillText('MARKET LIST', w * 0.09, h * 0.3);
+    var items = [['bread', false], ['tomatoes & pepper', false], ['a Krate of jumbo eggs!!', true]];
+    g.font = '700 ' + Math.round(w * 0.072) + 'px Caveat, cursive';
+    items.forEach(function (it, k) {
+      var y = h * (0.47 + k * 0.15);
+      g.lineWidth = w * 0.006; g.strokeStyle = '#3b2a12';
+      g.beginPath(); g.arc(w * 0.12, y - w * 0.022, w * 0.022, 0, Math.PI * 2);
+      if (it[1]) { g.fill(); } else { g.stroke(); }
+      g.fillText(it[0], w * 0.18, y);
+      g.strokeStyle = 'rgba(59,42,18,0.35)'; g.lineWidth = 2;
+      g.beginPath(); g.moveTo(w * 0.09, y + h * 0.035); g.lineTo(w * 0.9, y + h * 0.035); g.stroke();
+    });
+    return c;
+  }
+
+  var canvas = document.createElement('canvas');
+  canvas.setAttribute('aria-hidden', 'true');
+  canvas.style.cssText = 'position:absolute;z-index:1;pointer-events:none;filter:drop-shadow(0 1.4vw 1.8vw rgba(0,0,0,.42));';
+  var renderer;
+  try { renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true }); } catch (e) { return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(20, 1, 0.1, 50);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.72));
+  var sun = new THREE.DirectionalLight(0xffffff, 0.55); sun.position.set(-2, 2.5, 3); scene.add(sun);
+
+  var geo = new THREE.PlaneGeometry(P.W, P.H, P.SEGS, P.SEGS);
+  var base = geo.attributes.position.array.slice();
+  var tex, mat, mesh;
+
+  function build() {
+    tex = new THREE.CanvasTexture(drawFace());
+    tex.anisotropy = 4;
+    mat = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.92, metalness: 0, side: THREE.DoubleSide });
+    mesh = new THREE.Mesh(geo, mat);
+    scene.add(mesh);
+    // swap the flat DOM note for the 3D one
+    host.style.background = 'transparent';
+    host.style.boxShadow = 'none';
+    host.querySelectorAll('p, ul').forEach(function (e) { e.style.visibility = 'hidden'; });
+    host.querySelectorAll('.k-tape').forEach(function (e) { e.style.zIndex = '2'; });
+    host.insertBefore(canvas, host.firstChild);
+    size();
+    requestAnimationFrame(tick);
+  }
+
+  function size() {
+    var r = host.getBoundingClientRect();
+    var w = host.offsetWidth, h = host.offsetHeight;
+    var cw = w * (1 + MARGIN * 2), ch = h * (1 + MARGIN * 2);
+    canvas.style.left = (-w * MARGIN) + 'px'; canvas.style.top = (-h * MARGIN) + 'px';
+    canvas.style.width = cw + 'px'; canvas.style.height = ch + 'px';
+    renderer.setSize(cw, ch, false);
+    camera.aspect = cw / ch;
+    // fit the plane (plus margin) exactly in view
+    var viewH = P.H * (1 + MARGIN * 2);
+    camera.position.set(0, 0, (viewH / 2) / Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)));
+    camera.updateProjectionMatrix();
+    void r;
+  }
+  window.addEventListener('resize', size);
+
+  // ---- inputs: scroll speed and cursor ----
+  var lastY = window.scrollY, vel = 0, gust = 0;
+  var mx = -9, my = -9, poke = 0;
+  window.addEventListener('pointermove', function (e) {
+    var r = host.getBoundingClientRect();
+    mx = ((e.clientX - r.left) / r.width - 0.5) * P.W;
+    my = (0.5 - (e.clientY - r.top) / r.height) * P.H;
+  });
+
+  function smooth(x) { x = Math.max(0, Math.min(1, x)); return x * x * (3 - 2 * x); }
+  var pos = geo.attributes.position, t0 = performance.now();
+
+  function tick(now) {
+    var t = (now - t0) / 1000;
+    var y = window.scrollY; vel = vel * 0.85 + (y - lastY) * 0.15; lastY = y;
+    gust += (Math.max(-1, Math.min(1, vel / 40)) * P.SCROLL - gust) * 0.08;
+    var near = Math.exp(-((mx * mx) + (my + 0.15) * (my + 0.15)) / 0.12);
+    poke += (near * P.POKE - poke) * 0.1;
+
+    var a = pos.array;
+    for (var i = 0; i < a.length; i += 3) {
+      var x = base[i], yy = base[i + 1];
+      var u = x / P.W + 0.5;            // 0..1 left→right
+      var v = 0.5 - yy / P.H;           // 0 top → 1 bottom
+      var free = smooth((v - P.PIN) / (1 - P.PIN)); // 0 where taped, 1 at the bottom
+      var lift = free * free;
+      var z = P.CURL * lift
+        + P.FLUTTER * free * Math.sin(t * 2.1 + u * 3.1 + v * 4.0)
+        + P.TREMBLE * free * Math.sin(t * 13 + u * 9 + v * 3)
+        + gust * 0.12 * Math.pow(free, 1.5) * (0.6 + 0.4 * Math.sin(u * Math.PI))
+        + poke * 0.16 * lift * (0.7 + 0.3 * Math.cos((u - 0.5) * 3));
+      a[i + 2] = z;
+      a[i + 1] = yy + z * 0.25 * free; // the lifted bottom pulls up a touch
+    }
+    pos.needsUpdate = true;
+    geo.computeVertexNormals();
+    renderer.render(scene, camera);
+    requestAnimationFrame(tick);
+  }
+
+  var fonts = document.fonts ? Promise.all([
+    document.fonts.load('400 40px "Bagel Fat One"'), document.fonts.load('700 40px Caveat')
+  ]) : Promise.resolve();
+  fonts.then(build, build);
+})();
+
+};document.head.appendChild(s);});</script>
+<script>/* Why-we-exist board: lay the rows out, then pan the view along a path as you scroll. */
+(function () {
+  var pin = document.querySelector('.g-pin');
+  if (!pin) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var canvas = pin.querySelector('.g-canvas');
+  var rows = [].slice.call(pin.querySelectorAll('.g-row'));
+  var arrows = [].slice.call(pin.querySelectorAll('.g-arrow'));
+  var props = [].slice.call(pin.querySelectorAll('.g-prop'));
+  var pts = [], segs = [], total = 0, vw = 1, vh = 1;
+  var title = pin.querySelector('.g-title');
+
+  // split words into letters that slide up out of a clip, one after another
+  function split(el, start) {
+    var i = start || 0;
+    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+    var nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      if (!n.nodeValue.trim()) return;
+      var frag = document.createDocumentFragment();
+      n.nodeValue.split(/(\s+)/).forEach(function (word) {
+        if (!word) return;
+        if (/^\s+$/.test(word)) { frag.appendChild(document.createTextNode(' ')); return; }
+        var w = document.createElement('span'); w.className = 'gw';
+        word.split('').forEach(function (ch) {
+          var o = document.createElement('span'); o.className = 'gl';
+          var c = document.createElement('span'); c.className = 'gc'; c.style.setProperty('--i', i++); c.textContent = ch;
+          o.appendChild(c); w.appendChild(o);
+        });
+        frag.appendChild(w);
+      });
+      n.parentNode.replaceChild(frag, n);
+    });
+  }
+  split(title.querySelector('h2'));
+  rows.forEach(function (r) { split(r.querySelector('.g-giant'), 0); });
+
+  function layout() {
+    vw = window.innerWidth / 100; vh = window.innerHeight;
+    var h0 = rows[0].offsetHeight;
+    var gap = Math.max(16 * vw, h0 * 0.55);
+    var y1 = title.offsetTop + title.offsetHeight + Math.max(6 * vw, h0 * 0.25);
+    var y2 = y1 + h0 * 1.35;
+    var x = 2 * vw;
+    var ys = [y1, y2, y1];
+    var info = rows.map(function (r, i) {
+      r.style.left = x + 'px'; r.style.top = ys[i] + 'px';
+      var w = r.offsetWidth, h = r.offsetHeight;
+      var o = { x: x, y: ys[i], w: w, h: h, cy: ys[i] + h / 2 };
+      x += w + gap;
+      return o;
+    });
+    // each arrow is one curve from the end of a row to the start of the next, with its head on the tip
+    arrows.forEach(function (a, i) {
+      var A = info[i], B = info[i + 1];
+      var x0 = A.x + A.w + 1.5 * vw, y0 = A.y + A.h * 0.55;
+      var x3 = B.x - 1.5 * vw, y3 = B.y + B.h * 0.5;
+      var pad = 14 * vw, minX = Math.min(x0, x3) - pad, minY = Math.min(y0, y3) - pad;
+      var w = Math.abs(x3 - x0) + pad * 2, h = Math.abs(y3 - y0) + pad * 2;
+      var dx = x3 - x0, sag = (y3 > y0 ? -1 : 1) * Math.min(80, Math.abs(y3 - y0) * 0.35);
+      var hs = Math.max(14, 1.3 * vw);
+      var p0 = [x0 - minX, y0 - minY], p3 = [x3 - minX, y3 - minY];
+      var dy = p3[1] - p0[1], c1 = [p0[0] + Math.max(dx, 6 * vw) * 1.1, p0[1] + dy * 0.05], c2 = [p3[0] - Math.max(dx, 6 * vw) * 0.9, p3[1] - dy * 0.35];
+      var ang = Math.atan2(p3[1] - c2[1], p3[0] - c2[0]);
+      function hp(t) { return (p3[0] - hs * Math.cos(ang + t)).toFixed(1) + ',' + (p3[1] - hs * Math.sin(ang + t)).toFixed(1); }
+            a.setAttribute('viewBox', '0 0 ' + w.toFixed(0) + ' ' + h.toFixed(0));
+      a.style.left = minX + 'px'; a.style.top = minY + 'px'; a.style.width = w + 'px'; a.style.height = h + 'px';
+      var ps = a.querySelectorAll('path');
+      ps[0].setAttribute('d', 'M' + p0 + ' C' + c1 + ' ' + c2 + ' ' + p3);
+      ps[1].setAttribute('d', 'M' + hp(0.6) + ' L' + p3 + ' L' + hp(-0.6));
+    });
+    canvas.style.width = (x + 10 * vw) + 'px';
+    canvas.style.height = (y2 + info[1].h + 30 * vw) + 'px';
+
+    // the view's path (top-left corner of the screen on the board)
+    var W = window.innerWidth, pad = 4 * vw;
+    function at(row, end) {
+      var r = info[row];
+      return { x: end ? r.x + r.w - W + pad : Math.max(0, r.x - pad), y: r.cy - vh / 2 };
+    }
+    pts = [{ x: 0, y: Math.min(0, info[0].cy - vh / 2) }, at(0, false), at(0, true), at(1, false), at(1, true), at(2, false), at(2, true)];
+    segs = []; total = 0;
+    for (var i = 1; i < pts.length; i++) {
+      var dx = pts[i].x - pts[i - 1].x, dy = pts[i].y - pts[i - 1].y, len = Math.max(1, Math.hypot(dx, dy));
+      segs.push({ a: pts[i - 1], b: pts[i], len: len, start: total }); total += len;
+    }
+    pin.style.height = (vh + total) + 'px';
+    update();
+  }
+
+  function ease(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+
+  function update() {
+    var top = pin.getBoundingClientRect().top;
+    var d = Math.max(0, Math.min(total, -top));
+    var cam = pts[0], segIndex = 0;
+    for (var i = 0; i < segs.length; i++) {
+      var s = segs[i];
+      if (d <= s.start + s.len || i === segs.length - 1) {
+        var t = ease(Math.max(0, Math.min(1, (d - s.start) / s.len)));
+        cam = { x: s.a.x + (s.b.x - s.a.x) * t, y: s.a.y + (s.b.y - s.a.y) * t };
+        segIndex = i; break;
+      }
+    }
+    canvas.style.transform = 'translate3d(' + (-cam.x).toFixed(1) + 'px,' + (-cam.y).toFixed(1) + 'px,0)';
+    // reveal the heading and each row's letters as the view reaches them
+    if (top < vh * 0.6) title.classList.add('live');
+    rows.forEach(function (r) {
+      var rx = parseFloat(r.style.left) || 0, ry = parseFloat(r.style.top) || 0;
+      var inX = rx < cam.x + window.innerWidth * 0.85 && rx + r.offsetWidth > cam.x;
+      var inY = ry < cam.y + vh * 0.85 && ry + r.offsetHeight > cam.y + vh * 0.1;
+      if (inX && inY && top < vh * 0.4) r.classList.add('live');
+    });
+    // floating props drift at their own speed (parallax)
+    props.forEach(function (p) {
+      var k = (parseFloat(p.dataset.depth) || 1) - 1;
+      p.style.transform = 'translate3d(' + (-cam.x * k * 0.12).toFixed(1) + 'px,' + (-cam.y * k * 0.06).toFixed(1) + 'px,0)';
+    });
+    // arrows draw themselves during the diagonal moves (segments 2 and 4)
+    arrows.forEach(function (a, i) {
+      var s = segs[2 + i * 2];
+      var t = s ? Math.max(0, Math.min(1, (d - s.start + s.len * 0.15) / s.len)) : 1;
+      a.style.setProperty('--draw', (1 - t).toFixed(3));
+      a.style.setProperty('--head', t > 0.92 ? '0' : '1');
+    });
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(function () { ticking = false; update(); }); }
+  }, { passive: true });
+  window.addEventListener('resize', layout);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout); else layout();
+  window.addEventListener('load', layout);
+})();
+
+/* Homepage: partner enquiries + section reveals. Edit to go live: */
+var KRATE = {
+  whatsapp: '234XXXXXXXXXX',    // your WhatsApp number, international format, no + or spaces
+  email: 'hello@krate.example'  // where business enquiries go by email
+};
+(function () {
+  function wa(text) { return 'https://wa.me/' + KRATE.whatsapp + '?text=' + encodeURIComponent(text); }
+  function openLink(url) { var a = document.createElement('a'); a.href = url; a.target = '_blank'; a.rel = 'noopener'; document.body.appendChild(a); a.click(); a.remove(); }
+  function check(form, errEl) {
+    var ok = true;
+    form.querySelectorAll('[required]').forEach(function (f) {
+      var bad = !f.value.trim() || (f.type === 'email' && f.value && !/^\S+@\S+\.\S+$/.test(f.value));
+      f.classList.toggle('is-bad', bad); f.setAttribute('aria-invalid', bad ? 'true' : 'false');
+      if (bad) ok = false;
+    });
+    errEl.hidden = ok;
+    if (!ok) { var first = form.querySelector('.is-bad'); if (first) first.focus(); }
+    return ok;
+  }
+  var chat = document.getElementById('pChat');
+  if (chat) {
+    var msg = 'Hello Krate! I’d like to stock your eggs. My business is ';
+    chat.href = wa(msg);
+    var mail = document.getElementById('pMail');
+    mail.href = 'mailto:' + KRATE.email + '?subject=' + encodeURIComponent('Stocking Krate eggs') + '&body=' + encodeURIComponent(msg);
+  }
+
+  // big headings below the board slide up letter by letter when they scroll in
+  var heads = [].slice.call(document.querySelectorAll('.t-split'));
+  heads.forEach(function (el) {
+    var i = 0, walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null), nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      if (!n.nodeValue.trim()) return;
+      var frag = document.createDocumentFragment();
+      n.nodeValue.split(/(\s+)/).forEach(function (word) {
+        if (!word) return;
+        if (/^\s+$/.test(word)) { frag.appendChild(document.createTextNode(' ')); return; }
+        var w = document.createElement('span'); w.style.cssText = 'display:inline-block;white-space:nowrap';
+        word.split('').forEach(function (ch) {
+          var o = document.createElement('span'); o.className = 'gl';
+          var c = document.createElement('span'); c.className = 'gc'; c.style.setProperty('--i', i++); c.textContent = ch;
+          o.appendChild(c); w.appendChild(o);
+        });
+        frag.appendChild(w);
+      });
+      n.parentNode.replaceChild(frag, n);
+    });
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('live'); io.unobserve(e.target); } }); }, { threshold: 0.35 });
+    heads.forEach(function (h) { io.observe(h); });
+  } else { heads.forEach(function (h) { h.classList.add('live'); }); }
+})();
+
+/* Homepage shop: one-time or subscription, checkout on WhatsApp. */
+(function () {
+  if (!document.getElementById('hsGo')) return;
+  var PRICE = 7500; // placeholder price per crate of 30
+  var mode = 'once', qty = 1, freq = '2 weeks';
+  var OFF = { 'week': 0.10, '2 weeks': 0.07, 'month': 0.05 }; // placeholder subscription discounts
+  function $(id) { return document.getElementById(id); }
+  function money(n) { return '₦' + Math.round(n).toLocaleString('en-NG'); }
+  var modeG = document.querySelector('.hs-mode');
+  function radio(group, attr, val) { group.querySelectorAll('[role=radio]').forEach(function (b) { b.setAttribute('aria-checked', b.dataset[attr] === val ? 'true' : 'false'); }); }
+  function what() {
+    var c = qty + (qty > 1 ? ' crates' : ' crate');
+    return mode === 'sub' ? c + ' every ' + freq : c;
+  }
+  function full() { return qty * PRICE; }
+  function each() { return mode === 'sub' ? Math.round(full() * (1 - OFF[freq]) / 50) * 50 : full(); }
+  function bump(el) { el.classList.remove('hs-tick'); void el.offsetWidth; el.classList.add('hs-tick'); }
+  var last = '';
+  function update() {
+    var sub = mode === 'sub', now = each(), saved = full() - now;
+    $('hsQty').textContent = qty;
+    var txt = money(now);
+    if (txt !== last) { $('hsPrice').textContent = txt; bump($('hsPrice')); last = txt; }
+    $('hsWas').hidden = !sub; $('hsWas').textContent = money(full());
+    $('hsPer').textContent = sub ? 'per delivery' : (qty > 1 ? 'total' : 'per crate');
+    var fr = $('hsFreq'); fr.classList.toggle('open', sub); fr.setAttribute('aria-hidden', sub ? 'false' : 'true');
+    fr.querySelectorAll('button').forEach(function (b) { b.tabIndex = sub ? 0 : -1; });
+    var save = $('hsSave');
+    if (sub) {
+      save.className = 'hs-save is-sub';
+      save.textContent = 'You save ' + money(saved) + ' every delivery. Pause or cancel anytime.';
+    } else {
+      save.className = 'hs-save';
+      save.innerHTML = '';
+      var up = document.createElement('button'); up.type = 'button'; up.className = 'hs-up';
+      up.textContent = 'Subscribe and save ' + money(full() - Math.round(full() * (1 - OFF['2 weeks']) / 50) * 50) + ' →';
+      up.onclick = function () { mode = 'sub'; radio(modeG, 'mode', 'sub'); update(); };
+      save.appendChild(up);
+    }
+    $('hsGo').textContent = sub ? 'Start subscription' : 'Order now';
+    $('cWhat').textContent = what();
+    $('cSubtotal').textContent = money(now) + (sub ? ' / delivery' : '');
+  }
+  var chips = document.querySelector('.hs-chips');
+  modeG.addEventListener('click', function (e) { var b = e.target.closest('[data-mode]'); if (!b) return; mode = b.dataset.mode; radio(modeG, 'mode', mode); update(); });
+  chips.addEventListener('click', function (e) { var b = e.target.closest('[data-f]'); if (!b) return; freq = b.dataset.f; radio(chips, 'f', freq); update(); });
+  $('hsMinus').onclick = function () { qty = Math.max(1, qty - 1); update(); };
+  $('hsPlus').onclick = function () { qty = Math.min(50, qty + 1); update(); };
+
+  var drawer = $('cDrawer'), scrim = $('cScrim');
+  function open() {
+    var P0 = window.KRATE_PROFILE, cf = document.getElementById('cForm');
+    if (P0 && cf) ['name', 'phone', 'address'].forEach(function (k) { if (!cf.elements[k].value && P0[k]) cf.elements[k].value = P0[k]; });
+    var nudge = document.getElementById('cAcct'); if (nudge) nudge.hidden = !!window.KRATE_USER;
+    drawer.classList.add('open'); drawer.setAttribute('aria-hidden', 'false'); scrim.hidden = false; $('cClose').focus(); }
+  function close() { drawer.classList.remove('open'); drawer.setAttribute('aria-hidden', 'true'); scrim.hidden = true; $('hsGo').focus(); }
+  $('hsGo').onclick = open; $('cClose').onclick = close; scrim.onclick = close;
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && drawer.classList.contains('open')) close(); });
+
+  var form = $('cForm');
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var ok = true;
+    form.querySelectorAll('[required]').forEach(function (f) { var bad = !f.value.trim(); f.classList.toggle('is-bad', bad); f.setAttribute('aria-invalid', bad); if (bad) ok = false; });
+    $('cError').hidden = ok;
+    if (!ok) { form.querySelector('.is-bad').focus(); return; }
+    var f = form.elements;
+    var msg = mode === 'sub'
+      ? ['Hello Krate! I’d like to subscribe:', '• ' + what() + ' = ' + money(each()) + ' per delivery (' + Math.round(OFF[freq] * 100) + '% off ' + money(full()) + ')']
+      : ['Hello Krate! I’d like to order:', '• ' + what() + ' = ' + money(qty * PRICE)];
+    msg.push('', 'Name: ' + f.name.value, 'Phone: ' + f.phone.value, 'Address: ' + f.address.value);
+    if (f.when.value) msg.push((mode === 'sub' ? 'Delivery day: ' : 'Delivery: ') + f.when.value);
+    var a = document.createElement('a'); a.href = 'https://wa.me/' + KRATE.whatsapp + '?text=' + encodeURIComponent(msg.join('\n')); a.target = '_blank'; a.rel = 'noopener';
+    document.body.appendChild(a); a.click(); a.remove();
+    if (window.KRATE_SAVE_ORDER) window.KRATE_SAVE_ORDER({ kind: mode, summary: what(), crates: qty, frequency: mode === 'sub' ? freq : null, total: each(), name: f.name.value, phone: f.phone.value, address: f.address.value });
+    $('cDone').hidden = false;
+  });
+  update();
+})();
+
+/* Krate customer accounts (Supabase). Paste your project's URL and anon key to switch accounts on. */
+var KRATE_SUPABASE = {
+  url: 'https://demo.supabase.co',      // e.g. https://abcdefgh.supabase.co
+  anonKey: 'x'   // the "anon public" key from Project Settings → API
+};
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var drawer = $('aDrawer'), scrim = $('aScrim');
+  if (!drawer) return;
+  var sb = null, user = null, profile = {}, mode = 'in';
+  function money(n) { return '₦' + Math.round(n).toLocaleString('en-NG'); }
+  function show(v) { drawer.classList.toggle('open', v); drawer.setAttribute('aria-hidden', v ? 'false' : 'true'); scrim.hidden = !v; if (v) $('aClose').focus(); }
+  function open() { show(true); if (!sb) start(); }
+  $('aOpen').onclick = open; $('aClose').onclick = function () { show(false); }; scrim.onclick = function () { show(false); };
+  document.addEventListener('click', function (e) { var a = e.target.closest('[data-account]'); if (a) { e.preventDefault(); setTimeout(open, 250); } });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && drawer.classList.contains('open')) show(false); });
+
+  function view() {
+    var on = !!sb;
+    $('aOff').hidden = on;
+    $('aOut').hidden = !on || !!user;
+    $('aIn').hidden = !on || !user;
+    $('aTitle').textContent = user ? 'My Krate' : (mode === 'up' ? 'Join Krate' : 'Welcome back');
+    $('aOpen').classList.toggle('is-in', !!user);
+  }
+
+  function start() {
+    if (!KRATE_SUPABASE.url || !KRATE_SUPABASE.anonKey) { view(); return; }
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+    s.onload = function () {
+      sb = window.supabase.createClient(KRATE_SUPABASE.url, KRATE_SUPABASE.anonKey);
+      window.KRATE_DB = sb;
+      sb.auth.onAuthStateChange(function (_e, session) { user = session ? session.user : null; window.KRATE_USER = user; view(); if (user) load(); });
+      sb.auth.getSession().then(function (r) { user = r.data.session ? r.data.session.user : null; window.KRATE_USER = user; view(); if (user) load(); });
+    };
+    s.onerror = function () { view(); };
+    document.head.appendChild(s);
+  }
+  // load in the background too, so a returning customer is recognised and checkout is prefilled
+  if (KRATE_SUPABASE.url && KRATE_SUPABASE.anonKey) window.addEventListener('load', function () { if (!sb) start(); });
+
+  // log in / create account
+  document.querySelectorAll('.a-switch [data-a]').forEach(function (b) {
+    b.onclick = function () {
+      mode = b.dataset.a;
+      document.querySelectorAll('.a-switch [data-a]').forEach(function (o) { o.setAttribute('aria-selected', o === b ? 'true' : 'false'); });
+      document.querySelectorAll('.a-up').forEach(function (l) { l.hidden = mode !== 'up'; });
+      $('aSubmit').textContent = mode === 'up' ? 'Create account' : 'Log in';
+      $('aForm').elements.password.autocomplete = mode === 'up' ? 'new-password' : 'current-password';
+      $('aError').hidden = true; $('aMsg').hidden = true; view();
+    };
+  });
+  function err(m) { $('aError').textContent = m; $('aError').hidden = false; }
+  $('aForm').addEventListener('submit', function (e) {
+    e.preventDefault(); if (!sb) return;
+    var f = this.elements; $('aError').hidden = true; $('aMsg').hidden = true;
+    if (!/^\S+@\S+\.\S+$/.test(f.email.value)) return err('Enter a valid email.');
+    if (f.password.value.length < 6) return err('Password needs at least 6 characters.');
+    var btn = $('aSubmit'); btn.disabled = true;
+    var p = mode === 'up'
+      ? sb.auth.signUp({ email: f.email.value.trim(), password: f.password.value, options: { data: { name: f.name.value.trim(), phone: f.phone.value.trim() } } })
+      : sb.auth.signInWithPassword({ email: f.email.value.trim(), password: f.password.value });
+    p.then(function (r) {
+      btn.disabled = false;
+      if (r.error) return err(r.error.message);
+      if (mode === 'up' && !r.data.session) { $('aMsg').textContent = 'Check your email to confirm your account, then log in.'; $('aMsg').hidden = false; }
+    });
+  });
+  $('aForgot').onclick = function () {
+    var em = $('aForm').elements.email.value.trim();
+    if (!sb) return; if (!em) return err('Type your email first, then tap “Forgot password?”.');
+    sb.auth.resetPasswordForEmail(em, { redirectTo: location.origin + location.pathname }).then(function (r) {
+      if (r.error) return err(r.error.message);
+      $('aMsg').textContent = 'We’ve emailed you a link to reset your password.'; $('aMsg').hidden = false;
+    });
+  };
+  $('aLogout').onclick = function () { sb.auth.signOut(); };
+
+  // signed-in data
+  function load() {
+    sb.from('profiles').select('*').eq('id', user.id).maybeSingle().then(function (r) {
+      profile = r.data || { name: (user.user_metadata || {}).name || '', phone: (user.user_metadata || {}).phone || '', address: '' };
+      window.KRATE_PROFILE = profile;
+      $('aName').textContent = (profile.name || user.email).split(' ')[0];
+      var d = $('aDetails').elements; d.name.value = profile.name || ''; d.phone.value = profile.phone || ''; d.address.value = profile.address || '';
+      prefill();
+    });
+    sb.from('orders').select('*').eq('user_id', user.id).order('created_at', { ascending: false }).then(function (r) { list(r.data || []); });
+  }
+  function prefill() {
+    var c = $('cForm'); if (!c) return;
+    ['name', 'phone', 'address'].forEach(function (k) { if (c.elements[k] && !c.elements[k].value && profile[k]) c.elements[k].value = profile[k]; });
+  }
+  function row(o, sub) {
+    var el = document.createElement('div'); el.className = 'a-item';
+    var t = document.createElement('div'); t.className = 'c-info';
+    var s1 = document.createElement('strong'); s1.textContent = o.summary;
+    var s2 = document.createElement('span');
+    s2.textContent = money(o.total) + (sub ? ' per delivery' : '') + ' · ' + new Date(o.created_at).toLocaleDateString('en-NG', { day: 'numeric', month: 'short', year: 'numeric' });
+    t.append(s1, s2);
+    var st = document.createElement('span'); st.className = 'a-status a-' + o.status; st.textContent = o.status;
+    el.append(t, st);
+    if (sub && o.status !== 'cancelled') {
+      var acts = document.createElement('div'); acts.className = 'a-acts';
+      var pz = document.createElement('button'); pz.type = 'button'; pz.textContent = o.status === 'paused' ? 'Resume' : 'Pause';
+      pz.onclick = function () { setStatus(o, o.status === 'paused' ? 'active' : 'paused'); };
+      var cx = document.createElement('button'); cx.type = 'button'; cx.textContent = 'Cancel';
+      cx.onclick = function () { if (confirmCancel(cx)) setStatus(o, 'cancelled'); };
+      acts.append(pz, cx); el.appendChild(acts);
+    }
+    return el;
+  }
+  function confirmCancel(b) { if (b.dataset.sure) return true; b.dataset.sure = '1'; b.textContent = 'Tap again to cancel'; setTimeout(function () { delete b.dataset.sure; b.textContent = 'Cancel'; }, 3000); return false; }
+  function setStatus(o, s) { sb.from('orders').update({ status: s }).eq('id', o.id).then(load); }
+  function list(rows) {
+    var subs = rows.filter(function (o) { return o.kind === 'sub'; }), once = rows.filter(function (o) { return o.kind !== 'sub'; });
+    var a = $('aSubs'), b = $('aOrders'); a.innerHTML = ''; b.innerHTML = '';
+    subs.forEach(function (o) { a.appendChild(row(o, true)); });
+    once.forEach(function (o) { b.appendChild(row(o, false)); });
+    if (!subs.length) a.innerHTML = '<p class="c-empty">No subscription yet. Subscribe in the shop and save up to 10%.</p>';
+    if (!once.length) b.innerHTML = '<p class="c-empty">No orders yet.</p>';
+  }
+  $('aDetails').addEventListener('submit', function (e) {
+    e.preventDefault(); var d = this.elements;
+    var rec = { id: user.id, name: d.name.value.trim(), phone: d.phone.value.trim(), address: d.address.value.trim() };
+    sb.from('profiles').upsert(rec).then(function (r) { if (!r.error) { profile = rec; window.KRATE_PROFILE = rec; $('aSaved').hidden = false; $('aName').textContent = (rec.name || user.email).split(' ')[0]; } });
+  });
+
+  // called by the shop when someone sends an order to WhatsApp
+  window.KRATE_SAVE_ORDER = function (o) {
+    if (!sb || !user) return;
+    sb.from('orders').insert({ user_id: user.id, kind: o.kind, summary: o.summary, crates: o.crates, frequency: o.frequency || null, total: o.total, status: o.kind === 'sub' ? 'active' : 'placed' }).then(function () { load(); });
+    if (o.name || o.phone || o.address) sb.from('profiles').upsert({ id: user.id, name: o.name || profile.name, phone: o.phone || profile.phone, address: o.address || profile.address });
+  };
+  window.KRATE_OPEN_ACCOUNT = open;
+  view();
+})();
+</script>
+</body>
+</html>
