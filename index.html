@@ -1248,6 +1248,16 @@ footer nav a{font-size:20px!important}
 .c-ok .c-checkout{width:100%;margin-top:10px}
 .c-checkout:disabled{opacity:.7}
 .c-form[hidden]{display:none}
+/* hand-written reveal for the notes */
+.g-note.hw-ready{opacity:1!important;translate:none!important}
+.hw-w{display:inline-block;white-space:nowrap}
+.hw{display:inline-block;opacity:0;transform:translate(-.08em,.06em) rotate(-6deg) scale(.7);filter:blur(1.5px)}
+.live .g-note .hw,.g-row.live .hw{animation:hwIn .22s cubic-bezier(.3,1.4,.5,1) forwards;animation-delay:calc(.75s + var(--i) * 42ms)}
+@keyframes hwIn{to{opacity:1;transform:none;filter:none}}
+.g-note.hw-ready::after{content:"";display:block;height:.09em;margin-top:.12em;width:0;border-radius:1em;background:currentColor;opacity:.55;rotate:-1.5deg}
+.g-row.live .g-note.hw-ready::after{animation:hwLine .5s ease-out forwards;animation-delay:calc(.85s + var(--n) * 42ms)}
+@keyframes hwLine{to{width:62%}}
+@media (prefers-reduced-motion:reduce){.hw{opacity:1;transform:none;filter:none}}
 </style></head>
 <body>
 
@@ -2836,6 +2846,27 @@ var KRATE_SUPABASE = {
     }
     drawer.appendChild(box); setTimeout(function () { box.remove(); }, 1800);
   }
+})();
+/* handwritten notes write themselves on, letter by letter */
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.querySelectorAll('.g-note').forEach(function (n) {
+    var i = 0, walker = document.createTreeWalker(n, NodeFilter.SHOW_TEXT, null), nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (t) {
+      var f = document.createDocumentFragment();
+      t.nodeValue.split(/(\s+)/).forEach(function (w) {
+        if (!w) return;
+        if (/^\s+$/.test(w)) { f.appendChild(document.createTextNode(' ')); i += 2; return; }
+        var ws = document.createElement('span'); ws.className = 'hw-w';
+        w.split('').forEach(function (ch) { var s = document.createElement('span'); s.className = 'hw'; s.textContent = ch; s.style.setProperty('--i', i++); ws.appendChild(s); });
+        f.appendChild(ws);
+      });
+      t.parentNode.replaceChild(f, t);
+    });
+    n.style.setProperty('--n', i);
+    n.classList.add('hw-ready');
+  });
 })();
 </script>
 </body>
