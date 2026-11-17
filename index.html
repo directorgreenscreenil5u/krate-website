@@ -523,6 +523,54 @@ footer nav a{font-size:20px!important}
 }
 .e-photo img{height:auto!important}
 .a-note{margin:0;text-align:center;font-size:13px;color:#4a4446}
+/* ---- account pop-up, brand style ---- */
+.a-drawer{position:fixed;left:50%;top:50%;z-index:76;width:min(980px,94vw);max-height:min(680px,92vh);display:grid;grid-template-columns:1fr 1.05fr;background:#f6eceb;border-radius:34px;overflow:hidden;box-shadow:0 40px 90px rgba(1,30,14,.45);opacity:0;visibility:hidden;transform:translate(-50%,-46%) scale(.94) rotate(-1deg);transition:opacity .3s,transform .55s cubic-bezier(.2,.9,.25,1.2),visibility 0s .55s}
+.a-drawer.open{opacity:1;visibility:visible;transform:translate(-50%,-50%);transition:opacity .3s,transform .55s cubic-bezier(.2,.9,.25,1.2)}
+#aScrim{z-index:75;background:rgba(1,30,14,.55);backdrop-filter:blur(3px)}
+.a-hero{position:relative;overflow:hidden;background:#5bc20f;color:#014621;padding:44px 40px;display:flex;flex-direction:column;gap:14px}
+.a-hero .k-paper{opacity:.35!important}
+.a-kicker{position:relative;margin:0;align-self:flex-start;padding:6px 12px;border-radius:6px;background:#014621;color:#5bc20f;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;rotate:-2deg}
+.a-big{position:relative;margin:6px 0 0;font-family:'Bagel Fat One',sans-serif;font-size:clamp(54px,6.4vw,88px);line-height:.88;text-transform:uppercase;word-break:break-word}
+.a-sub{position:relative;margin:0;max-width:300px;font-size:16px;line-height:1.45;font-weight:500}
+.a-egg{position:absolute;width:44%;right:-4%;bottom:-6%;rotate:-14deg;filter:drop-shadow(0 22px 26px rgba(1,70,33,.35));animation:aBob 5s ease-in-out infinite}
+.a-egg2{width:30%;right:30%;bottom:-10%;rotate:12deg;animation-delay:-2.5s}
+@keyframes aBob{50%{translate:0 -10px}}
+.a-panel{position:relative;overflow-y:auto;padding:44px 40px 32px;display:flex;flex-direction:column;gap:16px}
+.a-x{position:absolute;top:18px;right:18px;width:44px;height:44px;border-radius:50%;border:0;background:#014621;color:#f6eceb;font-size:24px;line-height:1;cursor:pointer;transition:rotate .3s}
+.a-x:hover{rotate:90deg}
+.a-title{margin:0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:30px;text-transform:uppercase;color:#014621}
+.a-switch{display:flex;gap:22px;padding:0;margin:0;border:0;border-radius:0;background:none;border-bottom:2px solid rgba(1,70,33,.15)}
+.a-switch button{flex:none;min-height:44px;padding:0;border-radius:0;background:none!important;color:rgba(1,70,33,.5)!important;font:700 15px 'Inter Tight',sans-serif;letter-spacing:.04em;text-transform:uppercase;border-bottom:3px solid transparent;margin-bottom:-2px}
+.a-switch [aria-selected="true"]{color:#014621!important;border-bottom-color:#f53509}
+.a-drawer .c-form{gap:14px}
+.a-drawer .c-form label{font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+.a-drawer .c-form input,.a-drawer .c-form textarea{min-height:54px;border:2px solid rgba(1,70,33,.18);border-radius:16px;background:#fff;font-size:16px;padding:0 16px;transition:border-color .2s,box-shadow .2s}
+.a-drawer .c-form textarea{padding:14px 16px}
+.a-drawer .c-form input:focus,.a-drawer .c-form textarea:focus{outline:none;border-color:#014621;box-shadow:0 0 0 4px rgba(91,194,15,.35)}
+.a-drawer .c-checkout{min-height:58px;background:#f53509;color:#191718;font-size:16px;transition:transform .25s cubic-bezier(.2,.9,.25,1.5)}
+.a-drawer .c-checkout:hover{transform:translateY(-2px) rotate(-.5deg)}
+.a-drawer .a-off{background:#fff;border:2px dashed rgba(1,70,33,.25)}
+.a-drawer.is-in .a-big{font-size:clamp(48px,5.6vw,80px)}
+.a-hi{display:none}
+.a-drawer .a-item{border:2px solid rgba(1,70,33,.1)}
+@media (max-width:743px){
+ .a-drawer{grid-template-columns:1fr;width:100vw;max-height:94vh;top:auto;bottom:0;left:0;border-radius:28px 28px 0 0;transform:translateY(100%);overflow-y:auto}
+ .a-drawer.open{transform:none}
+ .a-hero{padding:30px 24px 24px;min-height:0}
+ .a-big{font-size:15vw}
+ .a-sub{font-size:14px;max-width:62%}
+ .a-egg{width:30%;right:4%;bottom:-8%}
+ .a-egg2{display:none}
+ .a-panel{overflow:visible;padding:26px 22px 34px}
+ .a-x{position:absolute;top:14px;right:14px;z-index:3}
+}
+@media (prefers-reduced-motion:reduce){.a-egg{animation:none}.a-drawer{transition:none}}
+.a-big{font-size:clamp(46px,4.8vw,74px);word-break:normal;overflow-wrap:normal}
+.a-egg{width:34%;right:-3%;bottom:-8%}
+.a-egg2{width:22%;right:24%;bottom:-11%}
+.a-x{z-index:4;top:16px;right:16px}
+.a-drawer:not(.is-in) .a-title{display:none}
+@media (max-width:743px){.a-big{font-size:14vw}.a-x{top:14px;right:14px;background:#014621}.a-hero{padding-right:70px}}
 </style></head>
 <body>
 
@@ -932,8 +980,18 @@ a{color:#014621}a:hover{color:#191718}
 <!-- ================= ACCOUNT drawer ================= -->
 <button type="button" class="a-fab" id="aOpen" aria-label="My account"><svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
 <div class="c-scrim" id="aScrim" hidden></div>
-<aside class="c-drawer a-drawer" id="aDrawer" aria-label="My account" aria-hidden="true">
-<div class="c-head"><h3 id="aTitle">My Krate</h3><button type="button" class="c-close" id="aClose" aria-label="Close">×</button></div>
+<aside class="a-drawer" id="aDrawer" aria-label="My account" aria-hidden="true" role="dialog" aria-modal="true">
+<button type="button" class="a-x" id="aClose" aria-label="Close">×</button>
+<div class="a-hero" aria-hidden="true">
+<div class="k-paper"></div>
+<p class="a-kicker">Krate account</p>
+<p class="a-big" id="aBig">Welcome<br>back.</p>
+<p class="a-sub">Save your address, track every delivery and manage your subscription.</p>
+<img loading="lazy" decoding="async" class="a-egg" src="img/egg-brown.webp" alt="">
+<img loading="lazy" decoding="async" class="a-egg a-egg2" src="img/egg-white.webp" alt="">
+</div>
+<div class="a-panel">
+<h3 class="a-title" id="aTitle">My Krate</h3>
 
 <p class="a-off" id="aOff" hidden>Accounts are almost ready. For now, order on WhatsApp and we’ll keep track for you.</p>
 
@@ -978,6 +1036,7 @@ a{color:#014621}a:hover{color:#191718}
 </form>
 </section>
 <button type="button" class="a-link" id="aLogout">Log out</button>
+</div>
 </div>
 </aside>
 
@@ -1585,7 +1644,9 @@ var KRATE_SUPABASE = {
     $('aLocal').hidden = !(sb && sb.local);
     $('aOut').hidden = !on || !!user;
     $('aIn').hidden = !on || !user;
-    $('aTitle').textContent = (user || !on) ? 'My Krate' : (mode === 'up' ? 'Join Krate' : 'Welcome back');
+    $('aTitle').textContent = user ? 'Your account' : (mode === 'up' ? 'Create your account' : 'Log in');
+    $('aBig').innerHTML = user ? 'Hey<br>' + (($('aName').textContent || 'there').replace(/[<>&]/g, '')) + '!' : (mode === 'up' ? 'Join the<br>Krate.' : 'Welcome<br>back.');
+    $('aDrawer').classList.toggle('is-in', !!user);
     $('aOpen').classList.toggle('is-in', !!user);
   }
 
@@ -1704,7 +1765,7 @@ var KRATE_SUPABASE = {
     sb.from('profiles').select('*').eq('id', user.id).maybeSingle().then(function (r) {
       profile = r.data || { name: (user.user_metadata || {}).name || '', phone: (user.user_metadata || {}).phone || '', address: '' };
       window.KRATE_PROFILE = profile;
-      $('aName').textContent = (profile.name || user.email).split(' ')[0];
+      $('aName').textContent = (profile.name || user.email).split(' ')[0]; view();
       var d = $('aDetails').elements; d.name.value = profile.name || ''; d.phone.value = profile.phone || ''; d.address.value = profile.address || '';
       prefill();
     });
