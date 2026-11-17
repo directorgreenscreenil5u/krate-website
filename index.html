@@ -571,6 +571,102 @@ footer nav a{font-size:20px!important}
 .a-x{z-index:4;top:16px;right:16px}
 .a-drawer:not(.is-in) .a-title{display:none}
 @media (max-width:743px){.a-big{font-size:14vw}.a-x{top:14px;right:14px;background:#014621}.a-hero{padding-right:70px}}
+/* ================= SHOP v3: product page ================= */
+.t-shop{padding:8vw 4vw 11vw}
+.sp-wrap{position:relative;max-width:1200px;margin:0 auto}
+.sp-head{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.sp-h2{margin:0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(44px,6vw,96px);line-height:.9;text-transform:uppercase;color:#014621}
+.sp-grid{margin-top:3.4vw;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:4.5vw;align-items:start}
+.sp-main{position:relative;aspect-ratio:1;border-radius:32px;background:radial-gradient(circle at 50% 45%,#f9a07a 0,#ef7a4c 62%,#e0643a 100%);display:grid;place-items:center;overflow:hidden;box-shadow:inset 0 -30px 60px rgba(0,0,0,.12)}
+.sp-main::after{content:"";position:absolute;inset:0;background:url(img/paper.webp) 0 0/100% auto;mix-blend-mode:overlay;opacity:.25;pointer-events:none}
+.sp-main img{width:76%;height:auto;rotate:-6deg;filter:drop-shadow(0 26px 28px rgba(0,0,0,.32));transition:opacity .16s,scale .4s cubic-bezier(.2,.9,.25,1.3),rotate .5s}
+.sp-main img.sp-cover{width:84%;rotate:-3deg;border-radius:16px;border:5px solid #f6eceb}
+.sp-main img.sp-out{opacity:0;scale:.94}
+.sp-main:hover img{rotate:-2deg}
+.t-shop .sp-seal{position:absolute;top:5%;right:5%;width:26%;z-index:2}
+.sp-thumbs{margin-top:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.sp-thumb{aspect-ratio:1;padding:8px;border-radius:18px;border:2px solid rgba(1,70,33,.15);background:#fff;cursor:pointer;display:grid;place-items:center;transition:border-color .2s,transform .2s}
+.sp-thumb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px}
+.sp-thumb:hover{transform:translateY(-2px)}
+.sp-thumb[aria-pressed="true"]{border-color:#014621;box-shadow:0 0 0 3px #5bc20f}
+.sp-thumb:focus-visible{outline:3px solid #f53509;outline-offset:2px}
+.sp-buy{display:flex;flex-direction:column;gap:14px;padding-top:6px}
+.sp-eyebrow{margin:0;font-family:'Caveat',cursive;font-size:26px;color:#1e9207}
+.sp-name{margin:-6px 0 0;font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(40px,4.2vw,64px);line-height:.9;text-transform:uppercase;color:#014621}
+.sp-desc{margin:0;font-size:17px;line-height:1.5;color:#191718;max-width:440px}
+.sp-price{margin:4px 0 0;display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;color:#014621}
+.sp-price strong{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:clamp(38px,3.6vw,54px);line-height:1}
+.sp-price s{font-size:20px;font-weight:700;color:#8a8183}
+.sp-price s[hidden]{display:none}
+.sp-price span{font-size:15px;color:#4a4446}
+.sp-opts{display:grid;gap:10px;margin-top:4px}
+.sp-opt{position:relative;display:flex;align-items:flex-start;gap:14px;padding:16px 18px;border-radius:20px;border:2px solid rgba(1,70,33,.18);background:#fff;cursor:pointer;transition:border-color .2s,background .2s,box-shadow .2s}
+.sp-opt input{position:absolute;opacity:0;pointer-events:none}
+.sp-opt.on{border-color:#014621;box-shadow:0 10px 24px rgba(1,70,33,.12)}
+.sp-opt:has(input:focus-visible){outline:3px solid #f53509;outline-offset:2px}
+.sp-dot{flex:none;width:22px;height:22px;margin-top:1px;border-radius:50%;border:2px solid #014621;display:grid;place-items:center}
+.sp-opt.on .sp-dot::after{content:"";width:12px;height:12px;border-radius:50%;background:#014621}
+.sp-opt-t{display:grid;gap:3px}
+.sp-opt-t strong{font-size:17px;color:#014621;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.sp-opt-t em{font-style:normal;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:#5bc20f;color:#014621}
+.sp-opt-t small{font-size:14px;color:#4a4446}
+.sp-freq{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .35s cubic-bezier(.3,1,.4,1),opacity .25s;margin:-4px 0 0;padding:0 4px}
+.sp-freq>*{overflow:hidden;min-height:0}
+.sp-freq.open{grid-template-rows:auto auto;opacity:1}
+.sp-freq:not(.open){height:0;margin:0}
+.sp-freq.open{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.sp-freq-l{font-size:14px;font-weight:700;color:#014621}
+.sp-freq .hs-chips{display:flex;gap:8px;flex-wrap:wrap}
+.sp-freq .hs-chips button{min-height:42px;padding:0 14px;border-radius:999px;border:2px solid #014621;background:#fff;color:#014621;font:700 14px 'Inter Tight',sans-serif;cursor:pointer;display:inline-flex;gap:6px;align-items:center;position:static}
+.sp-freq .hs-chips small{color:#1e9207;font-size:12px}
+.sp-freq .hs-chips [aria-checked="true"]{background:#014621;color:#f6eceb}
+.sp-freq .hs-chips [aria-checked="true"] small{color:#5bc20f}
+.sp-row{display:flex;gap:12px;align-items:stretch;margin-top:6px}
+.sp-row .hs-qty{flex:none}
+.sp-row .hs-qty button{height:58px}
+.sp-go{flex:1;min-height:58px;border:0;border-radius:999px;background:#014621;color:#5bc20f;font:700 16px 'Inter Tight',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:transform .25s cubic-bezier(.2,.9,.25,1.5),background .2s}
+.sp-go:hover{transform:translateY(-2px);background:#0b5a2d}
+.sp-go:focus-visible{outline:3px solid #f53509;outline-offset:3px}
+.t-shop .hs-save{margin:-4px 0 0;min-height:0;font-size:15px;font-weight:700;color:#1e9207}
+.t-shop .hs-save:empty{display:none}
+.sp-trust{list-style:none;margin:8px 0 0;padding:16px 0 0;border-top:2px dashed rgba(1,70,33,.18);display:flex;flex-wrap:wrap;gap:8px 18px}
+.sp-trust li{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:#014621}
+.sp-trust li::before{content:"";width:18px;height:18px;border-radius:50%;background:#5bc20f url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23014621' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/12px no-repeat}
+.sp-biz{font-size:15px;align-self:flex-start}
+@media (max-width:743px){
+ .t-shop{padding:16vw 5vw 20vw}
+ .sp-h2{font-size:12.5vw}
+ .sp-grid{grid-template-columns:1fr;gap:7vw;margin-top:6vw}
+ .sp-main{border-radius:26px}
+ .sp-thumbs{gap:8px}
+ .sp-thumb{border-radius:14px;padding:6px}
+ .sp-name{font-size:12vw}
+ .sp-row .hs-qty button{width:44px}
+ .sp-freq .hs-chips{width:100%;display:grid;grid-template-columns:repeat(3,1fr)}
+ .sp-freq .hs-chips button{justify-content:center;flex-direction:column;gap:0;padding:4px 6px;min-height:50px}
+ .sp-trust{flex-direction:column;gap:8px}
+}
+.sp-freq{display:none!important}
+.sp-freq.open{display:flex!important;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:2px 4px 4px;animation:spIn .3s ease both;opacity:1}
+@keyframes spIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+/* account button sits beside the Pull me tag instead of covering content */
+.a-fab{left:auto;bottom:auto;top:14px;right:150px;width:48px;height:48px;border-width:0;box-shadow:0 6px 14px rgba(0,0,0,.22)}
+@media (max-width:743px){
+ .a-fab{left:auto;bottom:auto;top:10px;right:94px;width:44px;height:44px}
+ .gc{transition-duration:.55s!important;transition-delay:calc(var(--i) * 22ms)!important}
+}
+.a-fab{z-index:55}
+.a-perks{position:relative;list-style:none;margin:6px 0 0;padding:0;display:grid;gap:10px;max-width:300px}
+.a-perks li{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700}
+.a-perks li::before{content:"";flex:none;width:22px;height:22px;border-radius:50%;background:#014621 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235bc20f' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/13px no-repeat}
+.a-pw{position:relative;display:block}
+.a-pw input{width:100%;box-sizing:border-box;padding-right:76px!important}
+.a-eye{position:absolute;right:8px;top:50%;translate:0 -50%;min-height:38px;padding:0 12px;border:0;border-radius:999px;background:#f6eceb;color:#014621;font:700 13px 'Inter Tight',sans-serif;cursor:pointer;text-transform:none;letter-spacing:0}
+.a-drawer .c-form label{display:grid;gap:6px}
+@media (max-width:743px){.a-perks{gap:6px;max-width:68%}.a-perks li{font-size:13px}.a-perks li::before{width:18px;height:18px;background-size:11px}}
+.k-menu>div{pointer-events:none}.k-menu>div>#kPull{pointer-events:auto}
+.k-menu{pointer-events:none}.k-menu #kNav,.k-menu #kPull{pointer-events:auto}
+@media (max-width:743px){.a-fab{right:122px!important;top:8px!important}}
 </style></head>
 <body>
 
@@ -878,47 +974,45 @@ a{color:#014621}a:hover{color:#191718}
 </div>
 </div>
 </section>
-<!-- ================= SHOP (on the homepage) ================= -->
-<section id="shop" class="t-shop" aria-label="Shop">
+<!-- ================= SHOP (product page built into the homepage) ================= -->
+<section id="shop" class="t-shop" aria-labelledby="shopTitle">
 <div aria-hidden="true" class="k-paper"></div>
-<div class="t-wrap">
-<div class="t-copy">
+<div class="sp-wrap">
+<header class="sp-head">
 <p class="g-tag t-tag"><span aria-hidden="true"></span>Shop</p>
-<h2 class="t-h2 t-split">Get a Krate<br>delivered.</h2>
-<p class="t-lede">30 jumbo eggs a crate. Pay on delivery.</p>
-
-<div class="hs-mode" role="radiogroup" aria-label="How do you want to buy?">
-<button type="button" role="radio" aria-checked="true" data-mode="once">One-time</button>
-<button type="button" role="radio" aria-checked="false" data-mode="sub">Subscribe <em>save up to 10%</em></button>
+<h2 id="shopTitle" class="sp-h2">Get a Krate delivered.</h2>
+</header>
+<div class="sp-grid">
+<div class="sp-gallery">
+<div class="sp-main">
+<img loading="lazy" decoding="async" id="spMain" src="img/egg-tray.webp" alt="A crate of 30 Krate jumbo eggs">
+<span class="hs-jumbo sp-seal" aria-label="Jumbo eggs"><svg class="hs-burst" viewBox="0 0 100 100" aria-hidden="true"><polygon points="100.0,50.0 93.6,55.7 98.3,62.9 90.7,66.8 93.3,75.0 84.9,76.8 85.4,85.4 76.8,84.9 75.0,93.3 66.8,90.7 62.9,98.3 55.7,93.6 50.0,100.0 44.3,93.6 37.1,98.3 33.2,90.7 25.0,93.3 23.2,84.9 14.6,85.4 15.1,76.8 6.7,75.0 9.3,66.8 1.7,62.9 6.4,55.7 0.0,50.0 6.4,44.3 1.7,37.1 9.3,33.2 6.7,25.0 15.1,23.2 14.6,14.6 23.2,15.1 25.0,6.7 33.2,9.3 37.1,1.7 44.3,6.4 50.0,0.0 55.7,6.4 62.9,1.7 66.8,9.3 75.0,6.7 76.8,15.1 85.4,14.6 84.9,23.2 93.3,25.0 90.7,33.2 98.3,37.1 93.6,44.3"></polygon><circle cx="50" cy="50" r="38"></circle></svg><small>Extra large</small><b>Jumbo</b><small>30 per crate</small></span>
 </div>
-
-<div class="hs-line">
-<span class="hs-label">Crates</span>
+<div class="sp-thumbs" role="group" aria-label="Product photos">
+<button type="button" class="sp-thumb" aria-pressed="true" aria-label="Show the crate" data-src="img/egg-tray.webp" data-alt="A crate of 30 Krate jumbo eggs"><img loading="lazy" decoding="async" src="img/egg-tray.webp" alt=""></button>
+<button type="button" class="sp-thumb" aria-pressed="false" aria-label="Show the Krate box" data-src="img/lid.jpg" data-alt="The Krate box: 30 fresh jumbo eggs, handled with care" data-cover="1"><img loading="lazy" decoding="async" src="img/lid.jpg" alt=""></button>
+<button type="button" class="sp-thumb" aria-pressed="false" aria-label="Show an egg cracked open" data-src="img/egg-cracked.webp" data-alt="A Krate jumbo egg cracked open"><img loading="lazy" decoding="async" src="img/egg-cracked.webp" alt=""></button>
+<button type="button" class="sp-thumb" aria-pressed="false" aria-label="Show one jumbo egg" data-src="img/egg-brown.webp" data-alt="One Krate jumbo egg"><img loading="lazy" decoding="async" src="img/egg-brown.webp" alt=""></button>
+</div>
+</div>
+<div class="sp-buy">
+<p class="sp-eyebrow">Direct from our farm</p>
+<h3 class="sp-name">The Krate</h3>
+<p class="sp-desc">30 fresh jumbo eggs, cleanly packed to reduce breakage.</p>
+<p class="sp-price" aria-live="polite"><strong id="hsPrice">₦7,500</strong><s id="hsWas" hidden></s><span id="hsPer">per crate</span></p>
+<div class="sp-opts" role="radiogroup" aria-label="How do you want to buy?">
+<label class="sp-opt" data-mode="once"><input type="radio" name="spMode" value="once" checked><span class="sp-dot" aria-hidden="true"></span><span class="sp-opt-t"><strong>One-time</strong><small id="spOncePrice">₦7,500 per crate</small></span></label>
+<label class="sp-opt" data-mode="sub"><input type="radio" name="spMode" value="sub"><span class="sp-dot" aria-hidden="true"></span><span class="sp-opt-t"><strong>Subscribe <em id="spSave">Save up to 5%</em></strong><small id="spSubPrice">Pause or cancel anytime</small></span></label>
+<div class="sp-freq" id="hsFreq"><span class="sp-freq-l">Deliver every</span><span class="hs-chips" role="radiogroup" aria-label="Delivery frequency"><button type="button" role="radio" aria-checked="false" data-f="week">Week <small>−5%</small></button><button type="button" role="radio" aria-checked="true" data-f="2 weeks">2 weeks <small>−4%</small></button><button type="button" role="radio" aria-checked="false" data-f="month">Month <small>−3%</small></button></span></div>
+</div>
+<div class="sp-row">
 <div class="hs-qty" role="group" aria-label="Crates"><button type="button" id="hsMinus" aria-label="One fewer crate">−</button><output id="hsQty" aria-live="polite">1</output><button type="button" id="hsPlus" aria-label="One more crate">+</button></div>
+<button type="button" class="sp-go" id="hsGo">Order now</button>
 </div>
-
-<div class="hs-freq" id="hsFreq" aria-hidden="true"><div class="hs-freq-in">
-<div class="hs-line">
-<span class="hs-label">Every</span>
-<div class="hs-chips" role="radiogroup" aria-label="Delivery frequency">
-<button type="button" role="radio" aria-checked="false" data-f="week">Week <small>−10%</small></button>
-<button type="button" role="radio" aria-checked="true" data-f="2 weeks">2 weeks <small>−7%</small><i>Popular</i></button>
-<button type="button" role="radio" aria-checked="false" data-f="month">Month <small>−5%</small></button>
-</div>
-</div>
-</div></div>
-
-<div class="hs-price" aria-live="polite"><strong id="hsPrice">₦7,500</strong><s id="hsWas" hidden></s><span id="hsPer"></span></div>
 <p class="hs-save" id="hsSave"></p>
-
-<button type="button" class="t-btn hs-go" id="hsGo">Order now</button>
-<a class="t-link hs-biz" href="#partners">Buying for a business?</a>
+<ul class="sp-trust"><li>Packed to reduce breakage</li><li>Pay on delivery</li><li>Direct from our farm</li></ul>
+<a class="t-link sp-biz" href="#partners">Buying for a business? Chat with us →</a>
 </div>
-
-<div class="t-product">
-<span class="t-disc" aria-hidden="true"></span>
-<img loading="lazy" decoding="async" class="hs-trayimg" src="img/egg-tray.webp" alt="A crate of 30 Krate jumbo eggs">
-<span class="hs-jumbo" aria-label="Jumbo eggs"><svg class="hs-burst" viewBox="0 0 100 100" aria-hidden="true"><polygon points="100.0,50.0 93.6,55.7 98.3,62.9 90.7,66.8 93.3,75.0 84.9,76.8 85.4,85.4 76.8,84.9 75.0,93.3 66.8,90.7 62.9,98.3 55.7,93.6 50.0,100.0 44.3,93.6 37.1,98.3 33.2,90.7 25.0,93.3 23.2,84.9 14.6,85.4 15.1,76.8 6.7,75.0 9.3,66.8 1.7,62.9 6.4,55.7 0.0,50.0 6.4,44.3 1.7,37.1 9.3,33.2 6.7,25.0 15.1,23.2 14.6,14.6 23.2,15.1 25.0,6.7 33.2,9.3 37.1,1.7 44.3,6.4 50.0,0.0 55.7,6.4 62.9,1.7 66.8,9.3 75.0,6.7 76.8,15.1 85.4,14.6 84.9,23.2 93.3,25.0 90.7,33.2 98.3,37.1 93.6,44.3"></polygon><circle cx="50" cy="50" r="38"></circle></svg><small>Extra large</small><b>Jumbo</b><small>30 per crate</small></span>
 </div>
 </div>
 </section>
@@ -986,7 +1080,7 @@ a{color:#014621}a:hover{color:#191718}
 <div class="k-paper"></div>
 <p class="a-kicker">Krate account</p>
 <p class="a-big" id="aBig">Welcome<br>back.</p>
-<p class="a-sub">Save your address, track every delivery and manage your subscription.</p>
+<ul class="a-perks"><li>Faster checkout, details saved</li><li>Track every order</li><li>Pause or cancel your subscription</li></ul>
 <img loading="lazy" decoding="async" class="a-egg" src="img/egg-brown.webp" alt="">
 <img loading="lazy" decoding="async" class="a-egg a-egg2" src="img/egg-white.webp" alt="">
 </div>
@@ -1005,7 +1099,7 @@ a{color:#014621}a:hover{color:#191718}
 <label class="a-up" hidden>Full name<input name="name" autocomplete="name"></label>
 <label class="a-up" hidden>Phone / WhatsApp<input name="phone" type="tel" autocomplete="tel"></label>
 <label>Email<input name="email" type="email" required autocomplete="email"></label>
-<label>Password<input name="password" type="password" required minlength="6" autocomplete="current-password"></label>
+<label>Password<span class="a-pw"><input name="password" type="password" required minlength="6" autocomplete="current-password"><button type="button" class="a-eye" id="aEye" aria-label="Show password" aria-pressed="false">Show</button></span></label>
 <p class="p-error" id="aError" role="alert" hidden></p>
 <button type="submit" class="c-checkout" id="aSubmit">Log in</button>
 <button type="button" class="a-link" id="aForgot">Forgot password?</button>
@@ -1545,57 +1639,62 @@ var KRATE = {
 (function () {
   if (!document.getElementById('hsGo')) return;
   var PRICE = 7500; // placeholder price per crate of 30
+  var OFF = { 'week': 0.05, '2 weeks': 0.04, 'month': 0.03 }; // subscription discounts
   var mode = 'once', qty = 1, freq = '2 weeks';
-  var OFF = { 'week': 0.10, '2 weeks': 0.07, 'month': 0.05 }; // placeholder subscription discounts
   function $(id) { return document.getElementById(id); }
   function money(n) { return '₦' + Math.round(n).toLocaleString('en-NG'); }
-  var modeG = document.querySelector('.hs-mode');
-  function radio(group, attr, val) { group.querySelectorAll('[role=radio]').forEach(function (b) { b.setAttribute('aria-checked', b.dataset[attr] === val ? 'true' : 'false'); }); }
-  function what() {
-    var c = qty + (qty > 1 ? ' crates' : ' crate');
-    return mode === 'sub' ? c + ' every ' + freq : c;
-  }
   function full() { return qty * PRICE; }
-  function each() { return mode === 'sub' ? Math.round(full() * (1 - OFF[freq]) / 50) * 50 : full(); }
+  function round50(n) { return Math.round(n / 50) * 50; }
+  function each() { return mode === 'sub' ? round50(full() * (1 - OFF[freq])) : full(); }
+  function what() { var c = qty + (qty > 1 ? ' crates' : ' crate'); return mode === 'sub' ? c + ' every ' + freq : c; }
   function bump(el) { el.classList.remove('hs-tick'); void el.offsetWidth; el.classList.add('hs-tick'); }
+
+  // gallery
+  var main = $('spMain');
+  document.querySelectorAll('.sp-thumb').forEach(function (t) {
+    t.addEventListener('click', function () {
+      document.querySelectorAll('.sp-thumb').forEach(function (o) { o.setAttribute('aria-pressed', o === t ? 'true' : 'false'); });
+      main.classList.add('sp-out');
+      setTimeout(function () { main.src = t.dataset.src; main.alt = t.dataset.alt; main.classList.toggle('sp-cover', !!t.dataset.cover); main.classList.remove('sp-out'); }, 160);
+    });
+  });
+
   var last = '';
   function update() {
-    var sub = mode === 'sub', now = each(), saved = full() - now;
+    var sub = mode === 'sub', now = each();
     $('hsQty').textContent = qty;
-    var txt = money(now);
-    if (txt !== last) { $('hsPrice').textContent = txt; bump($('hsPrice')); last = txt; }
+    var txt = money(now); if (txt !== last) { $('hsPrice').textContent = txt; bump($('hsPrice')); last = txt; }
     $('hsWas').hidden = !sub; $('hsWas').textContent = money(full());
-    $('hsPer').textContent = sub ? 'per delivery' : (qty > 1 ? 'total' : 'per crate');
-    var fr = $('hsFreq'); fr.classList.toggle('open', sub); fr.setAttribute('aria-hidden', sub ? 'false' : 'true');
+    $('hsPer').textContent = sub ? 'per delivery' : (qty > 1 ? 'for ' + qty + ' crates' : 'per crate');
+    $('spOncePrice').textContent = money(full()) + (qty > 1 ? ' for ' + qty + ' crates' : ' per crate');
+    $('spSubPrice').textContent = money(round50(full() * (1 - OFF[freq]))) + ' per delivery · pause or cancel anytime';
+    document.querySelectorAll('.sp-opt').forEach(function (o) { o.classList.toggle('on', o.dataset.mode === mode); });
+    var fr = $('hsFreq'); fr.classList.toggle('open', sub);
     fr.querySelectorAll('button').forEach(function (b) { b.tabIndex = sub ? 0 : -1; });
-    var save = $('hsSave');
-    if (sub) {
-      save.className = 'hs-save is-sub';
-      save.textContent = 'You save ' + money(saved) + ' every delivery. Pause or cancel anytime.';
-    } else {
-      save.className = 'hs-save';
-      save.innerHTML = '';
-      var up = document.createElement('button'); up.type = 'button'; up.className = 'hs-up';
-      up.textContent = 'Subscribe and save ' + money(full() - Math.round(full() * (1 - OFF['2 weeks']) / 50) * 50) + ' →';
-      up.onclick = function () { mode = 'sub'; radio(modeG, 'mode', 'sub'); update(); };
-      save.appendChild(up);
-    }
+    $('hsSave').textContent = sub ? 'You save ' + money(full() - now) + ' on every delivery.' : '';
     $('hsGo').textContent = sub ? 'Start subscription' : 'Order now';
     $('cWhat').textContent = what();
     $('cSubtotal').textContent = money(now) + (sub ? ' / delivery' : '');
   }
-  var chips = document.querySelector('.hs-chips');
-  modeG.addEventListener('click', function (e) { var b = e.target.closest('[data-mode]'); if (!b) return; mode = b.dataset.mode; radio(modeG, 'mode', mode); update(); });
-  chips.addEventListener('click', function (e) { var b = e.target.closest('[data-f]'); if (!b) return; freq = b.dataset.f; radio(chips, 'f', freq); update(); });
+  document.querySelectorAll('input[name=spMode]').forEach(function (r) { r.addEventListener('change', function () { mode = r.value; update(); }); });
+  var chips = document.querySelector('#hsFreq .hs-chips');
+  chips.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-f]'); if (!b) return;
+    freq = b.dataset.f;
+    chips.querySelectorAll('[role=radio]').forEach(function (o) { o.setAttribute('aria-checked', o === b ? 'true' : 'false'); });
+    update();
+  });
   $('hsMinus').onclick = function () { qty = Math.max(1, qty - 1); update(); };
   $('hsPlus').onclick = function () { qty = Math.min(50, qty + 1); update(); };
 
+  // checkout
   var drawer = $('cDrawer'), scrim = $('cScrim');
   function open() {
-    var P0 = window.KRATE_PROFILE, cf = document.getElementById('cForm');
+    var P0 = window.KRATE_PROFILE, cf = $('cForm');
     if (P0 && cf) ['name', 'phone', 'address'].forEach(function (k) { if (!cf.elements[k].value && P0[k]) cf.elements[k].value = P0[k]; });
-    var nudge = document.getElementById('cAcct'); if (nudge) nudge.hidden = !!window.KRATE_USER;
-    drawer.classList.add('open'); drawer.setAttribute('aria-hidden', 'false'); scrim.hidden = false; $('cClose').focus(); }
+    var nudge = $('cAcct'); if (nudge) nudge.hidden = !!window.KRATE_USER;
+    drawer.classList.add('open'); drawer.setAttribute('aria-hidden', 'false'); scrim.hidden = false; $('cClose').focus();
+  }
   function close() { drawer.classList.remove('open'); drawer.setAttribute('aria-hidden', 'true'); scrim.hidden = true; $('hsGo').focus(); }
   $('hsGo').onclick = open; $('cClose').onclick = close; scrim.onclick = close;
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && drawer.classList.contains('open')) close(); });
@@ -1610,7 +1709,7 @@ var KRATE = {
     var f = form.elements;
     var msg = mode === 'sub'
       ? ['Hello Krate! I’d like to subscribe:', '• ' + what() + ' = ' + money(each()) + ' per delivery (' + Math.round(OFF[freq] * 100) + '% off ' + money(full()) + ')']
-      : ['Hello Krate! I’d like to order:', '• ' + what() + ' = ' + money(qty * PRICE)];
+      : ['Hello Krate! I’d like to order:', '• ' + what() + ' = ' + money(each())];
     msg.push('', 'Name: ' + f.name.value, 'Phone: ' + f.phone.value, 'Address: ' + f.address.value);
     if (f.when.value) msg.push((mode === 'sub' ? 'Delivery day: ' : 'Delivery: ') + f.when.value);
     var a = document.createElement('a'); a.href = 'https://wa.me/' + KRATE.whatsapp + '?text=' + encodeURIComponent(msg.join('\n')); a.target = '_blank'; a.rel = 'noopener';
@@ -1758,6 +1857,7 @@ var KRATE_SUPABASE = {
       $('aMsg').textContent = 'We’ve emailed you a link to reset your password.'; $('aMsg').hidden = false;
     });
   };
+  $('aEye').onclick = function () { var i = $('aForm').elements.password, on = i.type === 'password'; i.type = on ? 'text' : 'password'; this.textContent = on ? 'Hide' : 'Show'; this.setAttribute('aria-pressed', on); this.setAttribute('aria-label', on ? 'Hide password' : 'Show password'); };
   $('aLogout').onclick = function () { sb.auth.signOut(); };
 
   // signed-in data
