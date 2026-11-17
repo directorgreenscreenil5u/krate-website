@@ -814,6 +814,54 @@ footer nav a{font-size:20px!important}
 .ix-confetti i{position:absolute;top:-14px;width:10px;height:13px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;animation:ixFall 1.5s cubic-bezier(.3,.6,.4,1) forwards}
 @keyframes ixFall{to{transform:translate(var(--x),110vh) rotate(var(--r))}}
 @media (prefers-reduced-motion:reduce){.b-send{animation:none}.ix-tilt{transform:none}}
+.ix-meter{display:none!important}
+.ix-meter.on{display:flex!important}
+/* ---- sign in / sign up on phones: full-screen, compact header, pill tabs ---- */
+@media (max-width:743px){
+ .a-drawer{top:0;bottom:0;height:100dvh;max-height:none;border-radius:0;display:flex;flex-direction:column;overflow-y:auto;transform:translateY(100%)}
+ .a-drawer.open{transform:none}
+ .a-hero{flex:none;padding:22px 20px 20px;gap:8px;min-height:0;border-radius:0 0 28px 28px}
+ .a-kicker{display:none}
+ .a-big{font-size:12.5vw;margin:20px 0 0;max-width:72%}
+ .a-perks{display:none}
+ .a-egg{width:26%;right:5%;bottom:-18%;rotate:-12deg}
+ .a-egg2{display:none}
+ .a-hero.ix-shy .a-egg{bottom:-60%!important}
+ .a-x{top:14px;right:14px;width:42px;height:42px;font-size:22px}
+ .a-panel{flex:1;padding:22px 20px 34px;gap:14px}
+ .a-switch{display:grid!important;grid-template-columns:1fr 1fr;gap:0;padding:5px;border:2px solid #014621!important;border-radius:999px;background:#fff!important;margin-bottom:6px}
+ .a-switch button{min-height:46px;border:0!important;border-radius:999px!important;color:#014621!important;font-size:14px;margin:0}
+ .a-switch [aria-selected="true"]{background:#014621!important;color:#5bc20f!important}
+ .a-switch .ix-bar{display:none}
+ .a-drawer .c-form{gap:16px}
+ .a-drawer .c-form label{gap:7px;font-size:12px}
+ .a-drawer .c-form input{min-height:52px;border-radius:14px}
+ .a-drawer .c-checkout{min-height:56px;margin-top:4px}
+ .a-note{font-size:12px}
+ .a-title{font-size:26px}
+}
+@media (max-width:743px){
+ .a-hero{min-height:36vh;justify-content:flex-end;padding:20px 20px 24px}
+ .a-big{font-size:13.5vw;margin:0;max-width:66%}
+ .a-perks{display:flex;flex-wrap:wrap;gap:6px 12px;max-width:64%;margin-top:4px}
+ .a-perks li{font-size:12px;gap:6px}
+ .a-perks li::before{width:16px;height:16px;background-size:10px}
+ .a-perks li:nth-child(3){display:none}
+ .a-egg{width:34%;right:4%;bottom:8%;rotate:-10deg}
+ .a-egg2{display:block;width:20%;right:30%;bottom:-8%;rotate:14deg}
+ .a-hero.ix-shy .a-egg{bottom:-70%!important}
+ .a-panel{padding-top:24px}
+}
+@media (max-width:743px){
+ .a-hero{min-height:40vh}
+ .a-big{max-width:100%}
+ .a-perks{max-width:100%}
+ .a-egg{width:23%;right:6%;top:52px;bottom:auto!important;rotate:-12deg}
+ .a-egg2{width:14%;right:30%;top:96px;bottom:auto!important;rotate:16deg}
+ .a-hero.ix-shy .a-egg{top:-40%;bottom:auto!important}
+ .a-x{left:16px;right:auto}
+}
+.a-egg{transition:transform .35s ease-out,bottom .5s cubic-bezier(.2,.9,.25,1.3),top .5s cubic-bezier(.2,.9,.25,1.3)}
 </style></head>
 <body>
 
@@ -2207,7 +2255,7 @@ var KRATE_SUPABASE = {
     pw.closest('label').appendChild(meter);
     pw.addEventListener('input', function () {
       var v = pw.value, s = 0; if (v.length >= 6) s++; if (v.length >= 10) s++; if (/\d/.test(v) && /[a-z]/i.test(v)) s++; if (/[^a-z0-9]/i.test(v)) s++;
-      meter.style.setProperty('--s', s); meter.querySelector('b').textContent = v ? ['Too short', 'Okay', 'Good', 'Strong', 'Very strong'][s] : '';
+      meter.classList.toggle('on', !!v); meter.style.setProperty('--s', s); meter.querySelector('b').textContent = v ? ['Too short', 'Okay', 'Good', 'Strong', 'Very strong'][s] : '';
     });
     // shake on error, celebrate on success
     var err = document.getElementById('aError');
