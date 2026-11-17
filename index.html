@@ -1501,6 +1501,221 @@ footer nav a{font-size:20px!important}
 .acc #aIn .n-card .n-track li.on{border-top-color:#5bc20f!important;color:#fff!important}
 .acc #aIn .n-card .n-next{overflow:visible!important}
 .acc #aIn .n-card .n-track{width:100%!important;max-width:460px!important;margin:18px auto 0!important;box-sizing:border-box}
+/* =================== ACCOUNT DASHBOARD (sidebar + pages) =================== */
+#aDrawer.is-in{background:#f6eceb!important;color:#191718}
+#aDrawer.is-in>.acc-top,#aDrawer.is-in .acc-egg,#aDrawer.is-in>.k-paper{display:none!important}
+#aDrawer.is-in .acc-main{display:block!important;padding:0!important;place-items:initial!important;flex:1}
+#aDrawer .kd[hidden]{display:none!important}
+#aDrawer .kd{display:grid;grid-template-columns:264px minmax(0,1fr);min-height:100%;font-family:'Inter Tight',sans-serif;color:#191718;text-align:left}
+#aDrawer .kd *{box-sizing:border-box}
+/* sidebar */
+#aDrawer .kd-side{position:sticky;top:0;height:100vh;height:100dvh;display:flex;flex-direction:column;gap:22px;padding:26px 18px;background:#014621;color:#f6eceb}
+#aDrawer .kd-logo svg{width:104px;height:auto;display:block}
+#aDrawer .kd-logo svg *{fill:#5bc20f}
+#aDrawer .kd-me{display:flex;align-items:center;gap:12px;padding:12px;border-radius:16px;background:rgba(246,236,235,.07)}
+#aDrawer .kd-av{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:#5bc20f;color:#014621;font:400 18px 'Bagel Fat One',sans-serif}
+#aDrawer .kd-me>span{min-width:0;display:grid}
+#aDrawer .kd-me b{font-weight:700;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:capitalize}
+#aDrawer .kd-me small{font-size:12px;opacity:.65;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#aDrawer .kd-nav{display:grid;gap:4px}
+#aDrawer .kd-nav button,#aDrawer .kd-side-foot>*{display:flex;align-items:center;gap:12px;width:100%;min-height:44px;padding:0 14px;border:0;border-radius:12px;background:none;color:inherit;font:600 15px 'Inter Tight',sans-serif;text-align:left;text-decoration:none;cursor:pointer;transition:background .2s,color .2s}
+#aDrawer .kd-nav svg,#aDrawer .kd-side-foot svg{width:20px;height:20px;flex:none}
+#aDrawer .kd-nav button:hover,#aDrawer .kd-side-foot>*:hover{background:rgba(246,236,235,.08)}
+#aDrawer .kd-nav button[aria-current="page"]{background:#5bc20f;color:#014621}
+#aDrawer .kd-side-foot{margin-top:auto;display:grid;gap:2px;opacity:.8}
+/* main */
+#aDrawer .kd-main{min-width:0;padding:26px clamp(18px,3.4vw,48px) 60px;max-width:1120px}
+#aDrawer .kd-top{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+#aDrawer .kd-logo-m{display:none}
+#aDrawer .kd-title{flex:1;min-width:0}
+#aDrawer .kd-title small{display:block;font:600 13px 'Inter Tight',sans-serif;color:#1e7a0c;text-transform:capitalize}
+#aDrawer .kd-title h2{margin:2px 0 0;font:400 clamp(30px,3.4vw,44px)/1 'Bagel Fat One',sans-serif;color:#014621;text-transform:none;letter-spacing:0}
+#aDrawer .kd-top-r{display:flex;align-items:center;gap:10px}
+#aDrawer .kd-x{width:44px;height:44px;border-radius:50%;border:0;background:#014621;color:#f6eceb;font-size:22px;cursor:pointer}
+/* buttons */
+#aDrawer .kd-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border:0;border-radius:999px;background:#014621;color:#f6eceb;font:700 14px 'Inter Tight',sans-serif;text-decoration:none;cursor:pointer;transition:transform .15s,background .2s}
+#aDrawer .kd-btn:hover{transform:translateY(-1px)}
+#aDrawer .kd-btn svg{width:18px;height:18px}
+#aDrawer .kd-btn-l{background:#5bc20f;color:#014621}
+#aDrawer .kd-btn-y{background:#ffd23f;color:#014621}
+#aDrawer .kd-btn-ghost{background:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}
+#aDrawer .kd-link{border:0;background:none;padding:6px 0;color:#1e7a0c;font:700 14px 'Inter Tight',sans-serif;text-decoration:none;cursor:pointer}
+#aDrawer .kd-danger{color:#c0360b!important}
+/* pages */
+#aDrawer .kd-page[hidden]{display:none!important}
+#aDrawer .kd-page{display:grid;gap:18px}
+#aDrawer .kd-in{animation:kdIn .35s cubic-bezier(.2,.8,.3,1)}
+@keyframes kdIn{from{opacity:0;transform:translateY(10px)}}
+#aDrawer .kd-card{display:block;width:100%;padding:22px;border:0;border-radius:22px;background:#fff;color:#191718;box-shadow:0 1px 0 rgba(1,70,33,.06),0 12px 30px -22px rgba(1,70,33,.35);text-align:left;font:inherit}
+#aDrawer .kd-card-h{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+#aDrawer .kd-card h3,#aDrawer .kd-subcard h3{margin:0;font:800 18px 'Inter Tight',sans-serif;color:#014621;letter-spacing:0;text-transform:none}
+#aDrawer .kd-card-h small{color:#6b6468;font-size:13px}
+#aDrawer .kd-none{margin:4px 0 14px;color:#6b6468;font-size:14px}
+/* status pill */
+#aDrawer .kd-st{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;font:700 12px 'Inter Tight',sans-serif;font-style:normal;white-space:nowrap}
+#aDrawer .kd-st::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+#aDrawer .kd-st-wait{background:#fff3c4;color:#8a5b00}
+#aDrawer .kd-st-go{background:#e3f6d5;color:#1e7a0c}
+#aDrawer .kd-st-ok{background:#014621;color:#5bc20f}
+#aDrawer .kd-st-mute{background:#eee8e6;color:#6b6468}
+/* hero */
+#aDrawer .kd-hero{display:grid;gap:22px;padding:clamp(24px,3vw,36px);border-radius:26px;background:#014621;color:#f6eceb;position:relative;overflow:hidden}
+#aDrawer .kd-hero::after{content:"";position:absolute;right:-50px;bottom:-70px;width:240px;height:240px;background:url(img/egg-brown.webp) center/contain no-repeat;opacity:.9;rotate:-18deg;pointer-events:none}
+#aDrawer .kd-hero>*{position:relative;z-index:1}
+#aDrawer .kd-hero-t{max-width:560px}
+#aDrawer .kd-hero small{font:700 12px 'Inter Tight',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#5bc20f}
+#aDrawer .kd-hero h3{margin:8px 0 8px;font:400 clamp(32px,4vw,56px)/1 'Bagel Fat One',sans-serif;color:#fff;letter-spacing:0;text-transform:none}
+#aDrawer .kd-hero.is-wait h3{color:#ffd23f}
+#aDrawer .kd-hero p{margin:0;font-size:15px;line-height:1.45;color:rgba(246,236,235,.85)}
+#aDrawer .kd-hero-a{display:flex;flex-wrap:wrap;gap:10px}
+#aDrawer .kd-hero .kd-btn-ghost{color:#f6eceb}
+#aDrawer .kd-hero.is-empty{background:#5bc20f;color:#014621}
+#aDrawer .kd-hero.is-empty h3{color:#014621}
+#aDrawer .kd-hero.is-empty small{color:#014621;opacity:.7}
+#aDrawer .kd-hero.is-empty p{color:#014621;opacity:.8}
+#aDrawer .kd-hero.is-empty .kd-btn-l{background:#014621;color:#f6eceb}
+/* tracker */
+#aDrawer .kd-track{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);max-width:620px;counter-reset:k}
+#aDrawer .kd-track li{position:relative;padding-top:28px;font:600 12px 'Inter Tight',sans-serif;color:rgba(246,236,235,.55)}
+#aDrawer .kd-track li::before{content:"";position:absolute;left:0;top:6px;width:14px;height:14px;border-radius:50%;background:#014621;box-shadow:inset 0 0 0 2px rgba(246,236,235,.35);z-index:1}
+#aDrawer .kd-track li::after{content:"";position:absolute;left:14px;right:0;top:12px;height:2px;background:rgba(246,236,235,.2)}
+#aDrawer .kd-track li:last-child::after{display:none}
+#aDrawer .kd-track li.done,#aDrawer .kd-track li.now{color:#fff}
+#aDrawer .kd-track li.done::before{background:#5bc20f;box-shadow:none}
+#aDrawer .kd-track li.done::after{background:#5bc20f}
+#aDrawer .kd-track li.now::before{background:#5bc20f;box-shadow:0 0 0 5px rgba(91,194,15,.25);animation:kdPulse 1.8s infinite}
+@keyframes kdPulse{50%{box-shadow:0 0 0 9px rgba(91,194,15,0)}}
+#aDrawer .kd-card .kd-track li{color:#9a9396}
+#aDrawer .kd-card .kd-track li::before{background:#fff;box-shadow:inset 0 0 0 2px #d9d2cf}
+#aDrawer .kd-card .kd-track li::after{background:#e6dfdc}
+#aDrawer .kd-card .kd-track li.done,#aDrawer .kd-card .kd-track li.now{color:#014621}
+#aDrawer .kd-card .kd-track li.done::before,#aDrawer .kd-card .kd-track li.now::before{background:#5bc20f;box-shadow:none}
+#aDrawer .kd-card .kd-track li.done::after{background:#5bc20f}
+/* overview grid */
+#aDrawer .kd-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:18px;align-items:start}
+#aDrawer .kd-tiles{display:grid;gap:12px}
+#aDrawer .kd-tile{display:grid;gap:2px;cursor:pointer;transition:transform .15s,box-shadow .2s;padding:18px 20px;position:relative}
+#aDrawer .kd-tile::after{content:"→";position:absolute;right:20px;top:50%;translate:0 -50%;color:#1e7a0c;font-weight:700;transition:translate .2s}
+#aDrawer .kd-tile:hover{transform:translateY(-2px)}
+#aDrawer .kd-tile:hover::after{translate:4px -50%}
+#aDrawer .kd-tile small{font:700 11px 'Inter Tight',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#6b6468}
+#aDrawer .kd-tile b{font:800 20px 'Inter Tight',sans-serif;color:#014621}
+#aDrawer .kd-tile span{font-size:13px;color:#6b6468;padding-right:24px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:capitalize}
+/* summary lines */
+#aDrawer .kd-lines,#aDrawer .kd-meta{margin:0;display:grid;gap:10px}
+#aDrawer .kd-lines>div,#aDrawer .kd-meta>div{display:flex;justify-content:space-between;gap:16px;font-size:15px}
+#aDrawer .kd-lines dt,#aDrawer .kd-meta dt{color:#6b6468}
+#aDrawer .kd-lines dd,#aDrawer .kd-meta dd{margin:0;font-weight:700;text-align:right}
+#aDrawer .kd-lines dt:first-letter{text-transform:uppercase}
+#aDrawer .kd-lines .kd-tot{margin-top:4px;padding-top:12px;border-top:1.5px dashed #e3dbd8}
+#aDrawer .kd-lines .kd-tot dt{color:#191718;font-weight:700}
+#aDrawer .kd-lines .kd-tot dd{font:400 24px 'Bagel Fat One',sans-serif;color:#014621}
+#aDrawer .kd-meta{margin-top:16px;padding-top:16px;border-top:1px solid #efe8e5;font-size:14px}
+#aDrawer .kd-meta>div{font-size:14px}
+#aDrawer .kd-cap{text-transform:capitalize}
+#aDrawer .kd-sum-a{display:flex;justify-content:space-between;margin-top:14px;padding-top:10px;border-top:1px solid #efe8e5}
+/* orders table */
+#aDrawer .kd-orow{display:grid;grid-template-columns:110px 120px minmax(0,1fr) 150px 90px;gap:12px;align-items:center;width:100%;padding:14px 10px;border:0;border-top:1px solid #efe8e5;background:none;font:500 14px 'Inter Tight',sans-serif;color:#191718;text-align:left;cursor:pointer;border-radius:10px;transition:background .15s}
+#aDrawer button.kd-orow:hover{background:#f8f3f1}
+#aDrawer .kd-ohead{cursor:default;border-top:0;padding-top:0;font:700 11px 'Inter Tight',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#9a9396}
+#aDrawer .kd-oref{font-weight:700;color:#014621}
+#aDrawer .kd-odate{color:#6b6468}
+#aDrawer .kd-oitems{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#aDrawer .kd-ototal{font-weight:800;text-align:right}
+#aDrawer .kd-ohead span:last-child{text-align:right}
+/* order detail */
+#aDrawer .kd-detail{display:grid;gap:16px;max-width:760px}
+#aDrawer .kd-back{justify-self:start;border:0;background:none;padding:4px 0;color:#1e7a0c;font:700 14px 'Inter Tight',sans-serif;cursor:pointer}
+#aDrawer .kd-dhead{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:start}
+#aDrawer .kd-dhead small{color:#6b6468;font-size:13px}
+#aDrawer .kd-dhead h3{font:400 28px/1.1 'Bagel Fat One',sans-serif!important;margin-top:4px!important}
+#aDrawer .kd-dhead .kd-track{grid-column:1/-1;max-width:none}
+#aDrawer .kd-dact{display:flex;flex-wrap:wrap;gap:10px}
+#aDrawer .kd-dact .kd-btn-ghost{color:#014621}
+/* rows (addresses, account, cashback) */
+#aDrawer .kd-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 0;border-top:1px solid #efe8e5}
+#aDrawer .kd-list>.kd-row:first-of-type,#aDrawer #dAddrList>.kd-row:first-child{border-top:0}
+#aDrawer .kd-row>span:first-child{display:grid;gap:3px;min-width:0}
+#aDrawer .kd-row b{font-weight:700;font-size:15px;display:flex;align-items:center;gap:8px}
+#aDrawer .kd-row small{color:#6b6468;font-size:13px}
+#aDrawer .kd-acts{display:flex;gap:16px;flex:none}
+#aDrawer .kd-pill{font:700 11px 'Inter Tight',sans-serif;font-style:normal;padding:3px 8px;border-radius:999px;background:#e3f6d5;color:#1e7a0c}
+#aDrawer .kd-plus{font-weight:800;color:#1e7a0c}
+#aDrawer .kd-minus{font-weight:800;color:#c0360b}
+/* forms */
+#aDrawer .kd-form{display:grid;gap:14px;max-width:560px}
+#aDrawer .kd-form label{display:grid;gap:6px;font:600 13px 'Inter Tight',sans-serif;color:#6b6468}
+#aDrawer .kd-form input,#aDrawer .kd-form textarea{width:100%;min-height:48px;padding:12px 14px;border:1.5px solid #e3dbd8;border-radius:12px;background:#fff;font:500 16px 'Inter Tight',sans-serif;color:#191718}
+#aDrawer .kd-form input:focus,#aDrawer .kd-form textarea:focus{outline:0;border-color:#5bc20f;box-shadow:0 0 0 3px rgba(91,194,15,.2)}
+#aDrawer .kd-form input:disabled{background:#f8f3f1;color:#6b6468}
+#aDrawer .kd-form .kd-btn{justify-self:start}
+#aDrawer .kd-ok{margin:0;color:#1e7a0c;font-weight:700}
+#aDrawer .kd-labels{display:flex;gap:8px}
+#aDrawer .kd-labels label{display:block}
+#aDrawer .kd-labels input{position:absolute;opacity:0;width:1px;height:1px;min-height:0}
+#aDrawer .kd-labels span{display:inline-block;padding:9px 16px;border-radius:999px;background:#f3ece8;color:#014621;font:700 14px 'Inter Tight',sans-serif;cursor:pointer}
+#aDrawer .kd-labels input:checked+span{background:#014621;color:#f6eceb}
+/* cashback */
+#aDrawer .kd-cash{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:clamp(24px,3vw,36px);border-radius:26px;background:#5bc20f;color:#014621}
+#aDrawer .kd-cash>div{display:grid;gap:6px;max-width:460px}
+#aDrawer .kd-cash small{font:700 12px 'Inter Tight',sans-serif;letter-spacing:.08em;text-transform:uppercase}
+#aDrawer .kd-cash b{font:400 clamp(44px,5vw,72px)/1 'Bagel Fat One',sans-serif}
+#aDrawer .kd-cash span{font-size:15px;line-height:1.45}
+#aDrawer .kd-coin{flex:none;width:110px;height:110px;border-radius:50%;display:grid;place-items:center;background:#014621;color:#5bc20f;font:400 52px 'Bagel Fat One',sans-serif;box-shadow:inset 0 0 0 8px #0d5a2c;animation:kdCoin 5s ease-in-out infinite}
+@keyframes kdCoin{50%{transform:rotateY(180deg)}}
+/* subscription */
+#aDrawer .kd-subcard.is-empty{background:#014621;color:#f6eceb}
+#aDrawer .kd-subcard.is-empty h3{font:400 clamp(28px,3.4vw,44px)/1.05 'Bagel Fat One',sans-serif;color:#fff;margin:8px 0 10px}
+#aDrawer .kd-subcard.is-empty p{max-width:520px;line-height:1.5;color:rgba(246,236,235,.85);margin:0 0 18px}
+#aDrawer .kd-subcard.is-empty .kd-btn{background:#5bc20f;color:#014621}
+#aDrawer .kd-k{font:700 12px 'Inter Tight',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#5bc20f}
+#aDrawer .kd-subcard .kd-dact{margin-top:18px}
+/* new order page: reuse the order form, but on white cards */
+#aDrawer .kd-orderv{max-width:640px}
+#aDrawer .kd-orderv .o-card{background:#fff!important;color:#191718!important;border-radius:22px!important;box-shadow:0 12px 30px -22px rgba(1,70,33,.35)!important;padding:22px!important;margin:0!important;max-width:none!important;width:100%!important}
+#aDrawer .kd-orderv .o-ok{background:#fff;border-radius:22px;padding:28px;display:grid;gap:12px;justify-items:start}
+#aDrawer .kd-orderv .o-ok[hidden]{display:none}
+#aDrawer .kd-orderv .o-ok .o-title{font:400 36px/1 'Bagel Fat One',sans-serif!important;color:#014621!important;margin:0!important;text-align:left!important}
+#aDrawer .kd-orderv .o-okmsg{color:#191718!important;text-align:left!important;margin:0}
+#aDrawer .kd-orderv .acc-go{width:auto!important;min-height:48px;padding:0 22px!important;border-radius:999px;background:#014621!important}
+#aDrawer .kd-orderv .acc-go b{font:700 14px 'Inter Tight',sans-serif!important;color:#f6eceb!important;text-transform:none}
+/* mobile tab bar */
+#aDrawer .kd-tabbar{display:none}
+@media (max-width:900px){
+ #aDrawer .kd{grid-template-columns:1fr}
+ #aDrawer .kd-side{display:none}
+ #aDrawer .kd-main{padding:14px 16px calc(96px + env(safe-area-inset-bottom))}
+ #aDrawer .kd-top{flex-wrap:wrap;gap:12px;margin-bottom:16px}
+ #aDrawer .kd-logo-m{display:block;flex:1}
+ #aDrawer .kd-logo-m svg{width:84px;height:auto}
+ #aDrawer .kd-logo-m svg *{fill:#014621}
+ #aDrawer .kd-title{order:3;flex-basis:100%}
+ #aDrawer .kd-new{display:none}
+ #aDrawer .kd-grid{grid-template-columns:1fr}
+ #aDrawer .kd-tiles{grid-template-columns:1fr}
+ #aDrawer .kd-hero::after{width:150px;height:150px;right:-40px;bottom:-50px;opacity:.5}
+ #aDrawer .kd-hero-a .kd-btn{flex:1 1 auto}
+ #aDrawer .kd-ohead{display:none}
+ #aDrawer .kd-orow{grid-template-columns:1fr auto;grid-template-areas:"ref total" "items st" "date st";row-gap:3px;padding:14px 4px}
+ #aDrawer .kd-oref{grid-area:ref}#aDrawer .kd-ototal{grid-area:total}#aDrawer .kd-oitems{grid-area:items}#aDrawer .kd-odate{grid-area:date;font-size:12px}
+ #aDrawer .kd-orow>span:nth-child(4){grid-area:st;justify-self:end}
+ #aDrawer .kd-dhead{grid-template-columns:1fr}
+ #aDrawer .kd-dact .kd-btn{flex:1 1 100%}
+ #aDrawer .kd-row{flex-wrap:wrap}
+ #aDrawer .kd-coin{width:72px;height:72px;font-size:34px}
+ #aDrawer .kd-tabbar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:5;padding:6px;border-radius:22px;background:#014621;box-shadow:0 16px 40px -16px rgba(1,40,18,.6)}
+ #aDrawer .kd-tabbar button{display:grid;justify-items:center;gap:3px;padding:8px 0;border:0;border-radius:16px;background:none;color:rgba(246,236,235,.7);font:600 11px 'Inter Tight',sans-serif;cursor:pointer}
+ #aDrawer .kd-tabbar svg{width:21px;height:21px}
+ #aDrawer .kd-tabbar button[aria-current="page"]{color:#5bc20f}
+ #aDrawer .kd-tabbar .kd-tab-new{background:#5bc20f;color:#014621!important;margin:0 4px}
+}
+@media (prefers-reduced-motion:reduce){#aDrawer .kd-in,#aDrawer .kd-coin,#aDrawer .kd-track li.now::before{animation:none}}
+#aDrawer #aIn.kd:not([hidden]){display:grid!important;grid-template-columns:264px minmax(0,1fr)!important;gap:0!important}
+@media (max-width:900px){#aDrawer #aIn.kd:not([hidden]){grid-template-columns:minmax(0,1fr)!important}}
+#aDrawer .kd-tile span{text-transform:none}
+#aDrawer .kd-tile .kd-cap{text-transform:capitalize}
+#aDrawer .kd-tile span:first-letter{text-transform:uppercase}
+#aDrawer .kd-main{margin:0 auto;width:100%}
 </style><script>try{if(sessionStorage.getItem('krSeen'))document.documentElement.classList.add('k-seen');sessionStorage.setItem('krSeen','1')}catch(e){}</script><style>.k-seen .k-pre,.k-seen .k-loader{display:none!important}.k-seen #top *{animation-delay:0s!important}</style><style>.k-pre,.k-loader{display:none!important}#top .k-char{animation-duration:.55s!important}</style></head>
 <body>
 
@@ -1926,14 +2141,68 @@ a{color:#014621}a:hover{color:#191718}
 <p class="a-note" id="aLocal" hidden>Your account is saved on this phone or computer.</p>
 </div>
 
-<div class="acc-col acc-wide" id="aIn" hidden>
-<span hidden><span id="dAv"></span><span id="tOrd"></span><span id="tCb"></span><span id="tSub"></span><span id="tSubSub"></span><span id="tAddr"></span><span id="tAddrSub"></span></span>
-<div class="acc-hi"><p class="acc-kicker">Hi <b id="aName">there</b></p><button type="button" class="acc-cb" id="dCbChip" data-page="cash">Cashback</button></div>
-<div class="n-card" id="dCard"><section class="n-next" id="dNext" aria-live="polite"></section>
-<button type="button" class="acc-go" id="dAgain"><b id="dAgainT">Reorder in one tap</b><small id="dAgainSub">Same as last time</small></button></div>
-<div class="o-view" id="dOrderV" hidden>
-<button type="button" class="o-back" id="oBack">← Back</button>
-<h2 class="acc-big o-title" id="oTitle">New order</h2>
+<div class="kd" id="aIn" hidden>
+<aside class="kd-side">
+<div class="kd-logo" id="kdLogo" aria-hidden="true"></div>
+<div class="kd-me"><span class="kd-av" id="dAv">K</span><span><b id="aName">there</b><small id="kdEmail"></small></span></div>
+<nav class="kd-nav" aria-label="Your account"><button type="button" data-go="overview"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Overview</span></button><button type="button" data-go="orders"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6M9 16h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Orders</span></button><button type="button" data-go="subs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.7L20 9M20 4v5h-5M20 12a8 8 0 0 1-13.7 5.7L4 15M4 20v-5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Subscription</span></button><button type="button" data-go="addrs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Addresses</span></button><button type="button" data-go="cash"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18v10H3zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Cashback</span></button><button type="button" data-go="account"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Account</span></button></nav>
+<div class="kd-side-foot"><a id="dHelp" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-4-7.5L21 3l-1 4.5A9 9 0 0 1 21 12zM8 11h8M8 15h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Help &amp; support</span></a><button type="button" id="aLogout"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4M10 17l-5-5 5-5M5 12h11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Log out</span></button></div>
+</aside>
+<div class="kd-main">
+<header class="kd-top"><div class="kd-logo kd-logo-m" id="kdLogoM" aria-hidden="true"></div><div class="kd-title"><small id="kdHi">Hi there</small><h2 id="kdTitle">Overview</h2></div><div class="kd-top-r"><button type="button" class="kd-btn kd-new" data-go="new"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>New order</span></button><button type="button" class="kd-x" id="kdClose" aria-label="Close">×</button></div></header>
+
+<section class="kd-page" data-p="overview">
+<div class="kd-hero" id="dNext" aria-live="polite"></div>
+<div class="kd-grid">
+<article class="kd-card kd-sum" id="kdSum"></article>
+<div class="kd-tiles">
+<button type="button" class="kd-card kd-tile" data-go="cash"><small>Cashback</small><b id="tCb">₦0</b><span id="tCbSub">2% back on every order</span></button>
+<button type="button" class="kd-card kd-tile" data-go="subs"><small>Subscription</small><b id="tSub">Not set up</b><span id="tSubSub">Save up to 5%</span></button>
+<button type="button" class="kd-card kd-tile" data-go="addrs"><small>Delivering to</small><b id="tAddr">Add address</b><span id="tAddrSub">Tap to add</span></button>
+</div>
+</div>
+</section>
+
+<section class="kd-page" data-p="orders">
+<div class="kd-card kd-list" id="aOrders"></div>
+<div class="kd-detail" id="kdDetail" hidden></div>
+</section>
+
+<section class="kd-page" data-p="subs"><div class="kd-card kd-subcard" id="aSubs"></div></section>
+
+<section class="kd-page" data-p="addrs">
+<div class="kd-card kd-list"><div class="kd-card-h"><h3>Saved addresses</h3><button type="button" class="kd-link" id="dAddAddr" aria-expanded="false">+ Add address</button></div><div id="dAddrList"></div></div>
+<form class="kd-card kd-form" id="dAddrForm" novalidate hidden>
+<div class="kd-labels" role="radiogroup" aria-label="Address name"><label><input type="radio" name="label" value="Home" checked><span>Home</span></label><label><input type="radio" name="label" value="Work"><span>Work</span></label><label><input type="radio" name="label" value="Other"><span>Other</span></label></div>
+<label>Address<textarea name="text" rows="2" required autocomplete="street-address" placeholder="House number, street, area, city"></textarea></label>
+<button type="submit" class="kd-btn">Save address</button>
+</form>
+</section>
+
+<section class="kd-page" data-p="cash">
+<div class="kd-cash"><div><small>Your cashback</small><b id="dCb">₦0</b><span>You get <strong id="dCbRate">2%</strong> back on every order. Tick “Use cashback” at checkout to spend it.</span></div><span class="kd-coin" aria-hidden="true">₦</span></div>
+<div class="kd-card kd-list" id="kdCbList"></div>
+</section>
+
+<section class="kd-page" data-p="account">
+<form class="kd-card kd-form" id="aDetails" novalidate>
+<h3>Your details</h3>
+<label>Full name<input name="name" autocomplete="name"></label>
+<label>Phone / WhatsApp<input name="phone" type="tel" autocomplete="tel"></label>
+<label>Email<input id="kdEmailF" disabled></label>
+<button type="submit" class="kd-btn">Save changes</button>
+<p class="kd-ok" id="aSaved" hidden>Saved.</p>
+</form>
+<div class="kd-card kd-list">
+<div class="kd-row"><span><b>Invite a friend</b><small>Share Krate on WhatsApp</small></span><button type="button" class="kd-link" id="dInvite">Share</button></div>
+<div class="kd-row"><span><b>Help &amp; support</b><small>Chat with us on WhatsApp</small></span><a class="kd-link" id="dHelp2" href="#" target="_blank" rel="noopener">Chat</a></div>
+<div class="kd-row"><span><b>Log out</b><small>Sign out on this device</small></span><button type="button" class="kd-link kd-danger" id="aLogout2">Log out</button></div>
+</div>
+</section>
+
+<section class="kd-page" data-p="new">
+<div class="o-view kd-orderv" id="dOrderV">
+<span hidden id="oTitle"></span><span hidden id="oBack"></span>
 <form class="acc-card o-card" id="oForm" novalidate>
 <div class="o-modes" role="radiogroup" aria-label="How do you want to buy?">
 <button type="button" role="radio" aria-checked="true" data-m="once"><b>One-time</b><small>₦7,500 a crate</small></button>
@@ -1962,42 +2231,9 @@ a{color:#014621}a:hover{color:#191718}
 <button type="button" class="acc-go" id="oDone"><b>Back to my Krate</b></button>
 </div>
 </div>
-<nav class="d-tabs" aria-label="Your account">
-<button type="button" data-tab="orders"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6M9 16h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Orders</button>
-<button type="button" data-tab="subs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.7L20 9M20 4v5h-5M20 12a8 8 0 0 1-13.7 5.7L4 15M4 20v-5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Subscription</button>
-<button type="button" data-tab="cash"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18v10H3zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Cashback</button>
-<button type="button" data-tab="details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Account</button>
-</nav>
-<details class="acc-more" open>
-<summary>More <span aria-hidden="true">▾</span></summary>
-<div class="acc-sheet">
-<section class="n-row" id="aSubs" data-sec="subs" aria-label="Your subscription"></section>
-<div data-sec="cash"><section class="n-cash" aria-label="Cashback">
-<div><small>Krate cashback</small><b id="dCb">₦0</b><span>You get <strong id="dCbRate">2%</strong> back on every order. Use it at checkout.</span></div>
-<span class="n-cash-coin" aria-hidden="true">₦</span>
-</section></div>
-<div data-sec="addrs"><section class="n-addrs" aria-labelledby="dAddrT">
-<div class="n-head"><h4 id="dAddrT">Delivery addresses</h4><button type="button" class="n-link" id="dAddAddr" aria-expanded="false">+ Add</button></div>
-<div id="dAddrList" class="n-addr-list"></div>
-<form class="c-form n-form" id="dAddrForm" novalidate hidden>
-<div class="n-labels" role="radiogroup" aria-label="Address name"><label><input type="radio" name="label" value="Home" checked><span>Home</span></label><label><input type="radio" name="label" value="Work"><span>Work</span></label><label><input type="radio" name="label" value="Other"><span>Other</span></label></div>
-<label>Address<textarea name="text" rows="2" required autocomplete="street-address" placeholder="House number, street, area, city"></textarea></label>
-<button type="submit" class="c-checkout">Save address</button>
-</form>
-</section></div>
-<section class="n-row" data-sec="details"><div class="n-row-t"><small>Your details</small><b id="dWho">Add your name and phone</b></div><button type="button" class="n-link" id="dDetBtn" aria-expanded="false">Edit</button></section>
-<form class="c-form n-form" id="aDetails" data-sec="details" novalidate hidden>
-<label>Full name<input name="name" autocomplete="name"></label>
-<label>Phone / WhatsApp<input name="phone" type="tel" autocomplete="tel"></label>
-<button type="submit" class="c-checkout">Save</button>
-<p class="p-done" id="aSaved" hidden>Saved.</p>
-</form>
-<section class="n-row" data-sec="details"><div class="n-row-t"><small>Invite a friend</small><b>Share Krate on WhatsApp</b></div><button type="button" class="n-link" id="dInvite">Share</button></section>
-<section class="n-row" data-sec="details"><div class="n-row-t"><small>Help &amp; support</small><b>Chat with us on WhatsApp</b></div><a class="n-link" id="dHelp" href="#" target="_blank" rel="noopener">Chat</a></section>
-<section class="n-orders" data-sec="orders" aria-labelledby="aOrdT"><h4 id="aOrdT">Past orders</h4><div id="aOrders"></div></section>
-<button type="button" class="a-link" id="aLogout" data-sec="details">Log out</button>
+</section>
 </div>
-</details>
+<nav class="kd-tabbar" aria-label="Your account"><button type="button" data-go="overview"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Home</span></button><button type="button" data-go="orders"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6M9 16h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Orders</span></button><button type="button" class="kd-tab-new" data-go="new"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Order</span></button><button type="button" data-go="subs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.7L20 9M20 4v5h-5M20 12a8 8 0 0 1-13.7 5.7L4 15M4 20v-5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Plan</span></button><button type="button" data-go="account"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Account</span></button></nav>
 </div>
 </main>
 </aside>
@@ -2761,7 +2997,6 @@ var KRATE_SUPABASE = {
     $('aLead').textContent = user ? '' : (window.KRATE_PENDING_CHECKOUT ? 'One quick step and your order is in' : (mode === 'up' ? 'Takes 30 seconds' : 'Good to see you again'));
     $('aBig').innerHTML = mode === 'up' ? 'Join the<br>Krate.' : 'Welcome<br>back.';
     $('aDrawer').classList.toggle('is-in', !!user);
-    $('aBig').classList.toggle('a-long', !!user && ($('aName').textContent || '').length > 7);
     $('aOpen').classList.toggle('is-in', !!user);
     $('aTag').textContent = user ? 'My Krate' : 'Sign in';
   }
@@ -2878,45 +3113,52 @@ var KRATE_SUPABASE = {
   $('aLogout').onclick = function () { sb.auth.signOut(); };
 
   // signed-in data
+  var rowsAll = [];
   function load() {
     sb.from('profiles').select('*').eq('id', user.id).maybeSingle().then(function (r) {
       profile = r.data || { name: (user.user_metadata || {}).name || '', phone: (user.user_metadata || {}).phone || '', address: '' };
       window.KRATE_PROFILE = profile;
-      $('aName').textContent = (profile.name || user.email).split(' ')[0]; $('dAv').textContent = ((profile.name || user.email || 'K').trim()[0] || 'K').toUpperCase(); view();
       if (!Array.isArray(profile.addresses)) profile.addresses = profile.address ? [{ id: 'a' + Date.now(), label: 'Home', text: profile.address, def: true }] : [];
-      var d = $('aDetails').elements; d.name.value = profile.name || ''; d.phone.value = profile.phone || '';
-      renderAddrs(); prefill();
+      renderMe(); renderAddrs(); prefill();
     });
     sb.from('orders').select('*').eq('user_id', user.id).order('created_at', { ascending: false }).then(function (r) { list(r.data || []); });
+  }
+  function first() { return (profile.name || user.email || '').split(/[ @]/)[0]; }
+  function renderMe() {
+    $('aName').textContent = profile.name || first(); $('kdEmail').textContent = user.email || '';
+    $('dAv').textContent = ((profile.name || user.email || 'K').trim()[0] || 'K').toUpperCase();
+    $('kdHi').textContent = 'Hi ' + first();
+    var d = $('aDetails').elements; d.name.value = profile.name || ''; d.phone.value = profile.phone || ''; $('kdEmailF').value = user.email || '';
+    view();
   }
   function defAddr() { var a = (profile.addresses || []).find(function (x) { return x.def; }) || (profile.addresses || [])[0]; return a ? a.text : (profile.address || ''); }
   function saveProfile(cb) { profile.id = user.id; profile.address = defAddr(); window.KRATE_PROFILE = profile; sb.from('profiles').upsert(profile).then(function (r) { if (cb) cb(r); }); }
   function renderAddrs() {
     var box = $('dAddrList'); box.innerHTML = '';
     var list = profile.addresses || [];
-    if (!list.length) box.appendChild(el('p', 'n-none', 'No address yet. Add one so checkout fills itself in.'));
+    if (!list.length) box.appendChild(el('p', 'kd-none', 'No address yet. Add one and checkout fills itself in.'));
     list.forEach(function (a) {
-      var row = el('div', 'n-addr-item' + (a.def ? ' is-def' : ''));
-      var t = el('div', 'n-row-t'); var lab = el('small', '', a.label + (a.def ? ' · default' : '')); t.append(lab, el('b', '', a.text));
-      var acts = el('div', 'n-acts');
-      if (!a.def) { var mk = el('button', 'n-link', 'Make default'); mk.type = 'button'; mk.onclick = function () { list.forEach(function (x) { x.def = x === a; }); saveProfile(); renderAddrs(); prefill(true); }; acts.appendChild(mk); }
-      var rm = el('button', 'n-link n-danger', 'Remove'); rm.type = 'button';
+      var row = el('div', 'kd-row kd-addr' + (a.def ? ' is-def' : ''));
+      var t = el('span'); var lab = el('b', '', a.label); if (a.def) lab.appendChild(el('em', 'kd-pill', 'Default')); t.append(lab, el('small', 'kd-cap', a.text));
+      var acts = el('span', 'kd-acts');
+      if (!a.def) { var mk = el('button', 'kd-link', 'Make default'); mk.type = 'button'; mk.onclick = function () { list.forEach(function (x) { x.def = x === a; }); saveProfile(); renderAddrs(); prefill(true); }; acts.appendChild(mk); }
+      var rm = el('button', 'kd-link kd-danger', 'Remove'); rm.type = 'button';
       rm.onclick = function () { if (!rm.dataset.sure) { rm.dataset.sure = 1; rm.textContent = 'Tap again'; setTimeout(function () { delete rm.dataset.sure; rm.textContent = 'Remove'; }, 3000); return; } profile.addresses = list.filter(function (x) { return x !== a; }); if (a.def && profile.addresses[0]) profile.addresses[0].def = true; saveProfile(); renderAddrs(); };
       acts.appendChild(rm); row.append(t, acts); box.appendChild(row);
     });
     var da = list.find(function (x) { return x.def; }) || list[0];
-    $('tAddr').textContent = da ? da.label : 'Add address'; $('dLocT').textContent = da ? da.label + ' · ' + da.text : 'Add your address'; $('tAddrSub').textContent = da ? da.text : 'Tap to add';
-    var who = [profile.name, profile.phone].filter(Boolean).join(' · '); $('dWho').textContent = who || 'Add your name and phone';
+    $('tAddr').textContent = da ? da.label : 'Add an address'; $('tAddrSub').textContent = da ? da.text : 'So checkout fills itself in'; $('tAddrSub').classList.toggle('kd-cap', !!da);
+    if ($('dLocT')) $('dLocT').textContent = da ? da.label + ' · ' + da.text : 'Add your address';
   }
-  $('dAddAddr').onclick = function () { var f = $('dAddrForm'), o = f.hidden; f.hidden = !o; this.textContent = o ? 'Close' : '+ Add'; this.setAttribute('aria-expanded', o); if (o) f.elements.text.focus(); };
+  $('dAddAddr').onclick = function () { var f = $('dAddrForm'), o = f.hidden; f.hidden = !o; this.textContent = o ? 'Close' : '+ Add address'; this.setAttribute('aria-expanded', o); if (o) f.elements.text.focus(); };
   $('dAddrForm').addEventListener('submit', function (e) {
     e.preventDefault(); var f = this.elements, txt = f.text.value.trim();
     f.text.classList.toggle('is-bad', !txt); if (!txt) return f.text.focus();
     profile.addresses = profile.addresses || [];
-    var first = !profile.addresses.length;
-    profile.addresses.push({ id: 'a' + Date.now(), label: f.label.value, text: txt, def: first });
+    var isFirst = !profile.addresses.length;
+    profile.addresses.push({ id: 'a' + Date.now(), label: f.label.value, text: txt, def: isFirst });
     saveProfile(); renderAddrs(); prefill(true);
-    this.reset(); this.hidden = true; $('dAddAddr').textContent = '+ Add';
+    this.reset(); this.hidden = true; $('dAddAddr').textContent = '+ Add address';
   });
   function prefill(force) {
     var c = $('cForm'); if (!c) return;
@@ -2926,88 +3168,164 @@ var KRATE_SUPABASE = {
   var lastOrder = null, DAY = 864e5, STEP = { 'week': 7, '2 weeks': 14, 'month': 30 };
   function fmt(d, o) { return d.toLocaleDateString('en-NG', o || { weekday: 'long', day: 'numeric', month: 'long' }); }
   function nextDate(o) {
-    var step = (STEP[o.frequency] || 7) * DAY, first = new Date(o.created_at).getTime() + 2 * DAY, now = Date.now();
-    var t = first; while (t < now - DAY / 2) t += step;
+    var step = (STEP[o.frequency] || 7) * DAY, f = new Date(o.created_at).getTime() + 2 * DAY, now = Date.now();
+    var t = f; while (t < now - DAY / 2) t += step;
     if (o.skip_next) t += step;
     return new Date(t);
   }
   function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+  function btn(cls, txt, fn) { var b = el('button', cls, txt); b.type = 'button'; b.onclick = fn; return b; }
   function tracker(stage) {
-    var t = el('ol', 'n-track'); ['Placed', 'Confirmed', 'On the way', 'Delivered'].forEach(function (s, i) { var li = el('li', i <= stage ? 'on' : '', s); if (i === stage) li.setAttribute('aria-current', 'step'); t.appendChild(li); }); return t;
+    var t = el('ol', 'kd-track'); t.style.setProperty('--s', stage);
+    ['Placed', 'Confirmed', 'On the way', 'Delivered'].forEach(function (s, i) { var li = el('li', i < stage ? 'done' : i === stage ? 'now' : '', s); if (i === stage) li.setAttribute('aria-current', 'step'); t.appendChild(li); }); return t;
   }
-  function renderNext(rows) {
-    var box = $('dNext'); box.innerHTML = ''; box.className = 'n-next';
+  function ref(o) { return o.payment_ref || 'KR' + String(o.id).slice(-5); }
+  function itemsOf(o) { return (+o.total || 0) - (+o.delivery_fee || 0) + (+o.credit_used || 0); }
+  // one place that decides what an order's status is
+  function st(o) {
+    if (o.kind === 'sub') return o.status === 'active' ? { t: 'Active', k: 'ok', s: 1 } : o.status === 'paused' ? { t: 'Paused', k: 'mute', s: 0 } : { t: 'Cancelled', k: 'mute', s: 0 };
+    if (o.status === 'cancelled') return { t: 'Cancelled', k: 'mute', s: 0 };
+    if (o.status === 'delivered') return { t: 'Delivered', k: 'ok', s: 3 };
+    if (o.status === 'on the way') return { t: 'On the way', k: 'go', s: 2 };
+    if (o.payment_status === 'awaiting payment') return { t: 'Awaiting payment', k: 'wait', s: 0 };
+    return { t: 'Being prepared', k: 'go', s: 1 };
+  }
+  function payNow(o) { if (window.KRATE_SHOW_TRANSFER) KRATE_SHOW_TRANSFER(o.total, ref(o)); }
+  function reorder(o) { openOrder({ mode: 'once', crates: (o && o.crates) || 1 }); }
+  function helpFor(o) { return 'https://wa.me/' + (window.KRATE ? KRATE.whatsapp : '') + '?text=' + encodeURIComponent('Hello Krate! I need help with order ' + ref(o) + '.'); }
+
+  function renderHero(rows) {
+    var box = $('dNext'); box.innerHTML = ''; box.className = 'kd-hero';
+    var open = rows.find(function (o) { return o.kind !== 'sub' && o.status !== 'cancelled' && o.status !== 'delivered'; });
     var sub = rows.find(function (o) { return o.kind === 'sub' && o.status === 'active'; });
-    var paused = rows.find(function (o) { return o.kind === 'sub' && o.status === 'paused'; });
-    var open = rows.find(function (o) { return o.kind !== 'sub' && o.status === 'placed'; });
-    var code = function (o) { return 'Order ' + (o.payment_ref || 'KR' + String(o.id).slice(-5)); };
-    if (open && open.payment_status === 'awaiting payment') {
-      box.classList.add('n-wait');
-      box.append(el('small', 'n-k', code(open) + ' · ' + open.summary), el('p', 'n-big', 'Awaiting your transfer'), el('p', 'n-sub', 'Send ' + money(open.total) + ' and we’ll start packing as soon as it lands.'), tracker(0));
-    } else if (open) {
-      box.append(el('small', 'n-k', code(open) + ' · ' + open.summary + ' · ' + money(open.total)), el('p', 'n-big', 'Being prepared'), el('p', 'n-sub', 'Paid, thank you. We’ll text you to confirm the delivery time.'), tracker(1));
+    var top = el('div', 'kd-hero-t'), acts = el('div', 'kd-hero-a');
+    if (open) {
+      var s = st(open); box.classList.add('is-' + s.k);
+      top.append(el('small', '', 'Order ' + ref(open) + ' · ' + fmt(new Date(open.created_at), { day: 'numeric', month: 'short' })),
+        el('h3', '', s.k === 'wait' ? 'Awaiting your transfer' : s.t),
+        el('p', '', s.k === 'wait' ? 'Send ' + money(open.total) + ' and we’ll start packing as soon as it lands.' : 'Paid, thank you. We’ll text you to confirm the delivery time.'));
+      if (s.k === 'wait') acts.appendChild(btn('kd-btn kd-btn-y', 'Pay now · ' + money(open.total), function () { payNow(open); }));
+      acts.appendChild(btn('kd-btn kd-btn-ghost', 'View order', function () { showDetail(open); }));
+      box.append(top, tracker(s.s), acts);
+      renderSum(open);
     } else if (sub) {
       var d = nextDate(sub), days = Math.max(0, Math.round((d - Date.now()) / DAY));
-      box.append(el('small', 'n-k', 'Next delivery · ' + sub.summary.replace(/ every.*/, '') + ' · ' + money(sub.total)), el('p', 'n-big', days === 0 ? 'Arriving today' : days === 1 ? 'Arriving tomorrow' : 'Arriving ' + fmt(d, { weekday: 'long' })), el('p', 'n-sub', fmt(d) + (sub.skip_next ? ' · skipped, next one after this' : ' · on its way to your door')), tracker(days <= 1 ? 2 : 1));
-    } else if (paused) {
-      box.append(el('small', 'n-k', 'Subscription paused'), el('p', 'n-big', 'Deliveries are on hold'), el('p', 'n-sub', 'Resume your subscription any time from the Subscription page.'));
+      top.append(el('small', '', 'Subscription · ' + sub.summary), el('h3', '', days === 0 ? 'Arriving today' : days === 1 ? 'Arriving tomorrow' : 'Arriving ' + fmt(d, { weekday: 'long' })), el('p', '', fmt(d) + (sub.skip_next ? ' · this one is skipped' : '')));
+      acts.append(btn('kd-btn kd-btn-l', 'Manage subscription', function () { go('subs'); }));
+      box.append(top, tracker(days <= 1 ? 2 : 1), acts);
+      renderSum(sub);
     } else {
-      box.classList.add('n-empty');
-      var go = el('button', 'n-cta', 'Order your first Krate →'); go.type = 'button'; go.onclick = function () { openOrder({}); };
-      box.append(el('p', 'n-big', 'Your first Krate is one tap away'), el('p', 'n-sub', '30 fresh jumbo eggs, delivered to your door.'), go);
+      box.classList.add('is-empty');
+      top.append(el('small', '', rows.length ? 'Nothing on the way' : 'Welcome to Krate'), el('h3', '', rows.length ? 'Time for another crate?' : 'Your first Krate is one tap away'), el('p', '', '30 fresh jumbo eggs, packed snug and delivered to your door.'));
+      acts.append(btn('kd-btn kd-btn-l', rows.length ? 'Order again' : 'Order your first Krate', function () { rows.length ? reorder(rows[0]) : openOrder({}); }));
+      box.append(top, acts);
+      renderSum(rows[0] || null);
     }
+  }
+  function sumLines(o, box) {
+    var it = itemsOf(o), lines = el('dl', 'kd-lines');
+    function line(k, v, cls) { var r = el('div', cls || ''); r.append(el('dt', '', k), el('dd', '', v)); lines.appendChild(r); }
+    line(o.summary.replace(' every', ' · every') + (o.kind === 'sub' ? ' (per delivery)' : ''), money(it));
+    line('Delivery fee', money(+o.delivery_fee || 0));
+    if (+o.credit_used) line('Cashback used', '−' + money(o.credit_used));
+    line('Total', money(o.total), 'kd-tot');
+    box.appendChild(lines);
+    var meta = el('dl', 'kd-meta');
+    function m(k, v, cls) { if (!v) return; var r = el('div'); var dd = el('dd', cls || '', v); r.append(el('dt', '', k), dd); meta.appendChild(r); }
+    m('Payment', o.payment_method === 'paystack' ? 'Card (Paystack) · paid' : o.payment_method === 'transfer' ? 'Bank transfer · ' + (o.payment_status === 'awaiting payment' ? 'awaiting' : 'received') : 'Paid');
+    m('Deliver to', o.delivery_address, 'kd-cap');
+    m('Preferred day', o.delivery_note);
+    m('Reference', ref(o));
+    box.appendChild(meta);
+  }
+  function renderSum(o) {
+    var box = $('kdSum'); box.innerHTML = '';
+    var h = el('div', 'kd-card-h'); h.append(el('h3', '', 'Order summary'));
+    if (o) { var s = st(o); h.appendChild(el('em', 'kd-st kd-st-' + s.k, s.t)); }
+    box.appendChild(h);
+    if (!o) { box.appendChild(el('p', 'kd-none', 'Your order details will show up here once you place an order.')); return; }
+    sumLines(o, box);
+    var a = el('div', 'kd-sum-a');
+    a.append(btn('kd-link', 'Reorder', function () { reorder(o); }), btn('kd-link', 'All orders →', function () { go('orders'); }));
+    box.appendChild(a);
+  }
+  function renderOrders(rows) {
+    var b = $('aOrders'); b.innerHTML = '';
+    var h = el('div', 'kd-card-h'); h.append(el('h3', '', 'Your orders'), el('small', '', rows.length ? rows.length + (rows.length > 1 ? ' orders' : ' order') : '')); b.appendChild(h);
+    if (!rows.length) { b.appendChild(el('p', 'kd-none', 'No orders yet. Your orders and receipts will show up here.')); b.appendChild(btn('kd-btn', 'Place your first order', function () { openOrder({}); })); return; }
+    var hd = el('div', 'kd-orow kd-ohead'); ['Order', 'Date', 'Items', 'Status', 'Total'].forEach(function (x) { hd.appendChild(el('span', '', x)); }); b.appendChild(hd);
+    rows.forEach(function (o) {
+      var s = st(o), r = el('button', 'kd-orow'); r.type = 'button';
+      r.append(el('span', 'kd-oref', ref(o)), el('span', 'kd-odate', fmt(new Date(o.created_at), { day: 'numeric', month: 'short', year: 'numeric' })), el('span', 'kd-oitems', o.summary), el('span', '', ''), el('span', 'kd-ototal', money(o.total)));
+      r.children[3].appendChild(el('em', 'kd-st kd-st-' + s.k, s.t));
+      r.onclick = function () { showDetail(o); };
+      b.appendChild(r);
+    });
+  }
+  function showDetail(o) {
+    go('orders', true);
+    var d = $('kdDetail'); d.innerHTML = ''; d.hidden = false; $('aOrders').hidden = true;
+    var s = st(o);
+    d.appendChild(btn('kd-back', '← All orders', function () { d.hidden = true; $('aOrders').hidden = false; $('kdTitle').textContent = 'Orders'; }));
+    var head = el('div', 'kd-card kd-dhead');
+    var t = el('div'); t.append(el('small', '', 'Placed ' + fmt(new Date(o.created_at), { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' })), el('h3', '', 'Order ' + ref(o)));
+    head.append(t, el('em', 'kd-st kd-st-' + s.k, s.t));
+    if (o.kind !== 'sub' && s.k !== 'mute') head.appendChild(tracker(s.s));
+    d.appendChild(head);
+    var sum = el('div', 'kd-card kd-sum'); var h = el('div', 'kd-card-h'); h.appendChild(el('h3', '', 'Order summary')); sum.appendChild(h); sumLines(o, sum); d.appendChild(sum);
+    var a = el('div', 'kd-dact');
+    if (s.k === 'wait') a.appendChild(btn('kd-btn kd-btn-y', 'Pay now · ' + money(o.total), function () { payNow(o); }));
+    a.appendChild(btn('kd-btn', 'Reorder', function () { reorder(o); }));
+    var hl = el('a', 'kd-btn kd-btn-ghost', 'Get help with this order'); hl.href = helpFor(o); hl.target = '_blank'; hl.rel = 'noopener'; a.appendChild(hl);
+    d.appendChild(a);
+    $('kdTitle').textContent = 'Order ' + ref(o);
   }
   function renderSub(rows) {
     var a = $('aSubs'); a.innerHTML = '';
     var o = rows.find(function (x) { return x.kind === 'sub' && x.status !== 'cancelled'; });
     if (!o) {
-      var t = el('div', 'n-row-t'); t.append(el('small', '', 'Subscription'), el('b', '', 'Save up to 5% on repeat'));
-      var b = el('button', 'n-link', 'Set up'); b.type = 'button';
-      b.onclick = function () { openOrder({ mode: 'sub' }); };
-      a.append(t, b); return;
+      a.classList.add('is-empty');
+      a.append(el('small', 'kd-k', 'Subscription'), el('h3', '', 'Eggs on repeat, for less'), el('p', '', 'Pick how often and we deliver automatically. Weekly saves 5%, every 2 weeks 4%, monthly 3%. Skip, pause or cancel any time.'), btn('kd-btn', 'Set up a subscription', function () { openOrder({ mode: 'sub' }); }));
+      return;
     }
-    var t2 = el('div', 'n-row-t'); t2.append(el('small', '', o.status === 'paused' ? 'Subscription · paused' : 'Subscription'), el('b', '', o.summary.replace(' every', ', every') + ' · ' + money(o.total)));
-    var acts = el('div', 'n-acts');
-    if (o.status === 'active') { var sk = el('button', 'n-link', o.skip_next ? 'Unskip' : 'Skip next'); sk.type = 'button'; sk.onclick = function () { sb.from('orders').update({ skip_next: !o.skip_next }).eq('id', o.id).then(load); }; acts.appendChild(sk); }
-    var pz = el('button', 'n-link', o.status === 'paused' ? 'Resume' : 'Pause'); pz.type = 'button'; pz.onclick = function () { setStatus(o, o.status === 'paused' ? 'active' : 'paused'); };
-    var cx = el('button', 'n-link n-danger', 'Cancel'); cx.type = 'button'; cx.onclick = function () { if (confirmCancel(cx)) setStatus(o, 'cancelled'); };
-    acts.append(pz, cx); a.append(t2, acts);
+    a.classList.remove('is-empty');
+    var s = st(o), d = nextDate(o);
+    var h = el('div', 'kd-card-h'); h.append(el('h3', '', o.summary.replace(/^(\d+ crates?) every/, '$1, every')), el('em', 'kd-st kd-st-' + s.k, s.t)); a.appendChild(h);
+    var meta = el('dl', 'kd-meta');
+    [['Next delivery', o.status === 'active' ? fmt(d) + (o.skip_next ? ' (skipped)' : '') : 'On hold'], ['Each delivery', money(o.total)], ['Deliver to', o.delivery_address], ['Started', fmt(new Date(o.created_at), { day: 'numeric', month: 'long', year: 'numeric' })]].forEach(function (x) { if (!x[1]) return; var r = el('div'); r.append(el('dt', '', x[0]), el('dd', x[0] === 'Deliver to' ? 'kd-cap' : '', x[1])); meta.appendChild(r); });
+    a.appendChild(meta);
+    var acts = el('div', 'kd-dact');
+    if (o.status === 'active') acts.appendChild(btn('kd-btn', o.skip_next ? 'Unskip next delivery' : 'Skip next delivery', function () { sb.from('orders').update({ skip_next: !o.skip_next }).eq('id', o.id).then(load); }));
+    acts.appendChild(btn('kd-btn kd-btn-ghost', o.status === 'paused' ? 'Resume' : 'Pause', function () { setStatus(o, o.status === 'paused' ? 'active' : 'paused'); }));
+    var cx = btn('kd-btn kd-btn-ghost kd-danger', 'Cancel subscription', function () { if (confirmCancel(cx)) setStatus(o, 'cancelled'); });
+    acts.appendChild(cx); a.appendChild(acts);
   }
-  function renderOrders(rows) {
-    var b = $('aOrders'); b.innerHTML = '';
-    if (!rows.length) { b.appendChild(el('p', 'n-none', 'Your orders will show up here.')); return; }
-    rows.slice(0, 5).forEach(function (o) {
-      var r = el('div', 'n-order');
-      var w = el('span', 'n-w'); w.append(el('b', '', o.summary), el('small', '', (o.payment_ref || 'KR' + String(o.id).slice(-5)) + ' · ' + (o.kind === 'sub' ? (o.status === 'active' ? 'Subscription active' : 'Subscription ' + o.status) : (o.payment_status === 'awaiting payment' ? 'Awaiting payment' : o.status === 'placed' ? 'Paid · being prepared' : o.status))));
-      r.append(el('span', 'n-d', fmt(new Date(o.created_at), { day: 'numeric', month: 'short' })), w, el('span', 'n-p', money(o.total)));
-      b.appendChild(r);
+  function renderCash(rows, bal) {
+    var b = $('kdCbList'); b.innerHTML = '';
+    var h = el('div', 'kd-card-h'); h.appendChild(el('h3', '', 'History')); b.appendChild(h);
+    var any = false;
+    rows.forEach(function (o) {
+      if (o.status === 'cancelled') return; any = true;
+      var r = el('div', 'kd-row'); var t = el('span'); t.append(el('b', '', 'Earned on ' + ref(o)), el('small', '', fmt(new Date(o.created_at), { day: 'numeric', month: 'short', year: 'numeric' })));
+      r.append(t, el('span', 'kd-plus', '+' + money(Math.round((+o.total || 0) * KRATE_CASHBACK_RATE)))); b.appendChild(r);
+      if (+o.credit_used) { var u = el('div', 'kd-row'); var t2 = el('span'); t2.append(el('b', '', 'Used on ' + ref(o)), el('small', '', '')); u.append(t2, el('span', 'kd-minus', '−' + money(o.credit_used))); b.appendChild(u); }
     });
+    if (!any) b.appendChild(el('p', 'kd-none', 'You’ll earn ' + Math.round(KRATE_CASHBACK_RATE * 100) + '% back on your first order.'));
   }
-  function confirmCancel(b) { if (b.dataset.sure) return true; b.dataset.sure = '1'; b.textContent = 'Tap again'; setTimeout(function () { delete b.dataset.sure; b.textContent = 'Cancel'; }, 3000); return false; }
+  function confirmCancel(b) { if (b.dataset.sure) return true; b.dataset.sure = '1'; var t = b.textContent; b.textContent = 'Tap again to confirm'; setTimeout(function () { delete b.dataset.sure; b.textContent = t; }, 3000); return false; }
   function setStatus(o, s) { sb.from('orders').update({ status: s }).eq('id', o.id).then(load); }
   function list(rows) {
-    renderNext(rows); renderSub(rows); renderOrders(rows);
-    lastOrder = rows[0] || null;
-    $('dAgain').disabled = !lastOrder;
-    var waiting = rows.find(function (o) { return o.kind !== 'sub' && o.status === 'placed' && o.payment_status === 'awaiting payment'; });
-    payFor = waiting || null;
-    $('dAgainT').textContent = waiting ? 'Pay now' : 'Reorder in one tap';
-    $('dAgain').classList.toggle('is-pay', !!waiting);
-    if (waiting) $('dAgainSub').textContent = money(waiting.total) + ' by bank transfer'; else $('dAgainSub').textContent = lastOrder ? lastOrder.summary.replace(/ every.*/, '') + ' · ' + money(lastOrder.kind === 'sub' ? lastOrder.crates * 7500 : lastOrder.total) : 'No orders yet';
+    rowsAll = rows; lastOrder = rows[0] || null;
     var earned = 0, used = 0;
     rows.forEach(function (o) { if (o.status !== 'cancelled') earned += Math.round((+o.total || 0) * KRATE_CASHBACK_RATE); used += +o.credit_used || 0; });
     var bal = Math.max(0, earned - used); window.KRATE_CASHBACK = bal;
+    renderHero(rows); renderOrders(rows); renderSub(rows); renderCash(rows, bal);
     $('dCb').textContent = money(bal); $('dCbRate').textContent = Math.round(KRATE_CASHBACK_RATE * 100) + '%';
-    $('tCb').textContent = money(bal);
+    $('tCb').textContent = money(bal); $('tCbSub').textContent = bal ? 'Ready to use at checkout' : Math.round(KRATE_CASHBACK_RATE * 100) + '% back on every order';
     var sb2 = rows.find(function (x) { return x.kind === 'sub' && x.status !== 'cancelled'; });
     $('tSub').textContent = sb2 ? (sb2.status === 'paused' ? 'Paused' : 'Active') : 'Not set up';
-    $('tSubSub').textContent = sb2 ? sb2.summary.replace(/^\d+ crates? /, '').replace('every', 'Every') : 'Save up to 5%';
-    $('tOrd').textContent = rows.length ? rows.length + (rows.length > 1 ? ' orders' : ' order') : '';
-    $('dCbChip').hidden = !bal; $('dCbChip').textContent = money(bal) + ' cashback ready';
+    $('tSubSub').textContent = sb2 ? sb2.summary : 'Save up to 5% on repeat';
   }
-  // one-tap reorder: same crates, straight to checkout with details filled in
-  var payFor = null;
-  $('dAgain').onclick = function () { if (payFor && window.KRATE_SHOW_TRANSFER) return KRATE_SHOW_TRANSFER(payFor.total, payFor.payment_ref || ('KR' + String(payFor.id).slice(-5))); if (lastOrder) openOrder({ mode: 'once', crates: lastOrder.crates || 1 }); };
   $('dInvite').onclick = function () {
     var text = 'I get my eggs from Krate: 30 fresh jumbo eggs, delivered. ' + location.origin + location.pathname;
     if (navigator.share) navigator.share({ title: 'Krate', text: text }).catch(function () {});
@@ -3016,10 +3334,10 @@ var KRATE_SUPABASE = {
   $('aDetails').addEventListener('submit', function (e) {
     e.preventDefault(); var d = this.elements;
     profile.name = d.name.value.trim(); profile.phone = d.phone.value.trim();
-    saveProfile(function () { $('aSaved').hidden = false; renderAddrs(); $('aName').textContent = (profile.name || user.email).split(' ')[0]; });
+    saveProfile(function () { $('aSaved').hidden = false; setTimeout(function () { $('aSaved').hidden = true; }, 2500); renderMe(); });
   });
 
-  // called by the shop when someone sends an order to WhatsApp
+  // called by the shop and the in-account order form
   window.KRATE_SAVE_ORDER = function (o) {
     if (!sb || !user) return Promise.resolve(null);
     var rec = { user_id: user.id, kind: o.kind, summary: o.summary, crates: o.crates, frequency: o.frequency || null, total: o.total, credit_used: o.credit || 0, delivery_address: o.address || null, delivery_note: o.when || null, delivery_fee: o.delivery_fee || 0, payment_method: o.payment || null, payment_status: o.pay_status || null, payment_ref: o.pay_ref || null, status: o.kind === 'sub' ? 'active' : 'placed' };
@@ -3032,32 +3350,32 @@ var KRATE_SUPABASE = {
     saveProfile(function () { renderAddrs(); });
     return done;
   };
-  // app-style sub pages
-  $('dDetBtn').onclick = function () { var f = $('aDetails'), o = f.hidden; f.hidden = !o; this.textContent = o ? 'Close' : 'Edit'; this.setAttribute('aria-expanded', o); };
-  function tab(name, scroll) {
-    var sheet = drawer.querySelector('.acc-sheet'); if (!sheet) return;
-    drawer.querySelectorAll('.d-tabs [data-tab]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.tab === name); });
-    sheet.classList.toggle('show', !!name);
-    sheet.querySelectorAll('[data-sec]').forEach(function (x) { x.classList.toggle('on', x.dataset.sec === name); });
-    if (name) { sheet.classList.remove('ap-in'); void sheet.offsetWidth; sheet.classList.add('ap-in'); if (scroll) setTimeout(function () { sheet.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 40); }
-  }
-  drawer.querySelectorAll('.d-tabs [data-tab]').forEach(function (b) { b.addEventListener('click', function () { tab(b.getAttribute('aria-pressed') === 'true' ? null : b.dataset.tab, true); }); });
-  new MutationObserver(function () { if (!drawer.classList.contains('open')) tab(null); }).observe(drawer, { attributes: true, attributeFilter: ['class'] });
-  window.__kGo = function (v) { go(v); };
-  function go(view) {
-    if (!drawer.querySelector('[data-view]')) {
-      if (view === 'home') { tab(null); return; }
-      tab(view, true); return;
-    }
-    $$a('[data-view]').forEach(function (v) { v.hidden = v.dataset.view !== view; });
-    var pg = document.querySelector('[data-view="' + view + '"]'); if (pg && view !== 'home') { pg.classList.remove('ap-in'); void pg.offsetWidth; pg.classList.add('ap-in'); }
+
+  // ---- pages ----
+  var TITLES = { overview: 'Overview', orders: 'Orders', subs: 'Subscription', addrs: 'Addresses', cash: 'Cashback', account: 'Account', 'new': 'New order' };
+  var ALIAS = { home: 'overview', details: 'account', help: 'account' };
+  var cur = 'overview';
+  function go(p, keep) {
+    p = ALIAS[p] || p; if (!TITLES[p]) p = 'overview';
+    if (p !== 'new' && cur === 'new' && !keep) {}
+    cur = p;
+    drawer.querySelectorAll('.kd-page').forEach(function (x) { var on = x.dataset.p === p; x.hidden = !on; x.querySelectorAll('.ix-rise').forEach(function (r) { r.classList.remove('ix-rise'); }); if (on) { x.classList.remove('kd-in'); void x.offsetWidth; x.classList.add('kd-in'); } });
+    drawer.querySelectorAll('[data-go]').forEach(function (b) { if (b.closest('.kd-nav,.kd-tabbar')) b.setAttribute('aria-current', b.dataset.go === p ? 'page' : 'false'); });
+    $('kdTitle').textContent = TITLES[p];
+    if (p === 'orders' && !keep) { $('kdDetail').hidden = true; $('aOrders').hidden = false; }
+    if (p === 'new' && !keep && $('oForm').hidden) { $('oForm').hidden = false; $('oOk').hidden = true; }
     drawer.scrollTop = 0;
   }
-  function $$a(q) { return [].slice.call(drawer.querySelectorAll(q)); }
+  window.__kGo = function (v) { go(v); };
+  drawer.querySelectorAll('[data-go]').forEach(function (b) { b.addEventListener('click', function () { if (b.dataset.go === 'new') openOrder({}); else go(b.dataset.go); }); });
   $$a('[data-page]').forEach(function (b) { b.addEventListener('click', function () { go(b.dataset.page); }); });
-  $$a('.ap-back').forEach(function (b) { b.addEventListener('click', function () { go('home'); }); });
-  $('dHelp').href = 'https://wa.me/' + (window.KRATE ? KRATE.whatsapp : '') + '?text=' + encodeURIComponent('Hello Krate! I need help with my account.');
-  new MutationObserver(function () { if (!drawer.classList.contains('open')) go('home'); }).observe(drawer, { attributes: true, attributeFilter: ['class'] });
+  function $$a(q) { return [].slice.call(drawer.querySelectorAll(q)); }
+  $('kdClose').onclick = function () { show(false); };
+  $('aLogout2').onclick = function () { sb.auth.signOut(); };
+  var wa = 'https://wa.me/' + (window.KRATE ? KRATE.whatsapp : '') + '?text=' + encodeURIComponent('Hello Krate! I need help with my account.');
+  $('dHelp').href = wa; $('dHelp2').href = wa;
+  new MutationObserver(function () { if (!drawer.classList.contains('open')) go('overview'); }).observe(drawer, { attributes: true, attributeFilter: ['class'] });
+  go('overview');
   // ---- order from inside the account ----
   var PRICE = 7500, OFF = { 'week': 0.05, '2 weeks': 0.04, 'month': 0.03 }, O = { mode: 'once', qty: 1, freq: '2 weeks' };
   function oEach() { var f = O.qty * PRICE; return O.mode === 'sub' ? Math.round(f * (1 - OFF[O.freq]) / 50) * 50 : f; }
@@ -3073,12 +3391,12 @@ var KRATE_SUPABASE = {
     $('oWas').hidden = O.mode !== 'sub'; $('oWas').textContent = money(O.qty * PRICE);
     $('oTotal').textContent = money(oEach() + KRATE_PAY.deliveryFee - oCredit()); $('oFee').textContent = money(KRATE_PAY.deliveryFee);
     $('oPlace').textContent = 'Continue to payment';
-    $('oTitle').textContent = O.mode === 'sub' ? 'New subscription' : 'New order';
+    $('kdTitle').textContent = O.mode === 'sub' ? 'New subscription' : 'New order';
   }
   function openOrder(opt) {
     O.mode = opt.mode || 'once'; O.qty = opt.crates || 1;
     var f = $('oForm');
-    f.hidden = false; $('oOk').hidden = true; $('oTitle').hidden = false; $('oBack').hidden = false; $('oErr').hidden = true; $('oCb').checked = false;
+    f.hidden = false; $('oOk').hidden = true; $('oErr').hidden = true; $('oCb').checked = false;
     f.elements.phone.value = f.elements.phone.value || profile.phone || '';
     f.elements.address.value = defAddr();
     var box = $('oAddrs'); box.innerHTML = '';
@@ -3089,19 +3407,16 @@ var KRATE_SUPABASE = {
       box.appendChild(b);
     });
     box.hidden = !box.children.length;
-    $('aIn').classList.add('ordering'); $('dOrderV').hidden = false;
-    var m = drawer.querySelector('.acc-more'); if (m) m.open = false;
-    oUpdate(); drawer.scrollTop = 0;
+    go('new', true); oUpdate(); drawer.scrollTop = 0;
   }
-  function closeOrder() { $('aIn').classList.remove('ordering'); $('dOrderV').hidden = true; drawer.scrollTop = 0; }
+  function closeOrder() { go('overview'); }
   window.KRATE_ORDER_IN_ACCOUNT = function (opt) { open(); setTimeout(function () { if (user) openOrder(opt || {}); }, 80); };
   drawer.querySelectorAll('.o-modes [data-m]').forEach(function (b) { b.onclick = function () { O.mode = b.dataset.m; oUpdate(); }; });
   drawer.querySelectorAll('.o-freq [data-f]').forEach(function (b) { b.onclick = function () { O.freq = b.dataset.f; oUpdate(); }; });
   $('oMinus').onclick = function () { O.qty = Math.max(1, O.qty - 1); oUpdate(); };
   $('oPlus').onclick = function () { O.qty = Math.min(50, O.qty + 1); oUpdate(); };
   $('oCb').onchange = oUpdate;
-  new MutationObserver(function () { if (!drawer.classList.contains('open')) closeOrder(); }).observe(drawer, { attributes: true, attributeFilter: ['class'] });
-  $('oBack').onclick = closeOrder; $('oDone').onclick = closeOrder;
+  $('oDone').onclick = closeOrder;
   $('oForm').addEventListener('submit', function (e) {
     e.preventDefault();
     var f = this.elements, ok = true;
@@ -3111,7 +3426,7 @@ var KRATE_SUPABASE = {
     window.KRATE_CHECKOUT_PAY({ items: oEach(), itemsLabel: oWhat(), credit: cr, kind: O.mode, email: user.email, phone: order.phone }, function (pay) {
       order.total = pay.amount; order.delivery_fee = pay.deliveryFee; order.payment = pay.method; order.pay_status = pay.status; order.pay_ref = pay.ref;
       window.KRATE_SAVE_ORDER(order).then(function () {
-        $('oForm').hidden = true; $('oOk').hidden = false; $('oTitle').hidden = true; $('oBack').hidden = true;
+        $('oForm').hidden = true; $('oOk').hidden = false;
         $('oOkT').textContent = O.mode === 'sub' ? 'Subscription started!' : 'Order placed!';
         $('oOkMsg').textContent = 'Order ' + pay.ref + ' · ' + oWhat() + ' · ' + (pay.status === 'paid' ? 'paid ' + money(pay.amount) : 'transfer of ' + money(pay.amount) + ' awaiting confirmation') + ' (incl. ' + money(pay.deliveryFee) + ' delivery). We’ll text ' + order.phone + ' to confirm the time.';
         drawer.scrollTop = 0;
@@ -3119,7 +3434,7 @@ var KRATE_SUPABASE = {
     });
   });
   window.KRATE_OPEN_ACCOUNT = open;
-  var fl = document.querySelector('.f-logo svg'); if (fl) $('aBrand').appendChild(fl.cloneNode(true));
+  var fl = document.querySelector('.f-logo svg'); if (fl) { $('aBrand').appendChild(fl.cloneNode(true)); $('kdLogo').appendChild(fl.cloneNode(true)); $('kdLogoM').appendChild(fl.cloneNode(true)); }
   view();
 })();
 
@@ -3252,7 +3567,7 @@ var KRATE_SUPABASE = {
   // fields rise in one by one whenever the form changes or opens
   function stagger() {
     if (RM) return;
-    $$('#aOut .acc-big, #aOut label:not([hidden]), #aOut .c-checkout, #aOut .a-link, #aOut .acc-switch, #aIn > *', drawer).forEach(function (el, i) {
+    $$('#aOut .acc-big, #aOut label:not([hidden]), #aOut .c-checkout, #aOut .a-link, #aOut .acc-switch, #aIn .kd-page:not([hidden]) > *', drawer).forEach(function (el, i) {
       el.classList.remove('ix-rise'); void el.offsetWidth; el.style.setProperty('--d', (i * 55) + 'ms'); el.classList.add('ix-rise');
     });
   }
