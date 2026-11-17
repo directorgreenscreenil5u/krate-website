@@ -1304,6 +1304,39 @@ footer nav a{font-size:20px!important}
 .sx-product{min-height:0!important;padding:46px 30px 84px}
 .sx-product img{width:62%}
 @media (max-width:900px){.sx-product img{width:74%}}
+/* ---- order inside the account ---- */
+#aIn.ordering>:not(#dOrderV){display:none!important}
+.o-view[hidden]{display:none!important}
+.o-back{display:inline-flex;margin-bottom:6px;padding:8px 14px;border:0;border-radius:999px;background:rgba(1,70,33,.15);color:#fff;font:700 14px 'Inter Tight',sans-serif;cursor:pointer}
+.acc .o-title{color:#fff;font-size:clamp(48px,6.4vw,96px)!important;margin:6px 0 20px;text-shadow:0 .04em 0 rgba(1,70,33,.25)}
+.o-card{gap:16px!important}
+.o-card[hidden],.o-ok[hidden]{display:none!important}
+.o-modes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.o-modes button,.o-freq button{display:grid;gap:2px;text-align:left;padding:14px;border-radius:16px;border:2px solid #014621;background:#fff;color:#014621;cursor:pointer;font:inherit}
+.o-modes b{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:20px;text-transform:uppercase}
+.o-modes small{font:600 13px 'Inter Tight',sans-serif;color:#4a4446}
+.o-modes [aria-checked="true"]{background:#014621;color:#5bc20f}
+.o-modes [aria-checked="true"] small{color:#f6eceb}
+.o-freq{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.o-freq[hidden]{display:none}
+.o-freq button{padding:10px;text-align:center;font:700 13px 'Inter Tight',sans-serif;border-radius:999px}
+.o-freq small{color:#1e9207}
+.o-freq [aria-checked="true"]{background:#014621;color:#f6eceb}
+.o-freq [aria-checked="true"] small{color:#5bc20f}
+.o-line{display:flex;align-items:center;justify-content:space-between}
+.o-lab{font:700 12px 'Inter Tight',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#014621}
+.o-sec{display:grid;gap:8px}
+.o-card textarea,.o-card input:not([type=checkbox]){width:100%;box-sizing:border-box;min-height:52px;padding:12px 14px;border:2px solid rgba(1,70,33,.15);border-radius:14px;background:#fff;font:400 16px 'Inter Tight',sans-serif;color:#191718}
+.o-card textarea{min-height:0}
+.o-addrs[hidden]{display:none}
+.o-sum{display:flex;align-items:baseline;gap:10px;padding-top:14px;border-top:2px dashed rgba(1,70,33,.2);color:#014621;font:600 14px 'Inter Tight',sans-serif}
+.o-sum span{flex:1}
+.o-sum s{color:#8a8183;font-weight:700}
+.o-sum s[hidden]{display:none}
+.o-sum strong{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:36px;line-height:1}
+.o-ok{display:grid;justify-items:center;gap:10px}
+.o-okmsg{margin:0 0 6px;max-width:440px;font:600 16px/1.5 'Inter Tight',sans-serif;color:#fff;text-shadow:0 1px 2px rgba(1,70,33,.35)}
+.o-title[hidden],.o-back[hidden]{display:none!important}
 </style></head>
 <body>
 
@@ -1747,6 +1780,36 @@ a{color:#014621}a:hover{color:#191718}
 <button type="button" class="acc-cb" id="dCbChip" data-page="cash">Cashback</button>
 <section class="n-next" id="dNext" aria-live="polite"></section>
 <button type="button" class="acc-go" id="dAgain"><b>Reorder in one tap</b><small id="dAgainSub">Same as last time</small></button>
+<div class="o-view" id="dOrderV" hidden>
+<button type="button" class="o-back" id="oBack">← Back</button>
+<h2 class="acc-big o-title" id="oTitle">New order</h2>
+<form class="acc-card o-card" id="oForm" novalidate>
+<div class="o-modes" role="radiogroup" aria-label="How do you want to buy?">
+<button type="button" role="radio" aria-checked="true" data-m="once"><b>One-time</b><small>₦7,500 a crate</small></button>
+<button type="button" role="radio" aria-checked="false" data-m="sub"><b>Subscribe</b><small>Save up to 5%</small></button>
+</div>
+<div class="o-freq" id="oFreq" hidden role="radiogroup" aria-label="Delivery frequency">
+<button type="button" role="radio" aria-checked="false" data-f="week">Weekly <small>−5%</small></button>
+<button type="button" role="radio" aria-checked="true" data-f="2 weeks">Every 2 weeks <small>−4%</small></button>
+<button type="button" role="radio" aria-checked="false" data-f="month">Monthly <small>−3%</small></button>
+</div>
+<div class="o-line"><span class="o-lab">Crates</span><div class="hs-qty o-qty" role="group" aria-label="Crates"><button type="button" id="oMinus" aria-label="One fewer crate">−</button><output id="oQty">1</output><button type="button" id="oPlus" aria-label="One more crate">+</button></div></div>
+<div class="o-sec"><span class="o-lab">Deliver to</span><div class="c-addrs o-addrs" id="oAddrs"></div><textarea name="address" rows="2" required placeholder="House number, street, area, city"></textarea></div>
+<div class="o-sec"><span class="o-lab">Phone</span><input name="phone" type="tel" required autocomplete="tel"></div>
+<div class="o-sec"><span class="o-lab">Preferred day</span><input name="when" placeholder="e.g. Saturday morning"></div>
+<label class="c-cb" id="oCbRow" hidden><input type="checkbox" id="oCb"><span>Use <b id="oCbAmt">₦0</b> cashback</span></label>
+<div class="o-sum"><span id="oWhat">1 crate</span><s id="oWas" hidden></s><strong id="oTotal">₦7,500</strong></div>
+<p class="p-error" id="oErr" role="alert" hidden>Add your phone and delivery address.</p>
+<button type="submit" class="c-checkout" id="oPlace">Place order</button>
+<p class="a-note">Pay on delivery. We’ll text you to confirm the time.</p>
+</form>
+<div class="o-ok" id="oOk" hidden>
+<span class="c-ok-tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+<h2 class="acc-big o-title" id="oOkT">Order placed!</h2>
+<p class="o-okmsg" id="oOkMsg"></p>
+<button type="button" class="acc-go" id="oDone"><b>Back to my Krate</b></button>
+</div>
+</div>
 <details class="acc-more">
 <summary>More <span aria-hidden="true">▾</span></summary>
 <div class="acc-sheet">
@@ -2614,7 +2677,7 @@ var KRATE_SUPABASE = {
       box.append(el('small', 'n-k', 'Subscription paused'), el('p', 'n-big', 'Deliveries are on hold'), el('p', 'n-sub', 'Resume your subscription any time from the Subscription page.'));
     } else {
       box.classList.add('n-empty');
-      var go = el('a', 'n-cta', 'Order your first Krate →'); go.href = '#shop'; go.onclick = function () { show(false); };
+      var go = el('button', 'n-cta', 'Order your first Krate →'); go.type = 'button'; go.onclick = function () { openOrder({}); };
       box.append(el('p', 'n-big', 'Your first Krate is one tap away'), el('p', 'n-sub', '30 fresh jumbo eggs, delivered to your door. Pay on delivery.'), go);
     }
   }
@@ -2624,7 +2687,7 @@ var KRATE_SUPABASE = {
     if (!o) {
       var t = el('div', 'n-row-t'); t.append(el('small', '', 'Subscription'), el('b', '', 'Save up to 5% on repeat'));
       var b = el('button', 'n-link', 'Set up'); b.type = 'button';
-      b.onclick = function () { show(false); setTimeout(function () { var r = document.querySelector('input[name=spMode][value=sub]'); if (r) { r.checked = true; r.dispatchEvent(new Event('change')); } document.getElementById('shop').scrollIntoView({ behavior: 'smooth' }); }, 350); };
+      b.onclick = function () { openOrder({ mode: 'sub' }); };
       a.append(t, b); return;
     }
     var t2 = el('div', 'n-row-t'); t2.append(el('small', '', o.status === 'paused' ? 'Subscription · paused' : 'Subscription'), el('b', '', o.summary.replace(' every', ', every') + ' · ' + money(o.total)));
@@ -2663,17 +2726,7 @@ var KRATE_SUPABASE = {
     $('dCbChip').hidden = !bal; $('dCbChip').textContent = money(bal) + ' cashback ready';
   }
   // one-tap reorder: same crates, straight to checkout with details filled in
-  $('dAgain').onclick = function () {
-    if (!lastOrder) return;
-    show(false);
-    setTimeout(function () {
-      var r = document.querySelector('input[name=spMode][value=once]'); if (r) { r.checked = true; r.dispatchEvent(new Event('change')); }
-      var q = document.getElementById('hsQty'), plus = document.getElementById('hsPlus'), minus = document.getElementById('hsMinus');
-      for (var i = 0; i < 60 && +q.textContent > 1; i++) minus.click();
-      for (var j = 1; j < (lastOrder.crates || 1); j++) plus.click();
-      document.getElementById('hsGo').click();
-    }, 350);
-  };
+  $('dAgain').onclick = function () { if (lastOrder) openOrder({ mode: 'once', crates: lastOrder.crates || 1 }); };
   $('dInvite').onclick = function () {
     var text = 'I get my eggs from Krate: 30 fresh jumbo eggs, delivered. ' + location.origin + location.pathname;
     if (navigator.share) navigator.share({ title: 'Krate', text: text }).catch(function () {});
@@ -2717,6 +2770,65 @@ var KRATE_SUPABASE = {
   $$a('.ap-back').forEach(function (b) { b.addEventListener('click', function () { go('home'); }); });
   $('dHelp').href = 'https://wa.me/' + (window.KRATE ? KRATE.whatsapp : '') + '?text=' + encodeURIComponent('Hello Krate! I need help with my account.');
   new MutationObserver(function () { if (!drawer.classList.contains('open')) go('home'); }).observe(drawer, { attributes: true, attributeFilter: ['class'] });
+  // ---- order from inside the account ----
+  var PRICE = 7500, OFF = { 'week': 0.05, '2 weeks': 0.04, 'month': 0.03 }, O = { mode: 'once', qty: 1, freq: '2 weeks' };
+  function oEach() { var f = O.qty * PRICE; return O.mode === 'sub' ? Math.round(f * (1 - OFF[O.freq]) / 50) * 50 : f; }
+  function oCredit() { return $('oCb').checked && !$('oCbRow').hidden ? Math.min(window.KRATE_CASHBACK || 0, oEach()) : 0; }
+  function oWhat() { var c = O.qty + (O.qty > 1 ? ' crates' : ' crate'); return O.mode === 'sub' ? c + ' every ' + O.freq : c; }
+  function oUpdate() {
+    $('oQty').textContent = O.qty;
+    drawer.querySelectorAll('.o-modes [data-m]').forEach(function (b) { b.setAttribute('aria-checked', b.dataset.m === O.mode); });
+    drawer.querySelectorAll('.o-freq [data-f]').forEach(function (b) { b.setAttribute('aria-checked', b.dataset.f === O.freq); });
+    $('oFreq').hidden = O.mode !== 'sub';
+    var bal = window.KRATE_CASHBACK || 0; $('oCbRow').hidden = !bal; $('oCbAmt').textContent = money(Math.min(bal, oEach()));
+    $('oWhat').textContent = oWhat() + (O.mode === 'sub' ? ' · per delivery' : '');
+    $('oWas').hidden = O.mode !== 'sub'; $('oWas').textContent = money(O.qty * PRICE);
+    $('oTotal').textContent = money(oEach() - oCredit());
+    $('oPlace').textContent = O.mode === 'sub' ? 'Start subscription' : 'Place order';
+    $('oTitle').textContent = O.mode === 'sub' ? 'New subscription' : 'New order';
+  }
+  function openOrder(opt) {
+    O.mode = opt.mode || 'once'; O.qty = opt.crates || 1;
+    var f = $('oForm');
+    f.hidden = false; $('oOk').hidden = true; $('oTitle').hidden = false; $('oBack').hidden = false; $('oErr').hidden = true; $('oCb').checked = false;
+    f.elements.phone.value = f.elements.phone.value || profile.phone || '';
+    f.elements.address.value = defAddr();
+    var box = $('oAddrs'); box.innerHTML = '';
+    (profile.addresses || []).forEach(function (ad) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'c-addr' + (ad.text === f.elements.address.value ? ' on' : '');
+      var l = document.createElement('b'); l.textContent = ad.label; var t = document.createElement('span'); t.textContent = ad.text; b.append(l, t);
+      b.onclick = function () { f.elements.address.value = ad.text; box.querySelectorAll('.c-addr').forEach(function (x) { x.classList.toggle('on', x === b); }); };
+      box.appendChild(b);
+    });
+    box.hidden = !box.children.length;
+    $('aIn').classList.add('ordering'); $('dOrderV').hidden = false;
+    var m = drawer.querySelector('.acc-more'); if (m) m.open = false;
+    oUpdate(); drawer.scrollTop = 0;
+  }
+  function closeOrder() { $('aIn').classList.remove('ordering'); $('dOrderV').hidden = true; drawer.scrollTop = 0; }
+  window.KRATE_ORDER_IN_ACCOUNT = function (opt) { open(); setTimeout(function () { if (user) openOrder(opt || {}); }, 80); };
+  drawer.querySelectorAll('.o-modes [data-m]').forEach(function (b) { b.onclick = function () { O.mode = b.dataset.m; oUpdate(); }; });
+  drawer.querySelectorAll('.o-freq [data-f]').forEach(function (b) { b.onclick = function () { O.freq = b.dataset.f; oUpdate(); }; });
+  $('oMinus').onclick = function () { O.qty = Math.max(1, O.qty - 1); oUpdate(); };
+  $('oPlus').onclick = function () { O.qty = Math.min(50, O.qty + 1); oUpdate(); };
+  $('oCb').onchange = oUpdate;
+  new MutationObserver(function () { if (!drawer.classList.contains('open')) closeOrder(); }).observe(drawer, { attributes: true, attributeFilter: ['class'] });
+  $('oBack').onclick = closeOrder; $('oDone').onclick = closeOrder;
+  $('oForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = this.elements, ok = true;
+    ['phone', 'address'].forEach(function (k) { var bad = !f[k].value.trim(); f[k].classList.toggle('is-bad', bad); if (bad) ok = false; });
+    $('oErr').hidden = ok; if (!ok) return;
+    var btn = $('oPlace'); btn.disabled = true; btn.textContent = 'Placing…';
+    var cr = oCredit(), order = { kind: O.mode, summary: oWhat(), crates: O.qty, frequency: O.mode === 'sub' ? O.freq : null, total: oEach() - cr, credit: cr, name: profile.name, phone: f.phone.value.trim(), address: f.address.value.trim(), when: f.when.value.trim() };
+    window.KRATE_SAVE_ORDER(order).then(function (saved) {
+      btn.disabled = false;
+      $('oForm').hidden = true; $('oOk').hidden = false; $('oTitle').hidden = true; $('oBack').hidden = true;
+      $('oOkT').textContent = O.mode === 'sub' ? 'Subscription started!' : 'Order placed!';
+      $('oOkMsg').textContent = 'Order KR' + String((saved && saved.id) || Date.now()).slice(-5) + ' · ' + oWhat() + ' · ' + money(order.total) + (O.mode === 'sub' ? ' per delivery' : '') + '. Pay on delivery. We’ll text ' + order.phone + ' to confirm the time.';
+      drawer.scrollTop = 0;
+    });
+  });
   window.KRATE_OPEN_ACCOUNT = open;
   var fl = document.querySelector('.f-logo svg'); if (fl) $('aBrand').appendChild(fl.cloneNode(true));
   view();
