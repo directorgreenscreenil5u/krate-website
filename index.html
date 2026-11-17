@@ -1399,6 +1399,11 @@ footer nav a{font-size:20px!important}
 .sm-note{margin:0;font:500 14px 'Inter Tight',sans-serif;color:#4a4446}
 .sm-note a{color:#014621;font-weight:700}
 @media (max-width:743px){.sm{padding:16vw 6vw 20vw}.sm-h2{font-size:16vw}.sm-modes .sx-opt{padding:10px 16px}}
+.sm-row{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.sm-row .sm-modes,.sm-row .sm-qty{height:56px;box-sizing:border-box}
+.sm-row .sm-qty button{height:52px;width:46px}
+.sm-freq.open{animation:spIn .3s ease both}
+@media (max-width:743px){.sm-row{gap:8px}.sm-modes .sx-opt{padding:10px 12px}.sm-modes .sx-opt small{display:none}.sm-row .sm-qty button{width:38px}}
 </style></head>
 <body>
 
@@ -1716,13 +1721,15 @@ a{color:#014621}a:hover{color:#191718}
 <span class="hs-jumbo sm-seal" aria-label="Jumbo eggs"><svg class="hs-burst" viewBox="0 0 100 100" aria-hidden="true"><polygon points="100.0,50.0 93.6,55.7 98.3,62.9 90.7,66.8 93.3,75.0 84.9,76.8 85.4,85.4 76.8,84.9 75.0,93.3 66.8,90.7 62.9,98.3 55.7,93.6 50.0,100.0 44.3,93.6 37.1,98.3 33.2,90.7 25.0,93.3 23.2,84.9 14.6,85.4 15.1,76.8 6.7,75.0 9.3,66.8 1.7,62.9 6.4,55.7 0.0,50.0 6.4,44.3 1.7,37.1 9.3,33.2 6.7,25.0 15.1,23.2 14.6,14.6 23.2,15.1 25.0,6.7 33.2,9.3 37.1,1.7 44.3,6.4 50.0,0.0 55.7,6.4 62.9,1.7 66.8,9.3 75.0,6.7 76.8,15.1 85.4,14.6 84.9,23.2 93.3,25.0 90.7,33.2 98.3,37.1 93.6,44.3"></polygon><circle cx="50" cy="50" r="38"></circle></svg><small>Extra large</small><b>Jumbo</b><small>30 per crate</small></span>
 </div>
 <p class="sm-line">30 jumbo eggs · <strong id="hsPrice">₦7,500</strong> <s id="hsWas" hidden></s><span id="hsPer" class="sm-per"></span></p>
+<div class="sm-row">
 <div class="sm-modes" role="radiogroup" aria-label="How do you want to buy?">
 <label class="sx-opt" data-mode="once"><input type="radio" name="spMode" value="once" checked><b>One-time</b></label>
 <label class="sx-opt" data-mode="sub"><input type="radio" name="spMode" value="sub"><b>Subscribe</b><small>save up to 5%</small></label>
 </div>
-<div class="sp-freq sm-freq" id="hsFreq"><span class="hs-chips" role="radiogroup" aria-label="Delivery frequency"><button type="button" role="radio" aria-checked="false" data-f="week">Weekly <small>−5%</small></button><button type="button" role="radio" aria-checked="true" data-f="2 weeks">Every 2 weeks <small>−4%</small></button><button type="button" role="radio" aria-checked="false" data-f="month">Monthly <small>−3%</small></button></span></div>
 <div class="hs-qty sm-qty" role="group" aria-label="Crates"><button type="button" id="hsMinus" aria-label="One fewer crate">−</button><output id="hsQty">1</output><button type="button" id="hsPlus" aria-label="One more crate">+</button></div>
+</div>
 <button type="button" class="sm-go" id="hsGo">Order now</button>
+<div class="sp-freq sm-freq" id="hsFreq"><span class="hs-chips" role="radiogroup" aria-label="Delivery frequency"><button type="button" role="radio" aria-checked="false" data-f="week">Weekly <small>−5%</small></button><button type="button" role="radio" aria-checked="true" data-f="2 weeks">Every 2 weeks <small>−4%</small></button><button type="button" role="radio" aria-checked="false" data-f="month">Monthly <small>−3%</small></button></span></div>
 <p class="sm-note">Pay on delivery · <a href="#partners">Buying for a business?</a></p>
 <span hidden><span id="sxSub"></span><span id="sxDiscRow"><span id="sxDiscLabel"></span><span id="hsSave"></span></span><span id="spOncePrice"></span></span>
 </div>
