@@ -914,6 +914,71 @@ footer nav a{font-size:20px!important}
 }
 .a-big.a-long{font-size:clamp(34px,3.6vw,56px)}
 @media (max-width:743px){.a-big.a-long{font-size:10vw}.a-drawer.is-in .a-hero{min-height:0;padding-top:70px}.a-drawer.is-in .a-egg{width:17%;top:18px}.a-drawer.is-in .a-egg2{width:11%;top:40px;right:24%}}
+/* ================= dashboard v2: next delivery first, simple rows ================= */
+#aIn{gap:14px}
+.n-next{position:relative;overflow:hidden;padding:22px;border-radius:24px;background:#014621;color:#f6eceb;display:grid;gap:4px}
+.n-next::after{content:"";position:absolute;right:-26px;top:-30px;width:120px;height:150px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:#5bc20f;opacity:.16;rotate:20deg}
+.n-next.n-quiet{background:#fff;color:#014621;border:2px dashed rgba(1,70,33,.25)}
+.n-next.n-quiet::after{opacity:.12}
+.n-k{font:700 12px 'Inter Tight',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#5bc20f}
+.n-quiet .n-k{color:#1e9207}
+.n-big{margin:2px 0 0;font-family:'Bagel Fat One',sans-serif;font-size:clamp(38px,4vw,52px);line-height:.95;text-transform:uppercase}
+.n-sub{margin:0;font:500 14px/1.45 'Inter Tight',sans-serif;opacity:.85}
+.n-cta{justify-self:start;margin-top:10px;min-height:46px;padding:0 20px;display:inline-flex;align-items:center;border-radius:999px;background:#f53509;color:#191718;font:700 14px 'Inter Tight',sans-serif;text-decoration:none;position:relative;z-index:1}
+.n-track{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;position:relative;z-index:1}
+.n-track li{padding-top:10px;border-top:4px solid rgba(246,236,235,.2);font:600 11px 'Inter Tight',sans-serif;color:rgba(246,236,235,.55)}
+.n-track li.on{border-top-color:#5bc20f;color:#f6eceb}
+.n-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.n-act{display:grid;gap:2px;text-align:left;padding:14px 16px;border-radius:18px;border:2px solid rgba(1,70,33,.15);background:#fff;color:#014621;cursor:pointer;transition:border-color .2s,transform .25s cubic-bezier(.2,.9,.25,1.5)}
+.n-act:hover{border-color:#014621;transform:translateY(-2px)}
+.n-act:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.n-act b{font:700 16px 'Inter Tight',sans-serif}
+.n-act small{font:500 13px 'Inter Tight',sans-serif;color:#4a4446}
+.n-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:18px;background:#fff;border:2px solid rgba(1,70,33,.1)}
+.n-row-t{display:grid;gap:2px;min-width:0}
+.n-row-t small{font:700 11px 'Inter Tight',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#1e9207}
+.n-row-t b{font:600 15px 'Inter Tight',sans-serif;color:#191718;overflow-wrap:anywhere}
+.n-acts{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.n-link{flex:none;min-height:36px;padding:0 10px;border:0;border-radius:999px;background:none;color:#014621;font:700 14px 'Inter Tight',sans-serif;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.n-link:hover{background:#f6eceb}
+.n-danger{color:#b02208}
+.n-form{padding:16px;border-radius:18px;background:#fff;border:2px solid rgba(1,70,33,.1)}
+.n-form[hidden]{display:none}
+.n-orders h4{margin:8px 0 6px;font:700 12px 'Inter Tight',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#014621}
+.n-order{display:flex;gap:12px;align-items:baseline;padding:10px 2px;border-bottom:1px dashed rgba(1,70,33,.18);font:500 14px 'Inter Tight',sans-serif}
+.n-order:last-child{border-bottom:0}
+.n-d{flex:none;width:54px;color:#4a4446}
+.n-w{flex:1;color:#191718}
+.n-p{font-weight:700;color:#014621}
+.n-none{margin:0;padding:8px 2px;font:500 14px 'Inter Tight',sans-serif;color:#4a4446}
+@media (max-width:743px){
+ .n-row{flex-wrap:wrap}
+ .n-row .n-acts{width:100%;justify-content:flex-start;margin-left:-10px}
+ .n-addr{flex-wrap:nowrap}
+ .n-big{font-size:11vw}
+}
+/* account fills the whole screen on desktop too */
+@media (min-width:744px){
+ .a-drawer{left:0;top:0;width:100vw;height:100vh;max-height:none;border-radius:0;grid-template-columns:minmax(320px,.8fr) 1.2fr;transform:translateY(4%) scale(.98)}
+ .a-drawer.open{transform:none}
+ .a-hero{padding:56px 52px;justify-content:flex-end}
+ .a-big{font-size:clamp(56px,6.4vw,110px)}
+ .a-big.a-long{font-size:clamp(44px,4.6vw,80px)}
+ .a-egg{width:40%;right:8%;top:12%;bottom:auto}
+ .a-egg2{width:24%;right:42%;top:20%;bottom:auto}
+ .a-hero.ix-shy .a-egg{top:-60%}
+ .a-panel{padding:72px 6vw 48px;justify-content:center;overflow-y:auto}
+ .a-panel>*{width:100%;max-width:520px;margin-left:auto;margin-right:auto}
+ .a-x{position:fixed;top:24px;right:24px;width:52px;height:52px;font-size:26px}
+ .a-drawer.is-in .a-panel{justify-content:flex-start}
+ .a-drawer.is-in .a-panel>*{max-width:760px}
+ #aIn{grid-template-columns:1fr 1fr;align-items:start;gap:16px}
+ #aIn>.n-next,#aIn>.n-actions,#aIn>.n-orders,#aIn>#aLogout,#aIn>.a-hi{grid-column:1 / -1}
+ #aIn>.n-form{grid-column:2}
+ .n-next{padding:30px}
+ .n-big{font-size:clamp(48px,5vw,76px)}
+}
+@media (min-width:744px){.a-big.a-long{font-size:clamp(36px,3.5vw,64px)}.a-big{overflow-wrap:anywhere}}
 </style></head>
 <body>
 
@@ -1349,29 +1414,27 @@ a{color:#014621}a:hover{color:#191718}
 <!-- signed in -->
 <div id="aIn" hidden>
 <p class="a-hi">Hi <strong id="aName">there</strong></p>
-<div class="d-stats"><span><b id="dOrders">0</b> orders</span><span><b id="dSpent">₦0</b> spent</span><span><b id="dSaved">₦0</b> saved</span></div>
-<section class="d-sec" aria-labelledby="aSubsT">
-<h4 id="aSubsT">Your subscription</h4>
-<div id="aSubs" class="d-subs"></div>
-</section>
-<div class="d-actions">
-<button type="button" class="d-act" id="dAgain"><span aria-hidden="true">↻</span>Order again</button>
-<a class="d-act" id="dChat" href="#partners" target="_blank" rel="noopener"><span aria-hidden="true">💬</span>Chat with us</a>
+<section class="n-next" id="dNext" aria-live="polite"></section>
+<div class="n-actions">
+<button type="button" class="n-act" id="dAgain"><b>Reorder</b><small id="dAgainSub">Same as last time</small></button>
+<button type="button" class="n-act" id="dInvite"><b>Invite a friend</b><small>Share Krate on WhatsApp</small></button>
 </div>
-<section class="d-sec" aria-labelledby="aOrdT">
-<h4 id="aOrdT">Recent orders</h4>
-<div id="aOrders" class="d-orders"></div>
+<section class="n-row" id="aSubs" aria-label="Your subscription"></section>
+<section class="n-row n-addr" aria-label="Delivery address">
+<div class="n-row-t"><small>Delivering to</small><b id="dAddr">Add your address</b></div>
+<button type="button" class="n-link" id="dAddrBtn" aria-expanded="false">Change</button>
 </section>
-<details class="d-sec d-details">
-<summary>My details <span aria-hidden="true">+</span></summary>
-<form class="c-form" id="aDetails" novalidate>
+<form class="c-form n-form" id="aDetails" novalidate hidden>
 <label>Full name<input name="name" autocomplete="name"></label>
 <label>Phone / WhatsApp<input name="phone" type="tel" autocomplete="tel"></label>
 <label>Delivery address<textarea name="address" rows="2" autocomplete="street-address"></textarea></label>
-<button type="submit" class="c-checkout">Save details</button>
-<p class="p-done" id="aSaved" hidden>Saved. We’ll fill these in at checkout.</p>
+<button type="submit" class="c-checkout">Save</button>
+<p class="p-done" id="aSaved" hidden>Saved. We’ll use this at checkout.</p>
 </form>
-</details>
+<section class="n-orders" aria-labelledby="aOrdT">
+<h4 id="aOrdT">Past orders</h4>
+<div id="aOrders"></div>
+</section>
 <button type="button" class="a-link" id="aLogout">Log out</button>
 </div>
 </div>
@@ -2109,75 +2172,97 @@ var KRATE_SUPABASE = {
     sb.from('orders').select('*').eq('user_id', user.id).order('created_at', { ascending: false }).then(function (r) { list(r.data || []); });
   }
   function prefill() {
+    if ($('dAddr')) $('dAddr').textContent = profile.address || 'Add your address';
     var c = $('cForm'); if (!c) return;
     ['name', 'phone', 'address'].forEach(function (k) { if (c.elements[k] && !c.elements[k].value && profile[k]) c.elements[k].value = profile[k]; });
   }
-  var lastOrder = null;
-  function fmtDate(d) { return new Date(d).toLocaleDateString('en-NG', { day: 'numeric', month: 'short' }); }
-  function subCard(o) {
-    var el = document.createElement('div'); el.className = 'd-sub d-' + o.status;
-    var top = document.createElement('div'); top.className = 'd-sub-top';
-    var st = document.createElement('span'); st.className = 'd-pill'; st.textContent = o.status === 'active' ? '● Active' : o.status === 'paused' ? '❚❚ Paused' : 'Cancelled';
-    var pr = document.createElement('span'); pr.className = 'd-sub-price'; pr.textContent = money(o.total) + ' / delivery';
-    top.append(st, pr);
-    var big = document.createElement('p'); big.className = 'd-sub-big';
-    big.textContent = o.crates + (o.crates > 1 ? ' crates' : ' crate');
-    var every = document.createElement('p'); every.className = 'd-sub-every'; every.textContent = 'every ' + (o.frequency || 'week') + ' · since ' + fmtDate(o.created_at);
-    el.append(top, big, every);
-    if (o.status !== 'cancelled') {
-      var acts = document.createElement('div'); acts.className = 'd-sub-acts';
-      var pz = document.createElement('button'); pz.type = 'button'; pz.textContent = o.status === 'paused' ? 'Resume' : 'Pause';
-      pz.onclick = function () { setStatus(o, o.status === 'paused' ? 'active' : 'paused'); };
-      var cx = document.createElement('button'); cx.type = 'button'; cx.className = 'd-ghost'; cx.textContent = 'Cancel';
-      cx.onclick = function () { if (confirmCancel(cx)) setStatus(o, 'cancelled'); };
-      acts.append(pz, cx); el.appendChild(acts);
+  var lastOrder = null, DAY = 864e5, STEP = { 'week': 7, '2 weeks': 14, 'month': 30 };
+  function fmt(d, o) { return d.toLocaleDateString('en-NG', o || { weekday: 'long', day: 'numeric', month: 'long' }); }
+  function nextDate(o) {
+    var step = (STEP[o.frequency] || 7) * DAY, first = new Date(o.created_at).getTime() + 2 * DAY, now = Date.now();
+    var t = first; while (t < now - DAY / 2) t += step;
+    if (o.skip_next) t += step;
+    return new Date(t);
+  }
+  function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+  function tracker(stage) {
+    var t = el('ol', 'n-track'); ['Placed', 'Confirmed', 'On the way', 'Delivered'].forEach(function (s, i) { var li = el('li', i <= stage ? 'on' : '', s); if (i === stage) li.setAttribute('aria-current', 'step'); t.appendChild(li); }); return t;
+  }
+  function renderNext(rows) {
+    var box = $('dNext'); box.innerHTML = ''; box.className = 'n-next';
+    var sub = rows.find(function (o) { return o.kind === 'sub' && o.status === 'active'; });
+    var paused = rows.find(function (o) { return o.kind === 'sub' && o.status === 'paused'; });
+    var open = rows.find(function (o) { return o.kind !== 'sub' && o.status === 'placed'; });
+    if (open) {
+      box.append(el('small', 'n-k', 'Latest order'), el('p', 'n-big', open.summary), el('p', 'n-sub', money(open.total) + ' · placed ' + fmt(new Date(open.created_at), { day: 'numeric', month: 'short' }) + ' · we’ll confirm the time on WhatsApp'), tracker(0));
+    } else if (sub) {
+      var d = nextDate(sub), days = Math.max(0, Math.round((d - Date.now()) / DAY));
+      box.append(el('small', 'n-k', 'Next delivery'), el('p', 'n-big', days === 0 ? 'Today' : days === 1 ? 'Tomorrow' : 'In ' + days + ' days'), el('p', 'n-sub', fmt(d) + ' · ' + sub.summary.replace(/ every.*/, '') + ' · ' + money(sub.total)), tracker(days <= 1 ? 2 : 1));
+    } else if (paused) {
+      box.classList.add('n-quiet');
+      box.append(el('small', 'n-k', 'Deliveries paused'), el('p', 'n-big', 'On hold'), el('p', 'n-sub', 'Resume your subscription below whenever you’re ready.'));
+    } else {
+      box.classList.add('n-quiet');
+      var go = el('a', 'n-cta', 'Order a Krate →'); go.href = '#shop'; go.onclick = function () { show(false); };
+      box.append(el('small', 'n-k', 'Next delivery'), el('p', 'n-big', 'Nothing booked'), el('p', 'n-sub', '30 jumbo eggs, delivered. Pay on delivery.'), go);
     }
-    return el;
   }
-  function orderRow(o) {
-    var el = document.createElement('div'); el.className = 'd-order';
-    var d = document.createElement('span'); d.className = 'd-date'; d.innerHTML = '<b></b><small></small>';
-    var dt = new Date(o.created_at); d.querySelector('b').textContent = dt.getDate(); d.querySelector('small').textContent = dt.toLocaleDateString('en-NG', { month: 'short' });
-    var t = document.createElement('span'); t.className = 'd-what'; t.textContent = o.summary + (o.kind === 'sub' ? ' (subscription)' : '');
-    var p = document.createElement('span'); p.className = 'd-amt'; p.textContent = money(o.total);
-    el.append(d, t, p); return el;
+  function renderSub(rows) {
+    var a = $('aSubs'); a.innerHTML = '';
+    var o = rows.find(function (x) { return x.kind === 'sub' && x.status !== 'cancelled'; });
+    if (!o) {
+      var t = el('div', 'n-row-t'); t.append(el('small', '', 'Subscription'), el('b', '', 'Save up to 5% on repeat'));
+      var b = el('button', 'n-link', 'Set up'); b.type = 'button';
+      b.onclick = function () { show(false); setTimeout(function () { var r = document.querySelector('input[name=spMode][value=sub]'); if (r) { r.checked = true; r.dispatchEvent(new Event('change')); } document.getElementById('shop').scrollIntoView({ behavior: 'smooth' }); }, 350); };
+      a.append(t, b); return;
+    }
+    var t2 = el('div', 'n-row-t'); t2.append(el('small', '', o.status === 'paused' ? 'Subscription · paused' : 'Subscription'), el('b', '', o.summary.replace(' every', ', every') + ' · ' + money(o.total)));
+    var acts = el('div', 'n-acts');
+    if (o.status === 'active') { var sk = el('button', 'n-link', o.skip_next ? 'Unskip' : 'Skip next'); sk.type = 'button'; sk.onclick = function () { sb.from('orders').update({ skip_next: !o.skip_next }).eq('id', o.id).then(load); }; acts.appendChild(sk); }
+    var pz = el('button', 'n-link', o.status === 'paused' ? 'Resume' : 'Pause'); pz.type = 'button'; pz.onclick = function () { setStatus(o, o.status === 'paused' ? 'active' : 'paused'); };
+    var cx = el('button', 'n-link n-danger', 'Cancel'); cx.type = 'button'; cx.onclick = function () { if (confirmCancel(cx)) setStatus(o, 'cancelled'); };
+    acts.append(pz, cx); a.append(t2, acts);
   }
-  function confirmCancel(b) { if (b.dataset.sure) return true; b.dataset.sure = '1'; b.textContent = 'Tap again to cancel'; setTimeout(function () { delete b.dataset.sure; b.textContent = 'Cancel'; }, 3000); return false; }
+  function renderOrders(rows) {
+    var b = $('aOrders'); b.innerHTML = '';
+    if (!rows.length) { b.appendChild(el('p', 'n-none', 'Your orders will show up here.')); return; }
+    rows.slice(0, 5).forEach(function (o) {
+      var r = el('div', 'n-order');
+      r.append(el('span', 'n-d', fmt(new Date(o.created_at), { day: 'numeric', month: 'short' })), el('span', 'n-w', o.summary), el('span', 'n-p', money(o.total)));
+      b.appendChild(r);
+    });
+  }
+  function confirmCancel(b) { if (b.dataset.sure) return true; b.dataset.sure = '1'; b.textContent = 'Tap again'; setTimeout(function () { delete b.dataset.sure; b.textContent = 'Cancel'; }, 3000); return false; }
   function setStatus(o, s) { sb.from('orders').update({ status: s }).eq('id', o.id).then(load); }
   function list(rows) {
-    var subs = rows.filter(function (o) { return o.kind === 'sub' && o.status !== 'cancelled'; });
-    var a = $('aSubs'), b = $('aOrders'); a.innerHTML = ''; b.innerHTML = '';
-    if (subs.length) subs.forEach(function (o) { a.appendChild(subCard(o)); });
-    else {
-      var e = document.createElement('a'); e.href = '#shop'; e.className = 'd-empty-sub';
-      e.innerHTML = '<b>No subscription yet</b><span>Get eggs on repeat and save up to 5% on every delivery.</span><em>Start one →</em>';
-      e.onclick = function () { show(false); setTimeout(function () { var r = document.querySelector('input[name=spMode][value=sub]'); if (r) { r.checked = true; r.dispatchEvent(new Event('change')); } }, 400); };
-      a.appendChild(e);
-    }
-    rows.slice(0, 6).forEach(function (o) { b.appendChild(orderRow(o)); });
-    if (!rows.length) b.innerHTML = '<p class="d-none">No orders yet. Your first Krate is one tap away.</p>';
-    var spent = 0, saved = 0;
-    rows.forEach(function (o) { spent += +o.total || 0; if (o.kind === 'sub') saved += Math.max(0, (o.crates || 1) * 7500 - (+o.total || 0)); });
-    $('dOrders').textContent = rows.length; $('dSpent').textContent = money(spent); $('dSaved').textContent = money(saved);
+    renderNext(rows); renderSub(rows); renderOrders(rows);
     lastOrder = rows[0] || null;
     $('dAgain').disabled = !lastOrder;
+    $('dAgainSub').textContent = lastOrder ? lastOrder.summary.replace(/ every.*/, '') + ' · ' + money(lastOrder.kind === 'sub' ? lastOrder.crates * 7500 : lastOrder.total) : 'No orders yet';
+    $('dAddr').textContent = (profile && profile.address) || 'Add your address';
   }
+  // one-tap reorder: same crates, straight to checkout with details filled in
   $('dAgain').onclick = function () {
     if (!lastOrder) return;
     show(false);
     setTimeout(function () {
-      var r = document.querySelector('input[name=spMode][value=' + (lastOrder.kind === 'sub' ? 'sub' : 'once') + ']');
-      if (r) { r.checked = true; r.dispatchEvent(new Event('change')); }
+      var r = document.querySelector('input[name=spMode][value=once]'); if (r) { r.checked = true; r.dispatchEvent(new Event('change')); }
       var q = document.getElementById('hsQty'), plus = document.getElementById('hsPlus'), minus = document.getElementById('hsMinus');
-      if (q && plus && minus) { for (var i = 0; i < 60 && +q.textContent > 1; i++) minus.click(); for (var j = 1; j < (lastOrder.crates || 1); j++) plus.click(); }
-      var sh = document.getElementById('shop'); if (sh) sh.scrollIntoView({ behavior: 'smooth' });
+      for (var i = 0; i < 60 && +q.textContent > 1; i++) minus.click();
+      for (var j = 1; j < (lastOrder.crates || 1); j++) plus.click();
+      document.getElementById('hsGo').click();
     }, 350);
   };
-  $('dChat').href = 'https://wa.me/' + (window.KRATE ? KRATE.whatsapp : '') + '?text=' + encodeURIComponent('Hello Krate! I have a question about my order.');
+  $('dInvite').onclick = function () {
+    var text = 'I get my eggs from Krate: 30 fresh jumbo eggs, delivered. ' + location.origin + location.pathname;
+    if (navigator.share) navigator.share({ title: 'Krate', text: text }).catch(function () {});
+    else { var a = document.createElement('a'); a.href = 'https://wa.me/?text=' + encodeURIComponent(text); a.target = '_blank'; a.rel = 'noopener'; document.body.appendChild(a); a.click(); a.remove(); }
+  };
+  $('dAddrBtn').onclick = function () { var f = $('aDetails'), o = f.hidden; f.hidden = !o; this.textContent = o ? 'Close' : 'Change'; this.setAttribute('aria-expanded', o); if (o) f.elements.address.focus(); };
   $('aDetails').addEventListener('submit', function (e) {
     e.preventDefault(); var d = this.elements;
     var rec = { id: user.id, name: d.name.value.trim(), phone: d.phone.value.trim(), address: d.address.value.trim() };
-    sb.from('profiles').upsert(rec).then(function (r) { if (!r.error) { profile = rec; window.KRATE_PROFILE = rec; $('aSaved').hidden = false; $('aName').textContent = (rec.name || user.email).split(' ')[0]; } });
+    sb.from('profiles').upsert(rec).then(function (r) { if (!r.error) { profile = rec; window.KRATE_PROFILE = rec; $('aSaved').hidden = false; $('dAddr').textContent = rec.address || 'Add your address'; $('aName').textContent = (rec.name || user.email).split(' ')[0]; } });
   });
 
   // called by the shop when someone sends an order to WhatsApp
@@ -2319,7 +2404,7 @@ var KRATE_SUPABASE = {
   // fields rise in one by one whenever the form changes or opens
   function stagger() {
     if (RM) return;
-    $$('#aOut label:not([hidden]), #aOut .c-checkout, #aOut .a-link, #aIn .d-stats, #aIn .d-sec, #aIn .d-actions, #aIn .a-link', drawer).forEach(function (el, i) {
+    $$('#aOut label:not([hidden]), #aOut .c-checkout, #aOut .a-link, #aIn .n-next, #aIn .n-actions, #aIn .n-row, #aIn .n-orders, #aIn .a-link', drawer).forEach(function (el, i) {
       el.classList.remove('ix-rise'); void el.offsetWidth; el.style.setProperty('--d', (i * 55) + 'ms'); el.classList.add('ix-rise');
     });
   }

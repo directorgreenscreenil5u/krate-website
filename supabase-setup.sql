@@ -18,6 +18,7 @@ create table if not exists public.orders (
   crates int not null default 1,
   frequency text,
   total numeric not null,
+  skip_next boolean default false,
   status text not null default 'placed' check (status in ('placed', 'delivered', 'active', 'paused', 'cancelled')),
   created_at timestamptz default now()
 );
