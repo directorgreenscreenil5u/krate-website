@@ -1121,6 +1121,44 @@ footer nav a{font-size:20px!important}
 .acc-wide{width:min(760px,100%)}
 @media (max-width:743px){.acc .n-big{font-size:15vw!important}}
 @media (max-width:743px){.acc-egg2{top:auto;bottom:22vh;width:16vw;left:-6vw}}
+/* cashback + addresses */
+.acc-cb{display:inline-flex;align-items:center;gap:8px;margin-top:10px;min-height:36px;padding:0 14px;border:0;border-radius:999px;background:#014621;color:#5bc20f;font:700 13px 'Inter Tight',sans-serif;cursor:pointer;animation:ixPop .5s cubic-bezier(.2,.9,.25,1.5)}
+.acc-cb::before{content:"₦";display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#5bc20f;color:#014621;font-size:12px}
+.acc-cb[hidden]{display:none}
+.n-cash{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px;border-radius:20px;background:#014621;color:#f6eceb}
+.n-cash div{display:grid;gap:4px;position:relative;z-index:1}
+.n-cash small{font:700 11px 'Inter Tight',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#5bc20f}
+.n-cash b{font-family:'Bagel Fat One',sans-serif;font-weight:400;font-size:40px;line-height:1;color:#f6eceb}
+.n-cash span{font:500 13px 'Inter Tight',sans-serif;opacity:.85}
+.n-cash-coin{flex:none;width:64px;height:64px;border-radius:50%;background:#5bc20f;color:#014621;display:grid;place-items:center;font-family:'Bagel Fat One',sans-serif;font-size:30px;box-shadow:inset 0 -6px 0 rgba(1,70,33,.25);rotate:-12deg;animation:hsWob 4s ease-in-out infinite}
+.n-addrs{padding:14px 16px;border-radius:18px;background:#fff;border:2px solid rgba(1,70,33,.1)}
+.n-head{display:flex;justify-content:space-between;align-items:center}
+.n-head h4{margin:0;font:700 11px 'Inter Tight',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#1e9207}
+.n-addr-list{display:grid;margin-top:4px}
+.n-addr-item{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:10px 0;border-bottom:1px dashed rgba(1,70,33,.18)}
+.n-addr-item:last-child{border-bottom:0}
+.n-addr-item small{font:700 11px 'Inter Tight',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#4a4446}
+.n-addr-item.is-def small{color:#1e9207}
+.n-addr-item .n-acts{margin-left:-10px}
+.n-labels{display:flex;gap:8px}
+.n-labels label{display:block}
+.n-labels input{position:absolute;opacity:0}
+.n-labels span{display:inline-flex;min-height:38px;align-items:center;padding:0 14px;border-radius:999px;border:2px solid #014621;font:700 13px 'Inter Tight',sans-serif;color:#014621;cursor:pointer;text-transform:none;letter-spacing:0}
+.n-labels input:checked+span{background:#014621;color:#5bc20f}
+.n-labels input:focus-visible+span{outline:3px solid #f53509;outline-offset:2px}
+.n-form textarea{width:100%;box-sizing:border-box;padding:12px 14px;border:2px solid rgba(1,70,33,.15);border-radius:14px;font:400 16px 'Inter Tight',sans-serif}
+.acc-sheet .n-form{margin-top:10px}
+/* checkout pickers */
+.c-addrs{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
+.c-addrs[hidden]{display:none}
+.c-addr{flex:none;max-width:220px;display:grid;gap:2px;text-align:left;padding:10px 12px;border-radius:14px;border:2px solid rgba(1,70,33,.2);background:#fff;cursor:pointer;font:500 13px 'Inter Tight',sans-serif;color:#191718}
+.c-addr b{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#014621}
+.c-addr span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.c-addr.on{border-color:#014621;box-shadow:0 0 0 3px #5bc20f}
+.c-cb{display:flex!important;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:#014621;color:#f6eceb!important;cursor:pointer}
+.c-cb[hidden]{display:none!important}
+.c-cb input{width:20px;height:20px;accent-color:#5bc20f}
+.c-cb b{color:#5bc20f}
 </style></head>
 <body>
 
@@ -1472,7 +1510,9 @@ a{color:#014621}a:hover{color:#191718}
 <form class="c-form" id="cForm" novalidate>
 <label>Full name<input name="name" required autocomplete="name"></label>
 <label>Phone / WhatsApp<input name="phone" type="tel" required autocomplete="tel"></label>
+<div class="c-addrs" id="cAddrs" hidden role="radiogroup" aria-label="Saved addresses"></div>
 <label>Delivery address<textarea name="address" rows="2" required autocomplete="street-address"></textarea></label>
+<label class="c-cb" id="cCbRow" hidden><input type="checkbox" id="cCb"><span>Use <b id="cCbAmt">₦0</b> cashback</span></label>
 <label>Preferred delivery day<input name="when" placeholder="e.g. Saturday morning"></label>
 <p class="p-error" id="cError" role="alert" hidden>Please fill in your name, phone and address.</p>
 <button type="submit" class="c-checkout">Send order on WhatsApp</button>
@@ -1548,22 +1588,32 @@ a{color:#014621}a:hover{color:#191718}
 
 <div class="acc-col acc-wide" id="aIn" hidden>
 <p class="acc-kicker">Hi <b id="aName">there</b></p>
+<button type="button" class="acc-cb" id="dCbChip" hidden></button>
 <section class="n-next" id="dNext" aria-live="polite"></section>
 <button type="button" class="acc-go" id="dAgain"><b>Reorder in one tap</b><small id="dAgainSub">Same as last time</small></button>
 <details class="acc-more">
 <summary>More <span aria-hidden="true">▾</span></summary>
 <div class="acc-sheet">
 <section class="n-row" id="aSubs" aria-label="Your subscription"></section>
-<section class="n-row n-addr" aria-label="Delivery address">
-<div class="n-row-t"><small>Delivering to</small><b id="dAddr">Add your address</b></div>
-<button type="button" class="n-link" id="dAddrBtn" aria-expanded="false">Change</button>
+<section class="n-cash" aria-label="Cashback">
+<div><small>Krate cashback</small><b id="dCb">₦0</b><span>You get <strong id="dCbRate">2%</strong> back on every order. Use it at checkout.</span></div>
+<span class="n-cash-coin" aria-hidden="true">₦</span>
 </section>
+<section class="n-addrs" aria-labelledby="dAddrT">
+<div class="n-head"><h4 id="dAddrT">Delivery addresses</h4><button type="button" class="n-link" id="dAddAddr" aria-expanded="false">+ Add</button></div>
+<div id="dAddrList" class="n-addr-list"></div>
+<form class="c-form n-form" id="dAddrForm" novalidate hidden>
+<div class="n-labels" role="radiogroup" aria-label="Address name"><label><input type="radio" name="label" value="Home" checked><span>Home</span></label><label><input type="radio" name="label" value="Work"><span>Work</span></label><label><input type="radio" name="label" value="Other"><span>Other</span></label></div>
+<label>Address<textarea name="text" rows="2" required autocomplete="street-address" placeholder="House number, street, area, city"></textarea></label>
+<button type="submit" class="c-checkout">Save address</button>
+</form>
+</section>
+<section class="n-row"><div class="n-row-t"><small>Your details</small><b id="dWho">Add your name and phone</b></div><button type="button" class="n-link" id="dDetBtn" aria-expanded="false">Edit</button></section>
 <form class="c-form n-form" id="aDetails" novalidate hidden>
 <label>Full name<input name="name" autocomplete="name"></label>
 <label>Phone / WhatsApp<input name="phone" type="tel" autocomplete="tel"></label>
-<label>Delivery address<textarea name="address" rows="2" autocomplete="street-address"></textarea></label>
 <button type="submit" class="c-checkout">Save</button>
-<p class="p-done" id="aSaved" hidden>Saved. We’ll use this at checkout.</p>
+<p class="p-done" id="aSaved" hidden>Saved.</p>
 </form>
 <section class="n-row"><div class="n-row-t"><small>Invite a friend</small><b>Share Krate on WhatsApp</b></div><button type="button" class="n-link" id="dInvite">Share</button></section>
 <section class="n-orders" aria-labelledby="aOrdT"><h4 id="aOrdT">Past orders</h4><div id="aOrders"></div></section>
@@ -2126,8 +2176,25 @@ var KRATE = {
     var P0 = window.KRATE_PROFILE, cf = $('cForm');
     if (P0 && cf) ['name', 'phone', 'address'].forEach(function (k) { if (!cf.elements[k].value && P0[k]) cf.elements[k].value = P0[k]; });
     var nudge = $('cAcct'); if (nudge) nudge.hidden = !!window.KRATE_USER;
+    // saved addresses as quick picks
+    var box = $('cAddrs'), list = (P0 && P0.addresses) || [];
+    box.innerHTML = ''; box.hidden = list.length < 1;
+    list.forEach(function (ad) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'c-addr' + (cf.elements.address.value === ad.text ? ' on' : '');
+      var l = document.createElement('b'); l.textContent = ad.label; var t = document.createElement('span'); t.textContent = ad.text;
+      b.append(l, t);
+      b.onclick = function () { cf.elements.address.value = ad.text; box.querySelectorAll('.c-addr').forEach(function (x) { x.classList.toggle('on', x === b); }); };
+      box.appendChild(b);
+    });
+    // cashback
+    var bal = window.KRATE_USER ? (window.KRATE_CASHBACK || 0) : 0;
+    $('cCbRow').hidden = !bal; $('cCbAmt').textContent = money(Math.min(bal, each()));
+    totals();
     drawer.classList.add('open'); drawer.setAttribute('aria-hidden', 'false'); scrim.hidden = false; $('cClose').focus();
   }
+  function credit() { var c = $('cCb'); return c && c.checked && !$('cCbRow').hidden ? Math.min(window.KRATE_CASHBACK || 0, each()) : 0; }
+  function totals() { $('cSubtotal').textContent = money(each() - credit()) + (mode === 'sub' ? ' / delivery' : ''); }
+  $('cCb').addEventListener('change', totals);
   function close() { drawer.classList.remove('open'); drawer.setAttribute('aria-hidden', 'true'); scrim.hidden = true; $('hsGo').focus(); }
   $('hsGo').onclick = open; $('cClose').onclick = close; scrim.onclick = close;
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && drawer.classList.contains('open')) close(); });
@@ -2143,17 +2210,19 @@ var KRATE = {
     var msg = mode === 'sub'
       ? ['Hello Krate! I’d like to subscribe:', '• ' + what() + ' = ' + money(each()) + ' per delivery (' + Math.round(OFF[freq] * 100) + '% off ' + money(full()) + ')']
       : ['Hello Krate! I’d like to order:', '• ' + what() + ' = ' + money(each())];
+    var cr = credit(); if (cr) msg.push('Cashback used: −' + money(cr), 'To pay: ' + money(each() - cr));
     msg.push('', 'Name: ' + f.name.value, 'Phone: ' + f.phone.value, 'Address: ' + f.address.value);
     if (f.when.value) msg.push((mode === 'sub' ? 'Delivery day: ' : 'Delivery: ') + f.when.value);
     var a = document.createElement('a'); a.href = 'https://wa.me/' + KRATE.whatsapp + '?text=' + encodeURIComponent(msg.join('\n')); a.target = '_blank'; a.rel = 'noopener';
     document.body.appendChild(a); a.click(); a.remove();
-    if (window.KRATE_SAVE_ORDER) window.KRATE_SAVE_ORDER({ kind: mode, summary: what(), crates: qty, frequency: mode === 'sub' ? freq : null, total: each(), name: f.name.value, phone: f.phone.value, address: f.address.value });
+    if (window.KRATE_SAVE_ORDER) window.KRATE_SAVE_ORDER({ kind: mode, summary: what(), crates: qty, frequency: mode === 'sub' ? freq : null, total: each() - credit(), credit: credit(), name: f.name.value, phone: f.phone.value, address: f.address.value });
     $('cDone').hidden = false;
   });
   update();
 })();
 
 /* Krate customer accounts (Supabase). Paste your project's URL and anon key to switch accounts on. */
+var KRATE_CASHBACK_RATE = 0.02; // 2% back on every order (placeholder: change to your real rate)
 var KRATE_SUPABASE = {
   url: '',      // e.g. https://abcdefgh.supabase.co
   anonKey: ''   // the "anon public" key from Project Settings → API
@@ -2302,15 +2371,44 @@ var KRATE_SUPABASE = {
       profile = r.data || { name: (user.user_metadata || {}).name || '', phone: (user.user_metadata || {}).phone || '', address: '' };
       window.KRATE_PROFILE = profile;
       $('aName').textContent = (profile.name || user.email).split(' ')[0]; view();
-      var d = $('aDetails').elements; d.name.value = profile.name || ''; d.phone.value = profile.phone || ''; d.address.value = profile.address || '';
-      prefill();
+      if (!Array.isArray(profile.addresses)) profile.addresses = profile.address ? [{ id: 'a' + Date.now(), label: 'Home', text: profile.address, def: true }] : [];
+      var d = $('aDetails').elements; d.name.value = profile.name || ''; d.phone.value = profile.phone || '';
+      renderAddrs(); prefill();
     });
     sb.from('orders').select('*').eq('user_id', user.id).order('created_at', { ascending: false }).then(function (r) { list(r.data || []); });
   }
-  function prefill() {
-    if ($('dAddr')) $('dAddr').textContent = profile.address || 'Add your address';
+  function defAddr() { var a = (profile.addresses || []).find(function (x) { return x.def; }) || (profile.addresses || [])[0]; return a ? a.text : (profile.address || ''); }
+  function saveProfile(cb) { profile.id = user.id; profile.address = defAddr(); window.KRATE_PROFILE = profile; sb.from('profiles').upsert(profile).then(function (r) { if (cb) cb(r); }); }
+  function renderAddrs() {
+    var box = $('dAddrList'); box.innerHTML = '';
+    var list = profile.addresses || [];
+    if (!list.length) box.appendChild(el('p', 'n-none', 'No address yet. Add one so checkout fills itself in.'));
+    list.forEach(function (a) {
+      var row = el('div', 'n-addr-item' + (a.def ? ' is-def' : ''));
+      var t = el('div', 'n-row-t'); var lab = el('small', '', a.label + (a.def ? ' · default' : '')); t.append(lab, el('b', '', a.text));
+      var acts = el('div', 'n-acts');
+      if (!a.def) { var mk = el('button', 'n-link', 'Make default'); mk.type = 'button'; mk.onclick = function () { list.forEach(function (x) { x.def = x === a; }); saveProfile(); renderAddrs(); prefill(true); }; acts.appendChild(mk); }
+      var rm = el('button', 'n-link n-danger', 'Remove'); rm.type = 'button';
+      rm.onclick = function () { if (!rm.dataset.sure) { rm.dataset.sure = 1; rm.textContent = 'Tap again'; setTimeout(function () { delete rm.dataset.sure; rm.textContent = 'Remove'; }, 3000); return; } profile.addresses = list.filter(function (x) { return x !== a; }); if (a.def && profile.addresses[0]) profile.addresses[0].def = true; saveProfile(); renderAddrs(); };
+      acts.appendChild(rm); row.append(t, acts); box.appendChild(row);
+    });
+    var who = [profile.name, profile.phone].filter(Boolean).join(' · '); $('dWho').textContent = who || 'Add your name and phone';
+  }
+  $('dAddAddr').onclick = function () { var f = $('dAddrForm'), o = f.hidden; f.hidden = !o; this.textContent = o ? 'Close' : '+ Add'; this.setAttribute('aria-expanded', o); if (o) f.elements.text.focus(); };
+  $('dAddrForm').addEventListener('submit', function (e) {
+    e.preventDefault(); var f = this.elements, txt = f.text.value.trim();
+    f.text.classList.toggle('is-bad', !txt); if (!txt) return f.text.focus();
+    profile.addresses = profile.addresses || [];
+    var first = !profile.addresses.length;
+    profile.addresses.push({ id: 'a' + Date.now(), label: f.label.value, text: txt, def: first });
+    saveProfile(); renderAddrs(); prefill(true);
+    this.reset(); this.hidden = true; $('dAddAddr').textContent = '+ Add';
+  });
+  $('dDetBtn').onclick = function () { var f = $('aDetails'), o = f.hidden; f.hidden = !o; this.textContent = o ? 'Close' : 'Edit'; this.setAttribute('aria-expanded', o); };
+  function prefill(force) {
     var c = $('cForm'); if (!c) return;
-    ['name', 'phone', 'address'].forEach(function (k) { if (c.elements[k] && !c.elements[k].value && profile[k]) c.elements[k].value = profile[k]; });
+    var vals = { name: profile.name, phone: profile.phone, address: defAddr() };
+    ['name', 'phone', 'address'].forEach(function (k) { if (c.elements[k] && vals[k] && (force || !c.elements[k].value)) c.elements[k].value = vals[k]; });
   }
   var lastOrder = null, DAY = 864e5, STEP = { 'week': 7, '2 weeks': 14, 'month': 30 };
   function fmt(d, o) { return d.toLocaleDateString('en-NG', o || { weekday: 'long', day: 'numeric', month: 'long' }); }
@@ -2375,7 +2473,11 @@ var KRATE_SUPABASE = {
     lastOrder = rows[0] || null;
     $('dAgain').disabled = !lastOrder;
     $('dAgainSub').textContent = lastOrder ? lastOrder.summary.replace(/ every.*/, '') + ' · ' + money(lastOrder.kind === 'sub' ? lastOrder.crates * 7500 : lastOrder.total) : 'No orders yet';
-    $('dAddr').textContent = (profile && profile.address) || 'Add your address';
+    var earned = 0, used = 0;
+    rows.forEach(function (o) { if (o.status !== 'cancelled') earned += Math.round((+o.total || 0) * KRATE_CASHBACK_RATE); used += +o.credit_used || 0; });
+    var bal = Math.max(0, earned - used); window.KRATE_CASHBACK = bal;
+    $('dCb').textContent = money(bal); $('dCbRate').textContent = Math.round(KRATE_CASHBACK_RATE * 100) + '%';
+    $('dCbChip').hidden = !bal; $('dCbChip').textContent = money(bal) + ' cashback ready';
   }
   // one-tap reorder: same crates, straight to checkout with details filled in
   $('dAgain').onclick = function () {
@@ -2394,18 +2496,22 @@ var KRATE_SUPABASE = {
     if (navigator.share) navigator.share({ title: 'Krate', text: text }).catch(function () {});
     else { var a = document.createElement('a'); a.href = 'https://wa.me/?text=' + encodeURIComponent(text); a.target = '_blank'; a.rel = 'noopener'; document.body.appendChild(a); a.click(); a.remove(); }
   };
-  $('dAddrBtn').onclick = function () { var f = $('aDetails'), o = f.hidden; f.hidden = !o; this.textContent = o ? 'Close' : 'Change'; this.setAttribute('aria-expanded', o); if (o) f.elements.address.focus(); };
+  $('dCbChip').onclick = function () { var m = document.querySelector('.acc-more'); m.open = true; setTimeout(function () { document.querySelector('.n-cash').scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 50); };
   $('aDetails').addEventListener('submit', function (e) {
     e.preventDefault(); var d = this.elements;
-    var rec = { id: user.id, name: d.name.value.trim(), phone: d.phone.value.trim(), address: d.address.value.trim() };
-    sb.from('profiles').upsert(rec).then(function (r) { if (!r.error) { profile = rec; window.KRATE_PROFILE = rec; $('aSaved').hidden = false; $('dAddr').textContent = rec.address || 'Add your address'; $('aName').textContent = (rec.name || user.email).split(' ')[0]; } });
+    profile.name = d.name.value.trim(); profile.phone = d.phone.value.trim();
+    saveProfile(function () { $('aSaved').hidden = false; renderAddrs(); $('aName').textContent = (profile.name || user.email).split(' ')[0]; });
   });
 
   // called by the shop when someone sends an order to WhatsApp
   window.KRATE_SAVE_ORDER = function (o) {
     if (!sb || !user) return;
-    sb.from('orders').insert({ user_id: user.id, kind: o.kind, summary: o.summary, crates: o.crates, frequency: o.frequency || null, total: o.total, status: o.kind === 'sub' ? 'active' : 'placed' }).then(function () { load(); });
-    if (o.name || o.phone || o.address) sb.from('profiles').upsert({ id: user.id, name: o.name || profile.name, phone: o.phone || profile.phone, address: o.address || profile.address });
+    sb.from('orders').insert({ user_id: user.id, kind: o.kind, summary: o.summary, crates: o.crates, frequency: o.frequency || null, total: o.total, credit_used: o.credit || 0, status: o.kind === 'sub' ? 'active' : 'placed' }).then(function () { load(); });
+    profile.name = profile.name || o.name; profile.phone = profile.phone || o.phone;
+    profile.addresses = profile.addresses || [];
+    var addr = (o.address || '').trim();
+    if (addr && !profile.addresses.some(function (x) { return x.text.toLowerCase() === addr.toLowerCase(); })) profile.addresses.push({ id: 'a' + Date.now(), label: profile.addresses.length ? 'Other' : 'Home', text: addr, def: !profile.addresses.length });
+    saveProfile(function () { renderAddrs(); });
   };
   window.KRATE_OPEN_ACCOUNT = open;
   var fl = document.querySelector('.f-logo svg'); if (fl) $('aBrand').appendChild(fl.cloneNode(true));
