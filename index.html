@@ -753,6 +753,12 @@ footer nav a{font-size:20px!important}
 .e-photo img{max-width:100%}
 @media (max-width:743px){.e-tabs{width:100%;max-width:100%}.e-photo{width:100%;max-width:100%}.e-grid,.e-wrap{max-width:100%;min-width:0}.e-body .k-use-title{font-size:9vw}}
 @media (max-width:743px){.e-photo img{box-shadow:0 14px 28px rgba(25,23,24,.25)}}
+@media (max-width:743px){
+ .sx-hide-m{display:none}
+ .g-giant{display:flex!important;flex-wrap:wrap;align-items:center}
+ .g-giant>span:last-child{flex-basis:100%}
+}
+@media (max-width:743px){.g-canvas{gap:12vw!important}.g-stage{padding-top:16vw!important;padding-bottom:14vw!important}}
 </style></head>
 <body>
 
@@ -1082,7 +1088,7 @@ a{color:#014621}a:hover{color:#191718}
 <div class="sp-freq sx-freq" id="hsFreq"><span class="sp-freq-l">Deliver every</span><span class="hs-chips" role="radiogroup" aria-label="Delivery frequency"><button type="button" role="radio" aria-checked="false" data-f="week">Week <small>−5%</small></button><button type="button" role="radio" aria-checked="true" data-f="2 weeks">2 weeks <small>−4%</small></button><button type="button" role="radio" aria-checked="false" data-f="month">Month <small>−3%</small></button></span></div>
 
 <div class="sx-lines" aria-live="polite">
-<div class="sx-item"><span class="sx-q"><span class="hs-qty" role="group" aria-label="Crates"><button type="button" id="hsMinus" aria-label="One fewer crate">−</button><output id="hsQty">1</output><button type="button" id="hsPlus" aria-label="One more crate">+</button></span><span>× Krate · 30 jumbo eggs</span></span><span class="sx-dots" aria-hidden="true"></span><span id="sxSub">₦7,500</span></div>
+<div class="sx-item"><span class="sx-q"><span class="hs-qty" role="group" aria-label="Crates"><button type="button" id="hsMinus" aria-label="One fewer crate">−</button><output id="hsQty">1</output><button type="button" id="hsPlus" aria-label="One more crate">+</button></span><span>× Krate<span class="sx-hide-m"> · 30 jumbo eggs</span></span></span><span class="sx-dots" aria-hidden="true"></span><span id="sxSub">₦7,500</span></div>
 <div class="sx-item sx-disc" id="sxDiscRow" hidden><span id="sxDiscLabel">Subscription saving</span><span class="sx-dots" aria-hidden="true"></span><span id="hsSave">−₦0</span></div>
 <div class="sx-item sx-muted"><span>Delivery</span><span class="sx-dots" aria-hidden="true"></span><span>confirmed on WhatsApp</span></div>
 <div class="sx-total"><span id="hsPer">Total</span><strong id="hsPrice">₦7,500</strong></div>
@@ -1530,7 +1536,7 @@ a{color:#014621}a:hover{color:#191718}
   var rows = [].slice.call(pin.querySelectorAll('.g-row'));
   var arrows = [].slice.call(pin.querySelectorAll('.g-arrow'));
   var props = [].slice.call(pin.querySelectorAll('.g-prop'));
-  var pts = [], segs = [], total = 0, vw = 1, vh = 1;
+  var pts = [], segs = [], total = 0, vw = 1, vh = 1, SPEED = 2.1; // how fast the view pans per pixel scrolled
   var title = pin.querySelector('.g-title');
 
   // split words into letters that slide up out of a clip, one after another
@@ -1608,7 +1614,7 @@ a{color:#014621}a:hover{color:#191718}
       var dx = pts[i].x - pts[i - 1].x, dy = pts[i].y - pts[i - 1].y, len = Math.max(1, Math.hypot(dx, dy));
       segs.push({ a: pts[i - 1], b: pts[i], len: len, start: total }); total += len;
     }
-    pin.style.height = (vh + total) + 'px';
+    pin.style.height = (vh + total / SPEED) + 'px';
     update();
   }
 
@@ -1616,7 +1622,7 @@ a{color:#014621}a:hover{color:#191718}
 
   function update() {
     var top = pin.getBoundingClientRect().top;
-    var d = Math.max(0, Math.min(total, -top));
+    var d = Math.max(0, Math.min(total, -top * SPEED));
     var cam = pts[0], segIndex = 0;
     for (var i = 0; i < segs.length; i++) {
       var s = segs[i];
