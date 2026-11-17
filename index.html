@@ -1404,6 +1404,24 @@ footer nav a{font-size:20px!important}
 .sm-row .sm-qty button{height:52px;width:46px}
 .sm-freq.open{animation:spIn .3s ease both}
 @media (max-width:743px){.sm-row{gap:8px}.sm-modes .sx-opt{padding:10px 12px}.sm-modes .sx-opt small{display:none}.sm-row .sm-qty button{width:38px}}
+/* section tabs: one clean segmented bar with line icons */
+.d-tabs{display:flex!important;gap:4px!important;padding:6px;margin:28px auto 0!important;width:max-content;max-width:100%;border-radius:20px;background:#014621;box-shadow:0 14px 30px rgba(1,70,33,.25);box-sizing:border-box}
+.d-tabs button{flex:none;display:flex!important;flex-direction:column;align-items:center;gap:4px;min-height:0!important;padding:10px 14px!important;border:0!important;border-radius:14px!important;background:transparent!important;color:rgba(246,236,235,.75)!important;font:600 12px 'Inter Tight',sans-serif!important;transform:none!important}
+.d-tabs button svg{width:22px;height:22px}
+.d-tabs button:hover{color:#fff!important;background:rgba(255,255,255,.08)!important}
+.d-tabs [aria-pressed="true"]{background:#5bc20f!important;color:#014621!important}
+/* section content: a single card, no card-inside-card */
+.acc-sheet{background:#f6eceb!important;padding:8px!important;border-radius:22px!important}
+.acc-sheet>[data-sec].on>*,.acc-sheet>.on{box-shadow:none}
+.acc-sheet .n-addrs,.acc-sheet .n-row,.acc-sheet .n-cash,.acc-sheet .n-orders,.acc-sheet .n-form{border:0!important;background:transparent!important;padding:14px 16px!important}
+.acc-sheet .n-cash{background:#014621!important;border-radius:16px!important}
+.acc-sheet .n-head h4,.acc-sheet .n-orders h4{font-size:12px!important}
+@media (max-width:743px){
+ .d-tabs{width:auto;margin:22px 0 0!important;overflow-x:auto;justify-content:flex-start;scrollbar-width:none}
+ .d-tabs button{padding:8px 10px!important;font-size:11px!important}
+ .d-tabs button svg{width:20px;height:20px}
+}
+.d-tabs button[aria-pressed="true"],.d-tabs button[aria-pressed="true"]:hover{background:#5bc20f!important;color:#014621!important}
 </style></head>
 <body>
 
@@ -1866,12 +1884,12 @@ a{color:#014621}a:hover{color:#191718}
 </div>
 </div>
 <nav class="d-tabs" aria-label="Your account">
-<button type="button" data-tab="addrs"><i aria-hidden="true">📍</i>Location</button>
-<button type="button" data-tab="orders"><i aria-hidden="true">🧾</i>Orders</button>
-<button type="button" data-tab="subs"><i aria-hidden="true">🔁</i>Subscription</button>
-<button type="button" data-tab="cash"><i aria-hidden="true">₦</i>Cashback</button>
-<button type="button" data-tab="details"><i aria-hidden="true">👤</i>Profile</button>
-<button type="button" data-tab="help"><i aria-hidden="true">💬</i>Help</button>
+<button type="button" data-tab="addrs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Location</button>
+<button type="button" data-tab="orders"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6M9 16h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Orders</button>
+<button type="button" data-tab="subs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.7L20 9M20 4v5h-5M20 12a8 8 0 0 1-13.7 5.7L4 15M4 20v-5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Subscription</button>
+<button type="button" data-tab="cash"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18v10H3zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Cashback</button>
+<button type="button" data-tab="details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Profile</button>
+<button type="button" data-tab="help"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-4-7.5L21 3l-1 4.5A9 9 0 0 1 21 12zM8 11h8M8 15h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Help</button>
 </nav>
 <details class="acc-more" open>
 <summary>More <span aria-hidden="true">▾</span></summary>
