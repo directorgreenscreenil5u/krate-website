@@ -1,0 +1,15 @@
+{
+  "name": "Krate — Fresh Jumbo Eggs",
+  "short_name": "Krate",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#5bc20f",
+  "theme_color": "#5bc20f",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-mask-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon-mask-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
