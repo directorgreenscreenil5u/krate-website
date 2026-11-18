@@ -2177,6 +2177,11 @@ footer nav a{font-size:20px!important}
  #aDrawer .kd-pb-sum{position:static}
 }
 @media (max-width:900px){#aDrawer .kd-pb{grid-template-columns:minmax(0,1fr)}#aDrawer .kd-pb-img{width:120px}}
+/* generated imagery */
+#aDrawer .kd-phero::after{background-image:url(img/krate-stack.webp);rotate:-8deg;width:230px;height:230px;top:-10px}
+#aDrawer .kd-pb-img{width:190px}
+#aDrawer .kd-pb-img.is-gift{width:170px;border-radius:22px;rotate:-4deg;box-shadow:0 18px 30px -12px rgba(0,0,0,.5);filter:none;margin-top:4px}
+@media (max-width:900px){#aDrawer .kd-phero::after{width:140px;height:140px}}
 </style><script>try{if(sessionStorage.getItem('krSeen'))document.documentElement.classList.add('k-seen');sessionStorage.setItem('krSeen','1')}catch(e){}</script><style>.k-seen .k-pre,.k-seen .k-loader{display:none!important}.k-seen #top *{animation-delay:0s!important}</style><style>.k-pre,.k-loader{display:none!important}#top .k-char{animation-duration:.55s!important}</style></head>
 <body>
 
@@ -2427,13 +2432,14 @@ a{color:#014621}a:hover{color:#191718}
 <div class="e-grid">
 <figure class="e-photo">
 <span aria-hidden="true" class="k-tape e-tape"></span>
-<img loading="lazy" decoding="async" id="kStage" src="img/photo-fryup.webp" alt="Two Krate eggs frying in a pan" width="800" height="800">
+<img loading="lazy" decoding="async" id="kStage" src="img/krate-family.webp" alt="A family making fried eggs, dodo and bread for Saturday breakfast" width="800" height="800">
 </figure>
 <div class="e-side">
 <div role="tablist" aria-label="What it’s for" class="e-tabs">
 <button type="button" role="tab" class="k-tab" aria-selected="true">Home kitchens</button>
 <button type="button" role="tab" class="k-tab" aria-selected="false">Baking</button>
 <button type="button" role="tab" class="k-tab" aria-selected="false">Business</button>
+<button type="button" role="tab" class="k-tab" aria-selected="false">Fitness</button>
 </div>
 <div role="tabpanel" id="kTabBody" class="e-body"></div>
 <a href="#shop" class="e-cta">Get a Krate <span aria-hidden="true">→</span></a>
@@ -2840,11 +2846,13 @@ a{color:#014621}a:hover{color:#191718}
   var body = document.getElementById('kTabBody');
   var USES = [
     { title: 'Breakfast, sorted.', line: 'Big yolks for busy mornings.', uses: ['Pancakes', 'Fried eggs & bread', 'Omelette', 'Boiled eggs for school', 'Egg sauce & yam'],
-      img: 'img/photo-fryup.webp', alt: 'Two Krate eggs frying in a pan' },
+      img: 'img/krate-family.webp', alt: 'A family making fried eggs, dodo and bread for Saturday breakfast' },
     { title: 'Bake it bigger.', line: 'Rich yolks and fewer cracks to fish out.', uses: ['Cakes', 'Chin chin', 'Puff-puff', 'Pancakes', 'Meat pie glaze'],
-      img: 'img/photo-bake.webp', alt: 'Eggs cracked into a bowl of flour' },
+      img: 'img/krate-baker.webp', alt: 'A baker wheeling out a rack of fresh puff-puff and pies' },
     { title: 'Made for busy businesses.', line: 'Neat crates that stack, travel well and arrive whole.', uses: ['Restaurants', 'Hotels', 'Bakeries', 'Caterers', 'Supermarkets'],
-      img: 'img/photo-business.webp', alt: 'A market basket full of brown eggs', link: true }
+      img: 'img/krate-business.webp', alt: 'Stacks of Krate egg packs on a restaurant kitchen counter', link: true },
+    { title: 'Fuel the gains.', line: 'Big eggs, more protein, ready in minutes.', uses: ['Boiled eggs after training', 'Egg-white omelette', 'Meal prep', 'Protein breakfast'],
+      img: 'img/krate-gym.webp', alt: 'Two friends at the gym snacking on boiled Krate eggs' }
   ];
   function showUse(i, keep) {
     var u = USES[i];
@@ -4133,7 +4141,7 @@ var KRATE_SUPABASE = {
     s3.appendChild(f); L.appendChild(s3);
     // summary
     var R = el('aside', 'kd-pb-sum');
-    var img = el('img', 'kd-pb-img'); img.src = 'img/egg-tray.webp'; img.alt = '';
+    var img = el('img', 'kd-pb-img' + (PB.gift ? ' is-gift' : '')); img.src = PB.gift ? 'img/krate-gift.webp' : 'img/krate-stack.webp'; img.alt = '';
     var head = el('div', 'kd-pb-head'); head.append(el('small', '', 'Your Krate Plan'), el('h3', '', PB.n + ' × ' + PB.crates + (PB.crates > 1 ? ' crates' : ' crate')), el('p', '', (PB.freq === 'week' ? 'Every ' + KRATE_PLAN.days[PB.day] : KRATE_PLAN.freqLabel[PB.freq] + ', ' + KRATE_PLAN.days[PB.day] + 's') + ' · from ' + fmt(first, { day: 'numeric', month: 'short' })));
     R.append(img, head);
     var dl = el('dl', 'kd-lines');
