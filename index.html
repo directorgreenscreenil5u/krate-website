@@ -2182,6 +2182,7 @@ footer nav a{font-size:20px!important}
 #aDrawer .kd-pb-img{width:190px}
 #aDrawer .kd-pb-img.is-gift{width:170px;border-radius:22px;rotate:-4deg;box-shadow:0 18px 30px -12px rgba(0,0,0,.5);filter:none;margin-top:4px}
 @media (max-width:900px){#aDrawer .kd-phero::after{width:140px;height:140px}}
+@media (max-width:743px){.e-photo img{aspect-ratio:5/4}}
 </style><script>try{if(sessionStorage.getItem('krSeen'))document.documentElement.classList.add('k-seen');sessionStorage.setItem('krSeen','1')}catch(e){}</script><style>.k-seen .k-pre,.k-seen .k-loader{display:none!important}.k-seen #top *{animation-delay:0s!important}</style><style>.k-pre,.k-loader{display:none!important}#top .k-char{animation-duration:.55s!important}</style></head>
 <body>
 
@@ -2432,7 +2433,7 @@ a{color:#014621}a:hover{color:#191718}
 <div class="e-grid">
 <figure class="e-photo">
 <span aria-hidden="true" class="k-tape e-tape"></span>
-<img loading="lazy" decoding="async" id="kStage" src="img/krate-family.webp" alt="A dad and son cracking eggs at the kitchen island while mum fries breakfast" width="800" height="800">
+<img loading="lazy" decoding="async" id="kStage" src="img/krate-family.webp" alt="A dad and his laughing son holding up a big brown egg while mum whisks in the background" width="800" height="800">
 </figure>
 <div class="e-side">
 <div role="tablist" aria-label="What it’s for" class="e-tabs">
@@ -2846,11 +2847,11 @@ a{color:#014621}a:hover{color:#191718}
   var body = document.getElementById('kTabBody');
   var USES = [
     { title: 'Breakfast, sorted.', line: 'Big yolks for busy mornings.', uses: ['Pancakes', 'Fried eggs & bread', 'Omelette', 'Boiled eggs for school', 'Egg sauce & yam'],
-      img: 'img/krate-family.webp', alt: 'A dad and son cracking eggs at the kitchen island while mum fries breakfast' },
+      img: 'img/krate-family.webp', alt: 'A dad and his laughing son holding up a big brown egg while mum whisks in the background' },
     { title: 'Bake it bigger.', line: 'Rich yolks and fewer cracks to fish out.', uses: ['Cakes', 'Chin chin', 'Puff-puff', 'Pancakes', 'Meat pie glaze'],
-      img: 'img/krate-baker.webp', alt: 'A baker wheeling out a rack of fresh meat pies' },
+      img: 'img/krate-baker.webp', pos: 'center 30%', alt: 'A baker wheeling out a rack of fresh meat pies' },
     { title: 'Made for busy businesses.', line: 'Neat crates that stack, travel well and arrive whole.', uses: ['Restaurants', 'Hotels', 'Bakeries', 'Caterers', 'Supermarkets'],
-      img: 'img/krate-chef.webp', alt: 'A chef cracking eggs beside stacks of Krate packs in a restaurant kitchen', link: true },
+      img: 'img/krate-chef.webp', alt: 'A head chef cracking eggs beside stacked Krate packs in a restaurant kitchen', link: true },
     { title: 'Fuel the gains.', line: 'Big eggs, more protein, ready in minutes.', uses: ['Boiled eggs after training', 'Egg-white omelette', 'Meal prep', 'Protein breakfast'],
       img: 'img/krate-gym.webp', alt: 'Two friends at the gym eating boiled Krate eggs after training' }
   ];
@@ -2866,7 +2867,7 @@ a{color:#014621}a:hover{color:#191718}
     body.classList.remove('k-use-in'); void body.offsetWidth; body.classList.add('k-use-in');
     if (stage && !keep) {
       stage.classList.add('e-out');
-      setTimeout(function () { stage.src = u.img; stage.alt = u.alt; stage.classList.remove('e-out'); }, 180);
+      setTimeout(function () { stage.src = u.img; stage.alt = u.alt; stage.style.objectPosition = u.pos || 'center'; stage.classList.remove('e-out'); }, 180);
       document.querySelectorAll('.k-pick').forEach(function (p) { p.setAttribute('aria-pressed', 'false'); });
     }
   }
