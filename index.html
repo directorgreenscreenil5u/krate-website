@@ -1940,6 +1940,102 @@ footer nav a{font-size:20px!important}
  #aDrawer .kd-tile::after{top:20px;translate:0}
 }
 @media (prefers-reduced-motion:reduce){#aDrawer .kd-page.kd-in .kd-tl li,#aDrawer .kd-again,#aDrawer .kd-eta::before,#aDrawer .kd-tl-wait>i{animation:none}}
+/* ================= KRATE PLAN ================= */
+#aDrawer .kd-subcard{display:grid;gap:18px}
+#aDrawer .kd-subcard .kd-card-h{margin:0;align-items:flex-start}
+#aDrawer .kd-subcard .kd-card-h h3{font:400 clamp(24px,2.6vw,32px)/1.1 'Bagel Fat One',sans-serif;margin-top:4px}
+#aDrawer .kd-gift{display:flex;align-items:center;gap:10px;margin:0;padding:10px 14px;border-radius:14px;background:#fff3e8;color:#9a3d12;font:700 14px 'Inter Tight',sans-serif}
+#aDrawer .kd-gift .kd-ti{width:30px;height:30px;background:#ef7a4c;color:#fff}
+#aDrawer .kd-planwait{display:grid;grid-template-columns:1fr auto;gap:2px 16px;align-items:center;padding:14px 16px;border-radius:16px;background:#fff3c4}
+#aDrawer .kd-planwait b{color:#6a4600}#aDrawer .kd-planwait span{font-size:13px;color:#8a5b00}
+#aDrawer .kd-planwait .kd-btn{grid-row:1/3;grid-column:2}
+#aDrawer .kd-plantop{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;padding:20px;border-radius:20px;background:#014621;color:#f6eceb}
+#aDrawer .kd-nextbig{display:grid;gap:2px;padding-right:24px;border-right:1px solid rgba(246,236,235,.15)}
+#aDrawer .kd-nextbig small{font:700 11px 'Inter Tight',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#5bc20f}
+#aDrawer .kd-nextbig b{font:400 34px/1 'Bagel Fat One',sans-serif;color:#fff}
+#aDrawer .kd-nextbig span{font-size:14px;opacity:.8}
+#aDrawer .kd-dots{display:grid;gap:10px}
+#aDrawer .kd-dots-r{display:flex;flex-wrap:wrap;gap:6px}
+#aDrawer .kd-dots i{width:18px;height:18px;border-radius:50%;background:rgba(246,236,235,.14);box-shadow:inset 0 0 0 2px rgba(246,236,235,.25);animation:kdDot .4s cubic-bezier(.3,1.6,.5,1) backwards;animation-delay:calc(var(--i) * 40ms)}
+#aDrawer .kd-dots i.on{background:#5bc20f;box-shadow:none}
+#aDrawer .kd-dots i.now{background:#014621;box-shadow:inset 0 0 0 3px #5bc20f;animation:kdDot .4s cubic-bezier(.3,1.6,.5,1) backwards,kdPulse 1.8s 1s infinite;animation-delay:calc(var(--i) * 40ms),1s}
+#aDrawer .kd-dots small{font:700 13px 'Inter Tight',sans-serif;opacity:.85}
+@keyframes kdDot{from{transform:scale(0)}}
+#aDrawer .kd-hero .kd-dots{max-width:520px}
+#aDrawer .kd-upc{display:grid;gap:8px}
+#aDrawer .kd-upc .kd-next{margin:0}
+#aDrawer button.kd-day{border:0;cursor:pointer;font:inherit;transition:transform .15s,background .2s}
+#aDrawer button.kd-day:hover{transform:translateY(-2px)}
+#aDrawer button.kd-day.is-skip{opacity:1;text-decoration:none;background:#fff;box-shadow:inset 0 0 0 2px dashed #cfc6c2;border:2px dashed #cfc6c2;color:#9a9396}
+#aDrawer button.kd-day.is-skip b{text-decoration:line-through}
+#aDrawer button.kd-day:disabled{cursor:default;transform:none}
+#aDrawer .kd-ctls{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#aDrawer .kd-ctl{display:grid;gap:10px;align-content:start;padding:16px;border-radius:18px;background:#f8f3f1}
+#aDrawer .kd-ctl-h{display:grid;gap:2px}
+#aDrawer .kd-ctl-h b{font:800 15px 'Inter Tight',sans-serif;color:#014621}
+#aDrawer .kd-ctl-h small{font-size:12px;color:#6b6468}
+#aDrawer .kd-ctl .kd-seg{background:#fff;display:flex;flex-wrap:wrap}
+#aDrawer .kd-days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+#aDrawer .kd-days button{border:0;padding:10px 0;border-radius:10px;background:#fff;color:#014621;font:700 12px 'Inter Tight',sans-serif;cursor:pointer;transition:transform .2s cubic-bezier(.3,1.6,.5,1),background .2s}
+#aDrawer .kd-days button[aria-pressed="true"]{background:#014621;color:#5bc20f;transform:translateY(-2px)}
+#aDrawer .kd-cw{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+#aDrawer .kd-cw .kd-step{background:#fff}
+#aDrawer .kd-cv{font-size:13px;color:#6b6468}
+#aDrawer .kd-pause{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#aDrawer .kd-pause input{min-height:44px;padding:0 12px;border:1.5px solid #e3dbd8;border-radius:12px;font:600 14px 'Inter Tight',sans-serif;color:#191718;background:#fff}
+#aDrawer .kd-pause span{font:700 14px 'Inter Tight',sans-serif;color:#014621}
+#aDrawer .kd-pause .kd-btn{min-height:44px;color:#014621}
+#aDrawer .kd-topup{display:grid;gap:10px}
+#aDrawer .kd-tus{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+#aDrawer .kd-tu{display:grid;gap:2px;justify-items:start;padding:14px;border:0;border-radius:16px;background:#e3f6d5;color:#014621;text-align:left;cursor:pointer;transition:transform .15s,background .2s}
+#aDrawer .kd-tu:hover{transform:translateY(-2px);background:#5bc20f}
+#aDrawer .kd-tu b{font:800 15px 'Inter Tight',sans-serif}
+#aDrawer .kd-tu span{font:400 20px 'Bagel Fat One',sans-serif}
+#aDrawer .kd-tu small{font-size:12px;opacity:.7}
+/* plan builder */
+#aDrawer .kd-pb{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(280px,1fr);gap:18px;align-items:start}
+#aDrawer .kd-pb-l{display:grid;gap:12px}
+#aDrawer .kd-pb-l .kd-ctl{background:#fff;box-shadow:0 12px 30px -22px rgba(1,70,33,.35);padding:20px}
+#aDrawer .kd-pb-sizes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+#aDrawer .kd-pbs{position:relative;display:grid;justify-items:center;gap:2px;padding:18px 8px 14px;border:0;border-radius:18px;background:#f8f3f1;color:#014621;cursor:pointer;transition:transform .2s cubic-bezier(.3,1.6,.5,1),background .2s,box-shadow .2s}
+#aDrawer .kd-pbs:hover{transform:translateY(-3px)}
+#aDrawer .kd-pbs[aria-pressed="true"]{background:#014621;color:#f6eceb;box-shadow:0 16px 30px -18px rgba(1,70,33,.8)}
+#aDrawer .kd-pbs em{position:absolute;top:-9px;padding:3px 9px;border-radius:999px;background:#5bc20f;color:#014621;font:700 10px 'Inter Tight',sans-serif;font-style:normal;white-space:nowrap}
+#aDrawer .kd-pbs b{font:400 40px/1 'Bagel Fat One',sans-serif}
+#aDrawer .kd-pbs[aria-pressed="true"] b{color:#5bc20f}
+#aDrawer .kd-pbs small{font-size:12px;font-weight:700;opacity:.7}
+#aDrawer .kd-pbs span{margin-top:6px;font:700 13px 'Inter Tight',sans-serif}
+#aDrawer .kd-pbs i{font:700 11px 'Inter Tight',sans-serif;font-style:normal;padding:2px 8px;border-radius:999px;background:rgba(91,194,15,.2)}
+#aDrawer .kd-who{display:grid;gap:12px}
+#aDrawer .kd-who .kd-seg{justify-self:start}
+#aDrawer .kd-pb-f{max-width:none;gap:10px}
+#aDrawer .kd-achips{display:flex;gap:6px;flex-wrap:wrap}
+#aDrawer .kd-achips button{border:0;padding:8px 14px;border-radius:999px;background:#f3ece8;color:#014621;font:700 13px 'Inter Tight',sans-serif;cursor:pointer}
+#aDrawer .kd-achips button[aria-pressed="true"]{background:#014621;color:#f6eceb}
+#aDrawer .kd-pb-sum{position:sticky;top:20px;display:grid;gap:8px;padding:24px}
+#aDrawer .kd-pb-sum h3{font:400 34px/1 'Bagel Fat One',sans-serif!important;margin:0!important}
+#aDrawer .kd-pb-sum>p{margin:0 0 6px;color:#6b6468;font-size:14px}
+#aDrawer .kd-pb-sum .kd-lines{margin:8px 0}
+#aDrawer .kd-saveln dd,#aDrawer .kd-saveln dt{color:#1e7a0c!important}
+#aDrawer .kd-pb-dates{margin:0;font-size:13px;color:#6b6468}
+#aDrawer .kd-pb-go{width:100%;margin-top:6px;background:#014621!important;color:#f6eceb!important}
+#aDrawer .kd-pb-fine{color:#9a9396;font-size:12px;text-align:center}
+#aDrawer .kd-pb-sum .p-error{margin:0;color:#c0360b;font-weight:700;font-size:13px}
+@media (max-width:900px){
+ #aDrawer .kd-plantop{grid-template-columns:1fr;gap:16px}
+ #aDrawer .kd-nextbig{border-right:0;padding-right:0;border-bottom:1px solid rgba(246,236,235,.15);padding-bottom:14px}
+ #aDrawer .kd-ctls{grid-template-columns:1fr}
+ #aDrawer .kd-tus{grid-template-columns:1fr}
+ #aDrawer .kd-tu{grid-template-columns:1fr auto;align-items:center}
+ #aDrawer .kd-tu small{grid-column:1}
+ #aDrawer .kd-tu span{grid-row:1/3;grid-column:2}
+ #aDrawer .kd-pb{grid-template-columns:1fr}
+ #aDrawer .kd-pb-sum{position:static}
+ #aDrawer .kd-pbs b{font-size:32px}
+ #aDrawer .kd-planwait{grid-template-columns:1fr}#aDrawer .kd-planwait .kd-btn{grid-row:auto;grid-column:1;margin-top:8px}
+ #aDrawer .kd-dots i{width:15px;height:15px}
+}
+@media (prefers-reduced-motion:reduce){#aDrawer .kd-dots i{animation:none!important}}
 </style><script>try{if(sessionStorage.getItem('krSeen'))document.documentElement.classList.add('k-seen');sessionStorage.setItem('krSeen','1')}catch(e){}</script><style>.k-seen .k-pre,.k-seen .k-loader{display:none!important}.k-seen #top *{animation-delay:0s!important}</style><style>.k-pre,.k-loader{display:none!important}#top .k-char{animation-duration:.55s!important}</style></head>
 <body>
 
@@ -2260,12 +2356,12 @@ a{color:#014621}a:hover{color:#191718}
 <div class="sm-row">
 <div class="sm-modes" role="radiogroup" aria-label="How do you want to buy?">
 <label class="sx-opt" data-mode="once"><input type="radio" name="spMode" value="once" checked><b>One-time</b></label>
-<label class="sx-opt" data-mode="sub"><input type="radio" name="spMode" value="sub"><b>Subscribe</b><small>save up to 5%</small></label>
+<label class="sx-opt" data-mode="sub"><input type="radio" name="spMode" value="sub"><b>Krate Plan</b><small>save up to 10%</small></label>
 </div>
 <div class="hs-qty sm-qty" role="group" aria-label="Crates"><button type="button" id="hsMinus" aria-label="One fewer crate">−</button><output id="hsQty">1</output><button type="button" id="hsPlus" aria-label="One more crate">+</button></div>
 </div>
 <button type="button" class="sm-go" id="hsGo">Order now</button>
-<div class="sp-freq sm-freq" id="hsFreq"><span class="hs-chips" role="radiogroup" aria-label="Delivery frequency"><button type="button" role="radio" aria-checked="false" data-f="week">Weekly <small>−5%</small></button><button type="button" role="radio" aria-checked="true" data-f="2 weeks">Every 2 weeks <small>−4%</small></button><button type="button" role="radio" aria-checked="false" data-f="month">Monthly <small>−3%</small></button></span></div>
+<div class="sp-freq sm-freq" id="hsFreq"><span class="hs-chips" role="radiogroup" aria-label="Plan size"><button type="button" role="radio" aria-checked="false" data-f="4">4 deliveries <small>−3%</small></button><button type="button" role="radio" aria-checked="true" data-f="8">8 deliveries <small>−6%</small></button><button type="button" role="radio" aria-checked="false" data-f="12">12 deliveries <small>−10%</small></button></span></div>
 <p class="sm-note">+ delivery fee · Pay securely online · <a href="#partners">Buying for a business?</a></p>
 <span hidden><span id="sxSub"></span><span id="sxDiscRow"><span id="sxDiscLabel"></span><span id="hsSave"></span></span><span id="spOncePrice"></span></span>
 </div>
@@ -2369,7 +2465,7 @@ a{color:#014621}a:hover{color:#191718}
 <aside class="kd-side">
 <div class="kd-logo" id="kdLogo" aria-hidden="true"></div>
 <div class="kd-me"><span class="kd-av" id="dAv">K</span><span><b id="aName">there</b><small id="kdEmail"></small></span></div>
-<nav class="kd-nav" aria-label="Your account"><button type="button" data-go="overview"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Overview</span></button><button type="button" data-go="orders"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6M9 16h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Orders</span><em class="kd-badge" hidden></em></button><button type="button" data-go="subs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.7L20 9M20 4v5h-5M20 12a8 8 0 0 1-13.7 5.7L4 15M4 20v-5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Subscription</span></button><button type="button" data-go="addrs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Addresses</span></button><button type="button" data-go="cash"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18v10H3zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Cashback</span></button><button type="button" data-go="account"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Account</span></button></nav>
+<nav class="kd-nav" aria-label="Your account"><button type="button" data-go="overview"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Overview</span></button><button type="button" data-go="orders"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6M9 16h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Orders</span><em class="kd-badge" hidden></em></button><button type="button" data-go="subs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.7L20 9M20 4v5h-5M20 12a8 8 0 0 1-13.7 5.7L4 15M4 20v-5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Krate Plan</span></button><button type="button" data-go="addrs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Addresses</span></button><button type="button" data-go="cash"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18v10H3zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Cashback</span></button><button type="button" data-go="account"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Account</span></button></nav>
 <div class="kd-side-foot"><a id="dHelp" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-4-7.5L21 3l-1 4.5A9 9 0 0 1 21 12zM8 11h8M8 15h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Help &amp; support</span></a><button type="button" id="aLogout"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4M10 17l-5-5 5-5M5 12h11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Log out</span></button></div>
 </aside>
 <div class="kd-main">
@@ -2382,14 +2478,14 @@ a{color:#014621}a:hover{color:#191718}
 <article class="kd-card kd-sum" id="kdSum"></article>
 <div class="kd-tiles">
 <button type="button" class="kd-card kd-tile" data-go="cash"><i class="kd-ti"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18v10H3zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i><small>Cashback</small><b id="tCb">₦0</b><span id="tCbSub">2% back on every order</span></button>
-<button type="button" class="kd-card kd-tile" data-go="subs"><i class="kd-ti"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.7L20 9M20 4v5h-5M20 12a8 8 0 0 1-13.7 5.7L4 15M4 20v-5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i><small>Subscription</small><b id="tSub">Not set up</b><span id="tSubSub">Save up to 5%</span></button>
+<button type="button" class="kd-card kd-tile" data-go="subs"><i class="kd-ti"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.7L20 9M20 4v5h-5M20 12a8 8 0 0 1-13.7 5.7L4 15M4 20v-5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i><small>Krate Plan</small><b id="tSub">Not set up</b><span id="tSubSub">Save up to 5%</span></button>
 <button type="button" class="kd-card kd-tile" data-go="addrs"><i class="kd-ti"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i><small>Delivering to</small><b id="tAddr">Add address</b><span id="tAddrSub">Tap to add</span></button>
 </div>
 </div>
 </section>
 
 <section class="kd-page" data-p="orders">
-<div class="kd-chips" id="kdFilt" role="tablist" aria-label="Filter orders"><button type="button" data-f="all" aria-pressed="true">All</button><button type="button" data-f="open" aria-pressed="false">In progress</button><button type="button" data-f="done" aria-pressed="false">Completed</button><button type="button" data-f="sub" aria-pressed="false">Subscriptions</button></div>
+<div class="kd-chips" id="kdFilt" role="tablist" aria-label="Filter orders"><button type="button" data-f="all" aria-pressed="true">All</button><button type="button" data-f="open" aria-pressed="false">In progress</button><button type="button" data-f="done" aria-pressed="false">Completed</button><button type="button" data-f="sub" aria-pressed="false">Plans</button></div>
 <div class="kd-card kd-list" id="aOrders"></div>
 <div class="kd-detail" id="kdDetail" hidden></div>
 </section>
@@ -2428,13 +2524,15 @@ a{color:#014621}a:hover{color:#191718}
 </div>
 </section>
 
+<section class="kd-page" data-p="plan"><div class="kd-pb" id="kdPlanB"></div></section>
+
 <section class="kd-page" data-p="new">
 <div class="o-view kd-orderv" id="dOrderV">
 <span hidden id="oTitle"></span><span hidden id="oBack"></span>
 <form class="acc-card o-card" id="oForm" novalidate>
 <div class="o-modes" role="radiogroup" aria-label="How do you want to buy?">
 <button type="button" role="radio" aria-checked="true" data-m="once"><b>One-time</b><small>₦7,500 a crate</small></button>
-<button type="button" role="radio" aria-checked="false" data-m="sub"><b>Subscribe</b><small>Save up to 5%</small></button>
+<button type="button" role="radio" aria-checked="false" data-m="sub"><b>Krate Plan</b><small>Save up to 10%</small></button>
 </div>
 <div class="o-freq" id="oFreq" hidden role="radiogroup" aria-label="Delivery frequency">
 <button type="button" role="radio" aria-checked="false" data-f="week">Weekly <small>−5%</small></button>
@@ -2896,6 +2994,7 @@ a{color:#014621}a:hover{color:#191718}
 
   var dCur = null, raf2 = 0, vel = 0;
   function update() {
+    if (!pts || !pts.length || !segs || !segs.length) return;
     var top = pin.getBoundingClientRect().top;
     var dT = Math.max(0, Math.min(total, -top * SPEED));
     if (dCur === null || Math.abs(dT - dCur) > total * 0.6) dCur = dT;
@@ -3022,14 +3121,14 @@ var KRATE_PAY = {
   // order: { items, itemsLabel, credit, kind, email, phone }
   window.KRATE_CHECKOUT_PAY = function (order, done) {
     cur = order; cb = done;
-    var fee = KRATE_PAY.deliveryFee, total = Math.max(0, order.items + fee - (order.credit || 0));
+    var fee = order.fee != null ? order.fee : KRATE_PAY.deliveryFee, total = Math.max(0, order.items + fee - (order.credit || 0));
     order.deliveryFee = fee; order.amount = total;
     order.ref = 'KR' + Date.now().toString().slice(-7);
     $('payItems').textContent = money(order.items); $('payItemsL').textContent = order.itemsLabel;
     $('payFee').textContent = money(fee);
     $('payCrRow').hidden = !order.credit; $('payCr').textContent = '−' + money(order.credit || 0);
     $('payTotal').textContent = money(total);
-    $('paySubNote').hidden = order.kind !== 'sub';
+    $('paySubNote').hidden = !order.note; $('paySubNote').textContent = order.note || '';
     $('payCard').hidden = !KRATE_PAY.paystackKey;
     $('payBankBox').hidden = true; $('payChoose').hidden = false; $('payErr').hidden = true; $('payBankBack').hidden = false;
     $('payBankName').textContent = KRATE_PAY.bank.name; $('payAcct').textContent = KRATE_PAY.bank.account; $('payHolder').textContent = KRATE_PAY.bank.holder;
@@ -3037,10 +3136,11 @@ var KRATE_PAY = {
     show(true);
   };
   // show bank details again for an order that is still awaiting transfer
-  window.KRATE_SHOW_TRANSFER = function (amount, ref) {
+  window.KRATE_SHOW_TRANSFER = function (amount, ref, fee) {
+    if (fee == null) fee = KRATE_PAY.deliveryFee;
     cur = null; cb = null;
-    $('payItemsL').textContent = 'Order ' + ref; $('payItems').textContent = money(amount - KRATE_PAY.deliveryFee);
-    $('payFee').textContent = money(KRATE_PAY.deliveryFee); $('payCrRow').hidden = true; $('payTotal').textContent = money(amount);
+    $('payItemsL').textContent = 'Order ' + ref; $('payItems').textContent = money(amount - fee);
+    $('payFee').textContent = money(fee); $('payCrRow').hidden = true; $('payTotal').textContent = money(amount);
     $('paySubNote').hidden = true; $('payErr').hidden = true;
     $('payBankName').textContent = KRATE_PAY.bank.name; $('payAcct').textContent = KRATE_PAY.bank.account; $('payHolder').textContent = KRATE_PAY.bank.holder;
     $('payAmt').textContent = money(amount); $('payRef').textContent = ref;
@@ -3081,18 +3181,94 @@ var KRATE_PAY = {
   $('paySent').onclick = function () { if (!cur) return close(); finish('transfer', 'awaiting payment'); };
 })();
 
+/* Krate Plan: prepaid bundles of deliveries. Edit the numbers below to match your real prices. */
+var KRATE_PLAN = (function () {
+  var DAY = 864e5;
+  var P = {
+    price: 7500,                                   // per crate of 30 (placeholder)
+    sizes: [                                       // bundle sizes and their discount
+      { n: 4, off: 0.03 },
+      { n: 8, off: 0.06, tag: 'Most popular' },
+      { n: 12, off: 0.10, tag: 'Best value' }
+    ],
+    freqs: { 'week': 7, '2 weeks': 14, '4 weeks': 28 },
+    freqLabel: { 'week': 'Weekly', '2 weeks': 'Every 2 weeks', '4 weeks': 'Every 4 weeks' },
+    days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    leadDays: 2                                    // earliest first delivery: 2 days after paying
+  };
+  function r50(n) { return Math.round(n / 50) * 50; }
+  function fee() { return (window.KRATE_PAY && KRATE_PAY.deliveryFee) || 0; }
+  function sizeOf(n) { return P.sizes.find(function (s) { return s.n === n; }) || { n: n, off: 0 }; }
+  // price of n deliveries with c crates each
+  P.quote = function (n, c) {
+    var s = sizeOf(n), full = n * c * P.price, items = r50(full * (1 - s.off)), f = n * fee();
+    return { n: n, crates: c, full: full, items: items, save: full - items, fee: f, total: items + f, off: s.off, perCrate: r50(P.price * (1 - s.off)) };
+  };
+  function iso(d) { d = new Date(d); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  function day0(t) { var d = new Date(t); d.setHours(0, 0, 0, 0); return d; }
+  P.iso = iso;
+  P.firstDate = function (weekday, from) {
+    var d = day0((from || Date.now()) + P.leadDays * DAY);
+    while (d.getDay() !== +weekday) d = new Date(d.getTime() + DAY);
+    return d;
+  };
+  // A plan holds prepaid value (₦). Each delivery uses (crates × locked crate price) + delivery fee.
+  // Changing crates per delivery simply changes how many deliveries the balance covers.
+  P.cost = function (o) { return (+o.crates || 1) * (+o.per_crate || P.price) + (+o.fee_each || 0); };
+  P.norm = function (o) {
+    if (o.plan_value) { o.skips = o.skips || []; return o; }
+    var start = day0(new Date(o.created_at).getTime() + 2 * DAY), pc = r50(P.price * (1 - P.sizes[0].off));
+    o.per_crate = pc; o.fee_each = fee(); o.plan_value = 4 * ((o.crates || 1) * pc + o.fee_each);
+    o.used_before = 0; o.done_before = 0; o.start_date = iso(start); o.plan_day = start.getDay();
+    if (!P.freqs[o.frequency]) o.frequency = o.frequency === 'month' ? '4 weeks' : 'week';
+    o.skips = o.skips || [];
+    return o;
+  };
+  P.schedule = function (o) {
+    o = P.norm(o);
+    var step = (P.freqs[o.frequency] || 7) * DAY, cost = P.cost(o);
+    var bal = (+o.plan_value || 0) - (+o.used_before || 0), t = new Date(o.start_date + 'T00:00:00').getTime();
+    var today = day0(Date.now()).getTime(), skips = o.skips || [], out = [], used = +o.used_before || 0, guard = 0;
+    while (bal >= cost - 1 && guard++ < 400) {
+      var k = iso(t), past = t < today;
+      if (skips.indexOf(k) >= 0 || (o.paused_until && k <= o.paused_until)) { if (!past) out.push({ d: new Date(t), key: k, skip: true, paused: skips.indexOf(k) < 0 }); t += step; continue; }
+      bal -= cost; if (past) used += cost;
+      out.push({ d: new Date(t), key: k, crates: +o.crates || 1, past: past });
+      t += step;
+    }
+    var real = out.filter(function (x) { return !x.skip; }), pastN = real.filter(function (x) { return x.past; }).length;
+    var upcoming = out.filter(function (x) { return !x.past; });
+    return { all: out, deliveries: real.length + (+o.done_before || 0), done: pastN + (+o.done_before || 0), left: real.length - pastN, used: used,
+      balance: Math.max(0, (+o.plan_value || 0) - used), spare: Math.max(0, Math.round(bal)), cost: cost,
+      upcoming: upcoming, next: upcoming.find(function (x) { return !x.skip; }) || null, last: real[real.length - 1] || null };
+  };
+  // apply a change (day, how often, crates each time) from the next delivery onwards
+  P.reset = function (o, patch) {
+    var s = P.schedule(o), n = Object.assign({}, patch);
+    n.used_before = s.used; n.done_before = s.done;
+    n.start_date = iso(P.firstDate(patch.plan_day != null ? patch.plan_day : o.plan_day));
+    n.skips = (o.skips || []).filter(function (k) { return k >= n.start_date; });
+    return n;
+  };
+  // deliveries a given balance covers at c crates each
+  P.covers = function (o, c) { var s = P.schedule(o), cost = c * (+o.per_crate || P.price) + (+o.fee_each || 0); return Math.floor((s.balance + 1) / cost); };
+  P.label = function (o) { var c = +o.crates || 1; return c + (c > 1 ? ' crates' : ' crate') + ' ' + (o.frequency === 'week' ? 'every ' + P.days[o.plan_day] : (P.freqLabel[o.frequency] || '').toLowerCase() + ' on ' + P.days[o.plan_day] + 's'); };
+  return P;
+})();
+
 /* Homepage shop: one-time or subscription, checkout on WhatsApp. */
 (function () {
   if (!document.getElementById('hsGo')) return;
   var PRICE = 7500; // placeholder price per crate of 30
   var OFF = { 'week': 0.05, '2 weeks': 0.04, 'month': 0.03 }; // subscription discounts
-  var mode = 'once', qty = 1, freq = '2 weeks';
+  var mode = 'once', qty = 1, freq = '8';
   function $(id) { return document.getElementById(id); }
   function money(n) { return '₦' + Math.round(n).toLocaleString('en-NG'); }
   function full() { return qty * PRICE; }
   function round50(n) { return Math.round(n / 50) * 50; }
-  function each() { return mode === 'sub' ? round50(full() * (1 - OFF[freq])) : full(); }
-  function what() { var c = qty + (qty > 1 ? ' crates' : ' crate'); return mode === 'sub' ? c + ' every ' + freq : c; }
+  function plan() { return window.KRATE_PLAN ? KRATE_PLAN.quote(+freq, qty) : null; }
+  function each() { return mode === 'sub' && plan() ? plan().perCrate * qty : full(); }
+  function what() { var c = qty + (qty > 1 ? ' crates' : ' crate'); return mode === 'sub' ? freq + ' deliveries · ' + c + ' each' : c; }
   function bump(el) { el.classList.remove('hs-tick'); void el.offsetWidth; el.classList.add('hs-tick'); }
 
   var last = '';
@@ -3103,14 +3279,14 @@ var KRATE_PAY = {
     $('sxSub').textContent = money(full());
     $('spOncePrice').textContent = '₦' + PRICE.toLocaleString('en-NG') + ' a crate';
     $('sxDiscRow').hidden = !sub;
-    $('sxDiscLabel').textContent = 'Subscription saving (' + Math.round(OFF[freq] * 100) + '%)';
+    $('sxDiscLabel').textContent = 'Plan saving';
     $('hsSave').textContent = '−' + money(full() - now);
-    $('hsPer').textContent = sub ? 'every ' + freq : (qty > 1 ? 'for ' + qty + ' crates' : '');
+    $('hsPer').textContent = sub ? 'a delivery · ' + freq + ' prepaid (' + money(plan().total) + ' incl. delivery)' : (qty > 1 ? 'for ' + qty + ' crates' : '');
     $('hsWas').hidden = !sub; $('hsWas').textContent = money(full());
     document.querySelectorAll('.sx-opt').forEach(function (o) { o.classList.toggle('on', o.dataset.mode === mode); });
     var fr = $('hsFreq'); fr.classList.toggle('open', sub);
     fr.querySelectorAll('button').forEach(function (b) { b.tabIndex = sub ? 0 : -1; });
-    $('hsGo').textContent = sub ? 'Start subscription' : 'Order now';
+    $('hsGo').textContent = sub ? 'Build my plan' : 'Order now';
     $('cPlace').textContent = window.KRATE_USER ? 'Continue to payment' : 'Create account & order';
     $('cWhat').textContent = what();
     $('cSubtotal').textContent = money(now + KRATE_PAY.deliveryFee) + (sub ? ' / delivery' : '');
@@ -3152,7 +3328,7 @@ var KRATE_PAY = {
   function totals() { $('cSubtotal').textContent = money(each() + KRATE_PAY.deliveryFee - credit()) + (mode === 'sub' ? ' / delivery' : ''); }
   $('cCb').addEventListener('change', totals);
   function close() { drawer.classList.remove('open'); drawer.setAttribute('aria-hidden', 'true'); scrim.hidden = true; $('hsGo').focus(); }
-  $('hsGo').onclick = open; $('cClose').onclick = close; scrim.onclick = close;
+  $('hsGo').onclick = function () { if (mode === 'sub' && window.KRATE_PLAN_START) return KRATE_PLAN_START({ n: +freq, crates: qty }); open(); }; $('cClose').onclick = close; scrim.onclick = close;
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && drawer.classList.contains('open')) close(); });
 
   var form = $('cForm');
@@ -3288,7 +3464,7 @@ var KRATE_SUPABASE = {
   }
   function attach(client) {
     sb = client; window.KRATE_DB = sb;
-    sb.auth.onAuthStateChange(function (_e, session) { user = session ? session.user : null; window.KRATE_USER = user; view(); if (user) { load(); if (window.KRATE_PENDING_CHECKOUT && window.KRATE_RESUME_CHECKOUT) { show(false); window.KRATE_RESUME_CHECKOUT(); } } });
+    sb.auth.onAuthStateChange(function (_e, session) { user = session ? session.user : null; window.KRATE_USER = user; view(); if (user) { load(); if (window.KRATE_PENDING_PLAN) { var pp = window.KRATE_PENDING_PLAN; window.KRATE_PENDING_PLAN = null; setTimeout(function () { openPlan(pp); }, 120); } else if (window.KRATE_PENDING_CHECKOUT && window.KRATE_RESUME_CHECKOUT) { show(false); window.KRATE_RESUME_CHECKOUT(); } } });
     sb.auth.getSession().then(function (r) { user = r.data.session ? r.data.session.user : null; window.KRATE_USER = user; view(); if (user) load(); });
   }
   function start() {
@@ -3405,12 +3581,10 @@ var KRATE_SUPABASE = {
   }
   var lastOrder = null, DAY = 864e5, STEP = { 'week': 7, '2 weeks': 14, 'month': 30 };
   function fmt(d, o) { return d.toLocaleDateString('en-NG', o || { weekday: 'long', day: 'numeric', month: 'long' }); }
-  function nextDate(o) {
-    var step = (STEP[o.frequency] || 7) * DAY, f = new Date(o.created_at).getTime() + 2 * DAY, now = Date.now();
-    var t = f; while (t < now - DAY / 2) t += step;
-    if (o.skip_next) t += step;
-    return new Date(t);
-  }
+  function sched(o) { return KRATE_PLAN.schedule(o); }
+  function nextDate(o) { var n = sched(o).next; return n ? n.d : new Date(); }
+  function isOrder(o) { return o.kind !== 'sub' && o.kind !== 'topup'; }
+  function isPlan(o) { return o.kind === 'sub'; }
   function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
   function btn(cls, txt, fn) { var b = el('button', cls, txt); b.type = 'button'; b.onclick = fn; return b; }
   function tracker(stage) {
@@ -3421,22 +3595,30 @@ var KRATE_SUPABASE = {
   function itemsOf(o) { return (+o.total || 0) - (+o.delivery_fee || 0) + (+o.credit_used || 0); }
   // one place that decides what an order's status is
   function st(o) {
-    if (o.kind === 'sub') return o.status === 'active' ? { t: 'Active', k: 'ok', s: 1 } : o.status === 'paused' ? { t: 'Paused', k: 'mute', s: 0 } : { t: 'Cancelled', k: 'mute', s: 0 };
+    if (o.kind === 'sub') {
+      if (o.status === 'cancelled') return { t: 'Cancelled', k: 'mute', s: 0 };
+      if (o.payment_status === 'awaiting payment') return { t: 'Awaiting payment', k: 'wait', s: 0 };
+      var sc = sched(o);
+      if (!sc.left) return { t: 'Finished', k: 'mute', s: 3 };
+      if (o.paused_until && o.paused_until >= KRATE_PLAN.iso(Date.now())) return { t: 'Paused', k: 'mute', s: 0 };
+      return { t: 'Active', k: 'ok', s: 1 };
+    }
+    if (o.kind === 'topup') return o.payment_status === 'awaiting payment' ? { t: 'Awaiting payment', k: 'wait', s: 0 } : { t: 'Paid', k: 'ok', s: 3 };
     if (o.status === 'cancelled') return { t: 'Cancelled', k: 'mute', s: 0 };
     if (o.status === 'delivered') return { t: 'Delivered', k: 'ok', s: 3 };
     if (o.status === 'on the way') return { t: 'On the way', k: 'go', s: 2 };
     if (o.payment_status === 'awaiting payment') return { t: 'Awaiting payment', k: 'wait', s: 0 };
     return { t: 'Being prepared', k: 'go', s: 1 };
   }
-  function payNow(o) { if (window.KRATE_SHOW_TRANSFER) KRATE_SHOW_TRANSFER(o.total, ref(o)); }
+  function payNow(o) { if (window.KRATE_SHOW_TRANSFER) KRATE_SHOW_TRANSFER(o.total, ref(o), o.delivery_fee != null ? +o.delivery_fee : null); }
   function reorder(o) { openOrder({ mode: 'once', crates: (o && o.crates) || 1 }); }
   function helpFor(o) { return 'https://wa.me/' + (window.KRATE ? KRATE.whatsapp : '') + '?text=' + encodeURIComponent('Hello Krate! I need help with order ' + ref(o) + '.'); }
 
   var WIN = function () { return (window.KRATE && KRATE.deliveryWindow) || 'Usually delivered within 24–48 hours'; };
   function renderHero(rows) {
     var box = $('dNext'); box.innerHTML = ''; box.className = 'kd-hero';
-    var open = rows.find(function (o) { return o.kind !== 'sub' && o.status !== 'cancelled' && o.status !== 'delivered'; });
-    var sub = rows.find(function (o) { return o.kind === 'sub' && o.status === 'active'; });
+    var open = rows.find(function (o) { return isOrder(o) && o.status !== 'cancelled' && o.status !== 'delivered'; });
+    var sub = rows.find(function (o) { return isPlan(o) && o.status !== 'cancelled' && st(o).k !== 'mute' || isPlan(o) && st(o).t === 'Paused'; });
     var top = el('div', 'kd-hero-t'), acts = el('div', 'kd-hero-a');
     if (open) {
       var s = st(open); box.classList.add('is-' + s.k);
@@ -3448,10 +3630,23 @@ var KRATE_SUPABASE = {
       acts.appendChild(btn('kd-btn kd-btn-ghost', 'View order', function () { showDetail(open); }));
       box.append(top, tracker(s.s), acts);
     } else if (sub) {
-      var d = nextDate(sub), days = Math.max(0, Math.round((d - Date.now()) / DAY));
-      top.append(el('small', '', 'Subscription · ' + sub.summary), el('h3', '', days === 0 ? 'Arriving today' : days === 1 ? 'Arriving tomorrow' : 'Arriving ' + fmt(d, { weekday: 'long' })), el('p', '', fmt(d) + (sub.skip_next ? ' · this one is skipped' : ' · we’ll text you on the day')));
-      acts.append(btn('kd-btn kd-btn-l', 'Manage subscription', function () { go('subs'); }));
-      box.append(top, tracker(days <= 1 ? 2 : 1), acts);
+      var sc = sched(sub), ss = st(sub);
+      if (ss.k === 'wait') {
+        box.classList.add('is-wait');
+        top.append(el('small', '', 'Krate Plan · ' + ref(sub)), el('h3', '', 'Awaiting your transfer'), el('p', '', 'Send ' + money(sub.total) + ' with reference ' + ref(sub) + '. Your first delivery is booked for ' + fmt(sc.next ? sc.next.d : new Date()) + '.'));
+        acts.append(btn('kd-btn kd-btn-y', 'Pay now · ' + money(sub.total), function () { payNow(sub); }), btn('kd-btn kd-btn-ghost', 'View plan', function () { go('subs'); }));
+        box.append(top, acts);
+      } else if (ss.t === 'Paused') {
+        top.append(el('small', '', 'Krate Plan · ' + KRATE_PLAN.label(sub)), el('h3', '', 'Paused until ' + fmt(new Date(sub.paused_until + 'T00:00:00'), { weekday: 'short', day: 'numeric', month: 'short' })), el('p', '', sc.left + ' deliveries left. We’ll pick up again on ' + (sc.next ? fmt(sc.next.d) : 'your next delivery day') + '.'));
+        acts.append(btn('kd-btn kd-btn-l', 'Manage plan', function () { go('subs'); }));
+        box.append(top, acts);
+      } else {
+        var d = sc.next.d, days = Math.max(0, Math.round((d - new Date().setHours(0, 0, 0, 0)) / DAY));
+        top.append(el('small', '', 'Krate Plan · ' + KRATE_PLAN.label(sub)), el('h3', '', days === 0 ? 'Arriving today' : days === 1 ? 'Arriving tomorrow' : 'Arriving ' + fmt(d, { weekday: 'long' })), el('p', '', fmt(d) + ' · ' + sc.next.crates + (sc.next.crates > 1 ? ' crates' : ' crate') + ' · ' + sc.left + (sc.left === 1 ? ' delivery' : ' deliveries') + ' left' + (sub.gift_name ? ' · for ' + sub.gift_name : '')));
+        acts.append(btn('kd-btn kd-btn-l', 'Manage plan', function () { go('subs'); }));
+        if (sc.left <= 2) acts.append(btn('kd-btn kd-btn-ghost', 'Top up', function () { go('subs'); setTimeout(function () { var t = drawer.querySelector('.kd-topup'); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 120); }));
+        box.append(top, planDots(sc, true), acts);
+      }
     } else {
       box.classList.add('is-empty');
       top.append(el('small', '', rows.length ? 'Nothing on the way' : 'Welcome to Krate'), el('h3', '', rows.length ? 'Ready when you are' : 'Fresh jumbo eggs, minus the market run'));
@@ -3466,7 +3661,7 @@ var KRATE_SUPABASE = {
   // one-tap reorder: same crates, same address, straight to payment
   function renderAgain(rows, open) {
     var box = $('kdAgain'); box.innerHTML = '';
-    var last = rows.find(function (o) { return o.kind !== 'sub' && o.status !== 'cancelled'; });
+    var last = rows.find(function (o) { return isOrder(o) && o.status !== 'cancelled'; });
     box.hidden = !last || (open && st(open).k === 'wait');
     if (box.hidden) return;
     var addr = last.delivery_address || defAddr(), lab = ((profile.addresses || []).find(function (x) { return x.text === addr; }) || {}).label;
@@ -3497,8 +3692,12 @@ var KRATE_SUPABASE = {
     rows.slice(0, 6).forEach(function (o) {
       var d = new Date(o.created_at), s = st(o), r = ref(o);
       if (o.kind === 'sub') {
-        ev.push({ d: d, k: 'ok', t: 'Subscription started', s: o.summary + ' · ' + money(o.total) + ' each', o: o });
-        if (o.status === 'active') ev.push({ d: nextDate(o), k: 'next', t: 'Next delivery', s: fmt(nextDate(o)), o: o, future: true });
+        var sc2 = sched(o);
+        ev.push({ d: d, k: 'ok', t: 'Krate Plan started', s: o.summary + ' · ' + money(o.total), o: o });
+        if (s.k === 'wait') ev.push({ d: new Date(d.getTime() + 1), k: 'wait', t: 'Waiting for your transfer', s: 'Send ' + money(o.total) + ' with reference ' + r, o: o, pay: true });
+        if (s.k === 'ok' && sc2.next) ev.push({ d: sc2.next.d, k: 'next', t: 'Next delivery', s: fmt(sc2.next.d) + ' · ' + sc2.left + ' left', o: o, future: true });
+      } else if (o.kind === 'topup') {
+        ev.push({ d: d, k: s.k === 'wait' ? 'wait' : 'ok', t: 'Plan topped up', s: o.summary + ' · ' + money(o.total), o: o, pay: s.k === 'wait' });
       } else {
         ev.push({ d: d, k: 'go', t: 'Order ' + r + ' placed', s: o.summary + ' · ' + money(o.total), o: o });
         if (s.k === 'wait') ev.push({ d: new Date(d.getTime() + 1), k: 'wait', t: 'Waiting for your transfer', s: 'Send ' + money(o.total) + ' with reference ' + r, o: o, pay: true });
@@ -3513,7 +3712,7 @@ var KRATE_SUPABASE = {
       tx.append(el('b', '', e.t), el('small', '', e.s));
       li.append(el('i'), tx, el('time', '', e.future ? 'Upcoming' : when(e.d)));
       if (e.pay) { var p = btn('kd-link', 'Pay now', function () { payNow(e.o); }); tx.appendChild(p); }
-      li.onclick = function (ev2) { if (ev2.target.closest('button')) return; if (e.o.kind === 'sub') go('subs'); else showDetail(e.o); };
+      li.onclick = function (ev2) { if (ev2.target.closest('button')) return; if (!isOrder(e.o)) go('subs'); else showDetail(e.o); };
       ol.appendChild(li);
     });
     box.appendChild(ol);
@@ -3521,8 +3720,8 @@ var KRATE_SUPABASE = {
   function sumLines(o, box) {
     var it = itemsOf(o), lines = el('dl', 'kd-lines');
     function line(k, v, cls) { var r = el('div', cls || ''); r.append(el('dt', '', k), el('dd', '', v)); lines.appendChild(r); }
-    line(o.summary.replace(' every', ' · every') + (o.kind === 'sub' ? ' (per delivery)' : ''), money(it));
-    line('Delivery fee', money(+o.delivery_fee || 0));
+    line(o.summary, money(it));
+    line(o.kind === 'sub' || o.kind === 'topup' ? 'Delivery fees (all deliveries)' : 'Delivery fee', money(+o.delivery_fee || 0));
     if (+o.credit_used) line('Cashback used', '−' + money(o.credit_used));
     line('Total', money(o.total), 'kd-tot');
     box.appendChild(lines);
@@ -3539,12 +3738,12 @@ var KRATE_SUPABASE = {
     var q = 1, m = 'once';
     var img = el('img', 'kd-buy-img'); img.src = 'img/egg-tray.webp'; img.alt = ''; img.loading = 'lazy';
     var t = el('div', 'kd-buy-t'); t.append(el('small', '', 'Jumbo eggs'), el('h3', '', 'A crate of 30'), el('p', '', 'Big, fresh, packed snug. Delivered to your door.'));
-    var modes = el('div', 'kd-seg'); var b1 = btn('', 'One-time', function () { m = 'once'; up(); }), b2 = btn('', 'Subscribe −5%', function () { m = 'sub'; up(); }); modes.append(b1, b2);
+    var modes = el('div', 'kd-seg'); var b1 = btn('', 'One-time', function () { m = 'once'; up(); }), b2 = btn('', 'Krate Plan −10%', function () { m = 'sub'; up(); }); modes.append(b1, b2);
     var row = el('div', 'kd-buy-row'), st = el('div', 'kd-step'), mi = btn('', '−', function () { q = Math.max(1, q - 1); up(); }), n = el('output', '', '1'), pl = btn('', '+', function () { q = Math.min(50, q + 1); up(); });
     mi.setAttribute('aria-label', 'One fewer crate'); pl.setAttribute('aria-label', 'One more crate'); st.append(mi, n, pl);
     var pr = el('b', 'kd-buy-p', ''); row.append(st, pr);
-    var go2 = btn('kd-btn kd-btn-l kd-buy-go', 'Order now', function () { openOrder({ mode: m, crates: q, freq: 'week' }); });
-    function up() { n.textContent = q; var each = m === 'sub' ? Math.round(q * PRICE * 0.95 / 50) * 50 : q * PRICE; pr.textContent = money(each) + (m === 'sub' ? ' / week' : ''); b1.setAttribute('aria-pressed', m === 'once'); b2.setAttribute('aria-pressed', m === 'sub'); }
+    var go2 = btn('kd-btn kd-btn-l kd-buy-go', 'Order now', function () { if (m === 'sub') openPlan({ crates: q }); else openOrder({ mode: 'once', crates: q }); });
+    function up() { n.textContent = q; var qq = KRATE_PLAN.quote(8, q); pr.textContent = m === 'sub' ? money(qq.perCrate * q) + ' / delivery' : money(q * PRICE); go2.textContent = m === 'sub' ? 'Build my plan' : 'Order now'; b1.setAttribute('aria-pressed', m === 'once'); b2.setAttribute('aria-pressed', m === 'sub'); }
     up(); box.append(img, t, modes, row, go2);
   }
   function renderSum(o) {
@@ -3559,7 +3758,7 @@ var KRATE_SUPABASE = {
     box.appendChild(a);
   }
   var filt = 'all';
-  function fitsFilter(o) { var s = st(o); return filt === 'all' || (filt === 'sub' ? o.kind === 'sub' : o.kind !== 'sub' && (filt === 'open' ? s.s < 3 && s.k !== 'mute' : s.s === 3 || s.k === 'mute')); }
+  function fitsFilter(o) { var s = st(o); return filt === 'all' || (filt === 'sub' ? !isOrder(o) : isOrder(o) && (filt === 'open' ? s.s < 3 && s.k !== 'mute' : s.s === 3 || s.k === 'mute')); }
   drawer.querySelectorAll('#kdFilt [data-f]').forEach(function (b) { b.onclick = function () { filt = b.dataset.f; drawer.querySelectorAll('#kdFilt [data-f]').forEach(function (x) { x.setAttribute('aria-pressed', x === b); }); renderOrders(rowsAll); }; });
   function renderOrders(all) {
     var rows = all.filter(fitsFilter);
@@ -3583,7 +3782,7 @@ var KRATE_SUPABASE = {
     var head = el('div', 'kd-card kd-dhead');
     var t = el('div'); var hh = el('h3', 'kd-copyref', 'Order ' + ref(o)); hh.title = 'Tap to copy'; t.append(el('small', '', 'Placed ' + fmt(new Date(o.created_at), { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' })), hh);
     head.append(t, el('em', 'kd-st kd-st-' + s.k, s.t));
-    if (o.kind !== 'sub' && s.k !== 'mute') head.appendChild(tracker(s.s));
+    if (isOrder(o) && s.k !== 'mute') head.appendChild(tracker(s.s));
     d.appendChild(head);
     var sum = el('div', 'kd-card kd-sum'); var h = el('div', 'kd-card-h'); h.appendChild(el('h3', '', 'Order summary')); sum.appendChild(h); sumLines(o, sum); d.appendChild(sum);
     var a = el('div', 'kd-dact');
@@ -3603,41 +3802,195 @@ var KRATE_SUPABASE = {
     function done() { document.body.classList.remove('kd-printing'); w.remove(); window.removeEventListener('afterprint', done); }
     window.addEventListener('afterprint', done); setTimeout(function () { window.print(); setTimeout(done, 500); }, 50);
   }
+  // ---------- Krate Plan (prepaid bundles) ----------
+  function planDots(sc, light) {
+    var w = el('div', 'kd-dots' + (light ? ' is-light' : '')), row = el('div', 'kd-dots-r');
+    for (var i = 0; i < sc.deliveries; i++) { var d = el('i', i < sc.done ? 'on' : i === sc.done ? 'now' : ''); d.style.setProperty('--i', i); row.appendChild(d); }
+    w.append(row, el('small', '', sc.done + ' of ' + sc.deliveries + ' delivered · ' + sc.left + ' left'));
+    return w;
+  }
+  function savePlan(o, patch, msg) {
+    Object.assign(o, patch);
+    sb.from('orders').update(patch).eq('id', o.id).then(function () { load(); if (msg) toast(msg); });
+  }
+  function seg(opts, val, fn, cls) {
+    var w = el('div', 'kd-seg ' + (cls || ''));
+    opts.forEach(function (o) { var b = btn('', o[1], function () { fn(o[0]); }); b.setAttribute('aria-pressed', String(o[0]) === String(val)); w.appendChild(b); });
+    return w;
+  }
+  function dayPick(val, fn) {
+    var w = el('div', 'kd-days');
+    KRATE_PLAN.days.forEach(function (d, i) { var b = btn('', d.slice(0, 3), function () { fn(i); }); b.setAttribute('aria-pressed', i === +val); b.title = d; w.appendChild(b); });
+    return w;
+  }
+  function stepper(val, fn, min, max) {
+    var w = el('div', 'kd-step'), o = el('output', '', String(val));
+    w.append(btn('', '−', function () { if (val > min) fn(val - 1); }), o, btn('', '+', function () { if (val < max) fn(val + 1); }));
+    w.children[0].setAttribute('aria-label', 'Fewer'); w.children[2].setAttribute('aria-label', 'More');
+    return w;
+  }
+  function ctl(title, sub, body) { var c = el('div', 'kd-ctl'); var h = el('div', 'kd-ctl-h'); h.append(el('b', '', title)); if (sub) h.append(el('small', '', sub)); c.append(h, body); return c; }
   function renderSub(rows) {
-    var a = $('aSubs'); a.innerHTML = '';
-    var o = rows.find(function (x) { return x.kind === 'sub' && x.status !== 'cancelled'; });
+    var a = $('aSubs'); a.innerHTML = ''; a.className = 'kd-card kd-subcard';
+    var o = rows.find(function (x) { return isPlan(x) && x.status !== 'cancelled'; });
     if (!o) {
       a.classList.add('is-empty');
-      a.append(el('small', 'kd-k', 'Subscription'), el('h3', '', 'Eggs on repeat, for less'), el('p', '', 'Pick how often, we deliver automatically. Skip, pause or cancel any time.'));
+      a.append(el('small', 'kd-k', 'Krate Plan'), el('h3', '', 'Prepay, save, forget the market run'), el('p', '', 'Pick a bundle of deliveries and the day that suits you. Pay once, then skip, pause or change any time.'));
       var plans = el('div', 'kd-plans');
-      [['week', 'Weekly', 'Best value'], ['2 weeks', 'Every 2 weeks', 'Most popular'], ['month', 'Monthly', '']].forEach(function (p) {
-        var c = el('button', 'kd-plan'); c.type = 'button';
-        if (p[2]) c.appendChild(el('em', '', p[2]));
-        c.append(el('small', '', p[1]), el('b', '', money(Math.round(PRICE * (1 - OFF[p[0]]) / 50) * 50)), el('span', '', 'per crate · save ' + Math.round(OFF[p[0]] * 100) + '%'), el('i', '', 'Choose →'));
-        c.onclick = function () { openOrder({ mode: 'sub', freq: p[0] }); };
+      KRATE_PLAN.sizes.forEach(function (p) {
+        var q = KRATE_PLAN.quote(p.n, 1), c = el('button', 'kd-plan'); c.type = 'button';
+        if (p.tag) c.appendChild(el('em', '', p.tag));
+        c.append(el('small', '', p.n + ' deliveries'), el('b', '', money(q.perCrate)), el('span', '', 'per crate · save ' + Math.round(p.off * 100) + '%'), el('i', '', 'Choose →'));
+        c.onclick = function () { openPlan({ n: p.n }); };
         plans.appendChild(c);
       });
       a.appendChild(plans);
       return;
     }
-    a.classList.remove('is-empty');
-    var s = st(o), d = nextDate(o);
-    var h = el('div', 'kd-card-h'); h.append(el('h3', '', o.summary.replace(/^(\d+ crates?) every/, '$1, every')), el('em', 'kd-st kd-st-' + s.k, s.t)); a.appendChild(h);
-    var meta = el('dl', 'kd-meta');
-    [['Next delivery', o.status === 'active' ? fmt(d) + (o.skip_next ? ' (skipped)' : '') : 'On hold'], ['Each delivery', money(o.total)], ['Deliver to', o.delivery_address], ['Started', fmt(new Date(o.created_at), { day: 'numeric', month: 'long', year: 'numeric' })]].forEach(function (x) { if (!x[1]) return; var r = el('div'); r.append(el('dt', '', x[0]), el('dd', x[0] === 'Deliver to' ? 'kd-cap' : '', x[1])); meta.appendChild(r); });
-    a.appendChild(meta);
-    if (o.status === 'active') {
-      var up = el('div', 'kd-next'); up.appendChild(el('small', 'kd-k2', 'Coming up'));
-      var t = d.getTime(), stp = (STEP[o.frequency] || 7) * DAY;
-      for (var i = 0; i < 4; i++) { var dd = new Date(t + i * stp), c = el('div', 'kd-day' + (i === 0 && o.skip_next ? ' is-skip' : '')); c.append(el('small', '', fmt(dd, { weekday: 'short' })), el('b', '', String(dd.getDate())), el('span', '', fmt(dd, { month: 'short' }))); up.appendChild(c); }
-      a.appendChild(up);
+    var s = st(o), sc = sched(o), today = KRATE_PLAN.iso(Date.now());
+    // header
+    var h = el('div', 'kd-card-h'); var ht = el('div'); ht.append(el('small', 'kd-k2', 'Krate Plan · ' + ref(o)), el('h3', '', KRATE_PLAN.label(o)));
+    h.append(ht, el('em', 'kd-st kd-st-' + s.k, s.t)); a.appendChild(h);
+    if (o.gift_name) { var g = el('p', 'kd-gift'); g.append(svg('M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7z'), el('span', '', 'A gift for ' + o.gift_name + (o.gift_phone ? ' · ' + o.gift_phone : ''))); a.appendChild(g); }
+    if (s.k === 'wait') {
+      var w = el('div', 'kd-planwait'); w.append(el('b', '', 'Waiting for your transfer of ' + money(o.total)), el('span', '', 'Use reference ' + ref(o) + '. Deliveries start once it lands.'), btn('kd-btn kd-btn-y', 'Pay now', function () { payNow(o); }));
+      a.appendChild(w);
     }
-    var acts = el('div', 'kd-dact');
-    if (o.status === 'active') acts.appendChild(btn('kd-btn', o.skip_next ? 'Unskip next delivery' : 'Skip next delivery', function () { sb.from('orders').update({ skip_next: !o.skip_next }).eq('id', o.id).then(function () { load(); kdToast(o.skip_next ? 'Next delivery is back on' : 'Next delivery skipped'); }); }));
-    acts.appendChild(btn('kd-btn kd-btn-ghost', o.status === 'paused' ? 'Resume' : 'Pause', function () { setStatus(o, o.status === 'paused' ? 'active' : 'paused'); }));
-    var cx = btn('kd-btn kd-btn-ghost kd-danger', 'Cancel subscription', function () { if (confirmCancel(cx)) setStatus(o, 'cancelled'); });
-    acts.appendChild(cx); a.appendChild(acts);
+    // progress + next
+    var top = el('div', 'kd-plantop');
+    var nx = el('div', 'kd-nextbig');
+    if (sc.next) nx.append(el('small', '', s.t === 'Paused' ? 'Resumes' : 'Next delivery'), el('b', '', fmt(sc.next.d, { weekday: 'long' })), el('span', '', fmt(sc.next.d, { day: 'numeric', month: 'long' }) + ' · ' + sc.next.crates + (sc.next.crates > 1 ? ' crates' : ' crate')));
+    else nx.append(el('small', '', 'All done'), el('b', '', 'Plan finished'), el('span', '', 'Top up below to keep eggs coming.'));
+    top.append(nx, planDots(sc));
+    a.appendChild(top);
+    var meta = el('dl', 'kd-meta');
+    [['Deliver to', o.delivery_address, 'kd-cap'], ['Balance', money(sc.balance) + (sc.spare ? ' (' + money(sc.spare) + ' carries into your next top-up)' : '')], ['Last delivery', sc.last ? fmt(sc.last.d) : '—']].forEach(function (x) { if (!x[1]) return; var r = el('div'); r.append(el('dt', '', x[0]), el('dd', x[2] || '', x[1])); meta.appendChild(r); });
+    a.appendChild(meta);
+    if (o.status === 'cancelled') return;
+    // upcoming with skip
+    var upc = el('div', 'kd-upc'); upc.appendChild(el('small', 'kd-k2', 'Coming up · tap a date to skip it'));
+    var strip = el('div', 'kd-next');
+    sc.upcoming.slice(0, 6).forEach(function (x) {
+      var c = el('button', 'kd-day' + (x.skip ? ' is-skip' : '')); c.type = 'button';
+      c.append(el('small', '', fmt(x.d, { weekday: 'short' })), el('b', '', String(x.d.getDate())), el('span', '', x.skip ? (x.paused ? 'Paused' : 'Skipped') : fmt(x.d, { month: 'short' })));
+      if (!x.paused) c.onclick = function () { var sk = (o.skips || []).slice(), i = sk.indexOf(x.key); if (i >= 0) sk.splice(i, 1); else sk.push(x.key); savePlan(o, { skips: sk }, i >= 0 ? fmt(x.d, { weekday: 'short', day: 'numeric', month: 'short' }) + ' is back on' : 'Skipped ' + fmt(x.d, { weekday: 'short', day: 'numeric', month: 'short' }) + ', added to the end'); };
+      else c.disabled = true;
+      strip.appendChild(c);
+    });
+    upc.appendChild(strip); a.appendChild(upc);
+    // controls
+    var g2 = el('div', 'kd-ctls');
+    g2.appendChild(ctl('Delivery day', 'Changes start from your next delivery', dayPick(o.plan_day, function (d) { if (d === +o.plan_day) return; savePlan(o, KRATE_PLAN.reset(o, { plan_day: d }), 'Deliveries moved to ' + KRATE_PLAN.days[d] + 's'); })));
+    g2.appendChild(ctl('How often', null, seg(Object.keys(KRATE_PLAN.freqs).map(function (k) { return [k, KRATE_PLAN.freqLabel[k]]; }), o.frequency, function (f) { if (f === o.frequency) return; savePlan(o, KRATE_PLAN.reset(o, { frequency: f }), KRATE_PLAN.freqLabel[f] + ' it is'); })));
+    var cv = el('small', 'kd-cv');
+    var stp = stepper(+o.crates || 1, function (c) { savePlan(o, KRATE_PLAN.reset(o, { crates: c }), c + (c > 1 ? ' crates' : ' crate') + ' per delivery'); }, 1, 10);
+    cv.textContent = 'Your balance covers ' + sc.left + (sc.left === 1 ? ' delivery' : ' deliveries') + ' at this size';
+    var cw = el('div', 'kd-cw'); cw.append(stp, cv);
+    g2.appendChild(ctl('Crates per delivery', 'More crates = fewer deliveries from your balance', cw));
+    var pz = el('div', 'kd-pause');
+    if (o.paused_until && o.paused_until >= today) {
+      pz.append(el('span', '', 'Paused until ' + fmt(new Date(o.paused_until + 'T00:00:00'), { day: 'numeric', month: 'long' })), btn('kd-btn kd-btn-ghost', 'Resume now', function () { savePlan(o, { paused_until: null }, 'Plan resumed'); }));
+    } else {
+      var inp = el('input'); inp.type = 'date'; inp.min = KRATE_PLAN.iso(Date.now() + DAY); inp.value = KRATE_PLAN.iso(Date.now() + 14 * DAY); inp.setAttribute('aria-label', 'Pause until');
+      pz.append(inp, btn('kd-btn kd-btn-ghost', 'Pause', function () { if (!inp.value) return; savePlan(o, { paused_until: inp.value }, 'Paused until ' + fmt(new Date(inp.value + 'T00:00:00'), { day: 'numeric', month: 'short' })); }));
+    }
+    g2.appendChild(ctl('Going away?', 'Pause until a date, we pick up after', pz));
+    a.appendChild(g2);
+    // top up
+    var tu = el('div', 'kd-topup'); tu.appendChild(el('small', 'kd-k2', 'Top up your plan'));
+    var tg = el('div', 'kd-tus');
+    KRATE_PLAN.sizes.forEach(function (p) {
+      var q = KRATE_PLAN.quote(p.n, +o.crates || 1), b = el('button', 'kd-tu'); b.type = 'button';
+      b.append(el('b', '', '+' + p.n + ' deliveries'), el('span', '', money(q.total)), el('small', '', 'save ' + Math.round(p.off * 100) + '%'));
+      b.onclick = function () { topUp(o, p.n); };
+      tg.appendChild(b);
+    });
+    tu.appendChild(tg); a.appendChild(tu);
+    var x = el('div', 'kd-dact');
+    var cx = btn('kd-btn kd-btn-ghost kd-danger', 'Cancel plan', function () { if (confirmCancel(cx)) { savePlan(o, { status: 'cancelled' }, 'Plan cancelled. We’ll contact you about your ' + money(sc.balance) + ' balance'); } });
+    var hl = el('a', 'kd-btn kd-btn-ghost', 'Help with my plan'); hl.href = helpFor(o); hl.target = '_blank'; hl.rel = 'noopener';
+    x.append(hl, cx); a.appendChild(x);
   }
+  function topUp(o, n) {
+    var q = KRATE_PLAN.quote(n, +o.crates || 1), add = n * KRATE_PLAN.cost(o), label = 'Top-up · ' + n + ' deliveries';
+    window.KRATE_CHECKOUT_PAY({ items: q.items, fee: q.fee, itemsLabel: label, credit: 0, kind: 'topup', email: user.email, phone: profile.phone, note: 'This adds ' + n + ' deliveries to your plan.' }, function (pay) {
+      window.KRATE_SAVE_ORDER({ kind: 'topup', summary: label, crates: n * (+o.crates || 1), total: pay.amount, delivery_fee: pay.deliveryFee, payment: pay.method, pay_status: pay.status, pay_ref: pay.ref, address: o.delivery_address }).then(function () {
+        savePlan(o, { plan_value: (+o.plan_value || 0) + add }, '+' + n + ' deliveries added');
+      });
+    });
+  }
+  // plan builder
+  var PB = { n: 8, crates: 1, freq: 'week', day: 6, gift: false };
+  function openPlan(opt) {
+    opt = opt || {}; PB.n = opt.n || PB.n; PB.crates = opt.crates || PB.crates; PB.gift = !!opt.gift;
+    PB.addr = defAddr(); PB.gname = ''; PB.gphone = ''; PB.gaddr = '';
+    go('plan', true); $('kdTitle').textContent = 'Build your Krate Plan'; buildPlan();
+  }
+  window.KRATE_OPEN_PLAN = openPlan;
+  function buildPlan() {
+    var box = $('kdPlanB'); box.innerHTML = '';
+    var q = KRATE_PLAN.quote(PB.n, PB.crates), first = KRATE_PLAN.firstDate(PB.day), step = KRATE_PLAN.freqs[PB.freq] * DAY, last = new Date(first.getTime() + (PB.n - 1) * step);
+    var L = el('div', 'kd-pb-l');
+    // 1 bundle
+    var sz = el('div', 'kd-pb-sizes');
+    KRATE_PLAN.sizes.forEach(function (p) {
+      var qq = KRATE_PLAN.quote(p.n, PB.crates), b = el('button', 'kd-pbs'); b.type = 'button'; b.setAttribute('aria-pressed', p.n === PB.n);
+      if (p.tag) b.appendChild(el('em', '', p.tag));
+      b.append(el('b', '', String(p.n)), el('small', '', 'deliveries'), el('span', '', money(qq.perCrate) + '/crate'), el('i', '', 'Save ' + Math.round(p.off * 100) + '%'));
+      b.onclick = function () { PB.n = p.n; buildPlan(); };
+      sz.appendChild(b);
+    });
+    L.appendChild(ctl('1. How many deliveries?', 'Bigger bundle, bigger saving', sz));
+    var cw = el('div', 'kd-cw'); cw.append(stepper(PB.crates, function (c) { PB.crates = c; buildPlan(); }, 1, 10), el('small', 'kd-cv', PB.crates * 30 + ' eggs each time'));
+    L.appendChild(ctl('2. Crates each delivery', null, cw));
+    L.appendChild(ctl('3. How often?', null, seg(Object.keys(KRATE_PLAN.freqs).map(function (k) { return [k, KRATE_PLAN.freqLabel[k]]; }), PB.freq, function (f) { PB.freq = f; buildPlan(); })));
+    L.appendChild(ctl('4. Delivery day', 'First delivery: ' + fmt(first), dayPick(PB.day, function (d) { PB.day = d; buildPlan(); })));
+    // 5 who
+    var who = el('div', 'kd-who');
+    who.appendChild(seg([['me', 'For me'], ['gift', 'Send to someone']], PB.gift ? 'gift' : 'me', function (v) { PB.gift = v === 'gift'; buildPlan(); }));
+    var f = el('div', 'kd-form kd-pb-f');
+    function field(lab, key, type, ph) { var l = el('label', '', lab), i = el(type === 'area' ? 'textarea' : 'input'); if (type !== 'area') i.type = type; i.placeholder = ph || ''; i.value = PB[key] || ''; i.oninput = function () { PB[key] = i.value; }; if (type === 'area') i.rows = 2; l.appendChild(i); f.appendChild(l); return i; }
+    if (PB.gift) { field('Their name', 'gname', 'text', 'e.g. Mum'); field('Their phone', 'gphone', 'tel', 'So our rider can reach them'); field('Their address', 'gaddr', 'area', 'House number, street, area, city'); }
+    else {
+      var chips = el('div', 'kd-achips');
+      (profile.addresses || []).forEach(function (ad) { var b = btn('', ad.label, function () { PB.addr = ad.text; buildPlan(); }); b.setAttribute('aria-pressed', ad.text === PB.addr); chips.appendChild(b); });
+      if (chips.children.length) f.appendChild(chips);
+      field('Delivery address', 'addr', 'area', 'House number, street, area, city');
+    }
+    who.appendChild(f);
+    L.appendChild(ctl('5. Who is it for?', null, who));
+    // summary
+    var R = el('aside', 'kd-card kd-pb-sum');
+    R.append(el('small', 'kd-k2', 'Your plan'), el('h3', '', PB.n + ' deliveries'), el('p', '', PB.crates + (PB.crates > 1 ? ' crates' : ' crate') + ' ' + (PB.freq === 'week' ? 'every ' + KRATE_PLAN.days[PB.day] : KRATE_PLAN.freqLabel[PB.freq].toLowerCase() + ', ' + KRATE_PLAN.days[PB.day] + 's')));
+    var dl = el('dl', 'kd-lines');
+    function line(k, v, cls) { var r = el('div', cls || ''); r.append(el('dt', '', k), el('dd', '', v)); dl.appendChild(r); }
+    line(PB.n * PB.crates + ' crates', money(q.full));
+    line('Plan saving (' + Math.round(q.off * 100) + '%)', '−' + money(q.save), 'kd-saveln');
+    line('Delivery (' + PB.n + ' × ' + money(KRATE_PAY.deliveryFee) + ')', money(q.fee));
+    line('Pay once', money(q.total), 'kd-tot');
+    R.appendChild(dl);
+    var dates = el('p', 'kd-pb-dates'); dates.textContent = 'From ' + fmt(first, { weekday: 'short', day: 'numeric', month: 'short' }) + ' to around ' + fmt(last, { day: 'numeric', month: 'short', year: 'numeric' });
+    R.appendChild(dates);
+    var err = el('p', 'p-error'); err.hidden = true; R.appendChild(err);
+    R.appendChild(btn('kd-btn kd-btn-l kd-pb-go', 'Continue to payment · ' + money(q.total), function () {
+      var addr = (PB.gift ? PB.gaddr : PB.addr || '').trim();
+      if (!addr || (PB.gift && (!PB.gname || !PB.gphone))) { err.textContent = PB.gift ? 'Add their name, phone and address.' : 'Add a delivery address.'; err.hidden = false; return; }
+      var label = PB.n + ' deliveries · ' + PB.crates + (PB.crates > 1 ? ' crates' : ' crate') + ' each';
+      window.KRATE_CHECKOUT_PAY({ items: q.items, fee: q.fee, itemsLabel: label, credit: 0, kind: 'sub', email: user.email, phone: profile.phone, note: 'This pays for all ' + PB.n + ' deliveries upfront.' }, function (pay) {
+        var plan = { plan_value: q.items + q.fee, per_crate: q.perCrate, fee_each: KRATE_PAY.deliveryFee, used_before: 0, done_before: 0, start_date: KRATE_PLAN.iso(first), plan_day: PB.day, skips: [], paused_until: null, gift_name: PB.gift ? PB.gname : null, gift_phone: PB.gift ? PB.gphone : null };
+        window.KRATE_SAVE_ORDER({ kind: 'sub', summary: label, crates: PB.crates, frequency: PB.freq, total: pay.amount, delivery_fee: pay.deliveryFee, payment: pay.method, pay_status: pay.status, pay_ref: pay.ref, name: profile.name, phone: profile.phone, address: PB.gift ? null : addr, plan: PB.gift ? Object.assign(plan, { delivery_address: addr }) : plan }).then(function () {
+          go('subs'); toast(pay.status === 'paid' ? 'Your Krate Plan is live!' : 'Plan booked, waiting for your transfer');
+        });
+      });
+    }));
+    R.appendChild(el('small', 'kd-pb-fine', 'Skip, pause, change the day or crates any time. Unused balance is refundable.'));
+    box.append(L, R);
+  }
+  // shop → plan builder (signs people up first if needed)
+  window.KRATE_PLAN_START = function (opt) {
+    if (user) { open(); setTimeout(function () { openPlan(opt); }, 80); return; }
+    window.KRATE_PENDING_PLAN = opt; open('up', 'Create a free account to start your Krate Plan');
+  };
   function renderCash(rows, bal) {
     var b = $('kdCbList'); b.innerHTML = '';
     var h = el('div', 'kd-card-h'); h.appendChild(el('h3', '', 'History')); b.appendChild(h);
@@ -3660,15 +4013,13 @@ var KRATE_SUPABASE = {
     renderHero(rows); renderOrders(rows); renderSub(rows); renderCash(rows, bal);
     $('dCb').textContent = money(bal); $('dCbRate').textContent = Math.round(KRATE_CASHBACK_RATE * 100) + '%';
     $('tCb').textContent = money(bal); $('tCbSub').textContent = bal ? 'Ready to use at checkout' : Math.round(KRATE_CASHBACK_RATE * 100) + '% back on every order';
-    var sb2 = rows.find(function (x) { return x.kind === 'sub' && x.status !== 'cancelled'; });
-    $('tSub').textContent = sb2 ? (sb2.status === 'paused' ? 'Paused' : 'Active') : 'Not set up';
-    $('tSubSub').textContent = sb2 ? sb2.summary : 'Save up to 5% on repeat';
-    var lastOne = rows.find(function (o) { return o.kind !== 'sub'; });
-    if (!sb2 && lastOne) { var save = Math.round((lastOne.crates || 1) * PRICE * OFF.week / 25) * 25; $('tSub').textContent = 'Save ' + money(save) + ' a week'; $('tSubSub').textContent = 'Get your ' + lastOne.summary + ' weekly, 5% off'; }
-    else if (sb2 && sb2.status === 'active') { $('tSubSub').textContent = 'Next: ' + fmt(nextDate(sb2), { weekday: 'short', day: 'numeric', month: 'short' }); }
+    var sb2 = rows.find(function (x) { return isPlan(x) && x.status !== 'cancelled'; });
+    var lastOne = rows.find(isOrder), big = KRATE_PLAN.sizes[KRATE_PLAN.sizes.length - 1];
+    if (sb2) { var s3 = st(sb2), sc3 = sched(sb2); $('tSub').textContent = s3.k === 'ok' ? sc3.left + (sc3.left === 1 ? ' delivery left' : ' deliveries left') : s3.t; $('tSubSub').textContent = s3.k === 'ok' && sc3.next ? 'Next: ' + fmt(sc3.next.d, { weekday: 'short', day: 'numeric', month: 'short' }) : KRATE_PLAN.label(sb2); }
+    else { var qq = KRATE_PLAN.quote(big.n, (lastOne && lastOne.crates) || 1); $('tSub').textContent = 'Save up to ' + money(qq.save); $('tSubSub').textContent = 'With a ' + big.n + '-delivery Krate Plan'; }
     $('tCb').textContent = bal ? money(bal) + ' ready' : 'Earn ' + Math.round(KRATE_CASHBACK_RATE * 100) + '% back';
     $('tCbSub').textContent = bal ? 'Tap to see how to use it' : 'On every order, subscriptions too';
-    var waitN = rows.filter(function (o) { return o.kind !== 'sub' && st(o).k === 'wait'; }).length;
+    var waitN = rows.filter(function (o) { return st(o).k === 'wait'; }).length;
     var bd = drawer.querySelector('.kd-badge'); if (bd) { bd.hidden = !rows.length; bd.textContent = waitN ? '!' : rows.length; bd.classList.toggle('is-w', !!waitN); bd.title = waitN ? 'Payment needed' : ''; }
     var crates = rows.filter(function (o) { return o.status !== 'cancelled'; }).reduce(function (n, o) { return n + (+o.crates || 0); }, 0);
     $('kdSOrd').textContent = rows.length; $('kdSEggs').textContent = (crates * 30).toLocaleString('en-NG'); $('kdSCb').textContent = money(bal);
@@ -3689,6 +4040,7 @@ var KRATE_SUPABASE = {
   window.KRATE_SAVE_ORDER = function (o) {
     if (!sb || !user) return Promise.resolve(null);
     var rec = { user_id: user.id, kind: o.kind, summary: o.summary, crates: o.crates, frequency: o.frequency || null, total: o.total, credit_used: o.credit || 0, delivery_address: o.address || null, delivery_note: o.when || null, delivery_fee: o.delivery_fee || 0, payment_method: o.payment || null, payment_status: o.pay_status || null, payment_ref: o.pay_ref || null, status: o.kind === 'sub' ? 'active' : 'placed' };
+    if (o.plan) Object.assign(rec, o.plan);
     var p = sb.from('orders').insert(rec);
     var done = (p && p.select ? p.select().single() : p).then(function (r) { load(); return (r && r.data) || rec; });
     profile.name = profile.name || o.name; profile.phone = profile.phone || o.phone;
@@ -3706,7 +4058,7 @@ var KRATE_SUPABASE = {
     if (cur === 'overview') { $('kdTitle').textContent = TITLES.overview; }
     $('kdHi').textContent = cur === 'overview' ? fmt(new Date()) : 'Hi ' + first();
   }
-  var TITLES = { overview: 'Overview', orders: 'Orders', subs: 'Subscription', addrs: 'Addresses', cash: 'Cashback', account: 'Account', 'new': 'New order' };
+  var TITLES = { overview: 'Overview', orders: 'Orders', subs: 'Krate Plan', addrs: 'Addresses', cash: 'Cashback', account: 'Account', 'new': 'New order', plan: 'Build your Krate Plan' };
   var ALIAS = { home: 'overview', details: 'account', help: 'account' };
   var cur = 'overview';
   function go(p, keep) {
@@ -3748,7 +4100,8 @@ var KRATE_SUPABASE = {
     $('kdTitle').textContent = O.mode === 'sub' ? 'New subscription' : 'New order';
   }
   function openOrder(opt) {
-    O.mode = opt.mode || 'once'; O.qty = opt.crates || 1; if (opt.freq) O.freq = opt.freq;
+    if (opt.mode === 'sub') return openPlan({ crates: opt.crates });
+    O.mode = 'once'; O.qty = opt.crates || 1;
     var f = $('oForm');
     f.hidden = false; $('oOk').hidden = true; $('oErr').hidden = true; $('oCb').checked = false;
     f.elements.phone.value = f.elements.phone.value || profile.phone || '';
@@ -3765,7 +4118,7 @@ var KRATE_SUPABASE = {
   }
   function closeOrder() { go('overview'); }
   window.KRATE_ORDER_IN_ACCOUNT = function (opt) { open(); setTimeout(function () { if (user) openOrder(opt || {}); }, 80); };
-  drawer.querySelectorAll('.o-modes [data-m]').forEach(function (b) { b.onclick = function () { O.mode = b.dataset.m; oUpdate(); }; });
+  drawer.querySelectorAll('.o-modes [data-m]').forEach(function (b) { b.onclick = function () { if (b.dataset.m === 'sub') return openPlan({ crates: O.qty }); O.mode = b.dataset.m; oUpdate(); }; });
   drawer.querySelectorAll('.o-freq [data-f]').forEach(function (b) { b.onclick = function () { O.freq = b.dataset.f; oUpdate(); }; });
   $('oMinus').onclick = function () { O.qty = Math.max(1, O.qty - 1); oUpdate(); };
   $('oPlus').onclick = function () { O.qty = Math.min(50, O.qty + 1); oUpdate(); };
