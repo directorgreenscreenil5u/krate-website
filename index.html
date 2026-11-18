@@ -2183,6 +2183,11 @@ footer nav a{font-size:20px!important}
 #aDrawer .kd-pb-img.is-gift{width:170px;border-radius:22px;rotate:-4deg;box-shadow:0 18px 30px -12px rgba(0,0,0,.5);filter:none;margin-top:4px}
 @media (max-width:900px){#aDrawer .kd-phero::after{width:140px;height:140px}}
 @media (max-width:743px){.e-photo img{aspect-ratio:5/4}}
+.b-photo{position:relative;margin:30px 0 0;width:min(300px,70%);rotate:4deg;transition:rotate .4s cubic-bezier(.3,1.6,.5,1)}
+.b-photo:hover{rotate:0deg}
+.b-photo img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;border-radius:22px;border:6px solid #f6eceb;box-shadow:0 24px 50px rgba(25,23,24,.35)}
+.b-photo .k-tape{position:absolute;top:-12px;left:50%;translate:-50% 0;z-index:2}
+@media (max-width:743px){.b-photo{width:62%;margin:24px auto 0;rotate:3deg}}
 </style><script>try{if(sessionStorage.getItem('krSeen'))document.documentElement.classList.add('k-seen');sessionStorage.setItem('krSeen','1')}catch(e){}</script><style>.k-seen .k-pre,.k-seen .k-loader{display:none!important}.k-seen #top *{animation-delay:0s!important}</style><style>.k-pre,.k-loader{display:none!important}#top .k-char{animation-duration:.55s!important}</style></head>
 <body>
 
@@ -2317,8 +2322,8 @@ a{color:#014621}a:hover{color:#191718}
 <nav aria-label="Main" id="kNav" style="background: #f6eceb; padding: 18px 26px 10px; border-radius: 0 0 6px 6px; transition: box-shadow .4s">
 <a class="k-row" href="#about" data-close="1"><img class="k-row-thumb" src="img/card-nourish.webp" alt=""><span class="k-row-label">About</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
 <a class="k-row" href="#eggs" data-close="1"><img class="k-row-thumb" src="img/egg-tray.webp" alt="" style="background: #f53509"><span class="k-row-label">Our Eggs</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
-<a class="k-row" href="#shop" data-close="1"><img class="k-row-thumb" src="img/photo-fryup.webp" alt=""><span class="k-row-label">Shop</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
-<a class="k-row" href="#partners" data-close="1"><img class="k-row-thumb" src="img/card-partner.webp" alt=""><span class="k-row-label">Partners</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
+<a class="k-row" href="#shop" data-close="1"><img class="k-row-thumb" src="img/krate-bowl.webp" alt=""><span class="k-row-label">Shop</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
+<a class="k-row" href="#partners" data-close="1"><img class="k-row-thumb" src="img/krate-shelf.webp" alt=""><span class="k-row-label">Partners</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
 <a class="k-row" href="#account" data-account data-close="1"><img class="k-row-thumb" src="img/egg-brown.webp" alt=""><span class="k-row-label">My account</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
 <a class="k-row" href="#contact" data-close="1" style="border-bottom: 0"><img class="k-row-thumb" src="img/card-deliver.webp" alt=""><span class="k-row-label">Contact</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
 </nav>
@@ -2433,14 +2438,14 @@ a{color:#014621}a:hover{color:#191718}
 <div class="e-grid">
 <figure class="e-photo">
 <span aria-hidden="true" class="k-tape e-tape"></span>
-<img loading="lazy" decoding="async" id="kStage" src="img/krate-family.webp" alt="A dad and his laughing son holding up a big brown egg while mum whisks in the background" width="800" height="800">
+<img loading="lazy" decoding="async" id="kStage" src="img/krate-gym.webp" alt="Two friends on a gym bench peeling boiled Krate eggs after training" width="800" height="800">
 </figure>
 <div class="e-side">
 <div role="tablist" aria-label="What it’s for" class="e-tabs">
-<button type="button" role="tab" class="k-tab" aria-selected="true">Home kitchens</button>
+<button type="button" role="tab" class="k-tab" aria-selected="true">Fitness</button>
+<button type="button" role="tab" class="k-tab" aria-selected="false">Home kitchens</button>
 <button type="button" role="tab" class="k-tab" aria-selected="false">Baking</button>
 <button type="button" role="tab" class="k-tab" aria-selected="false">Business</button>
-<button type="button" role="tab" class="k-tab" aria-selected="false">Fitness</button>
 </div>
 <div role="tabpanel" id="kTabBody" class="e-body"></div>
 <a href="#shop" class="e-cta">Get a Krate <span aria-hidden="true">→</span></a>
@@ -2553,6 +2558,7 @@ a{color:#014621}a:hover{color:#191718}
 <ul class="b-ticks">
 <li>Regular delivery</li><li>Consistent jumbo size</li><li>Farm-direct pricing</li>
 </ul>
+<figure class="b-photo"><span aria-hidden="true" class="k-tape"></span><img src="img/krate-checkout.webp" alt="A cashier scanning a pack of Krate eggs at a supermarket checkout" loading="lazy" width="760" height="1013"></figure>
 </div>
 <div class="b-chat">
 <h3>Chat with us</h3>
@@ -2846,14 +2852,14 @@ a{color:#014621}a:hover{color:#191718}
   // Use tabs: each one shows real ways people use Krate, and swaps the photo
   var body = document.getElementById('kTabBody');
   var USES = [
-    { title: 'Breakfast, sorted.', line: 'Big yolks for busy mornings.', uses: ['Pancakes', 'Fried eggs & bread', 'Omelette', 'Boiled eggs for school', 'Egg sauce & yam'],
-      img: 'img/krate-family.webp', alt: 'A dad and his laughing son holding up a big brown egg while mum whisks in the background' },
-    { title: 'Bake it bigger.', line: 'Rich yolks and fewer cracks to fish out.', uses: ['Cakes', 'Chin chin', 'Puff-puff', 'Pancakes', 'Meat pie glaze'],
-      img: 'img/krate-baker.webp', pos: 'center 30%', alt: 'A baker wheeling out a rack of fresh meat pies' },
-    { title: 'Made for busy businesses.', line: 'Neat crates that stack, travel well and arrive whole.', uses: ['Restaurants', 'Hotels', 'Bakeries', 'Caterers', 'Supermarkets'],
-      img: 'img/krate-chef.webp', alt: 'A head chef cracking eggs beside stacked Krate packs in a restaurant kitchen', link: true },
     { title: 'Fuel the gains.', line: 'Big eggs, more protein, ready in minutes.', uses: ['Boiled eggs after training', 'Egg-white omelette', 'Meal prep', 'Protein breakfast'],
-      img: 'img/krate-gym.webp', alt: 'Two friends at the gym eating boiled Krate eggs after training' }
+      img: 'img/krate-gym.webp', alt: 'Two friends on a gym bench peeling boiled Krate eggs after training' },
+    { title: 'Breakfast, sorted.', line: 'Big yolks for busy mornings.', uses: ['Pancakes', 'Fried eggs & bread', 'Omelette', 'Boiled eggs for school', 'Egg sauce & yam'],
+      img: 'img/krate-family.webp', alt: 'A dad and his son holding up a big brown egg while mum whisks in the background' },
+    { title: 'Bake it bigger.', line: 'Rich yolks and fewer cracks to fish out.', uses: ['Cakes', 'Chin chin', 'Puff-puff', 'Pancakes', 'Meat pie glaze'],
+      img: 'img/krate-baker.webp', pos: 'center 30%', alt: 'A baker smiling at a rack of fresh meat pies' },
+    { title: 'On the shelf near you.', line: 'Neat packs that stack, travel well and arrive whole.', uses: ['Supermarkets', 'Restaurants', 'Hotels', 'Bakeries', 'Caterers'],
+      img: 'img/krate-shelf.webp', pos: 'center 35%', alt: 'A supermarket chiller stacked with Krate egg packs', link: true }
   ];
   function showUse(i, keep) {
     var u = USES[i];
