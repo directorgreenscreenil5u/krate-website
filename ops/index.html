@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Krate Operations</title>
+<link rel="icon" href="../favicon.ico" sizes="32x32"><link rel="icon" href="../icons/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#014621">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>*{box-sizing:border-box}
+html,body{margin:0;background:#f6eceb;color:#191718;font:15px/1.4 'Inter Tight',system-ui,sans-serif}
+button{font:inherit;cursor:pointer}
+.op-logo svg{width:96px;height:auto;display:block}
+.op-kick{margin:6px 0 0;font:700 11px 'Inter Tight',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#5bc20f}
+/* gate */
+.op-gate{min-height:100vh;display:grid;place-items:center;padding:24px;background:#014621}
+.op-gate[hidden]{display:none}
+.op-login{width:min(400px,100%);display:grid;gap:14px;padding:30px;border-radius:26px;background:#f6eceb}
+.op-login .op-logo svg *{fill:#014621}
+.op-login h1{margin:0 0 4px;font:400 36px/1 'Bagel Fat One',sans-serif;color:#014621}
+.op-login .op-kick{color:#1e7a0c}
+.op-login label{display:grid;gap:6px;font:600 13px 'Inter Tight',sans-serif;color:#6b6468}
+.op-login input{min-height:50px;padding:0 14px;border:1.5px solid #e3dbd8;border-radius:14px;background:#fff;font:600 16px 'Inter Tight',sans-serif;color:#191718}
+.op-login input:focus{outline:0;border-color:#5bc20f;box-shadow:0 0 0 3px rgba(91,194,15,.2)}
+.op-err{margin:0;color:#c0360b;font-weight:700;font-size:14px}
+.op-mode{margin:0;padding:10px 12px;border-radius:12px;background:#fff3c4;color:#6a4600;font-size:13px}
+.op-demo{margin:0;font-size:13px;color:#6b6468;text-align:center}
+.op-back{text-align:center;color:#1e7a0c;font-weight:700;font-size:13px;text-decoration:none}
+.op-go{width:100%;min-height:52px!important;font-size:16px!important}
+/* buttons */
+.op-btn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 16px;border:0;border-radius:999px;background:#014621;color:#f6eceb;font:700 13px 'Inter Tight',sans-serif;white-space:nowrap;transition:transform .12s,filter .2s}
+.op-btn:active{transform:scale(.95)}
+.op-btn.g{background:#5bc20f;color:#014621}
+.op-btn.y{background:#ffd23f;color:#014621}
+.op-btn.ghost{background:transparent;color:#014621;box-shadow:inset 0 0 0 1.5px #c9c0bc}
+/* app */
+.op-app{display:grid;grid-template-columns:230px minmax(0,1fr);min-height:100vh}
+.op-app[hidden]{display:none}
+.op-side{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:18px;padding:24px 16px;background:#014621;color:#f6eceb}
+.op-side .op-logo svg *{fill:#5bc20f}
+.op-nav{display:grid;gap:4px}
+.op-nav button{display:flex;align-items:center;justify-content:space-between;min-height:44px;padding:0 14px;border:0;border-radius:12px;background:none;color:inherit;font:600 15px 'Inter Tight',sans-serif;text-align:left}
+.op-nav button:hover{background:rgba(246,236,235,.08)}
+.op-nav button[aria-current="page"]{background:#5bc20f;color:#014621}
+.op-nav em{min-width:22px;height:22px;padding:0 7px;border-radius:999px;background:#ffd23f;color:#014621;font:800 12px/22px 'Inter Tight',sans-serif;font-style:normal;text-align:center}
+.op-nav em[hidden]{display:none}
+.op-me{margin-top:auto;display:grid;gap:2px;padding:12px;border-radius:14px;background:rgba(246,236,235,.07)}
+.op-me small{opacity:.65;font-size:12px}
+.op-me button{margin-top:8px;justify-self:start;border:0;background:none;color:#5bc20f;font:700 13px 'Inter Tight',sans-serif;padding:0}
+.op-body{min-width:0;padding:22px clamp(16px,3vw,40px) 60px}
+.op-top{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.op-top>div{flex:1;min-width:200px}
+.op-top small{color:#1e7a0c;font-weight:700;font-size:13px}
+.op-top h2{margin:2px 0 0;font:400 clamp(28px,3vw,40px)/1 'Bagel Fat One',sans-serif;color:#014621}
+.op-top input{min-height:44px;width:min(320px,100%);padding:0 16px;border:0;border-radius:999px;background:#fff;font:500 15px 'Inter Tight',sans-serif;box-shadow:0 1px 0 rgba(1,70,33,.06)}
+.op-top input:focus{outline:2px solid #5bc20f}
+#opMain{display:grid;gap:16px}
+.op-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.op-stat{display:grid;gap:2px;justify-items:start;padding:18px;border:0;border-radius:20px;background:#fff;text-align:left;box-shadow:0 12px 30px -24px rgba(1,70,33,.4)}
+.op-stat small{font:700 11px 'Inter Tight',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#6b6468}
+.op-stat b{font:400 34px/1.1 'Bagel Fat One',sans-serif;color:#014621}
+.op-stat span{font-size:13px;color:#6b6468}
+.op-stat.g{background:#014621}.op-stat.g small,.op-stat.g span{color:rgba(246,236,235,.75)}.op-stat.g b{color:#5bc20f}
+.op-stat.y{background:#ffd23f}.op-stat.y small,.op-stat.y span,.op-stat.y b{color:#014621}
+.op-card{padding:18px 20px;border-radius:22px;background:#fff;box-shadow:0 12px 30px -24px rgba(1,70,33,.4)}
+.op-card-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px;flex-wrap:wrap}
+.op-card-h h3{margin:0;font:800 18px 'Inter Tight',sans-serif;color:#014621}
+.op-card-h small{color:#6b6468}
+.op-none{margin:10px 0;color:#6b6468}
+.op-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:14px;align-items:center;padding:14px 0;border-top:1px solid #f0e9e6}
+.op-row.is-done{opacity:.55}
+.op-r-main{display:grid;gap:3px;min-width:0}
+.op-r-main small{color:#6b6468;font-size:12px}
+.op-who{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.op-who b{font-weight:800}
+.op-tel{color:#1e7a0c;font-weight:700;text-decoration:none;font-size:13px}
+.op-addr{margin:0;font-size:13px;color:#3d3639;text-transform:capitalize}
+.op-crates{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:#e3f6d5;color:#014621;font:400 22px 'Bagel Fat One',sans-serif}
+.op-amt{font:800 15px 'Inter Tight',sans-serif;white-space:nowrap}
+.op-row>.op-amt{font:400 22px 'Bagel Fat One',sans-serif;color:#014621}
+.op-ref{font-weight:800;color:#014621;cursor:copy}
+.op-acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.op-st{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;font:700 12px 'Inter Tight',sans-serif;font-style:normal;white-space:nowrap}
+.op-st::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.op-st.new{background:#ffe1d6;color:#c0360b}.op-st.wait{background:#fff3c4;color:#8a5b00}.op-st.go{background:#e3f6d5;color:#1e7a0c}.op-st.ok{background:#014621;color:#5bc20f}.op-st.mute{background:#eee8e6;color:#6b6468}
+.op-next{display:grid;gap:1px;min-width:110px;padding:10px 12px;border-radius:14px;background:#f6eceb}
+.op-next small{font:700 10px 'Inter Tight',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#6b6468}
+.op-next b{font:800 15px 'Inter Tight',sans-serif;color:#014621}
+.op-next span{font-size:11px;color:#6b6468}
+.op-chips{display:flex;gap:8px;flex-wrap:wrap}
+.op-chips button{border:0;padding:9px 16px;border-radius:999px;background:#fff;color:#014621;font:700 13px 'Inter Tight',sans-serif}
+.op-chips button[aria-pressed="true"]{background:#014621;color:#f6eceb}
+.op-tr{display:grid;grid-template-columns:130px minmax(0,1.4fr) minmax(0,1fr) 100px 130px minmax(0,auto);gap:12px;align-items:center;padding:12px 0;border-top:1px solid #f0e9e6;font-size:14px}
+.op-tr>span{display:grid;gap:2px;min-width:0}
+.op-tr small{color:#6b6468;font-size:12px}
+.op-th{border-top:0;padding-top:0;font:700 11px 'Inter Tight',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#9a9396}
+.op-pp{grid-template-columns:minmax(0,1.3fr) minmax(0,1.3fr) 70px 110px 80px 110px;cursor:pointer}
+.op-pp:not(.op-th):hover{background:#faf6f5}
+.op-toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);opacity:0;padding:12px 18px;border-radius:999px;background:#191718;color:#fff;font:600 14px 'Inter Tight',sans-serif;transition:.3s;pointer-events:none;z-index:9}
+.op-toast.on{transform:translate(-50%,0);opacity:1}
+@media (max-width:860px){
+ .op-app{grid-template-columns:1fr}
+ .op-side{position:sticky;top:0;z-index:5;height:auto;flex-direction:row;align-items:center;flex-wrap:wrap;gap:10px;padding:12px 14px}
+ .op-side .op-logo svg{width:70px}.op-side .op-kick{display:none}
+ .op-nav{order:3;flex-basis:100%;display:flex;overflow-x:auto;gap:4px;scrollbar-width:none}
+ .op-nav button{flex:none;min-height:38px;padding:0 12px;font-size:14px}
+ .op-me{margin:0 0 0 auto;padding:0;background:none;display:flex;align-items:center;gap:8px}
+ .op-me b,.op-me small{display:none}.op-me button{margin:0}
+ .op-body{padding:16px 14px 40px}
+ .op-top input{width:100%}
+ .op-row{grid-template-columns:auto minmax(0,1fr);gap:8px 12px}
+ .op-row>.op-st,.op-row>.op-acts{grid-column:2;justify-content:flex-start}
+ .op-row>.op-next{grid-column:1/-1}
+ .op-th{display:none}
+ .op-tr,.op-pp{grid-template-columns:1fr auto;gap:6px 10px}
+ .op-tr>span:nth-child(3){grid-column:1}
+ .op-tr>.op-acts{grid-column:1/-1;justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+<main class="op-gate" id="opGate">
+<form class="op-login" id="opLogin" novalidate>
+<div class="op-logo"><svg viewBox="0 0 383.16 86.14" role="img" aria-label="Krate" fill="currentColor" ><path d="M41.74,3.52c.49-2.35,1.94-3.52,4.37-3.52h29.24c2.35,0,3.11,1.13,2.31,3.4l-12.74,33.24c-.81,2.1-.12,3.72,2.06,4.85,1.94,1.05,3.64,2.43,5.1,4.13,1.46,1.7,2.67,4.06,3.64,7.1.97,3.03,1.74,6.85,2.31,11.47.56,4.61.89,10.31.97,17.11,0,2.43-1.25,3.64-3.76,3.64h-31.55c-2.35,0-3.4-1.21-3.15-3.64.65-4.85.83-9.44.55-13.77-.28-4.33-1.07-7.62-2.37-9.89-.32-.57-.67-1.03-1.03-1.4-.36-.36-.95-.55-1.76-.55-1.38,0-2.06,1.05-2.06,3.15l.12,22.45c0,2.43-1.21,3.64-3.64,3.64H3.64c-2.43,0-3.64-1.21-3.64-3.64V3.64C0,1.21,1.21,0,3.64,0h26.69c2.43,0,3.64,1.21,3.64,3.64v20.02c0,.41.1.87.3,1.4.2.53.63.79,1.27.79.89,0,1.47-.26,1.76-.79.28-.53.46-.99.55-1.4l3.88-20.14Z"></path><path d="M136.01,48.77c2.26,1.46,4.93,2.18,8.01,2.18,2.43,0,4.71-.24,6.86-.73,2.14-.49,4.02-1.05,5.64-1.7.65-.24,1.21-.36,1.7-.36,1.21,0,1.94.85,2.18,2.55l3.88,26.81c.49,2.83-.41,4.65-2.67,5.46-3.07,1.13-5.99,1.94-8.74,2.43-2.75.49-5.46.73-8.13.73-4.77,0-8.74-.67-11.89-2s-5.7-3.32-7.64-5.95c-1.94-2.63-3.34-5.82-4.19-9.58s-1.32-8.07-1.4-12.92c0-1.46-.77-2.18-2.31-2.18-1.38,0-2.06.73-2.06,2.18l1.21,25.6c.16,2.43-1.01,3.64-3.52,3.64h-26.69c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h36.52c5.9,0,11.2.47,15.89,1.4,4.69.93,8.69,2.37,12.01,4.31,3.32,1.94,5.86,4.39,7.64,7.34,1.78,2.95,2.67,6.49,2.67,10.62,0,3.64-.51,6.71-1.52,9.22-1.01,2.51-2.53,4.61-4.55,6.31-2.02,1.7-4.55,3.03-7.58,4-3.03.97-6.57,1.78-10.62,2.43-1.05.08-1.7.45-1.94,1.09-.24.65.16,1.33,1.21,2.06ZM122.79,36.4c1.29,0,2.22-.32,2.79-.97.56-.65.85-1.37.85-2.18,0-.73-.28-1.4-.85-2-.57-.61-1.5-.91-2.79-.91h-3.15c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h3.15Z"></path><path d="M210.87,69.76c-.08-2.43-1.38-3.64-3.88-3.64h-.97c-2.43,0-3.72,1.21-3.88,3.64l-.85,11.53c-.08,2.43-1.38,3.64-3.88,3.64h-31.67c-2.43,0-3.4-1.17-2.91-3.52L179.2,3.52c.49-2.35,1.94-3.52,4.37-3.52h45.86c2.43,0,3.88,1.17,4.37,3.52l16.38,77.89c.49,2.35-.49,3.52-2.91,3.52h-31.67c-2.43,0-3.72-1.21-3.88-3.64l-.85-11.53ZM208.44,37.01c-.08-1.21-.73-1.82-1.94-1.82-1.13,0-1.78.61-1.94,1.82l-.97,13.83c-.16,2.1.81,3.15,2.91,3.15s3.07-1.05,2.91-3.15l-.97-13.83Z"></path><path d="M302.11,54.6c-2.99,0-4.49,1.5-4.49,4.49v22.2c0,2.43-1.21,3.64-3.64,3.64h-26.69c-2.43,0-3.64-1.21-3.64-3.64v-22.2c0-2.99-1.5-4.49-4.49-4.49h-8.86c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h60.66c2.43,0,3.64,1.21,3.64,3.64v47.32c0,2.43-1.21,3.64-3.64,3.64h-8.86Z"></path><path d="M354.65,53.38c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h24.87c2.43,0,3.64,1.21,3.64,3.64v18.2c0,2.43-1.21,3.64-3.64,3.64h-58.24c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h58.24c2.43,0,3.64,1.21,3.64,3.64v18.2c0,2.43-1.21,3.64-3.64,3.64h-24.87c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h21.23c2.43,0,3.64,1.21,3.64,3.64v14.56c0,2.43-1.21,3.64-3.64,3.64h-21.23Z"></path></svg></div>
+<p class="op-kick">Operations</p>
+<h1>Staff sign in</h1>
+<p class="op-mode" id="opMode" hidden></p>
+<label>Staff ID<input name="sid" autocomplete="username" placeholder="KR-001" autocapitalize="characters" spellcheck="false"></label>
+<label>Password<input name="pw" type="password" autocomplete="current-password"></label>
+<p class="op-err" id="opErr" hidden></p>
+<button type="submit" class="op-btn op-go">Sign in</button>
+<p class="op-demo" id="opDemo" hidden>Demo login: <b>KR-001</b> / <b>krate-ops</b></p>
+<a class="op-back" href="../">← Back to krate site</a>
+</form>
+</main>
+
+<div class="op-app" id="opApp" hidden>
+<aside class="op-side">
+<div class="op-logo"><svg viewBox="0 0 383.16 86.14" role="img" aria-label="Krate" fill="currentColor" ><path d="M41.74,3.52c.49-2.35,1.94-3.52,4.37-3.52h29.24c2.35,0,3.11,1.13,2.31,3.4l-12.74,33.24c-.81,2.1-.12,3.72,2.06,4.85,1.94,1.05,3.64,2.43,5.1,4.13,1.46,1.7,2.67,4.06,3.64,7.1.97,3.03,1.74,6.85,2.31,11.47.56,4.61.89,10.31.97,17.11,0,2.43-1.25,3.64-3.76,3.64h-31.55c-2.35,0-3.4-1.21-3.15-3.64.65-4.85.83-9.44.55-13.77-.28-4.33-1.07-7.62-2.37-9.89-.32-.57-.67-1.03-1.03-1.4-.36-.36-.95-.55-1.76-.55-1.38,0-2.06,1.05-2.06,3.15l.12,22.45c0,2.43-1.21,3.64-3.64,3.64H3.64c-2.43,0-3.64-1.21-3.64-3.64V3.64C0,1.21,1.21,0,3.64,0h26.69c2.43,0,3.64,1.21,3.64,3.64v20.02c0,.41.1.87.3,1.4.2.53.63.79,1.27.79.89,0,1.47-.26,1.76-.79.28-.53.46-.99.55-1.4l3.88-20.14Z"></path><path d="M136.01,48.77c2.26,1.46,4.93,2.18,8.01,2.18,2.43,0,4.71-.24,6.86-.73,2.14-.49,4.02-1.05,5.64-1.7.65-.24,1.21-.36,1.7-.36,1.21,0,1.94.85,2.18,2.55l3.88,26.81c.49,2.83-.41,4.65-2.67,5.46-3.07,1.13-5.99,1.94-8.74,2.43-2.75.49-5.46.73-8.13.73-4.77,0-8.74-.67-11.89-2s-5.7-3.32-7.64-5.95c-1.94-2.63-3.34-5.82-4.19-9.58s-1.32-8.07-1.4-12.92c0-1.46-.77-2.18-2.31-2.18-1.38,0-2.06.73-2.06,2.18l1.21,25.6c.16,2.43-1.01,3.64-3.52,3.64h-26.69c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h36.52c5.9,0,11.2.47,15.89,1.4,4.69.93,8.69,2.37,12.01,4.31,3.32,1.94,5.86,4.39,7.64,7.34,1.78,2.95,2.67,6.49,2.67,10.62,0,3.64-.51,6.71-1.52,9.22-1.01,2.51-2.53,4.61-4.55,6.31-2.02,1.7-4.55,3.03-7.58,4-3.03.97-6.57,1.78-10.62,2.43-1.05.08-1.7.45-1.94,1.09-.24.65.16,1.33,1.21,2.06ZM122.79,36.4c1.29,0,2.22-.32,2.79-.97.56-.65.85-1.37.85-2.18,0-.73-.28-1.4-.85-2-.57-.61-1.5-.91-2.79-.91h-3.15c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h3.15Z"></path><path d="M210.87,69.76c-.08-2.43-1.38-3.64-3.88-3.64h-.97c-2.43,0-3.72,1.21-3.88,3.64l-.85,11.53c-.08,2.43-1.38,3.64-3.88,3.64h-31.67c-2.43,0-3.4-1.17-2.91-3.52L179.2,3.52c.49-2.35,1.94-3.52,4.37-3.52h45.86c2.43,0,3.88,1.17,4.37,3.52l16.38,77.89c.49,2.35-.49,3.52-2.91,3.52h-31.67c-2.43,0-3.72-1.21-3.88-3.64l-.85-11.53ZM208.44,37.01c-.08-1.21-.73-1.82-1.94-1.82-1.13,0-1.78.61-1.94,1.82l-.97,13.83c-.16,2.1.81,3.15,2.91,3.15s3.07-1.05,2.91-3.15l-.97-13.83Z"></path><path d="M302.11,54.6c-2.99,0-4.49,1.5-4.49,4.49v22.2c0,2.43-1.21,3.64-3.64,3.64h-26.69c-2.43,0-3.64-1.21-3.64-3.64v-22.2c0-2.99-1.5-4.49-4.49-4.49h-8.86c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h60.66c2.43,0,3.64,1.21,3.64,3.64v47.32c0,2.43-1.21,3.64-3.64,3.64h-8.86Z"></path><path d="M354.65,53.38c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h24.87c2.43,0,3.64,1.21,3.64,3.64v18.2c0,2.43-1.21,3.64-3.64,3.64h-58.24c-2.43,0-3.64-1.21-3.64-3.64V3.64c0-2.43,1.21-3.64,3.64-3.64h58.24c2.43,0,3.64,1.21,3.64,3.64v18.2c0,2.43-1.21,3.64-3.64,3.64h-24.87c-2.02,0-3.03,1.01-3.03,3.03s1.01,3.03,3.03,3.03h21.23c2.43,0,3.64,1.21,3.64,3.64v14.56c0,2.43-1.21,3.64-3.64,3.64h-21.23Z"></path></svg></div>
+<p class="op-kick">Operations</p>
+<nav class="op-nav">
+<button type="button" data-pg="today">Today</button>
+<button type="button" data-pg="pay">Payments <em hidden>0</em></button>
+<button type="button" data-pg="orders">Orders</button>
+<button type="button" data-pg="plans">Krate Plans</button>
+<button type="button" data-pg="people">Customers</button>
+</nav>
+<div class="op-me"><b id="opWho">Staff</b><small id="opSid"></small><button type="button" id="opOut">Sign out</button></div>
+</aside>
+<div class="op-body">
+<header class="op-top">
+<div><small id="opDate"></small><h2 id="opTitle">Today</h2></div>
+<input id="opSearch" type="search" placeholder="Search name, phone, ref…" aria-label="Search">
+<button type="button" class="op-btn ghost" id="opRefresh">Refresh</button>
+</header>
+<div id="opMain"></div>
+</div>
+</div>
+<div class="op-toast" id="opToast" role="status"></div>
+<script>/* Krate Plan: prepaid bundles of deliveries. Edit the numbers below to match your real prices. */
+var KRATE_PLAN = (function () {
+  var DAY = 864e5;
+  var P = {
+    price: 7500,                                   // per crate of 30 (placeholder)
+    sizes: [                                       // bundle size, crate discount, delivery fee per delivery (₦)
+      { n: 4, off: 0.03, fee: 750 },
+      { n: 8, off: 0.06, fee: 500, tag: 'Most popular' },
+      { n: 12, off: 0.10, fee: 0, tag: 'Best value' }
+    ],
+    freqs: { 'week': 7, '2 weeks': 14, '4 weeks': 28 },
+    freqLabel: { 'week': 'Weekly', '2 weeks': 'Every 2 weeks', '4 weeks': 'Every 4 weeks' },
+    days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    leadDays: 2                                    // earliest first delivery: 2 days after paying
+  };
+  function r50(n) { return Math.round(n / 50) * 50; }
+  function fee() { return (window.KRATE_PAY && KRATE_PAY.deliveryFee) || 0; }
+  function sizeOf(n) { return P.sizes.find(function (s) { return s.n === n; }) || { n: n, off: 0 }; }
+  // price of n deliveries with c crates each
+  P.quote = function (n, c) {
+    var s = sizeOf(n), full = n * c * P.price, items = r50(full * (1 - s.off)), each = s.fee != null ? s.fee : fee(), f = n * each, normalFee = n * fee();
+    return { n: n, crates: c, full: full, items: items, save: full - items, feeEach: each, fee: f, feeSave: Math.max(0, normalFee - f), saveAll: full - items + Math.max(0, normalFee - f), total: items + f, off: s.off, perCrate: r50(P.price * (1 - s.off)), perDelivery: r50(c * P.price * (1 - s.off)) + each };
+  };
+  function iso(d) { d = new Date(d); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  function day0(t) { var d = new Date(t); d.setHours(0, 0, 0, 0); return d; }
+  P.iso = iso;
+  P.firstDate = function (weekday, from) {
+    var d = day0((from || Date.now()) + P.leadDays * DAY);
+    while (d.getDay() !== +weekday) d = new Date(d.getTime() + DAY);
+    return d;
+  };
+  // A plan holds prepaid value (₦). Each delivery uses (crates × locked crate price) + delivery fee.
+  // Changing crates per delivery simply changes how many deliveries the balance covers.
+  P.cost = function (o) { return (+o.crates || 1) * (+o.per_crate || P.price) + (+o.fee_each || 0); };
+  P.norm = function (o) {
+    if (o.plan_value) { o.skips = o.skips || []; return o; }
+    var start = day0(new Date(o.created_at).getTime() + 2 * DAY), pc = r50(P.price * (1 - P.sizes[0].off));
+    o.per_crate = pc; o.fee_each = fee(); o.plan_value = 4 * ((o.crates || 1) * pc + o.fee_each);
+    o.used_before = 0; o.done_before = 0; o.start_date = iso(start); o.plan_day = start.getDay();
+    if (!P.freqs[o.frequency]) o.frequency = o.frequency === 'month' ? '4 weeks' : 'week';
+    o.skips = o.skips || [];
+    return o;
+  };
+  P.schedule = function (o) {
+    o = P.norm(o);
+    var step = (P.freqs[o.frequency] || 7) * DAY, cost = P.cost(o);
+    var bal = (+o.plan_value || 0) - (+o.used_before || 0), t = new Date(o.start_date + 'T00:00:00').getTime();
+    var today = day0(Date.now()).getTime(), skips = o.skips || [], out = [], used = +o.used_before || 0, guard = 0;
+    while (bal >= cost - 1 && guard++ < 400) {
+      var k = iso(t), past = t < today;
+      if (skips.indexOf(k) >= 0 || (o.paused_until && k <= o.paused_until)) { if (!past) out.push({ d: new Date(t), key: k, skip: true, paused: skips.indexOf(k) < 0 }); t += step; continue; }
+      bal -= cost; if (past) used += cost;
+      out.push({ d: new Date(t), key: k, crates: +o.crates || 1, past: past });
+      t += step;
+    }
+    var real = out.filter(function (x) { return !x.skip; }), pastN = real.filter(function (x) { return x.past; }).length;
+    var upcoming = out.filter(function (x) { return !x.past; });
+    return { all: out, deliveries: real.length + (+o.done_before || 0), done: pastN + (+o.done_before || 0), left: real.length - pastN, used: used,
+      balance: Math.max(0, (+o.plan_value || 0) - used), spare: Math.max(0, Math.round(bal)), cost: cost,
+      upcoming: upcoming, next: upcoming.find(function (x) { return !x.skip; }) || null, last: real[real.length - 1] || null };
+  };
+  // apply a change (day, how often, crates each time) from the next delivery onwards
+  P.reset = function (o, patch) {
+    var s = P.schedule(o), n = Object.assign({}, patch);
+    n.used_before = s.used; n.done_before = s.done;
+    n.start_date = iso(P.firstDate(patch.plan_day != null ? patch.plan_day : o.plan_day));
+    n.skips = (o.skips || []).filter(function (k) { return k >= n.start_date; });
+    return n;
+  };
+  // deliveries a given balance covers at c crates each
+  P.covers = function (o, c) { var s = P.schedule(o), cost = c * (+o.per_crate || P.price) + (+o.fee_each || 0); return Math.floor((s.balance + 1) / cost); };
+  P.label = function (o) { var c = +o.crates || 1; return c + (c > 1 ? ' crates' : ' crate') + ' ' + (o.frequency === 'week' ? 'every ' + P.days[o.plan_day] : (P.freqLabel[o.frequency] || '').toLowerCase() + ' on ' + P.days[o.plan_day] + 's'); };
+  return P;
+})();
+
+/* Krate Operations: staff-only dashboard. Works with Supabase (staff table) or, with no database yet, on this device's demo data. */
+var KRATE_SUPABASE = {
+  url: '',      // same values as the main site (account.js)
+  anonKey: ''
+};
+var STAFF_EMAIL_DOMAIN = 'staff.krate.ng'; // Staff ID KR-001 signs in as kr-001@staff.krate.ng
+var DEMO_STAFF = { id: 'KR-001', password: 'krate-ops', name: 'Demo staff' }; // only used when no database is connected
+var KRATE_PAY = { deliveryFee: 1500 };
+var KRATE_COINS = { perCrate: 50, block: 1000, blockValue: 200 };
+
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var money = function (n) { return '₦' + Math.round(+n || 0).toLocaleString('en-NG'); };
+  var DAY = 864e5;
+  var sb = null, staff = null, data = { orders: [], profiles: [], deliveries: [] }, page = 'today', filt = 'all', q = '';
+  function el(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+  function btn(c, x, fn) { var b = el('button', c, x); b.type = 'button'; b.onclick = fn; return b; }
+  function fmt(d, o) { return new Date(d).toLocaleDateString('en-NG', o || { day: 'numeric', month: 'short' }); }
+  function time(d) { return new Date(d).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }).toLowerCase().replace(' ', ''); }
+  function iso(d) { return KRATE_PLAN.iso(d); }
+  var today = iso(Date.now());
+  function ref(o) { return o.payment_ref || 'KR' + String(o.id).slice(-5); }
+  function cust(o) { return data.profiles.find(function (p) { return p.id === o.user_id; }) || {}; }
+  function kind(o) { return o.kind === 'sub' ? 'Krate Plan' : o.kind === 'topup' ? 'Plan top-up' : 'One-time'; }
+  function toast(m) { var t = $('opToast'); t.textContent = m; t.classList.remove('on'); void t.offsetWidth; t.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(function () { t.classList.remove('on'); }, 2400); }
+
+  // ---------- data layer ----------
+  var local = {
+    get: function () { try { return JSON.parse(localStorage.getItem('krateAccounts')) || { users: [], profiles: [], orders: [] }; } catch (e) { return { users: [], profiles: [], orders: [] }; } },
+    put: function (d) { try { localStorage.setItem('krateAccounts', JSON.stringify(d)); } catch (e) {} }
+  };
+  function loadAll() {
+    if (!sb) {
+      var d = local.get();
+      data.orders = (d.orders || []).slice().sort(function (a, b) { return new Date(b.created_at) - new Date(a.created_at); });
+      data.profiles = (d.profiles || []).map(function (p) { var u = (d.users || []).find(function (x) { return x.id === p.id; }); return Object.assign({ email: u && u.email }, p); });
+      data.deliveries = d.deliveries || [];
+      return Promise.resolve(render());
+    }
+    return Promise.all([
+      sb.from('orders').select('*').order('created_at', { ascending: false }),
+      sb.from('profiles').select('*'),
+      sb.from('deliveries').select('*')
+    ]).then(function (r) { data.orders = r[0].data || []; data.profiles = r[1].data || []; data.deliveries = r[2].data || []; render(); });
+  }
+  function update(o, patch, msg) {
+    Object.assign(o, patch);
+    var p;
+    if (!sb) { var d = local.get(); d.orders.forEach(function (x) { if (String(x.id) === String(o.id)) Object.assign(x, patch); }); local.put(d); p = Promise.resolve(); }
+    else p = sb.from('orders').update(patch).eq('id', o.id).then(function (r) { if (r.error) throw r.error; });
+    return p.then(function () { if (msg) toast(msg); loadAll(); }, function (e) { toast('Could not save: ' + (e.message || e)); });
+  }
+  function markPlanDelivered(o, key) {
+    var rec = { plan_id: o.id, delivery_date: key, status: 'delivered' };
+    var p;
+    if (!sb) { var d = local.get(); d.deliveries = d.deliveries || []; if (!d.deliveries.some(function (x) { return String(x.plan_id) === String(o.id) && x.delivery_date === key; })) d.deliveries.push(rec); local.put(d); p = Promise.resolve(); }
+    else p = sb.from('deliveries').upsert(rec, { onConflict: 'plan_id,delivery_date' });
+    return p.then(function () { toast('Delivery for ' + (cust(o).name || ref(o)) + ' marked done'); loadAll(); });
+  }
+  function delivered(o, key) { return data.deliveries.some(function (x) { return String(x.plan_id) === String(o.id) && x.delivery_date === key; }); }
+  function planOf(o) {
+    var extra = data.orders.filter(function (t) { return t.kind === 'topup' && String(t.plan_id) === String(o.id) && t.payment_status === 'paid'; }).reduce(function (n, t) { return n + (+t.add_value || 0); }, 0);
+    var e = Object.assign({}, KRATE_PLAN.norm(Object.assign({}, o)));
+    if (extra) e.plan_value = (+e.plan_value || 0) + extra;
+    return KRATE_PLAN.schedule(e);
+  }
+
+  // ---------- sign in ----------
+  function startDemo() { $('opMode').textContent = 'Demo mode: no database connected yet. Showing orders made on this device.'; $('opMode').hidden = false; $('opDemo').hidden = false; }
+  function boot() {
+    try { if (sessionStorage.getItem('krateOpsStaff')) { staff = JSON.parse(sessionStorage.getItem('krateOpsStaff')); } } catch (e) {}
+    if (!KRATE_SUPABASE.url || !KRATE_SUPABASE.anonKey) { startDemo(); if (staff) enter(); return; }
+    var s = document.createElement('script'); s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+    s.onload = function () {
+      sb = window.supabase.createClient(KRATE_SUPABASE.url, KRATE_SUPABASE.anonKey);
+      sb.auth.getSession().then(function (r) { if (r.data.session) checkStaff(r.data.session.user); });
+    };
+    document.head.appendChild(s);
+  }
+  function checkStaff(u) {
+    return sb.from('staff').select('*').eq('id', u.id).maybeSingle().then(function (r) {
+      if (!r.data || !r.data.active) { sb.auth.signOut(); showErr('This account is not on the staff list.'); return; }
+      staff = { id: r.data.staff_id, name: r.data.name, role: r.data.role }; enter();
+    });
+  }
+  function showErr(m) { $('opErr').textContent = m; $('opErr').hidden = !m; }
+  $('opLogin').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var id = this.elements.sid.value.trim().toUpperCase(), pw = this.elements.pw.value;
+    showErr('');
+    if (!id || !pw) return showErr('Enter your Staff ID and password.');
+    if (!sb) {
+      if (id === DEMO_STAFF.id && pw === DEMO_STAFF.password) { staff = { id: id, name: DEMO_STAFF.name, role: 'admin' }; try { sessionStorage.setItem('krateOpsStaff', JSON.stringify(staff)); } catch (x) {} enter(); }
+      else showErr('Wrong Staff ID or password.');
+      return;
+    }
+    sb.auth.signInWithPassword({ email: id.toLowerCase() + '@' + STAFF_EMAIL_DOMAIN, password: pw }).then(function (r) {
+      if (r.error) return showErr('Wrong Staff ID or password.');
+      checkStaff(r.data.user);
+    });
+  });
+  function enter() { $('opGate').hidden = true; $('opApp').hidden = false; $('opWho').textContent = staff.name; $('opSid').textContent = staff.id + ' · ' + staff.role; loadAll(); }
+  $('opOut').onclick = function () { try { sessionStorage.removeItem('krateOpsStaff'); } catch (e) {} if (sb) sb.auth.signOut(); staff = null; $('opApp').hidden = true; $('opGate').hidden = false; };
+  $('opRefresh').onclick = function () { loadAll().then(function () { toast('Up to date'); }); };
+  document.querySelectorAll('[data-pg]').forEach(function (b) { b.onclick = function () { page = b.dataset.pg; filt = 'all'; render(); window.scrollTo(0, 0); }; });
+  $('opSearch').addEventListener('input', function () { q = this.value.trim().toLowerCase(); render(); });
+
+  // ---------- helpers for lists ----------
+  function match(o) {
+    if (!q) return true;
+    var c = cust(o);
+    return [ref(o), c.name, c.phone, c.email, o.delivery_address, o.summary].join(' ').toLowerCase().indexOf(q) >= 0;
+  }
+  function pill(o) {
+    var s = o.status, p = o.payment_status;
+    if (s === 'cancelled') return el('em', 'op-st mute', 'Cancelled');
+    if (p === 'awaiting payment') return el('em', 'op-st wait', 'Awaiting payment');
+    if (o.kind === 'sub') return el('em', 'op-st ' + (s === 'paused' ? 'mute' : 'ok'), s === 'paused' ? 'Paused' : 'Active plan');
+    if (o.kind === 'topup') return el('em', 'op-st ok', 'Paid top-up');
+    return el('em', 'op-st ' + ({ placed: 'new', confirmed: 'go', 'on the way': 'go', delivered: 'ok' }[s] || 'new'), { placed: 'New', confirmed: 'Confirmed', 'on the way': 'On the way', delivered: 'Delivered' }[s] || s);
+  }
+  function who(o) {
+    var c = cust(o), w = el('div', 'op-who');
+    var b = el('b', '', o.gift_name ? o.gift_name + ' (gift from ' + (c.name || 'customer') + ')' : (c.name || c.email || 'Customer'));
+    var ph = o.gift_phone || c.phone;
+    w.append(b);
+    if (ph) { var a = el('a', 'op-tel', ph); a.href = 'tel:' + ph.replace(/\s/g, ''); w.appendChild(a); }
+    return w;
+  }
+  function nextAction(o) {
+    var w = el('div', 'op-acts');
+    if (o.status === 'cancelled') return w;
+    if (o.payment_status === 'awaiting payment') {
+      w.append(btn('op-btn y', 'Payment received', function () { update(o, { payment_status: 'paid' }, 'Marked paid: ' + ref(o)); }),
+        btn('op-btn ghost', 'Not received', function () { if (confirmTap(this)) update(o, { payment_status: 'failed', status: 'cancelled' }, ref(o) + ' cancelled'); }));
+      return w;
+    }
+    if (o.kind === 'once') {
+      if (o.status === 'placed') w.appendChild(btn('op-btn', 'Confirm order', function () { update(o, { status: 'confirmed' }, ref(o) + ' confirmed'); }));
+      if (o.status === 'confirmed') w.appendChild(btn('op-btn', 'Out for delivery', function () { update(o, { status: 'on the way' }, ref(o) + ' is on the way'); }));
+      if (o.status === 'on the way') w.appendChild(btn('op-btn g', 'Delivered', function () { update(o, { status: 'delivered' }, ref(o) + ' delivered'); }));
+    }
+    return w;
+  }
+  function confirmTap(b) { if (b.dataset.sure) return true; b.dataset.sure = 1; var t = b.textContent; b.textContent = 'Tap again'; setTimeout(function () { delete b.dataset.sure; b.textContent = t; }, 3000); return false; }
+
+  // ---------- pages ----------
+  function render() {
+    document.querySelectorAll('[data-pg]').forEach(function (b) { b.setAttribute('aria-current', b.dataset.pg === page ? 'page' : 'false'); });
+    var waiting = data.orders.filter(function (o) { return o.payment_status === 'awaiting payment' && o.status !== 'cancelled'; });
+    var bp = document.querySelector('[data-pg="pay"] em'); if (bp) { bp.textContent = waiting.length; bp.hidden = !waiting.length; }
+    var main = $('opMain'); main.innerHTML = '';
+    var T = { today: 'Today', pay: 'Payments to confirm', orders: 'Orders', plans: 'Krate Plans', people: 'Customers' };
+    $('opTitle').textContent = T[page];
+    $('opDate').textContent = new Date().toLocaleDateString('en-NG', { weekday: 'long', day: 'numeric', month: 'long' });
+    ({ today: pgToday, pay: pgPay, orders: pgOrders, plans: pgPlans, people: pgPeople })[page](main, waiting);
+  }
+  function stat(lbl, val, sub, tone, go) { var c = el('button', 'op-stat ' + (tone || '')); c.type = 'button'; c.append(el('small', '', lbl), el('b', '', val), el('span', '', sub || '')); if (go) c.onclick = function () { page = go; render(); }; return c; }
+  function dueToday() {
+    var list = [];
+    data.orders.forEach(function (o) {
+      if (o.status === 'cancelled' || o.payment_status === 'awaiting payment' || o.payment_status === 'failed') return;
+      if (o.kind === 'once' && o.status !== 'delivered') list.push({ o: o, crates: o.crates, label: o.summary });
+      if (o.kind === 'sub' && o.status !== 'paused') {
+        var s = planOf(o), hit = s.all.find(function (x) { return x.key === today && !x.skip; });
+        if (hit) list.push({ o: o, crates: hit.crates, label: 'Plan delivery · ' + hit.crates + (hit.crates > 1 ? ' crates' : ' crate'), plan: true, key: today });
+      }
+    });
+    return list;
+  }
+  function pgToday(m, waiting) {
+    var due = dueToday(), wk = Date.now() - 7 * DAY;
+    var week = data.orders.filter(function (o) { return o.payment_status === 'paid' && new Date(o.created_at) > wk; });
+    var plans = data.orders.filter(function (o) { return o.kind === 'sub' && o.status !== 'cancelled' && o.payment_status === 'paid'; });
+    var g = el('div', 'op-stats');
+    g.append(stat('Deliveries today', String(due.filter(function (d) { return !(d.plan && delivered(d.o, d.key)); }).length), due.reduce(function (n, d) { return n + (+d.crates || 0); }, 0) + ' crates to send', 'g'),
+      stat('Payments to confirm', String(waiting.length), waiting.length ? money(waiting.reduce(function (n, o) { return n + (+o.total || 0); }, 0)) + ' waiting' : 'All clear', waiting.length ? 'y' : '', 'pay'),
+      stat('Active plans', String(plans.length), plans.reduce(function (n, o) { return n + planOf(o).left; }, 0) + ' deliveries prepaid', '', 'plans'),
+      stat('Paid this week', money(week.reduce(function (n, o) { return n + (+o.total || 0); }, 0)), week.length + ' payments', ''),
+      stat('Customers', String(data.profiles.length), 'with an account', '', 'people'));
+    m.appendChild(g);
+    var c = el('section', 'op-card'); var h = el('div', 'op-card-h'); h.append(el('h3', '', 'To deliver today'), el('small', '', fmt(Date.now(), { weekday: 'long', day: 'numeric', month: 'long' }))); c.appendChild(h);
+    if (!due.length) c.appendChild(el('p', 'op-none', 'Nothing to deliver right now. New paid orders and today’s plan deliveries show up here.'));
+    due.filter(function (d) { return match(d.o); }).forEach(function (d) {
+      var o = d.o, r = el('div', 'op-row'), done = d.plan && delivered(o, d.key);
+      var a = el('div', 'op-r-main'); a.append(who(o), el('p', 'op-addr', o.delivery_address || cust(o).address || 'No address'), el('small', '', ref(o) + ' · ' + d.label + (o.delivery_note ? ' · “' + o.delivery_note + '”' : '')));
+      var acts;
+      if (d.plan) { acts = el('div', 'op-acts'); acts.appendChild(done ? el('em', 'op-st ok', 'Delivered') : btn('op-btn g', 'Mark delivered', function () { markPlanDelivered(o, d.key); })); }
+      else acts = nextAction(o);
+      r.append(el('span', 'op-crates', String(d.crates)), a, d.plan ? el('em', 'op-st go', 'Plan') : pill(o), acts);
+      if (done) r.classList.add('is-done');
+      c.appendChild(r);
+    });
+    m.appendChild(c);
+  }
+  function pgPay(m, waiting) {
+    var c = el('section', 'op-card'); var h = el('div', 'op-card-h'); h.append(el('h3', '', 'Bank transfers waiting'), el('small', '', 'Check your bank app for the reference, then confirm')); c.appendChild(h);
+    var list = waiting.filter(match);
+    if (!list.length) c.appendChild(el('p', 'op-none', 'No transfers waiting. Nice.'));
+    list.forEach(function (o) {
+      var r = el('div', 'op-row'), a = el('div', 'op-r-main');
+      var rf = el('b', 'op-ref', ref(o)); rf.title = 'Tap to copy'; rf.onclick = function () { if (navigator.clipboard) navigator.clipboard.writeText(ref(o)).then(function () { toast('Copied ' + ref(o)); }); };
+      a.append(rf, who(o), el('small', '', kind(o) + ' · ' + o.summary + ' · ' + fmt(o.created_at) + ', ' + time(o.created_at)));
+      r.append(el('span', 'op-amt', money(o.total)), a, nextAction(o));
+      c.appendChild(r);
+    });
+    m.appendChild(c);
+  }
+  function pgOrders(m) {
+    var chips = el('div', 'op-chips');
+    [['all', 'All'], ['placed', 'New'], ['confirmed', 'Confirmed'], ['on the way', 'On the way'], ['delivered', 'Delivered'], ['cancelled', 'Cancelled']].forEach(function (f) {
+      var b = btn('', f[1], function () { filt = f[0]; render(); }); b.setAttribute('aria-pressed', filt === f[0]); chips.appendChild(b);
+    });
+    m.appendChild(chips);
+    var list = data.orders.filter(function (o) { return o.kind === 'once' && (filt === 'all' || o.status === filt) && match(o); });
+    var c = el('section', 'op-card');
+    var hd = el('div', 'op-tr op-th'); ['Order', 'Customer', 'Items', 'Total', 'Status', ''].forEach(function (x) { hd.appendChild(el('span', '', x)); }); c.appendChild(hd);
+    if (!list.length) c.appendChild(el('p', 'op-none', 'No orders here.'));
+    list.forEach(function (o) {
+      var r = el('div', 'op-tr'), cu = el('span');
+      cu.append(who(o), el('small', 'op-addr', o.delivery_address || ''));
+      var oc = el('span'); oc.append(el('b', 'op-ref', ref(o)), el('small', '', fmt(o.created_at) + ', ' + time(o.created_at)));
+      var ps = el('span'); ps.appendChild(pill(o));
+      r.append(oc, cu, el('span', '', o.summary + (+o.credit_used ? ' (−' + money(o.credit_used) + ' coins)' : '')), el('span', 'op-amt', money(o.total)), ps, nextAction(o));
+      c.appendChild(r);
+    });
+    m.appendChild(c);
+  }
+  function pgPlans(m) {
+    var list = data.orders.filter(function (o) { return o.kind === 'sub' && match(o); });
+    var c = el('section', 'op-card'); var h = el('div', 'op-card-h'); h.append(el('h3', '', 'Krate Plans'), el('small', '', list.length + ' plans')); c.appendChild(h);
+    if (!list.length) c.appendChild(el('p', 'op-none', 'No plans yet.'));
+    list.forEach(function (o) {
+      var s = planOf(o), r = el('div', 'op-row'), a = el('div', 'op-r-main');
+      a.append(who(o), el('p', 'op-addr', o.delivery_address || ''), el('small', '', ref(o) + ' · ' + KRATE_PLAN.label(o) + ' · balance ' + money(s.balance)));
+      var nx = el('div', 'op-next');
+      nx.append(el('small', '', s.next ? 'Next' : 'Done'), el('b', '', s.next ? fmt(s.next.d, { weekday: 'short', day: 'numeric', month: 'short' }) : '—'), el('span', '', s.done + ' of ' + s.deliveries + ' sent · ' + s.left + ' left'));
+      var acts = el('div', 'op-acts');
+      if (o.payment_status === 'awaiting payment') acts.appendChild(nextAction(o));
+      else if (s.next && s.next.key === today) acts.appendChild(delivered(o, today) ? el('em', 'op-st ok', 'Delivered today') : btn('op-btn g', 'Mark today delivered', function () { markPlanDelivered(o, today); }));
+      if (o.status !== 'cancelled' && o.status !== 'paused' && o.payment_status !== 'awaiting payment') acts.appendChild(btn('op-btn ghost', 'Pause', function () { update(o, { status: 'paused' }, 'Plan paused'); }));
+      if (o.status === 'paused') acts.appendChild(btn('op-btn ghost', 'Resume', function () { update(o, { status: 'active' }, 'Plan resumed'); }));
+      r.append(nx, a, pill(o), acts);
+      c.appendChild(r);
+    });
+    m.appendChild(c);
+  }
+  function pgPeople(m) {
+    var c = el('section', 'op-card');
+    var hd = el('div', 'op-tr op-pp op-th'); ['Customer', 'Contact', 'Orders', 'Spent', 'Coins', 'Since'].forEach(function (x) { hd.appendChild(el('span', '', x)); }); c.appendChild(hd);
+    var list = data.profiles.filter(function (p) { return !q || [p.name, p.phone, p.email, p.address].join(' ').toLowerCase().indexOf(q) >= 0; });
+    if (!list.length) c.appendChild(el('p', 'op-none', 'No customers yet.'));
+    list.forEach(function (p) {
+      var mine = data.orders.filter(function (o) { return o.user_id === p.id; });
+      var paid = mine.filter(function (o) { return o.payment_status === 'paid'; });
+      var coins = mine.reduce(function (n, o) { var earned = o.payment_status === 'paid' && o.status !== 'cancelled' ? (+o.coins_earned || (+o.crates || 0) * KRATE_COINS.perCrate) : 0; return n + earned - (+o.coins_used || 0); }, 0);
+      var first = mine.length ? mine[mine.length - 1].created_at : (p.updated_at || Date.now());
+      var r = el('div', 'op-tr op-pp'), nm = el('span'); nm.append(el('b', '', p.name || '—'), el('small', 'op-addr', p.address || ''));
+      var ct = el('span'); if (p.phone) { var a = el('a', 'op-tel', p.phone); a.href = 'tel:' + p.phone; ct.appendChild(a); } ct.appendChild(el('small', '', p.email || ''));
+      r.append(nm, ct, el('span', '', String(mine.length)), el('span', 'op-amt', money(paid.reduce(function (n, o) { return n + (+o.total || 0); }, 0))), el('span', '', Math.max(0, coins).toLocaleString('en-NG')), el('span', '', fmt(first, { day: 'numeric', month: 'short', year: 'numeric' })));
+      r.onclick = function () { q = (p.phone || p.email || p.name || '').toLowerCase(); $('opSearch').value = q; page = 'orders'; render(); };
+      c.appendChild(r);
+    });
+    m.appendChild(c);
+  }
+
+  boot();
+})();
+</script>
+</body>
+</html>

@@ -2287,6 +2287,11 @@ footer nav a{font-size:20px!important}
  #aDrawer .kd-pb-sec>h3{font-size:19px!important}
  #aDrawer .kd-pb-sum{padding:18px;border-radius:20px}
 }
+/* Krate Coins */
+#aDrawer .kd-cash>div>b{font-variant-numeric:tabular-nums}
+#aDrawer .kd-cbar{display:block;height:10px;margin-top:10px;border-radius:999px;background:rgba(1,70,33,.18);overflow:hidden;max-width:360px}
+#aDrawer .kd-cbar i{display:block;height:100%;width:0;border-radius:999px;background:#014621;transition:width 1s cubic-bezier(.2,.8,.3,1)}
+#aDrawer .kd-cnext{font:700 12px 'Inter Tight',sans-serif!important;letter-spacing:0!important;text-transform:none!important;opacity:.8}
 </style><link rel="icon" href="favicon.ico" sizes="32x32"><link rel="icon" href="icons/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#5bc20f"><meta name="apple-mobile-web-app-title" content="Krate"><meta name="application-name" content="Krate"></head>
 <body>
 
@@ -2419,12 +2424,12 @@ a{color:#014621}a:hover{color:#191718}
 <!-- PULL MENU -->
 <div class="k-menu" id="kMenu" style="transform: translateY(calc(-100% + 74px))">
 <nav aria-label="Main" id="kNav" style="background: #f6eceb; padding: 18px 26px 10px; border-radius: 0 0 6px 6px; transition: box-shadow .4s">
-<a class="k-row" href="#about" data-close="1"><img class="k-row-thumb" src="img/card-nourish.webp" alt=""><span class="k-row-label">About</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
-<a class="k-row" href="#eggs" data-close="1"><img class="k-row-thumb" src="img/egg-tray.webp" alt="" style="background: #f53509"><span class="k-row-label">Our Eggs</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
-<a class="k-row" href="#shop" data-close="1"><img class="k-row-thumb" src="img/krate-bowl.webp" alt=""><span class="k-row-label">Shop</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
-<a class="k-row" href="#partners" data-close="1"><img class="k-row-thumb" src="img/krate-shelf.webp" alt=""><span class="k-row-label">Partners</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
-<a class="k-row" href="#account" data-account data-close="1"><img class="k-row-thumb" src="img/egg-brown.webp" alt=""><span class="k-row-label">My account</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
-<a class="k-row" href="#contact" data-close="1" style="border-bottom: 0"><img class="k-row-thumb" src="img/card-deliver.webp" alt=""><span class="k-row-label">Contact</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
+<a class="k-row" href="#about" data-close="1"><img class="k-row-thumb" src="img/krate-nourish.webp" alt=""><span class="k-row-label">About</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
+<a class="k-row" href="#eggs" data-close="1"><img class="k-row-thumb" src="img/krate-home.webp" alt=""><span class="k-row-label">Our Eggs</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
+<a class="k-row" href="#shop" data-close="1"><img class="k-row-thumb" src="img/krate-checkout.webp" alt=""><span class="k-row-label">Shop</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
+<a class="k-row" href="#partners" data-close="1"><img class="k-row-thumb" src="img/krate-m-partner.webp" alt=""><span class="k-row-label">Partners</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
+<a class="k-row" href="#account" data-account data-close="1"><img class="k-row-thumb" src="img/krate-m-shop.webp" alt=""><span class="k-row-label">My account</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
+<a class="k-row" href="#contact" data-close="1" style="border-bottom: 0"><img class="k-row-thumb" src="img/krate-m-contact.webp" alt=""><span class="k-row-label">Contact</span><span aria-hidden="true" class="k-row-arrow">→</span></a>
 </nav>
 <div style="display: flex; justify-content: flex-end; padding-right: 0">
 <button type="button" id="kPull" aria-expanded="false" aria-label="Menu" style="width: 96px; height: 76px; margin-top: -2px; padding: 16px 0 0; border: 0; border-top: 3px dotted #014621; background: #f6eceb; color: #014621; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; clip-path: polygon(0 0, 100% 0, 100% 100%, 83% 88%, 66% 100%, 50% 88%, 33% 100%, 17% 88%, 0 100%); filter: drop-shadow(0 6px 8px rgba(0,0,0,0.2))">Pull me</button>
@@ -2572,7 +2577,7 @@ a{color:#014621}a:hover{color:#191718}
 
 <!-- row 1: TO [photo] NOURISH -->
 <div class="g-row" data-row="0">
-<p class="g-giant" aria-label="To nourish"><span aria-hidden="true">To</span><span class="g-slot" style="--tilt: -6deg"><img loading="lazy" decoding="async" class="g-card" src="img/card-nourish.webp" alt="A Krate jumbo egg cracked open, with a bright orange yolk"><span aria-hidden="true" class="g-tape"></span></span><span aria-hidden="true">Nourish</span></p>
+<p class="g-giant" aria-label="To nourish"><span aria-hidden="true">To</span><span class="g-slot" style="--tilt: -6deg"><img loading="lazy" decoding="async" class="g-card" src="img/krate-nourish.webp" alt="A family sharing fried eggs, plantain and bread at the breakfast table"><span aria-hidden="true" class="g-tape"></span></span><span aria-hidden="true">Nourish</span></p>
 <img loading="lazy" decoding="async" aria-hidden="true" class="g-prop" data-depth="1.6" src="img/egg-brown.webp" alt="" style="left: 58%; top: 62%; width: .43em; rotate: 14deg">
 <p class="g-note" style="left: 22%; top: 104%">big yolks for big mornings<br>&amp; growing kids ↗</p>
 </div>
@@ -2580,7 +2585,7 @@ a{color:#014621}a:hover{color:#191718}
 
 <!-- row 2: TO [photo] PROTECT -->
 <div class="g-row" data-row="1">
-<p class="g-giant" aria-label="To protect"><span aria-hidden="true">To</span><span class="g-slot" style="--tilt: 7deg"><img loading="lazy" decoding="async" class="g-card" src="img/card-protect.webp" alt="A full tray of 30 Krate jumbo eggs"><span aria-hidden="true" class="g-tape"></span></span><span aria-hidden="true">Protect</span></p>
+<p class="g-giant" aria-label="To protect"><span aria-hidden="true">To</span><span class="g-slot" style="--tilt: 7deg"><img loading="lazy" decoding="async" class="g-card" src="img/krate-protect.webp" alt="A strong hand holding a Krate egg beside a kettlebell"><span aria-hidden="true" class="g-tape"></span></span><span aria-hidden="true">Protect</span></p>
 <img loading="lazy" decoding="async" aria-hidden="true" class="g-prop" data-depth="1.8" src="img/egg-tray.webp" alt="" style="left: 66%; top: 70%; width: .67em; rotate: -8deg">
 <p class="g-note" style="left: 30%; top: 104%">packed snug, so what leaves<br>our farm whole arrives whole</p>
 </div>
@@ -2588,7 +2593,7 @@ a{color:#014621}a:hover{color:#191718}
 
 <!-- row 3: TO [photo] DELIVER -->
 <div class="g-row" data-row="2">
-<p class="g-giant" aria-label="To deliver"><span aria-hidden="true">To</span><span class="g-slot" style="--tilt: -5deg"><img loading="lazy" decoding="async" class="g-card" src="img/card-deliver.webp" alt="A white and a brown Krate jumbo egg"><span aria-hidden="true" class="g-tape"></span></span><span aria-hidden="true">Deliver</span></p>
+<p class="g-giant" aria-label="To deliver"><span aria-hidden="true">To</span><span class="g-slot" style="--tilt: -5deg"><img loading="lazy" decoding="async" class="g-card" src="img/krate-deliver.webp" alt="A smiling dispatch rider holding out a pack of Krate eggs"><span aria-hidden="true" class="g-tape"></span></span><span aria-hidden="true">Deliver</span></p>
 <img loading="lazy" decoding="async" aria-hidden="true" class="g-prop" data-depth="1.7" src="img/egg-brown.webp" alt="" style="left: 50%; top: 66%; width: .4em; rotate: -16deg">
 <p class="g-note" style="left: 18%; top: 104%">from our farm to your market,<br>shop &amp; front door →</p>
 </div>
@@ -2632,7 +2637,7 @@ a{color:#014621}a:hover{color:#191718}
 <label>Phone / WhatsApp<input name="phone" type="tel" required autocomplete="tel"></label>
 <div class="c-addrs" id="cAddrs" hidden role="radiogroup" aria-label="Saved addresses"></div>
 <label>Delivery address<textarea name="address" rows="2" required autocomplete="street-address"></textarea></label>
-<label class="c-cb" id="cCbRow" hidden><input type="checkbox" id="cCb"><span>Use <b id="cCbAmt">₦0</b> cashback</span></label>
+<label class="c-cb" id="cCbRow" hidden><input type="checkbox" id="cCb"><span>Use <b id="cCbAmt">0 coins</b></span></label>
 <label>Preferred delivery day<input name="when" placeholder="e.g. Saturday morning"></label>
 <p class="p-error" id="cError" role="alert" hidden>Please fill in your name, phone and address.</p>
 <button type="submit" class="c-checkout" id="cPlace">Place order</button>
@@ -2719,7 +2724,7 @@ a{color:#014621}a:hover{color:#191718}
 <aside class="kd-side">
 <div class="kd-logo" id="kdLogo" aria-hidden="true"></div>
 <div class="kd-me"><span class="kd-av" id="dAv">K</span><span><b id="aName">there</b><small id="kdEmail"></small></span></div>
-<nav class="kd-nav" aria-label="Your account"><button type="button" data-go="overview"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Overview</span></button><button type="button" data-go="orders"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6M9 16h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Orders</span><em class="kd-badge" hidden></em></button><button type="button" data-go="subs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.7L20 9M20 4v5h-5M20 12a8 8 0 0 1-13.7 5.7L4 15M4 20v-5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Krate Plan</span></button><button type="button" data-go="addrs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Addresses</span></button><button type="button" data-go="cash"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18v10H3zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Cashback</span></button><button type="button" data-go="account"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Account</span></button></nav>
+<nav class="kd-nav" aria-label="Your account"><button type="button" data-go="overview"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Overview</span></button><button type="button" data-go="orders"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6M9 16h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Orders</span><em class="kd-badge" hidden></em></button><button type="button" data-go="subs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.7L20 9M20 4v5h-5M20 12a8 8 0 0 1-13.7 5.7L4 15M4 20v-5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Krate Plan</span></button><button type="button" data-go="addrs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Addresses</span></button><button type="button" data-go="cash"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18v10H3zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Coins</span></button><button type="button" data-go="account"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Account</span></button></nav>
 <div class="kd-side-foot"><a id="dHelp" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-4-7.5L21 3l-1 4.5A9 9 0 0 1 21 12zM8 11h8M8 15h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Help &amp; support</span></a><button type="button" id="aLogout"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4M10 17l-5-5 5-5M5 12h11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Log out</span></button></div>
 </aside>
 <div class="kd-main">
@@ -2731,7 +2736,7 @@ a{color:#014621}a:hover{color:#191718}
 <div class="kd-grid">
 <article class="kd-card kd-sum" id="kdSum"></article>
 <div class="kd-tiles">
-<button type="button" class="kd-card kd-tile" data-go="cash"><i class="kd-ti"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18v10H3zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i><small>Cashback</small><b id="tCb">₦0</b><span id="tCbSub">2% back on every order</span></button>
+<button type="button" class="kd-card kd-tile" data-go="cash"><i class="kd-ti"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18v10H3zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i><small>Krate Coins</small><b id="tCb">0 coins</b><span id="tCbSub">50 coins on every crate</span></button>
 <button type="button" class="kd-card kd-tile" data-go="subs"><i class="kd-ti"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.7L20 9M20 4v5h-5M20 12a8 8 0 0 1-13.7 5.7L4 15M4 20v-5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i><small>Krate Plan</small><b id="tSub">Not set up</b><span id="tSubSub">Save up to 5%</span></button>
 <button type="button" class="kd-card kd-tile" data-go="addrs"><i class="kd-ti"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i><small>Delivering to</small><b id="tAddr">Add address</b><span id="tAddrSub">Tap to add</span></button>
 </div>
@@ -2756,13 +2761,13 @@ a{color:#014621}a:hover{color:#191718}
 </section>
 
 <section class="kd-page" data-p="cash">
-<div class="kd-cash"><div><small>Your cashback</small><b id="dCb">₦0</b><span>You get <strong id="dCbRate">2%</strong> back on every order. Tick “Use cashback” at checkout to spend it.</span></div><span class="kd-coin3" aria-hidden="true"><span class="kd-coin-in"><i class="e" style="--z:-5"></i><i class="e" style="--z:-4"></i><i class="e" style="--z:-3"></i><i class="e" style="--z:-2"></i><i class="e" style="--z:-1"></i><i class="e" style="--z:0"></i><i class="e" style="--z:1"></i><i class="e" style="--z:2"></i><i class="e" style="--z:3"></i><i class="e" style="--z:4"></i><i class="e" style="--z:5"></i><i class="f">₦</i><i class="b"><svg viewBox="-4 -4 88 94.14" aria-hidden="true"><path d="M41.74,3.52c.49-2.35,1.94-3.52,4.37-3.52h29.24c2.35,0,3.11,1.13,2.31,3.4l-12.74,33.24c-.81,2.1-.12,3.72,2.06,4.85,1.94,1.05,3.64,2.43,5.1,4.13,1.46,1.7,2.67,4.06,3.64,7.1.97,3.03,1.74,6.85,2.31,11.47.56,4.61.89,10.31.97,17.11,0,2.43-1.25,3.64-3.76,3.64h-31.55c-2.35,0-3.4-1.21-3.15-3.64.65-4.85.83-9.44.55-13.77-.28-4.33-1.07-7.62-2.37-9.89-.32-.57-.67-1.03-1.03-1.4-.36-.36-.95-.55-1.76-.55-1.38,0-2.06,1.05-2.06,3.15l.12,22.45c0,2.43-1.21,3.64-3.64,3.64H3.64c-2.43,0-3.64-1.21-3.64-3.64V3.64C0,1.21,1.21,0,3.64,0h26.69c2.43,0,3.64,1.21,3.64,3.64v20.02c0,.41.1.87.3,1.4.2.53.63.79,1.27.79.89,0,1.47-.26,1.76-.79.28-.53.46-.99.55-1.4l3.88-20.14Z" fill="currentColor"/></svg></i></span><span class="kd-coin-sh"></span></span></div>
-<div class="kd-steps"><div class="kd-card"><em>1</em><b>Order eggs</b><span>Every order earns <strong class="kdRate">2%</strong> back, subscriptions too.</span></div><div class="kd-card"><em>2</em><b>It lands here</b><span>Cashback is added as soon as your order is placed.</span></div><div class="kd-card"><em>3</em><b>Spend it</b><span>Tick “Use cashback” at checkout to take it off your total.</span></div></div>
+<div class="kd-cash"><div><small>Your Krate Coins</small><b id="dCb">0</b><span id="dCbWorth">Earn coins on every crate</span><span class="kd-cbar"><i id="dCbBar"></i></span><small class="kd-cnext" id="dCbNext"></small></div><span class="kd-coin3" aria-hidden="true"><span class="kd-coin-in"><i class="e" style="--z:-5"></i><i class="e" style="--z:-4"></i><i class="e" style="--z:-3"></i><i class="e" style="--z:-2"></i><i class="e" style="--z:-1"></i><i class="e" style="--z:0"></i><i class="e" style="--z:1"></i><i class="e" style="--z:2"></i><i class="e" style="--z:3"></i><i class="e" style="--z:4"></i><i class="e" style="--z:5"></i><i class="f">₦</i><i class="b"><svg viewBox="-4 -4 88 94.14" aria-hidden="true"><path d="M41.74,3.52c.49-2.35,1.94-3.52,4.37-3.52h29.24c2.35,0,3.11,1.13,2.31,3.4l-12.74,33.24c-.81,2.1-.12,3.72,2.06,4.85,1.94,1.05,3.64,2.43,5.1,4.13,1.46,1.7,2.67,4.06,3.64,7.1.97,3.03,1.74,6.85,2.31,11.47.56,4.61.89,10.31.97,17.11,0,2.43-1.25,3.64-3.76,3.64h-31.55c-2.35,0-3.4-1.21-3.15-3.64.65-4.85.83-9.44.55-13.77-.28-4.33-1.07-7.62-2.37-9.89-.32-.57-.67-1.03-1.03-1.4-.36-.36-.95-.55-1.76-.55-1.38,0-2.06,1.05-2.06,3.15l.12,22.45c0,2.43-1.21,3.64-3.64,3.64H3.64c-2.43,0-3.64-1.21-3.64-3.64V3.64C0,1.21,1.21,0,3.64,0h26.69c2.43,0,3.64,1.21,3.64,3.64v20.02c0,.41.1.87.3,1.4.2.53.63.79,1.27.79.89,0,1.47-.26,1.76-.79.28-.53.46-.99.55-1.4l3.88-20.14Z" fill="currentColor"/></svg></i></span><span class="kd-coin-sh"></span></span></div>
+<div class="kd-steps"><div class="kd-card"><em>1</em><b>Order eggs</b><span>Earn <strong class="kdRate">50 coins</strong> for every crate, plans and top-ups too.</span></div><div class="kd-card"><em>2</em><b>Stack them up</b><span>Every 1,000 coins is worth ₦200 off.</span></div><div class="kd-card"><em>3</em><b>Spend them</b><span>Tick “Use coins” at checkout to take it off your total.</span></div></div>
 <div class="kd-card kd-list" id="kdCbList"></div>
 </section>
 
 <section class="kd-page" data-p="account">
-<div class="kd-profile"><span class="kd-av kd-av-l" id="kdAvL">K</span><span><b id="kdPName">Your name</b><small id="kdPMeta"></small></span><span class="kd-pstats"><span><b id="kdSOrd">0</b><small>Orders</small></span><span><b id="kdSEggs">0</b><small>Eggs</small></span><span><b id="kdSCb">₦0</b><small>Cashback</small></span></span></div>
+<div class="kd-profile"><span class="kd-av kd-av-l" id="kdAvL">K</span><span><b id="kdPName">Your name</b><small id="kdPMeta"></small></span><span class="kd-pstats"><span><b id="kdSOrd">0</b><small>Orders</small></span><span><b id="kdSEggs">0</b><small>Eggs</small></span><span><b id="kdSCb">₦0</b><small>Coins</small></span></span></div>
 <form class="kd-card kd-form" id="aDetails" novalidate>
 <h3>Your details</h3>
 <label>Full name<input name="name" autocomplete="name"></label>
@@ -2797,7 +2802,7 @@ a{color:#014621}a:hover{color:#191718}
 <div class="o-sec"><span class="o-lab">Deliver to</span><div class="c-addrs o-addrs" id="oAddrs"></div><textarea name="address" rows="2" required placeholder="House number, street, area, city"></textarea></div>
 <div class="o-sec"><span class="o-lab">Phone</span><input name="phone" type="tel" required autocomplete="tel"></div>
 <div class="o-sec"><span class="o-lab">Preferred day</span><input name="when" placeholder="e.g. Saturday morning"></div>
-<label class="c-cb" id="oCbRow" hidden><input type="checkbox" id="oCb"><span>Use <b id="oCbAmt">₦0</b> cashback</span></label>
+<label class="c-cb" id="oCbRow" hidden><input type="checkbox" id="oCb"><span>Use <b id="oCbAmt">0 coins</b></span></label>
 <div class="o-fee"><span>Delivery fee</span><b id="oFee">₦0</b></div>
 <div class="o-sum"><span id="oWhat">1 crate</span><s id="oWas" hidden></s><strong id="oTotal">₦7,500</strong></div>
 <p class="p-error" id="oErr" role="alert" hidden>Add your phone and delivery address.</p>
@@ -3577,7 +3582,7 @@ var KRATE_PLAN = (function () {
     });
     // cashback
     var bal = window.KRATE_USER ? (window.KRATE_CASHBACK || 0) : 0;
-    $('cCbRow').hidden = !bal; $('cCbAmt').textContent = money(Math.min(bal, each()));
+    $('cCbRow').hidden = !bal; $('cCbAmt').textContent = Math.round(bal / KRATE_COINS.blockValue * KRATE_COINS.block).toLocaleString('en-NG') + ' coins (−' + money(Math.min(bal, each())) + ')';
     totals();
     drawer.classList.add('open'); drawer.setAttribute('aria-hidden', 'false'); scrim.hidden = false; $('cClose').focus();
   }
@@ -3627,7 +3632,20 @@ var KRATE_PLAN = (function () {
 })();
 
 /* Krate customer accounts (Supabase). Paste your project's URL and anon key to switch accounts on. */
-var KRATE_CASHBACK_RATE = 0.02; // 2% back on every order (placeholder: change to your real rate)
+var KRATE_CASHBACK_RATE = 0.02; // legacy, unused
+// Krate Coins: earn coins on every crate, swap them for money off. Change these to your real numbers.
+var KRATE_COINS = { perCrate: 50, block: 1000, blockValue: 200 }; // 50 coins per crate · 1,000 coins = ₦200 off
+function krateCoinsFor(o) { // coins a record earned
+  if (o.status === 'cancelled' || o.payment_status === 'awaiting payment' || o.payment_status === 'failed' || o.payment_status === 'refunded') return 0;
+  if (o.coins_earned != null) return +o.coins_earned;
+  if (o.status === 'cancelled' || o.payment_status === 'awaiting payment' || o.payment_status === 'failed') return 0;
+  var c = +o.crates || 0;
+  if (o.kind === 'sub' && o.plan_value && o.per_crate) c = Math.round(o.plan_value / ((+o.crates || 1) * o.per_crate + (+o.fee_each || 0))) * (+o.crates || 1);
+  return c * KRATE_COINS.perCrate;
+}
+function krateCoinsUsed(o) { return o.coins_used != null ? +o.coins_used : Math.round((+o.credit_used || 0) / KRATE_COINS.blockValue * KRATE_COINS.block); }
+function krateCoinValue(coins) { return Math.floor(coins / KRATE_COINS.block) * KRATE_COINS.blockValue; }
+function kc(n) { return Math.round(n).toLocaleString('en-NG') + ' coins'; }
 var KRATE_SUPABASE = {
   url: '',      // e.g. https://abcdefgh.supabase.co
   anonKey: ''   // the "anon public" key from Project Settings → API
@@ -3797,7 +3815,7 @@ var KRATE_SUPABASE = {
     view();
   }
   function defAddr() { var a = (profile.addresses || []).find(function (x) { return x.def; }) || (profile.addresses || [])[0]; return a ? a.text : (profile.address || ''); }
-  function saveProfile(cb) { profile.id = user.id; profile.address = defAddr(); window.KRATE_PROFILE = profile; sb.from('profiles').upsert(profile).then(function (r) { if (cb) cb(r); }); }
+  function saveProfile(cb) { profile.id = user.id; profile.email = user.email; profile.address = defAddr(); window.KRATE_PROFILE = profile; sb.from('profiles').upsert(profile).then(function (r) { if (cb) cb(r); }); }
   var AICON = { Home: 'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z', Work: 'M4 8h16v12H4zM9 8V5h6v3M4 13h16', Other: 'M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z' };
   function svg(d) { var w = document.createElement('i'); w.className = 'kd-ti'; w.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + d + '" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'; return w; }
   function renderAddrs() {
@@ -3838,7 +3856,14 @@ var KRATE_SUPABASE = {
   }
   var lastOrder = null, DAY = 864e5, STEP = { 'week': 7, '2 weeks': 14, 'month': 30 };
   function fmt(d, o) { return d.toLocaleDateString('en-NG', o || { weekday: 'long', day: 'numeric', month: 'long' }); }
-  function sched(o) { return KRATE_PLAN.schedule(o); }
+  // a plan's value includes top-ups once they are paid
+  function effPlan(o) {
+    if (o.kind !== 'sub') return o;
+    var extra = (rowsAll || []).filter(function (t) { return t.kind === 'topup' && String(t.plan_id) === String(o.id) && t.payment_status === 'paid' && t.status !== 'cancelled'; }).reduce(function (n, t) { return n + (+t.add_value || 0); }, 0);
+    if (!extra) return o;
+    return Object.assign({}, o, { plan_value: (+o.plan_value || 0) + extra });
+  }
+  function sched(o) { return KRATE_PLAN.schedule(effPlan(KRATE_PLAN.norm(o))); }
   function nextDate(o) { var n = sched(o).next; return n ? n.d : new Date(); }
   function isOrder(o) { return o.kind !== 'sub' && o.kind !== 'topup'; }
   function isPlan(o) { return o.kind === 'sub'; }
@@ -3864,6 +3889,7 @@ var KRATE_SUPABASE = {
     if (o.status === 'cancelled') return { t: 'Cancelled', k: 'mute', s: 0 };
     if (o.status === 'delivered') return { t: 'Delivered', k: 'ok', s: 3 };
     if (o.status === 'on the way') return { t: 'On the way', k: 'go', s: 2 };
+    if (o.status === 'confirmed') return { t: 'Confirmed', k: 'go', s: 1 };
     if (o.payment_status === 'awaiting payment') return { t: 'Awaiting payment', k: 'wait', s: 0 };
     return { t: 'Being prepared', k: 'go', s: 1 };
   }
@@ -3908,7 +3934,7 @@ var KRATE_SUPABASE = {
       box.classList.add('is-empty');
       top.append(el('small', '', rows.length ? 'Nothing on the way' : 'Welcome to Krate'), el('h3', '', rows.length ? 'Ready when you are' : 'Fresh jumbo eggs, minus the market run'));
       var perks = el('ul', 'kd-perks');
-      [['M12 7v5l3 2M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z', WIN().replace(/^Usually /, '').replace(/^d/, 'D')], ['M4 8h16v12H4zM4 8l2-4h12l2 4M10 12h4', 'Packed snug, arrives whole'], ['M3 7h18v10H3zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z', Math.round(KRATE_CASHBACK_RATE * 100) + '% cashback on every order']].forEach(function (p) { var li = el('li'); li.appendChild(svg(p[0])); li.appendChild(el('span', '', p[1])); perks.appendChild(li); });
+      [['M12 7v5l3 2M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z', WIN().replace(/^Usually /, '').replace(/^d/, 'D')], ['M4 8h16v12H4zM4 8l2-4h12l2 4M10 12h4', 'Packed snug, arrives whole'], ['M3 7h18v10H3zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z', 'Earn Krate Coins on every crate']].forEach(function (p) { var li = el('li'); li.appendChild(svg(p[0])); li.appendChild(el('span', '', p[1])); perks.appendChild(li); });
       top.appendChild(perks);
       box.append(top);
     }
@@ -3960,7 +3986,7 @@ var KRATE_SUPABASE = {
         if (s.k === 'wait') ev.push({ d: new Date(d.getTime() + 1), k: 'wait', t: 'Waiting for your transfer', s: 'Send ' + money(o.total) + ' with reference ' + r, o: o, pay: true });
         else if (o.payment_method) ev.push({ d: new Date(d.getTime() + 1), k: 'ok', t: 'Payment received', s: money(o.total) + (o.payment_method === 'paystack' ? ' by card' : ' by transfer'), o: o });
       }
-      if (o.status !== 'cancelled') ev.push({ d: new Date(d.getTime() + 2), k: 'cash', t: '+' + money(Math.round((+o.total || 0) * KRATE_CASHBACK_RATE)) + ' cashback earned', s: 'On ' + r, o: o });
+      if (o.status !== 'cancelled' && krateCoinsFor(o)) ev.push({ d: new Date(d.getTime() + 2), k: 'cash', t: '+' + kc(krateCoinsFor(o)) + ' earned', s: 'On ' + r, o: o });
     });
     ev.sort(function (a, b) { return (b.future ? 1 : 0) - (a.future ? 1 : 0) || b.d - a.d; });
     var ol = el('ol', 'kd-tl');
@@ -3979,7 +4005,7 @@ var KRATE_SUPABASE = {
     function line(k, v, cls) { var r = el('div', cls || ''); r.append(el('dt', '', k), el('dd', '', v)); lines.appendChild(r); }
     line(o.summary, money(it));
     line(o.kind === 'sub' || o.kind === 'topup' ? 'Delivery fees (all deliveries)' : 'Delivery fee', money(+o.delivery_fee || 0));
-    if (+o.credit_used) line('Cashback used', '−' + money(o.credit_used));
+    if (+o.credit_used) line('Krate Coins (' + kc(krateCoinsUsed(o)) + ')', '−' + money(o.credit_used));
     line('Total', money(o.total), 'kd-tot');
     box.appendChild(lines);
     var meta = el('dl', 'kd-meta');
@@ -4192,8 +4218,8 @@ var KRATE_SUPABASE = {
   function topUp(o, n) {
     var q = KRATE_PLAN.quote(n, +o.crates || 1), add = n * KRATE_PLAN.cost(o), label = 'Top-up · ' + n + ' deliveries';
     window.KRATE_CHECKOUT_PAY({ items: q.items, fee: q.fee, itemsLabel: label, credit: 0, kind: 'topup', email: user.email, phone: profile.phone, note: 'This adds ' + n + ' deliveries to your plan.' }, function (pay) {
-      window.KRATE_SAVE_ORDER({ kind: 'topup', summary: label, crates: n * (+o.crates || 1), total: pay.amount, delivery_fee: pay.deliveryFee, payment: pay.method, pay_status: pay.status, pay_ref: pay.ref, address: o.delivery_address }).then(function () {
-        savePlan(o, { plan_value: (+o.plan_value || 0) + add }, '+' + n + ' deliveries added');
+      window.KRATE_SAVE_ORDER({ kind: 'topup', summary: label, crates: n * (+o.crates || 1), total: pay.amount, delivery_fee: pay.deliveryFee, payment: pay.method, pay_status: pay.status, pay_ref: pay.ref, address: o.delivery_address, plan: { plan_id: o.id, add_value: add } }).then(function () {
+        toast(pay.status === 'paid' ? '+' + n + ' deliveries added' : 'Top-up booked, it’s added once your transfer lands');
       });
     });
   }
@@ -4289,32 +4315,35 @@ var KRATE_SUPABASE = {
     rows.forEach(function (o) {
       if (o.status === 'cancelled') return; any = true;
       var r = el('div', 'kd-row'); var t = el('span'); t.append(el('b', '', 'Earned on ' + ref(o)), el('small', '', fmt(new Date(o.created_at), { day: 'numeric', month: 'short', year: 'numeric' })));
-      r.append(t, el('span', 'kd-plus', '+' + money(Math.round((+o.total || 0) * KRATE_CASHBACK_RATE)))); b.appendChild(r);
-      if (+o.credit_used) { var u = el('div', 'kd-row'); var t2 = el('span'); t2.append(el('b', '', 'Used on ' + ref(o)), el('small', '', '')); u.append(t2, el('span', 'kd-minus', '−' + money(o.credit_used))); b.appendChild(u); }
+      r.append(t, el('span', 'kd-plus', '+' + kc(krateCoinsFor(o)))); b.appendChild(r);
+      if (krateCoinsUsed(o)) { var u = el('div', 'kd-row'); var t2 = el('span'); t2.append(el('b', '', 'Spent on ' + ref(o)), el('small', '', money(o.credit_used) + ' off')); u.append(t2, el('span', 'kd-minus', '−' + kc(krateCoinsUsed(o)))); b.appendChild(u); }
     });
-    if (!any) b.appendChild(el('p', 'kd-none', 'You’ll earn ' + Math.round(KRATE_CASHBACK_RATE * 100) + '% back on your first order.'));
+    if (!any) b.appendChild(el('p', 'kd-none', 'You’ll earn ' + KRATE_COINS.perCrate + ' coins for every crate you order.'));
   }
   function confirmCancel(b) { if (b.dataset.sure) return true; b.dataset.sure = '1'; var t = b.textContent; b.textContent = 'Tap again to confirm'; setTimeout(function () { delete b.dataset.sure; b.textContent = t; }, 3000); return false; }
   function setStatus(o, s) { sb.from('orders').update({ status: s }).eq('id', o.id).then(function () { load(); if (window.kdToast) kdToast(s === 'paused' ? 'Subscription paused' : s === 'active' ? 'Subscription resumed' : 'Subscription cancelled'); }); }
   function list(rows) {
     rowsAll = rows; lastOrder = rows[0] || null;
     var earned = 0, used = 0;
-    rows.forEach(function (o) { if (o.status !== 'cancelled') earned += Math.round((+o.total || 0) * KRATE_CASHBACK_RATE); used += +o.credit_used || 0; });
-    var bal = Math.max(0, earned - used); window.KRATE_CASHBACK = bal;
+    rows.forEach(function (o) { if (o.status !== 'cancelled') earned += krateCoinsFor(o); used += krateCoinsUsed(o); });
+    var coins = Math.max(0, earned - used), bal = krateCoinValue(coins);
+    window.KRATE_COINS_BAL = coins; window.KRATE_CASHBACK = bal; // KRATE_CASHBACK = naira the coins are worth right now
     renderHero(rows); renderOrders(rows); renderSub(rows); renderCash(rows, bal);
-    $('dCb').textContent = money(bal); $('dCbRate').textContent = Math.round(KRATE_CASHBACK_RATE * 100) + '%';
-    $('tCb').textContent = money(bal); $('tCbSub').textContent = bal ? 'Ready to use at checkout' : Math.round(KRATE_CASHBACK_RATE * 100) + '% back on every order';
+    var toNext = KRATE_COINS.block - (coins % KRATE_COINS.block);
+    $('dCb').textContent = Math.round(coins).toLocaleString('en-NG'); $('dCbWorth').textContent = bal ? 'Worth ' + money(bal) + ' off your next order' : toNext + ' more coins to unlock ' + money(KRATE_COINS.blockValue) + ' off';
+    var bar = $('dCbBar'); if (bar) bar.style.width = Math.min(100, (coins % KRATE_COINS.block) / KRATE_COINS.block * 100) + '%';
+    $('dCbNext').textContent = Math.round(coins % KRATE_COINS.block) + ' / ' + KRATE_COINS.block.toLocaleString('en-NG') + ' to your next ' + money(KRATE_COINS.blockValue);
     var sb2 = rows.find(function (x) { return isPlan(x) && x.status !== 'cancelled'; });
     var lastOne = rows.find(isOrder), big = KRATE_PLAN.sizes[KRATE_PLAN.sizes.length - 1];
     if (sb2) { var s3 = st(sb2), sc3 = sched(sb2); $('tSub').textContent = s3.k === 'ok' ? sc3.left + (sc3.left === 1 ? ' delivery left' : ' deliveries left') : s3.t; $('tSubSub').textContent = s3.k === 'ok' && sc3.next ? 'Next: ' + fmt(sc3.next.d, { weekday: 'short', day: 'numeric', month: 'short' }) : KRATE_PLAN.label(sb2); }
     else { var qq = KRATE_PLAN.quote(big.n, (lastOne && lastOne.crates) || 1); $('tSub').textContent = 'Save up to ' + money(qq.save); $('tSubSub').textContent = 'With a ' + big.n + '-delivery Krate Plan'; }
-    $('tCb').textContent = bal ? money(bal) + ' ready' : 'Earn ' + Math.round(KRATE_CASHBACK_RATE * 100) + '% back';
-    $('tCbSub').textContent = bal ? 'Tap to see how to use it' : 'On every order, subscriptions too';
+    $('tCb').textContent = kc(coins);
+    $('tCbSub').textContent = bal ? money(bal) + ' off ready to use' : KRATE_COINS.perCrate + ' coins on every crate';
     var waitN = rows.filter(function (o) { return st(o).k === 'wait'; }).length;
     var bd = drawer.querySelector('.kd-badge'); if (bd) { bd.hidden = !rows.length; bd.textContent = waitN ? '!' : rows.length; bd.classList.toggle('is-w', !!waitN); bd.title = waitN ? 'Payment needed' : ''; }
     var crates = rows.filter(function (o) { return o.status !== 'cancelled'; }).reduce(function (n, o) { return n + (+o.crates || 0); }, 0);
-    $('kdSOrd').textContent = rows.length; $('kdSEggs').textContent = (crates * 30).toLocaleString('en-NG'); $('kdSCb').textContent = money(bal);
-    drawer.querySelectorAll('.kdRate').forEach(function (x) { x.textContent = Math.round(KRATE_CASHBACK_RATE * 100) + '%'; });
+    $('kdSOrd').textContent = rows.length; $('kdSEggs').textContent = (crates * 30).toLocaleString('en-NG'); $('kdSCb').textContent = Math.round(coins).toLocaleString('en-NG');
+    drawer.querySelectorAll('.kdRate').forEach(function (x) { x.textContent = KRATE_COINS.perCrate + ' coins'; });
   }
   $('dInvite').onclick = function () {
     var text = 'I get my eggs from Krate: 30 fresh jumbo eggs, delivered. ' + location.origin + location.pathname;
@@ -4332,8 +4361,14 @@ var KRATE_SUPABASE = {
     if (!sb || !user) return Promise.resolve(null);
     var rec = { user_id: user.id, kind: o.kind, summary: o.summary, crates: o.crates, frequency: o.frequency || null, total: o.total, credit_used: o.credit || 0, delivery_address: o.address || null, delivery_note: o.when || null, delivery_fee: o.delivery_fee || 0, payment_method: o.payment || null, payment_status: o.pay_status || null, payment_ref: o.pay_ref || null, status: o.kind === 'sub' ? 'active' : 'placed' };
     if (o.plan) Object.assign(rec, o.plan);
+    rec.coins_used = Math.round((o.credit || 0) / KRATE_COINS.blockValue * KRATE_COINS.block);
+    rec.coins_earned = krateCoinsFor(Object.assign({}, rec, { coins_earned: null, payment_status: 'paid', status: 'placed' }));
     var p = sb.from('orders').insert(rec);
-    var done = (p && p.select ? p.select().single() : p).then(function (r) { load(); return (r && r.data) || rec; });
+    var done = (p && p.select ? p.select().single() : p).then(function (r) {
+      // real backend: ask the server to confirm a card payment with Paystack
+      if (o.payment === 'paystack' && sb.functions && rec.payment_ref) return sb.functions.invoke('paystack-verify', { body: { reference: rec.payment_ref } }).then(function () { load(); return (r && r.data) || rec; }, function () { load(); return (r && r.data) || rec; });
+      load(); return (r && r.data) || rec;
+    });
     profile.name = profile.name || o.name; profile.phone = profile.phone || o.phone;
     profile.addresses = profile.addresses || [];
     var addr = (o.address || '').trim();
@@ -4349,7 +4384,7 @@ var KRATE_SUPABASE = {
     if (cur === 'overview') { $('kdTitle').textContent = TITLES.overview; }
     $('kdHi').textContent = cur === 'overview' ? fmt(new Date()) : 'Hi ' + first();
   }
-  var TITLES = { overview: 'Overview', orders: 'Orders', subs: 'Krate Plan', addrs: 'Addresses', cash: 'Cashback', account: 'Account', 'new': 'New order', plan: 'Build your Krate Plan' };
+  var TITLES = { overview: 'Overview', orders: 'Orders', subs: 'Krate Plan', addrs: 'Addresses', cash: 'Krate Coins', account: 'Account', 'new': 'New order', plan: 'Build your Krate Plan' };
   var ALIAS = { home: 'overview', details: 'account', help: 'account' };
   var cur = 'overview';
   function go(p, keep) {
@@ -4383,7 +4418,7 @@ var KRATE_SUPABASE = {
     drawer.querySelectorAll('.o-modes [data-m]').forEach(function (b) { b.setAttribute('aria-checked', b.dataset.m === O.mode); });
     drawer.querySelectorAll('.o-freq [data-f]').forEach(function (b) { b.setAttribute('aria-checked', b.dataset.f === O.freq); });
     $('oFreq').hidden = O.mode !== 'sub';
-    var bal = window.KRATE_CASHBACK || 0; $('oCbRow').hidden = !bal; $('oCbAmt').textContent = money(Math.min(bal, oEach()));
+    var bal = window.KRATE_CASHBACK || 0; $('oCbRow').hidden = !bal; $('oCbAmt').textContent = kc(bal / KRATE_COINS.blockValue * KRATE_COINS.block) + ' (−' + money(Math.min(bal, oEach())) + ')';
     $('oWhat').textContent = oWhat() + (O.mode === 'sub' ? ' · per delivery' : '');
     $('oWas').hidden = O.mode !== 'sub'; $('oWas').textContent = money(O.qty * PRICE);
     $('oTotal').textContent = money(oEach() + KRATE_PAY.deliveryFee - oCredit()); $('oFee').textContent = money(KRATE_PAY.deliveryFee);
